@@ -1,6 +1,16 @@
-gespeaker (0.1-1) jaunty; urgency=low
+gespeaker (0.2)
+
+  * Changed UI layout according to Gnome HIG specifications
+    http://library.gnome.org/devel/hig-book/stable/design-window.html.en
+  * Fixed DialogAbout.set_icon_from_file icon usage, which was wrongly
+    hardcoded.
+  * Symlinked copyright file to /usr/share/doc/gespeaker/copyright
+
+ -- Muflone <muflone@vbsimple.net>  Sun, 14 Jun 2009 22:06:20 +0100
+
+gespeaker (0.1-1)
 
   * Initial release
 
- -- Muflone <muflone@vbsimple.net>  Sat, 13 Jun 2009 00:00:00 +0100
+ -- Muflone <muflone@vbsimple.net>  Sat, 13 Jun 2009 23:00:00 +0100
 

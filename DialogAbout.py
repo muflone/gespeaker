@@ -34,7 +34,7 @@ def DialogAbout(name=None, version=None, comment=None,
     if logo:
       about.set_logo(gtk.gdk.pixbuf_new_from_file(logo))
     if icon:
-      about.set_icon_from_file('gespeaker.png')
+      about.set_icon_from_file(icon)
 
     about.run()
     about.destroy()

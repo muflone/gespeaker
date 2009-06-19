@@ -51,6 +51,7 @@ class gespeakerUI():
     self.winMain = self.gladeFile.get_widget('winMain')
     self.winMain.set_title(self.app_title)
     self.winMain.set_icon_from_file('gespeaker.png')
+    self.winMain.set_focus(self.gladeFile.get_widget('txvText'))
     self.txvBuffer = self.gladeFile.get_widget('txvText').get_buffer()
     self.hscVolume = self.gladeFile.get_widget('hscVolume')
     self.hscPitch = self.gladeFile.get_widget('hscPitch')
@@ -92,7 +93,6 @@ class gespeakerUI():
     text = text.replace('`', '\\`')
     text = text.replace('"', '\\"')
     text = text.replace('$', '\\$')
-    print text
     if text:
       cmd = '%s %s' % (espeakcmd, espeakargs % (
           self.hscVolume.get_value(), 
