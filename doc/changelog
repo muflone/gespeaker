@@ -1,3 +1,33 @@
+gespeaker (0.4) all; urgency=medium
+
+  * Added SubprocessWrapper.Popen to wrap subprocess.Popen in order to
+    support python versions prior to 2.6 which don't have the delete
+    argument on object creation.
+  * Added TempfileWrapper.NamedTemporaryFile to wrap tempfile's Popen
+    object in order to support python versions prior to 2.6 which don't
+    have terminate and send_signal methods.
+    Actually no more used, left for future usage.
+  * Now gespeaker works with python version 2.4 and higher.
+  * Temporary file for output to speech is created at program start so
+    new temporary files are no longer created after each play.
+  * Included pause and resume features.
+  * New icon and logo, kindly provided by MIX.
+  * New french translation provided by Emmanuel.
+
+ -- Muflone <muflone@vbsimple.net>  Fri, 20 Jun 2009 18:55:40 +0100
+
+gespeaker (0.3) all; urgency=low
+
+  * Added support for voice type (male/female) via +12 for female voice.
+  * Removed escaped text substitution with a more secure temporary file
+    with the text to play.
+  * Substituted direct shell piping with more secure subprocess' piping.
+  * Better control of external calls, now both espeak and player execution
+    are polled for exitcode and terminated if requested.
+  * Added documentation and artists parameters to DialogAbout.
+
+ -- Muflone <muflone@vbsimple.net>  Thu, 18 Jun 2009 01:21:30 +0100
+
 gespeaker (0.2)
 
   * Changed UI layout according to Gnome HIG specifications

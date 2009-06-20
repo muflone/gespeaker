@@ -12,7 +12,6 @@ def ShowDialogGeneric(type, title=None, text=None, showOk=True):
     message_format=text
   )
   if title:
-    print title
     dialog.set_title(title)
   dialog.connect('response', lambda self, args: self.destroy())
   dialog.run()

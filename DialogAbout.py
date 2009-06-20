@@ -6,9 +6,8 @@
 import gtk
 
 def DialogAbout(name=None, version=None, comment=None,
-    copyright=None, license=None, 
-    website=None, website_label=None,
-    authors=None, translation=None, 
+    copyright=None, license=None, website=None, website_label=None,
+    authors=None, translation=None, documentation=None, artists=None,
     logo=None, icon=None):
     "Show an About Dialog with specified arguments"
     about = gtk.AboutDialog()
@@ -31,6 +30,10 @@ def DialogAbout(name=None, version=None, comment=None,
       about.set_authors(authors)
     if translation:
       about.set_translator_credits(translation)
+    if documentation:
+      about.set_documenters(documentation)
+    if artists:
+      about.set_artists(artists)
     if logo:
       about.set_logo(gtk.gdk.pixbuf_new_from_file(logo))
     if icon:
