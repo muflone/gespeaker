@@ -1,0 +1,111 @@
+# gespeaker - A GTK frontend for espeak
+# Copyright (C) 2009 Muflone Ubuntu Trucchi
+# This file is distributed under the GPL v2 license (see copyright file).
+# Muflone <muflone@vbsimple.net>, 2009.
+# Italian translation for gespeaker
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker 0.4\n"
+"Report-Msgid-Bugs-To: Muflone <muflone@vbsimple.net>\n"
+"POT-Creation-Date: 2009-06-20 12:09+0200\n"
+"PO-Revision-Date: 2009-06-20 12:13+0200\n"
+"Last-Translator: Muflone <muflone@vbsimple.net>\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gespeaker.glade.h:1
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Inserisci il testo da riprodurre</b>"
+
+#: gespeaker.glade.h:2
+msgid "<b>Settings</b>"
+msgstr "<b>Impostazioni</b>"
+
+#: gespeaker.glade.h:3
+msgid "Dela_y:"
+msgstr "Ritar_do:"
+
+#: gespeaker.glade.h:4
+msgid "Fem_ale"
+msgstr "F_emminile"
+
+#: gespeaker.glade.h:5
+msgid "P_itch:"
+msgstr "_Tonalità:"
+
+#: gespeaker.glade.h:6
+msgid "Spee_d:"
+msgstr "_Velocità:"
+
+#: gespeaker.glade.h:7
+msgid "Voice:"
+msgstr "Voce:"
+
+#: gespeaker.glade.h:8
+msgid "Welcome in Gespeaker"
+msgstr "Benvenuto in Gespeaker"
+
+#: gespeaker.glade.h:9
+msgid "_Edit"
+msgstr "_Modifica"
+
+#: gespeaker.glade.h:10
+msgid "_File"
+msgstr "_File"
+
+#: gespeaker.glade.h:11
+msgid "_Help"
+msgstr "A_iuto"
+
+#: gespeaker.glade.h:12
+msgid "_Language:"
+msgstr "_Lingua:"
+
+#: gespeaker.glade.h:13
+msgid "_Male"
+msgstr "M_aschile"
+
+#: gespeaker.glade.h:14
+msgid "_Volume:"
+msgstr "V_olume:"
+
+#: gespeakerUI.py:101
+msgid "default language"
+msgstr "italian"
+
+#: gespeakerUI.py:122
+msgid "Do you want to delete the current text?"
+msgstr "Vuoi cancellare il testo corrente?"
+
+#: gespeakerUI.py:133
+msgid "Please select the file to open"
+msgstr "Scegli il file da aprire"
+
+#: gespeakerUI.py:143 gespeakerUI.py:150
+msgid "Error opening the file"
+msgstr "Errore nell'apertura del file"
+
+#: gespeakerUI.py:157
+msgid "Please select where to save the file"
+msgstr "Scegli dove salvare il file"
+
+#: gespeakerUI.py:168 gespeakerUI.py:175
+msgid "Error saving the file"
+msgstr "Errore nel salvataggio del file"
+
+#: gespeakerUI.py:183
+msgid "Do you want to reset the default settings?"
+msgstr "Vuoi ripristinare le impostazioni predefinite?"
+
+#: gespeakerUI.py:204
+msgid "A GTK frontend for espeak"
+msgstr "Un'interfaccia in GTK per espeak"
+
+#: gespeakerUI.py:210
+msgid "translation"
+msgstr "Traduzione italiana di Muflone <muflone@vbsimple.net>"
+
