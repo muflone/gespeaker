@@ -63,7 +63,7 @@ msgstr "A_iuto"
 
 #: gespeaker.glade.h:12
 msgid "_Language:"
-msgstr "_Lingua:"
+msgstr "Li_ngua:"
 
 #: gespeaker.glade.h:13
 msgid "_Male"

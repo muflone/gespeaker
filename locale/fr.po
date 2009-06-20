@@ -19,59 +19,59 @@ msgstr ""
 
 #: gespeaker.glade.h:1
 msgid "<b>Insert text to play</b>"
-msgstr ""
+msgstr "<b>Insérer le texte à jouer</b>"
 
 #: gespeaker.glade.h:2
 msgid "<b>Settings</b>"
-msgstr ""
+msgstr "<b>Préférences</b>"
 
 #: gespeaker.glade.h:3
 msgid "Dela_y:"
-msgstr ""
+msgstr "Déla_i:"
 
 #: gespeaker.glade.h:4
 msgid "Fem_ale"
-msgstr ""
+msgstr "Fémini_ne"
 
 #: gespeaker.glade.h:5
 msgid "P_itch:"
-msgstr ""
+msgstr "_Tonalité:"
 
 #: gespeaker.glade.h:6
 msgid "Spee_d:"
-msgstr ""
+msgstr "Vite_sse:"
 
 #: gespeaker.glade.h:7
 msgid "Voice:"
-msgstr ""
+msgstr "Voix:"
 
 #: gespeaker.glade.h:8
 msgid "Welcome in Gespeaker"
-msgstr ""
+msgstr "Bienvenu dans Gespeaker"
 
 #: gespeaker.glade.h:9
 msgid "_Edit"
-msgstr ""
+msgstr "É_dition"
 
 #: gespeaker.glade.h:10
 msgid "_File"
-msgstr ""
+msgstr "_Fichier"
 
 #: gespeaker.glade.h:11
 msgid "_Help"
-msgstr ""
+msgstr "Aid_e"
 
 #: gespeaker.glade.h:12
 msgid "_Language:"
-msgstr ""
+msgstr "Lang_ue:"
 
 #: gespeaker.glade.h:13
 msgid "_Male"
-msgstr ""
+msgstr "_Masculine"
 
 #: gespeaker.glade.h:14
 msgid "_Volume:"
-msgstr ""
+msgstr "_Volume:"
 
 #: gespeakerUI.py:101
 msgid "default language"
@@ -79,32 +79,32 @@ msgstr "french"
 
 #: gespeakerUI.py:122
 msgid "Do you want to delete the current text?"
-msgstr ""
+msgstr "Voulez-vous effacer le texte courant?"
 
 #: gespeakerUI.py:133
 msgid "Please select the file to open"
-msgstr ""
+msgstr "Choisir le fichier à ouvrir"
 
 #: gespeakerUI.py:143 gespeakerUI.py:150
 msgid "Error opening the file"
-msgstr ""
+msgstr "Erreur en ouvrant le fichier"
 
 #: gespeakerUI.py:157
 msgid "Please select where to save the file"
-msgstr ""
+msgstr "Choisir où enregistrer le fichier"
 
 #: gespeakerUI.py:168 gespeakerUI.py:175
 msgid "Error saving the file"
-msgstr ""
+msgstr "Erreur en enregistrant le fichier"
 
 #: gespeakerUI.py:183
 msgid "Do you want to reset the default settings?"
-msgstr ""
+msgstr "Voulez-vous rétablir les paramètres par défaut?"
 
 #: gespeakerUI.py:204
 msgid "A GTK frontend for espeak"
-msgstr ""
+msgstr "Une interface GTK pour espeak"
 
 #: gespeakerUI.py:210
 msgid "translation"
-msgstr ""
+msgstr "Traduction française par Emmanuel <info@simple-linux.com>"
