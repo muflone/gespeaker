@@ -4,6 +4,7 @@
 ##
 
 import SubprocessWrapper
+import os
 
 class EspeakFrontend(object):
   def __init__(self):
@@ -32,11 +33,20 @@ class EspeakFrontend(object):
         else:
           self.procTalk[1].resume()
 
-  def play(self, cmdEspeak, cmdPlayer):
+  def play(self, cmdEspeak, cmdPlayer, fileToRecord=None):
     "Play the command provided"
+    # If save to file has been requested add -w else --stdout
+    cmdEspeak += fileToRecord and ['-w', fileToRecord] or ['--stdout']
     # Execute espeak and pipe it with player
-    procEspeak = SubprocessWrapper.Popen(cmdEspeak.split(), 
+    print cmdEspeak, cmdPlayer.split()
+    procEspeak = SubprocessWrapper.Popen(cmdEspeak, 
       stdout=SubprocessWrapper.PIPE)
+    # Save to file has been requested so we have to wait for espeak end
+    # and to pipe filename content to the player
+    if fileToRecord:
+      procEspeak.wait()
+      procEspeak = SubprocessWrapper.Popen(['cat', fileToRecord],
+        stdout=SubprocessWrapper.PIPE)
     procPlay = SubprocessWrapper.Popen(cmdPlayer.split(), 
       stdin=procEspeak.stdout,
       stdout=SubprocessWrapper.PIPE,
@@ -68,3 +78,29 @@ class EspeakFrontend(object):
     proc = SubprocessWrapper.Popen((cmdEspeak, '--voices'), 
       stdout=SubprocessWrapper.PIPE)
     return proc.communicate()[0].split('\n')[1:-1]
+
+  def loadVariants(self, cmdEspeak):
+    "Load variants list from espeak"
+    vardir = '/usr/share/espeak-data/voices/!v'
+    print 'loading variants from %s' % vardir
+    variantsM = []
+    variantsF = []
+    # Check if voice variants dir exists
+    if os.path.exists(vardir) and os.path.isdir(vardir):
+      # Load files from vardir
+      for f in os.listdir(vardir):
+        # Only files
+        if os.path.isfile(os.path.join(vardir, f)):
+          varfile = open(os.path.join(vardir, f), mode='r')
+          varcontent = varfile.read().split('\n')
+          varfile.close()
+          # Check if it's a valid variant
+          if varcontent[0] == 'language variant' and \
+            varcontent[1][:5] == 'name ' and \
+            varcontent[2][:7] == 'gender ':
+            # Check gender
+            if varcontent[2][7:] == 'female':
+              variantsF.append((f, varcontent[1][5:]))
+            else:
+              variantsM.append((f, varcontent[1][5:]))
+    return (variantsM, variantsF)

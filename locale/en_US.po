@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gespeaker 0.4\n"
+"Project-Id-Version: Gespeaker 0.5\n"
 "Report-Msgid-Bugs-To: Muflone <muflone@vbsimple.net>\n"
-"POT-Creation-Date: 2009-06-20 12:09+0200\n"
-"PO-Revision-Date: 2009-06-20 12:13+0200\n"
+"POT-Creation-Date: 2009-06-30 16:12+0200\n"
+"PO-Revision-Date: 2009-06-30 16:13+0200\n"
 "Last-Translator: Muflone <muflone@vbsimple.net>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,94 +17,208 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gespeaker.glade.h:1
+#: ../gespeaker.glade.h:1
 msgid "<b>Insert text to play</b>"
 msgstr "<b>Insert text to play</b>"
 
-#: gespeaker.glade.h:2
+#: ../gespeaker.glade.h:2
 msgid "<b>Settings</b>"
 msgstr "<b>Settings</b>"
 
-#: gespeaker.glade.h:3
+#: ../gespeaker.glade.h:3
 msgid "Dela_y:"
 msgstr "Dela_y:"
 
-#: gespeaker.glade.h:4
+#: ../gespeaker.glade.h:4
 msgid "Fem_ale"
 msgstr "Fem_ale"
 
-#: gespeaker.glade.h:5
+#: ../gespeaker.glade.h:5
 msgid "P_itch:"
 msgstr "P_itch:"
 
-#: gespeaker.glade.h:6
+#: ../gespeaker.glade.h:6
 msgid "Spee_d:"
 msgstr "Spee_d:"
 
-#: gespeaker.glade.h:7
+#: ../gespeaker.glade.h:7
+msgid "Varia_nt:"
+msgstr "Varia_nt:"
+
+#: ../gespeaker.glade.h:8
 msgid "Voice:"
 msgstr "Voice:"
 
-#: gespeaker.glade.h:8
-msgid "Welcome in Gespeaker"
-msgstr "Welcome in Gespeaker"
-
-#: gespeaker.glade.h:9
+#: ../gespeaker.glade.h:9
 msgid "_Edit"
 msgstr "_Edit"
 
-#: gespeaker.glade.h:10
+#: ../gespeaker.glade.h:10
 msgid "_File"
 msgstr "_File"
 
-#: gespeaker.glade.h:11
+#: ../gespeaker.glade.h:11
 msgid "_Help"
 msgstr "_Help"
 
-#: gespeaker.glade.h:12
+#: ../gespeaker.glade.h:12
 msgid "_Language:"
 msgstr "_Language:"
 
-#: gespeaker.glade.h:13
+#: ../gespeaker.glade.h:13
 msgid "_Male"
 msgstr "_Male"
 
-#: gespeaker.glade.h:14
+#: ../gespeaker.glade.h:14
 msgid "_Volume:"
 msgstr "_Volume:"
 
-#: gespeakerUI.py:101
+#: ../preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Audio player</b>"
+
+#: ../preferences.glade.h:2
+msgid "<b>Other settings</b>"
+msgstr "<b>Other settings</b>"
+
+#: ../preferences.glade.h:3
+msgid "<b>Recording</b>"
+msgstr "<b>Recording</b>"
+
+#: ../preferences.glade.h:4
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Saving preferences</b>"
+
+#: ../preferences.glade.h:5
+msgid "<b>Welcome message</b>"
+msgstr "<b>Welcome message</b>"
+
+#: ../preferences.glade.h:6
+msgid "Co_mmand:"
+msgstr "Co_mmand:"
+
+#: ../preferences.glade.h:7
+msgid "Custom mess_age:"
+msgstr "Custom mess_age:"
+
+#: ../preferences.glade.h:8
+msgid "Enable te_xt wrapping"
+msgstr "Enable te_xt wrapping"
+
+#: ../preferences.glade.h:9
+msgid "Load voice _variants"
+msgstr "Load voice _variants"
+
+#: ../preferences.glade.h:10
+msgid "Preferences"
+msgstr "Preferences"
+
+#: ../preferences.glade.h:11
+msgid "Save main window s_ize"
+msgstr "Save main window s_ize"
+
+#: ../preferences.glade.h:12
+msgid "Single track _record"
+msgstr "Single track _record"
+
+#: ../preferences.glade.h:13
+msgid "Speak _welcome text on program start"
+msgstr "Speak _welcome text on program start"
+
+#: ../preferences.glade.h:14
+msgid "_Save voice settings automatically"
+msgstr "_Save voice settings automatically"
+
+#: ../preferences.glade.h:15
+msgid "_Use custom welcome message"
+msgstr "_Use custom welcome message"
+
+#: ../gespeakerUI.py:123
 msgid "default language"
 msgstr "english"
 
-#: gespeakerUI.py:122
+#: ../gespeakerUI.py:218
 msgid "Do you want to delete the current text?"
 msgstr "Do you want to delete the current text?"
 
-#: gespeakerUI.py:133
-msgid "Please select the file to open"
-msgstr "Please select the file to open"
+#: ../gespeakerUI.py:229
+msgid "Please select the text file to open"
+msgstr "Please select the text file to open"
 
-#: gespeakerUI.py:143 gespeakerUI.py:150
+#: ../gespeakerUI.py:231 ../gespeakerUI.py:256
+msgid "Text files (*.txt)"
+msgstr "Text files (*.txt)"
+
+#: ../gespeakerUI.py:232 ../gespeakerUI.py:257 ../gespeakerUI.py:432
+msgid "All files"
+msgstr "All files"
+
+#: ../gespeakerUI.py:241 ../gespeakerUI.py:248
 msgid "Error opening the file"
 msgstr "Error opening the file"
 
-#: gespeakerUI.py:157
-msgid "Please select where to save the file"
-msgstr "Please select where to save the file"
+#: ../gespeakerUI.py:255
+msgid "Please select where to save the text file"
+msgstr "Please select where to save the text file"
 
-#: gespeakerUI.py:168 gespeakerUI.py:175
+#: ../gespeakerUI.py:268 ../gespeakerUI.py:275
 msgid "Error saving the file"
 msgstr "Error saving the file"
 
-#: gespeakerUI.py:183
+#: ../gespeakerUI.py:283
 msgid "Do you want to reset the default settings?"
 msgstr "Do you want to reset the default settings?"
 
-#: gespeakerUI.py:204
+#: ../gespeakerUI.py:305
 msgid "A GTK frontend for espeak"
 msgstr "A GTK frontend for espeak"
 
-#: gespeakerUI.py:210
+#: ../gespeakerUI.py:311
 msgid "translation"
 msgstr "English translation by Muflone <muflone@vbsimple.net>"
+
+#: ../gespeakerUI.py:429
+msgid "Please select where to save the recorded file"
+msgstr "Please select where to save the recorded file"
+
+#: ../gespeakerUI.py:431
+msgid "Wave files (*.wav)"
+msgstr "Wave files (*.wav)"
+
+#: ../gespeakerUI.py:437
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Recording audio track to: %s"
+
+#: ../PreferencesWindow.py:76
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../PreferencesWindow.py:79
+msgid "PulseAudio sound server"
+msgstr "PulseAudio sound server"
+
+#: ../PreferencesWindow.py:81
+msgid "Custom sound application"
+msgstr "Custom sound application"
+
+#: ../PreferencesWindow.py:83
+msgid "_Test"
+msgstr "_Test"
+
+#: ../PreferencesWindow.py:129
+msgid "Audio testing"
+msgstr "Audio testing"
+
+#: ../PreferencesWindow.py:130
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"Error %s: %s"
+msgstr ""
+"There was an error during the test for the audio player.\n"
+"Error %s: %s"
+
+#: ../Settings.py:39
+msgid "Welcome in Gespeaker"
+msgstr "Welcome in Gespeaker"

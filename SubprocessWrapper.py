@@ -49,3 +49,6 @@ class Popen(object):
       return self.process.send_signal(signal)
     else:
       return os.kill(self.pid, signal)
+
+  def wait(self):
+    return self.process.wait()

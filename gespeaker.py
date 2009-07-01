@@ -12,7 +12,7 @@ import gespeakerUI
 
 APP_NAME = 'gespeaker'
 APP_TITLE = 'Gespeaker'
-APP_VERSION = '0.4'
+APP_VERSION = '0.5'
 LOCALE_DIR = '/usr/share/locale'
 
 if __name__ == '__main__':

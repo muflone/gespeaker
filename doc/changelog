@@ -1,3 +1,21 @@
+gespeaker (0.5) all; urgency=low
+
+  * Added an exteder separator for settings to allow maximum usage of the
+    window with the text.
+  * Added filters for load/save text dialogs.
+  * Added support for recording the audio track to wave.
+  * Added a statusbar showing the active record mode.
+  * Added preferences dialog.
+  * Added preferences save and reload for welcome message, window size,
+    voice settings and expander status.
+  * Added support for audio frontend: ALSA (aplay), PulseAudio (paplay)
+    and user customized player command, with audio command test.
+  * Added voice variants by scanning /usr/share/espeak-data/voices/!v
+    folder for extra voice variants.
+  * Fixed stock icon for DialogFileOpenSave.
+
+ -- Muflone <muflone@vbsimple.net>  Fri, 30 Jun 2009 18:48:50 +0100
+
 gespeaker (0.4) all; urgency=medium
 
   * Added SubprocessWrapper.Popen to wrap subprocess.Popen in order to

@@ -1,10 +1,10 @@
 Package: gespeaker
-Version: 0.4
+Version: 0.5
 Section: sound
 Priority: optional
 Architecture: all
-Depends: espeak, python, python-gtk2, python-gobject, alsa-utils
-Installed-Size: 110
+Depends: espeak, espeak-data, python, python-gtk2, python-gobject, alsa-utils | pulseaudio-utils
+Installed-Size: 280
 Maintainer: Muflone Ubuntu Trucchi <muflone@vbsimple.net>
 Description: A GTK+ frontend for the espeak system
  Gespeaker is a GTK+ frontend for espeak. It allows to play

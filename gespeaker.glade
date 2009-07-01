@@ -3,10 +3,10 @@
   <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="winMain">
-    <property name="width_request">400</property>
-    <signal name="destroy" handler="on_imgmenuFileQuit_activate"/>
+    <property name="width_request">370</property>
+    <signal name="delete_event" handler="on_imgmenuFileQuit_activate"/>
     <child>
-      <widget class="GtkVBox" id="vbox1">
+      <widget class="GtkVBox" id="vboxEverything">
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
@@ -91,6 +91,7 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditPause">
                         <property name="label">gtk-media-pause</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditPause_activate"/>
@@ -101,6 +102,7 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditStop">
                         <property name="label">gtk-stop</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditStop_activate"/>
@@ -116,7 +118,6 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditRec">
                         <property name="label">gtk-media-record</property>
                         <property name="visible">True</property>
-                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditRec_activate"/>
@@ -129,6 +130,16 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditResetSettings_activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="imgmenuEditPreferences">
+                        <property name="label">gtk-preferences</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_imgmenuEditPreferences_activate"/>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </widget>
                     </child>
                   </widget>
@@ -214,13 +225,12 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkToggleToolButton" id="tlbSaveWave">
+              <widget class="GtkToggleToolButton" id="tlbRecord">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="is_important">True</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-media-record</property>
-                <signal name="toggled" handler="on_imgmenuEditRec_activate"/>
+                <signal name="toggled" handler="on_tlbRecord_toggled"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -256,12 +266,12 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkVBox" id="vbox3">
+          <widget class="GtkVBox" id="vboxContent">
             <property name="visible">True</property>
             <property name="border_width">7</property>
             <property name="orientation">vertical</property>
             <child>
-              <widget class="GtkVBox" id="vbox2">
+              <widget class="GtkVBox" id="vboxText">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
@@ -279,7 +289,7 @@
                 </child>
                 <child>
                   <widget class="GtkScrolledWindow" id="scrollText">
-                    <property name="height_request">50</property>
+                    <property name="height_request">30</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="border_width">1</property>
@@ -294,7 +304,6 @@
                         <property name="can_focus">True</property>
                         <property name="left_margin">2</property>
                         <property name="accepts_tab">False</property>
-                        <property name="text" translatable="yes">Welcome in Gespeaker</property>
                       </widget>
                     </child>
                   </widget>
@@ -308,20 +317,8 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkHBox" id="hbox1">
+              <widget class="GtkHBox" id="hboxCommands">
                 <property name="visible">True</property>
-                <child>
-                  <widget class="GtkLabel" id="label1">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="yalign">1</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Settings&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </widget>
-                  <packing>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
                 <child>
                   <widget class="GtkToggleButton" id="btnPlayStop">
                     <property name="label">gtk-media-play</property>
@@ -334,6 +331,8 @@
                   </widget>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="pack_type">end</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -345,7 +344,7 @@
                     <property name="receives_default">True</property>
                     <signal name="toggled" handler="on_btnPause_toggled"/>
                     <child>
-                      <widget class="GtkImage" id="image1">
+                      <widget class="GtkImage" id="imgPause">
                         <property name="visible">True</property>
                         <property name="stock">gtk-media-pause</property>
                       </widget>
@@ -354,227 +353,281 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">2</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">False</property>
                 <property name="padding">3</property>
                 <property name="position">1</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkTable" id="tblSettings">
+              <widget class="GtkExpander" id="expSettings">
                 <property name="visible">True</property>
-                <property name="n_rows">6</property>
-                <property name="n_columns">2</property>
+                <property name="can_focus">True</property>
+                <property name="expanded">True</property>
+                <property name="use_markup">True</property>
                 <child>
-                  <widget class="GtkLabel" id="lblLanguage">
+                  <widget class="GtkTable" id="tblSettings">
                     <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">_Language:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">cboLanguages</property>
-                  </widget>
-                  <packing>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_EXPAND</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkComboBox" id="cboLanguages">
-                    <property name="visible">True</property>
-                    <property name="border_width">1</property>
-                  </widget>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options">GTK_EXPAND</property>
-                    <property name="y_padding">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="lblDelay">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Dela_y:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">hscDelay</property>
-                  </widget>
-                  <packing>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                    <property name="x_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="lblSpeed">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Spee_d:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">hscSpeed</property>
-                  </widget>
-                  <packing>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="x_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="lblVolume">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">_Volume:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">hscVolume</property>
-                  </widget>
-                  <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="lblPitch">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">P_itch:</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">hscPitch</property>
-                  </widget>
-                  <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkHScale" id="hscDelay">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="adjustment">10 5 100 1 10 0</property>
-                    <property name="digits">0</property>
-                  </widget>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">5</property>
-                    <property name="bottom_attach">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkHScale" id="hscSpeed">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="update_policy">discontinuous</property>
-                    <property name="adjustment">170 80 390 1 10 0</property>
-                    <property name="digits">0</property>
-                  </widget>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkHScale" id="hscVolume">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="update_policy">discontinuous</property>
-                    <property name="adjustment">100 0 200 1 10 0</property>
-                    <property name="digits">0</property>
-                  </widget>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkHScale" id="hscPitch">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="adjustment">50 0 99 1 10 0</property>
-                    <property name="digits">0</property>
-                  </widget>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="lblVoice">
-                    <property name="visible">True</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">12</property>
-                    <property name="label" translatable="yes">Voice:</property>
-                  </widget>
-                  <packing>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_EXPAND</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkHBox" id="hbox2">
-                    <property name="visible">True</property>
+                    <property name="n_rows">6</property>
+                    <property name="n_columns">2</property>
                     <child>
-                      <widget class="GtkRadioButton" id="radioVoiceMale">
-                        <property name="label" translatable="yes">_Male</property>
+                      <widget class="GtkLabel" id="lblLanguage">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">_Language:</property>
                         <property name="use_underline">True</property>
-                        <property name="draw_indicator">True</property>
+                        <property name="mnemonic_widget">cboLanguages</property>
                       </widget>
                       <packing>
-                        <property name="position">0</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_FILL</property>
+                        <property name="y_options">GTK_EXPAND</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="GtkRadioButton" id="radioVoiceFemale">
-                        <property name="label" translatable="yes">Fem_ale</property>
+                      <widget class="GtkComboBox" id="cboLanguages">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <property name="draw_indicator">True</property>
-                        <property name="group">radioVoiceMale</property>
+                        <property name="border_width">1</property>
                       </widget>
                       <packing>
-                        <property name="position">1</property>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                        <property name="y_padding">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="lblDelay">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">Dela_y:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">hscDelay</property>
+                      </widget>
+                      <packing>
+                        <property name="top_attach">5</property>
+                        <property name="bottom_attach">6</property>
+                        <property name="x_options">GTK_FILL</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="lblSpeed">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">Spee_d:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">hscSpeed</property>
+                      </widget>
+                      <packing>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                        <property name="x_options">GTK_FILL</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="lblVolume">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">_Volume:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">hscVolume</property>
+                      </widget>
+                      <packing>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="x_options">GTK_FILL</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="lblPitch">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">P_itch:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">hscPitch</property>
+                      </widget>
+                      <packing>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="x_options">GTK_FILL</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHScale" id="hscDelay">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="adjustment">10 5 100 1 10 0</property>
+                        <property name="digits">0</property>
+                      </widget>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">5</property>
+                        <property name="bottom_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHScale" id="hscSpeed">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="update_policy">discontinuous</property>
+                        <property name="adjustment">170 80 390 1 10 0</property>
+                        <property name="digits">0</property>
+                      </widget>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHScale" id="hscVolume">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="update_policy">discontinuous</property>
+                        <property name="adjustment">100 0 200 1 10 0</property>
+                        <property name="digits">0</property>
+                      </widget>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHScale" id="hscPitch">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="adjustment">50 0 99 1 10 0</property>
+                        <property name="digits">0</property>
+                      </widget>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="lblVoice">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">12</property>
+                        <property name="label" translatable="yes">Voice:</property>
+                      </widget>
+                      <packing>
+                        <property name="x_options">GTK_FILL</property>
+                        <property name="y_options">GTK_EXPAND</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkHBox" id="hbox2">
+                        <property name="visible">True</property>
+                        <child>
+                          <widget class="GtkRadioButton" id="radioVoiceMale">
+                            <property name="label" translatable="yes">_Male</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="on_radioVoice_toggled"/>
+                          </widget>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkRadioButton" id="radioVoiceFemale">
+                            <property name="label" translatable="yes">Fem_ale</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
+                            <property name="draw_indicator">True</property>
+                            <property name="group">radioVoiceMale</property>
+                            <signal name="toggled" handler="on_radioVoice_toggled"/>
+                          </widget>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="lblVariants">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="xpad">6</property>
+                            <property name="label" translatable="yes">Varia_nt:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">cboVariants</property>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkComboBox" id="cboVariants">
+                            <property name="visible">True</property>
+                          </widget>
+                          <packing>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
                       </packing>
                     </child>
                   </widget>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="lblSettings">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Settings&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </widget>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
+                    <property name="type">label_item</property>
                   </packing>
                 </child>
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">False</property>
                 <property name="position">2</property>
               </packing>
             </child>
           </widget>
           <packing>
             <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkStatusbar" id="stbStatus">
+            <property name="visible">True</property>
+            <property name="spacing">2</property>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </widget>
