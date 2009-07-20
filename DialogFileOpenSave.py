@@ -22,11 +22,13 @@ class DialogFileOpenSave(gtk.FileChooserDialog):
       self.set_current_name(initialFile)
     self.set_do_overwrite_confirmation(askOverwrite)
     self.filename = None
+    self.lastFilter = None
 
   def _response_callback(self, *args):
     self.response = args[1]
     if args[1] == gtk.RESPONSE_OK:
       self.filename = self.get_filename()
+      self.lastFilter = self.get_filter()
     self.destroy()
 
   def show(self):

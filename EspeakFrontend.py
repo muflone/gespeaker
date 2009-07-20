@@ -5,6 +5,8 @@
 
 import SubprocessWrapper
 import os
+from gettext import gettext as _
+from DialogSimpleMessages import ShowDialogError
 
 class EspeakFrontend(object):
   def __init__(self):
@@ -37,6 +39,7 @@ class EspeakFrontend(object):
     "Play the command provided"
     # If save to file has been requested add -w else --stdout
     cmdEspeak += fileToRecord and ['-w', fileToRecord] or ['--stdout']
+
     # Execute espeak and pipe it with player
     print cmdEspeak, cmdPlayer.split()
     procEspeak = SubprocessWrapper.Popen(cmdEspeak, 
@@ -47,12 +50,55 @@ class EspeakFrontend(object):
       procEspeak.wait()
       procEspeak = SubprocessWrapper.Popen(['cat', fileToRecord],
         stdout=SubprocessWrapper.PIPE)
-    procPlay = SubprocessWrapper.Popen(cmdPlayer.split(), 
-      stdin=procEspeak.stdout,
-      stdout=SubprocessWrapper.PIPE,
-      stderr=SubprocessWrapper.PIPE)
+    self.__playAudio(procEspeak, cmdPlayer)
+
+  def playMbrola(self, cmdEspeak, cmdPlayer, cmdMbrola, fileToRecord=None):
+    "Play the command provided"
+    # If save to file has been requested add filename else -
+    if not fileToRecord:
+      fileToRecord = '/tmp/gespeaker.wav'
+    cmdMbrola += [fileToRecord]
+
+    # Execute espeak and pipe it with mbrola and then the player)
+    print cmdEspeak, cmdMbrola, cmdPlayer.split()
+    procEspeak = SubprocessWrapper.Popen(cmdEspeak, 
+      stdout=SubprocessWrapper.PIPE)
+
+    try:
+      procMbrola = SubprocessWrapper.Popen(cmdMbrola,
+        stdin=procEspeak.stdout, stdout=SubprocessWrapper.PIPE)
+    except OSError, (errno, strerror):
+      # Error during communicate"
+      ShowDialogError(title=_('Audio testing'), showOk=True,
+        text=_('There was an error during the test for the audio player.\n\n'
+          'Error %s: %s') % (errno, strerror))
+      procMbrola = None
+
+    # Save to file has been requested so we have to wait for espeak end
+    # and to pipe filename content to the player
+    if procMbrola:
+      procMbrola.wait()
+      procMbrola = SubprocessWrapper.Popen(['cat', fileToRecord],
+        stdout=SubprocessWrapper.PIPE)
+      self.__playAudio(procMbrola, cmdPlayer)
+
+  def __playAudio(self, procFrom, cmdPlayer):
+    "Play audio with the player piping from a process"
+    try:
+      procPlay = SubprocessWrapper.Popen(cmdPlayer.split(), 
+        stdin=procFrom.stdout,
+        stdout=SubprocessWrapper.PIPE,
+        stderr=SubprocessWrapper.PIPE)
+    except OSError, (errno, strerror):
+      # Error during communicate"
+      ShowDialogError(title=_('Audio testing'), showOk=True,
+        text=_('There was an error during the test for the audio player.\n\n'
+          'Error %s: %s') % (errno, strerror))
+      procPlay = None
     # Save both processes espeak and player
-    self.procTalk = (procEspeak, procPlay)
+    if procPlay:
+      self.procTalk = (procFrom, procPlay)
+    
 
   def stop(self):
     "Stop audio killing espeak and player"
@@ -104,3 +150,36 @@ class EspeakFrontend(object):
             else:
               variantsM.append((f, varcontent[1][5:]))
     return (variantsM, variantsF)
+
+  def loadMbrolaVoices(self, pathVoicesmb):
+    "Load mbrola languages list"
+    voicesmb = []
+    pathVoices = '/usr/share/espeak-data/voices/mb/'
+    if not pathVoicesmb:
+      pathVoicesmb = '/usr/share/mbrola/voices'
+    if os.path.isdir(pathVoices) and os.path.isdir(pathVoicesmb):
+      for voice in os.listdir(pathVoices):
+        # Only files
+        if os.path.isfile(os.path.join(pathVoices, voice)):
+          voicefile = open(os.path.join(pathVoices, voice), mode='r')
+          voicecontent = voicefile.read().split('\n')
+          voicefile.close()
+          # Check if it's a valid voice
+          for line in voicecontent:
+            if line[:5] == 'name ':
+              voicesmb.append((line[5:], voice, os.path.isfile(os.path.join(pathVoicesmb, voice[3:]))))
+              break
+    return voicesmb
+
+  def mbrolaExists(self, cmdMbrola):
+    "Return mbrola existance"
+    try:
+      # Try to call mbrola executable
+      mbrola = SubprocessWrapper.Popen(cmdMbrola, 
+        stdout=SubprocessWrapper.PIPE, stderr=SubprocessWrapper.PIPE)
+      mbrola.communicate()
+      status = True
+    except:
+      # Error during communicate"
+      status = False
+    return status

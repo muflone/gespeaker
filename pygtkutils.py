@@ -40,3 +40,22 @@ def Button_change_stock_description(button, caption, use_underline=None):
     # Set use_underline
     if use_underline is not None:
       label.set_use_underline(use_underline)
+
+def TreeModel_find_text(model, column, text):
+  "Return the path of the found text in the model"
+  iter = model.get_iter_first()
+  while iter:
+    if model.get_value(iter, column) == text:
+      return int(model.get_string_from_iter(iter))
+    iter = model.iter_next(iter)
+
+def ComboBox_set_item_from_text(combo, column, text):
+  path = TreeModel_find_text(combo.get_model(), column, text)
+  if not path is None:
+    combo.set_active(path)
+    return path
+
+def ComboBox_get_text(combo, column):
+  active = combo.get_active()
+  if not active is None:
+    return combo.get_model()[active][column]

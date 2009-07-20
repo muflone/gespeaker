@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gespeaker 0.5\n"
+"Project-Id-Version: Gespeaker 0.6\n"
 "Report-Msgid-Bugs-To: Muflone <muflone@vbsimple.net>\n"
-"POT-Creation-Date: 2009-06-30 16:12+0200\n"
-"PO-Revision-Date: 2009-06-30 16:13+0200\n"
+"POT-Creation-Date: 2009-07-18 11:04+0200\n"
+"PO-Revision-Date: 2009-07-18 11:06+0200\n"
 "Last-Translator: Muflone <muflone@vbsimple.net>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -18,58 +18,62 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Advanced settings</b>"
+
+#: ../gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Base settings</b>"
+
+#: ../gespeaker.glade.h:3
 msgid "<b>Insert text to play</b>"
 msgstr "<b>Insert text to play</b>"
 
-#: ../gespeaker.glade.h:2
-msgid "<b>Settings</b>"
-msgstr "<b>Settings</b>"
-
-#: ../gespeaker.glade.h:3
+#: ../gespeaker.glade.h:4
 msgid "Dela_y:"
 msgstr "Dela_y:"
 
-#: ../gespeaker.glade.h:4
+#: ../gespeaker.glade.h:5
 msgid "Fem_ale"
 msgstr "Fem_ale"
 
-#: ../gespeaker.glade.h:5
+#: ../gespeaker.glade.h:6
 msgid "P_itch:"
 msgstr "P_itch:"
 
-#: ../gespeaker.glade.h:6
+#: ../gespeaker.glade.h:7
 msgid "Spee_d:"
 msgstr "Spee_d:"
 
-#: ../gespeaker.glade.h:7
+#: ../gespeaker.glade.h:8
 msgid "Varia_nt:"
 msgstr "Varia_nt:"
 
-#: ../gespeaker.glade.h:8
+#: ../gespeaker.glade.h:9
 msgid "Voice:"
 msgstr "Voice:"
 
-#: ../gespeaker.glade.h:9
+#: ../gespeaker.glade.h:10
 msgid "_Edit"
 msgstr "_Edit"
 
-#: ../gespeaker.glade.h:10
+#: ../gespeaker.glade.h:11
 msgid "_File"
 msgstr "_File"
 
-#: ../gespeaker.glade.h:11
+#: ../gespeaker.glade.h:12
 msgid "_Help"
 msgstr "_Help"
 
-#: ../gespeaker.glade.h:12
+#: ../gespeaker.glade.h:13
 msgid "_Language:"
 msgstr "_Language:"
 
-#: ../gespeaker.glade.h:13
+#: ../gespeaker.glade.h:14
 msgid "_Male"
 msgstr "_Male"
 
-#: ../gespeaker.glade.h:14
+#: ../gespeaker.glade.h:15
 msgid "_Volume:"
 msgstr "_Volume:"
 
@@ -78,147 +82,206 @@ msgid "<b>Audio player</b>"
 msgstr "<b>Audio player</b>"
 
 #: ../preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola application</b>"
+
+#: ../preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Mbrola voices available</b>"
+
+#: ../preferences.glade.h:4
 msgid "<b>Other settings</b>"
 msgstr "<b>Other settings</b>"
 
-#: ../preferences.glade.h:3
+#: ../preferences.glade.h:5
 msgid "<b>Recording</b>"
 msgstr "<b>Recording</b>"
 
-#: ../preferences.glade.h:4
+#: ../preferences.glade.h:6
 msgid "<b>Saving preferences</b>"
 msgstr "<b>Saving preferences</b>"
 
-#: ../preferences.glade.h:5
+#: ../preferences.glade.h:7
 msgid "<b>Welcome message</b>"
 msgstr "<b>Welcome message</b>"
 
-#: ../preferences.glade.h:6
+#: ../preferences.glade.h:8
 msgid "Co_mmand:"
 msgstr "Co_mmand:"
 
-#: ../preferences.glade.h:7
+#: ../preferences.glade.h:9
 msgid "Custom mess_age:"
 msgstr "Custom mess_age:"
 
-#: ../preferences.glade.h:8
+#: ../preferences.glade.h:10
 msgid "Enable te_xt wrapping"
 msgstr "Enable te_xt wrapping"
 
-#: ../preferences.glade.h:9
+#: ../preferences.glade.h:11
+msgid "General"
+msgstr "General"
+
+#: ../preferences.glade.h:12
 msgid "Load voice _variants"
 msgstr "Load voice _variants"
 
-#: ../preferences.glade.h:10
+#: ../preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Main program mbrola"
+
+#: ../preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola voices"
+
+#: ../preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Mbrola voices path:"
+
+#: ../preferences.glade.h:16
 msgid "Preferences"
 msgstr "Preferences"
 
-#: ../preferences.glade.h:11
+#: ../preferences.glade.h:17
 msgid "Save main window s_ize"
 msgstr "Save main window s_ize"
 
-#: ../preferences.glade.h:12
+#: ../preferences.glade.h:18
 msgid "Single track _record"
 msgstr "Single track _record"
 
-#: ../preferences.glade.h:13
+#: ../preferences.glade.h:19
 msgid "Speak _welcome text on program start"
 msgstr "Speak _welcome text on program start"
 
-#: ../preferences.glade.h:14
+#: ../preferences.glade.h:20
 msgid "_Save voice settings automatically"
 msgstr "_Save voice settings automatically"
 
-#: ../preferences.glade.h:15
+#: ../preferences.glade.h:21
 msgid "_Use custom welcome message"
 msgstr "_Use custom welcome message"
 
-#: ../gespeakerUI.py:123
+#: ../EspeakFrontend.py:72 ../EspeakFrontend.py:94 ../PreferencesWindow.py:177
+msgid "Audio testing"
+msgstr "Audio testing"
+
+#: ../EspeakFrontend.py:73 ../EspeakFrontend.py:95 ../PreferencesWindow.py:178
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+
+#: ../gespeakerUI.py:132 ../Settings.py:60
 msgid "default language"
 msgstr "english"
 
-#: ../gespeakerUI.py:218
+#: ../gespeakerUI.py:228
 msgid "Do you want to delete the current text?"
 msgstr "Do you want to delete the current text?"
 
-#: ../gespeakerUI.py:229
+#: ../gespeakerUI.py:240
 msgid "Please select the text file to open"
 msgstr "Please select the text file to open"
 
-#: ../gespeakerUI.py:231 ../gespeakerUI.py:256
+#: ../gespeakerUI.py:243 ../gespeakerUI.py:270
 msgid "Text files (*.txt)"
 msgstr "Text files (*.txt)"
 
-#: ../gespeakerUI.py:232 ../gespeakerUI.py:257 ../gespeakerUI.py:432
+#: ../gespeakerUI.py:244 ../gespeakerUI.py:272 ../gespeakerUI.py:465
 msgid "All files"
 msgstr "All files"
 
-#: ../gespeakerUI.py:241 ../gespeakerUI.py:248
+#: ../gespeakerUI.py:253 ../gespeakerUI.py:260
 msgid "Error opening the file"
 msgstr "Error opening the file"
 
-#: ../gespeakerUI.py:255
+#: ../gespeakerUI.py:268
 msgid "Please select where to save the text file"
 msgstr "Please select where to save the text file"
 
-#: ../gespeakerUI.py:268 ../gespeakerUI.py:275
+#: ../gespeakerUI.py:286 ../gespeakerUI.py:293
 msgid "Error saving the file"
 msgstr "Error saving the file"
 
-#: ../gespeakerUI.py:283
+#: ../gespeakerUI.py:301
 msgid "Do you want to reset the default settings?"
 msgstr "Do you want to reset the default settings?"
 
-#: ../gespeakerUI.py:305
+#: ../gespeakerUI.py:323
 msgid "A GTK frontend for espeak"
 msgstr "A GTK frontend for espeak"
 
-#: ../gespeakerUI.py:311
+#: ../gespeakerUI.py:329
 msgid "translation"
 msgstr "English translation by Muflone <muflone@vbsimple.net>"
 
-#: ../gespeakerUI.py:429
+#: ../gespeakerUI.py:461
 msgid "Please select where to save the recorded file"
 msgstr "Please select where to save the recorded file"
 
-#: ../gespeakerUI.py:431
+#: ../gespeakerUI.py:464
 msgid "Wave files (*.wav)"
 msgstr "Wave files (*.wav)"
 
-#: ../gespeakerUI.py:437
+#: ../gespeakerUI.py:473
 #, python-format
 msgid "Recording audio track to: %s"
 msgstr "Recording audio track to: %s"
 
-#: ../PreferencesWindow.py:76
+#: ../PreferencesWindow.py:87
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../PreferencesWindow.py:79
+#: ../PreferencesWindow.py:90
 msgid "PulseAudio sound server"
 msgstr "PulseAudio sound server"
 
-#: ../PreferencesWindow.py:81
+#: ../PreferencesWindow.py:92
 msgid "Custom sound application"
 msgstr "Custom sound application"
 
-#: ../PreferencesWindow.py:83
+#: ../PreferencesWindow.py:94
 msgid "_Test"
 msgstr "_Test"
 
-#: ../PreferencesWindow.py:129
-msgid "Audio testing"
-msgstr "Audio testing"
+#: ../PreferencesWindow.py:110
+msgid "Language"
+msgstr "Language"
 
-#: ../PreferencesWindow.py:130
+#: ../PreferencesWindow.py:116
+msgid "Resource"
+msgstr "Resource"
+
+#: ../PreferencesWindow.py:122
+msgid "Status"
+msgstr "Status"
+
+#: ../PreferencesWindow.py:201
+msgid "Installed"
+msgstr "Installed"
+
+#: ../PreferencesWindow.py:201
+msgid "Not installed"
+msgstr "Not installed"
+
+#: ../PreferencesWindow.py:203
 #, python-format
-msgid ""
-"There was an error during the test for the audio player.\n"
-"Error %s: %s"
-msgstr ""
-"There was an error during the test for the audio player.\n"
-"Error %s: %s"
+msgid "%d languages of %d detected"
+msgstr "%d languages of %d detected"
 
-#: ../Settings.py:39
+#: ../PreferencesWindow.py:210
+msgid "Package mbrola installed"
+msgstr "Package mbrola installed"
+
+#: ../PreferencesWindow.py:210
+msgid "Package mbrola not installed"
+msgstr "Package mbrola not installed"
+
+#: ../Settings.py:46
 msgid "Welcome in Gespeaker"
 msgstr "Welcome in Gespeaker"

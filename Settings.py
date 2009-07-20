@@ -2,12 +2,19 @@ import ConfigParser
 import os
 from gettext import gettext as _
 
+cmdEspeak = '/usr/bin/espeak'
+argsEspeak = '-a %v -p %p -s %s -g %d -v %l -f %f'
+iconLogo = 'gespeaker.svg'
+cmdMbrola = '/usr/bin/mbrola'
+argsMbrola = '-e %l -'
+
 config = None
 confdir = os.path.join(os.path.expanduser('~/.gespeaker'))
 conffile = os.path.join(confdir, 'settings.conf')
 __sectionSettings = 'settings'
 __sectionWindowSize = 'window size'
 __sectionVoiceSetting = 'voice settings'
+__sectionMbrola = 'mbrola'
 __defSettings = None
 
 if not os.path.exists(confdir):
@@ -50,7 +57,8 @@ def loadDefaults():
     'VoiceSpeed': [int, 170, __sectionVoiceSetting],
     'VoiceDelay': [int, 10, __sectionVoiceSetting],
     'VoiceTypeMale': [strbool, True, __sectionVoiceSetting],
-    'VoiceLanguage': [int, -1, __sectionVoiceSetting]
+    'VoiceLanguage': [str, _('default language'), __sectionVoiceSetting],
+    'VoicesmbPath': [str, '/usr/share/mbrola/voices', __sectionMbrola]
   }
 
 def save(filename=conffile, clearDefaults=False):

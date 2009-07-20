@@ -1,3 +1,20 @@
+gespeaker (0.6) all; urgency=low
+
+  * Fixed audio testing localized string.
+  * An error message is now shown if the audio player is not found instead of
+    quietly ignore the error.
+  * New spanish translation provided by David Prieto.
+  * New mbrola support with more realistic voices.
+  * Added mbrola voices to languages list.
+  * Tabbed preferences dialog for new mbrola support.
+  * Moved language, voice type and variants to base settings and pitch, volume,
+    speed and gap sliders to advanced settings upon suggestion of frandavid100.
+  * Added automatic txt extension on saving text file.
+  * Added automatic wav extension on saving WAVE file. This was causing weird
+    noises on playing the recorded track if it wasn't a .wav filename.
+
+ -- Muflone <muflone@vbsimple.net>  Sat, 18 Jul 2009 11:42:00 +0100
+
 gespeaker (0.5) all; urgency=low
 
   * Added an exteder separator for settings to allow maximum usage of the
@@ -8,26 +25,26 @@ gespeaker (0.5) all; urgency=low
   * Added preferences dialog.
   * Added preferences save and reload for welcome message, window size,
     voice settings and expander status.
-  * Added support for audio frontend: ALSA (aplay), PulseAudio (paplay)
-    and user customized player command, with audio command test.
-  * Added voice variants by scanning /usr/share/espeak-data/voices/!v
-    folder for extra voice variants.
+  * Added support for audio frontend: ALSA (aplay), PulseAudio (paplay) and
+    user customized player command, with audio command test.
+  * Added voice variants by scanning /usr/share/espeak-data/voices/!v folder
+    for extra voice variants.
   * Fixed stock icon for DialogFileOpenSave.
 
  -- Muflone <muflone@vbsimple.net>  Fri, 30 Jun 2009 18:48:50 +0100
 
 gespeaker (0.4) all; urgency=medium
 
-  * Added SubprocessWrapper.Popen to wrap subprocess.Popen in order to
-    support python versions prior to 2.6 which don't have the delete
-    argument on object creation.
-  * Added TempfileWrapper.NamedTemporaryFile to wrap tempfile's Popen
-    object in order to support python versions prior to 2.6 which don't
-    have terminate and send_signal methods.
+  * Added SubprocessWrapper.Popen to wrap subprocess.Popen in order to support
+    python versions prior to 2.6 which don't have the delete argument on object
+    creation.
+  * Added TempfileWrapper.NamedTemporaryFile to wrap tempfile's Popen object in
+    order to support python versions prior to 2.6 which don't have terminate
+    and send_signal methods.
     Actually no more used, left for future usage.
   * Now gespeaker works with python version 2.4 and higher.
-  * Temporary file for output to speech is created at program start so
-    new temporary files are no longer created after each play.
+  * Temporary file for output to speech is created at program start so new
+    temporary files are no longer created after each play.
   * Included pause and resume features.
   * New icon and logo, kindly provided by MIX.
   * New french translation provided by Emmanuel.
@@ -37,11 +54,11 @@ gespeaker (0.4) all; urgency=medium
 gespeaker (0.3) all; urgency=low
 
   * Added support for voice type (male/female) via +12 for female voice.
-  * Removed escaped text substitution with a more secure temporary file
-    with the text to play.
+  * Removed escaped text substitution with a more secure temporary file with
+    the text to play.
   * Substituted direct shell piping with more secure subprocess' piping.
-  * Better control of external calls, now both espeak and player execution
-    are polled for exitcode and terminated if requested.
+  * Better control of external calls, now both espeak and player execution are
+    polled for exitcode and terminated if requested.
   * Added documentation and artists parameters to DialogAbout.
 
  -- Muflone <muflone@vbsimple.net>  Thu, 18 Jun 2009 01:21:30 +0100

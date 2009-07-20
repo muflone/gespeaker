@@ -1,11 +1,12 @@
+char *s = N_("<b>Advanced settings</b>");
+char *s = N_("<b>Base settings</b>");
 char *s = N_("<b>Insert text to play</b>");
-char *s = N_("<b>Settings</b>");
 char *s = N_("Dela_y:");
 char *s = N_("Fem_ale");
 char *s = N_("P_itch:");
 char *s = N_("Spee_d:");
+char *s = N_("Varia_nt:");
 char *s = N_("Voice:");
-char *s = N_("Welcome in Gespeaker");
 char *s = N_("_Edit");
 char *s = N_("_File");
 char *s = N_("_Help");

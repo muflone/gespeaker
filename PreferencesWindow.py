@@ -6,18 +6,20 @@ from gettext import gettext as _
 from DialogSimpleMessages import ShowDialogError
 from pygtkutils import *
 
-def showPreferencesWindow(gladeFile, iconLogo):
-  prefsWindow = PreferencesWindow(gladeFile, iconLogo)
+def showPreferencesWindow(gladeFile, espeak):
+  prefsWindow = PreferencesWindow(gladeFile, espeak)
 
 class PreferencesWindow(object):
-  def __init__(self, gladeFile, iconLogo):
+  def __init__(self, gladeFile, espeak):
     self.gladeFile = gladeFile
+    self.espeak = espeak
     self.loadControls()
-    self.dlgPrefs.set_icon_from_file(iconLogo)
+    self.dlgPrefs.set_icon_from_file(Settings.iconLogo)
     signals = {
       'on_cboPlayer_changed': self.on_cboPlayer_changed,
       'on_btnPlayerTest_clicked': self.on_btnPlayerTest_clicked,
       'on_chkCustomWelcome_toggled': self.on_chkCustomWelcome_toggled,
+      'on_btnRefresh_clicked': self.on_btnRefresh_clicked,
       'on_btnOk_clicked': self.on_btnOk_clicked
     }
     self.gladeFile.signal_autoconnect(signals)
@@ -32,10 +34,13 @@ class PreferencesWindow(object):
     self.chkSingleRecord.set_active(Settings.get('SingleRecord') == True)
     self.chkWordWrap.set_active(Settings.get('WordWrap') == True)
     self.chkLoadVariants.set_active(Settings.get('LoadVariants') == True)
+    self.chooserLanguagePath.set_current_folder(Settings.get('VoicesmbPath'))
     # Before to use the window property the realize method must be called
     self.dlgPrefs.realize()
     # Change WM buttons making the window only movable with the closing button
     self.dlgPrefs.window.set_functions(gtk.gdk.FUNC_CLOSE | gtk.gdk.FUNC_MOVE)
+    # Reload mbrola languages list
+    self.btnRefresh.clicked()
     self.dlgPrefs.run()
     self.dlgPrefs.destroy()
 
@@ -57,7 +62,13 @@ class PreferencesWindow(object):
     self.chkSingleRecord = gw('chkRecordSingleTrack')
     self.chkWordWrap = gw('chkWordWrap')
     self.chkLoadVariants = gw('chkLoadVariants')
+    self.tvwLanguages = gw('tvwLanguages')
+    self.chooserLanguagePath = gw('chooserLanguagePath')
+    self.btnRefresh = gw('btnRefresh')
     self.btnOk = gw('btnOk')
+    self.imgExecutableMbrola = gw('imgExecutableMbrola')
+    self.lblExecutableMbrolaStatus = gw('lblExecutableMbrolaStatus')
+    self.lblLanguagesDetected = gw('lblLanguagesDetected')
     # Prepare model for players combo
     listStore = gtk.ListStore(gtk.gdk.Pixbuf, str, bool)
     self.cboPlayer.set_model(listStore)
@@ -81,6 +92,42 @@ class PreferencesWindow(object):
     listStore.append([None, _('Custom sound application'), False])
     # Change testing button caption
     Button_change_stock_description(self.btnPlayerTest, _('_Test'), True)
+    # Create model and sorted model for mbrola languages
+    self.treeModel = gtk.ListStore(gtk.gdk.Pixbuf, str, str, str)
+    #self.tvwLanguages.set_model(self.treeModel)
+    sortedModel = gtk.TreeModelSort(self.treeModel)
+    sortedModel.set_sort_column_id(1, gtk.SORT_ASCENDING)
+    self.tvwLanguages.set_model(sortedModel)
+    # Create columns for tvwLanguages
+    COL_IMG, COL_LANG, COL_RES, COL_STATUS = range(4)
+    cell = gtk.CellRendererPixbuf()
+    column = gtk.TreeViewColumn('')
+    column.pack_start(cell)
+    column.set_attributes(cell, pixbuf=COL_IMG)
+    self.tvwLanguages.append_column(column)
+    
+    cell = gtk.CellRendererText()
+    column = gtk.TreeViewColumn(_('Language'), cell, text=COL_LANG)
+    column.set_sort_column_id(COL_LANG)
+    column.set_resizable(True)
+    self.tvwLanguages.append_column(column)
+
+    cell = gtk.CellRendererText()
+    column = gtk.TreeViewColumn(_('Resource'), cell, text=COL_RES)
+    column.set_sort_column_id(COL_RES)
+    column.set_resizable(True)
+    self.tvwLanguages.append_column(column)
+
+    cell = gtk.CellRendererText()
+    column = gtk.TreeViewColumn(_('Status'), cell, text=COL_STATUS)
+    column.set_sort_column_id(COL_STATUS)
+    column.set_resizable(True)
+    self.tvwLanguages.append_column(column)
+    # Order by Language column
+    #column = self.tvwLanguages.get_column(COL_LANG)
+    #column.set_sort_column_id(COL_LANG)
+    #column.set_sort_order(gtk.SORT_ASCENDING)
+    #column.set_sort_indicator(True)
 
   def on_chkCustomWelcome_toggled(self, widget, data=None):
     self.lblCustomWelcome.set_sensitive(self.chkCustomWelcome.get_active())
@@ -98,6 +145,7 @@ class PreferencesWindow(object):
     Settings.set('SingleRecord', self.chkSingleRecord.get_active())
     Settings.set('WordWrap', self.chkWordWrap.get_active())
     Settings.set('LoadVariants', self.chkLoadVariants.get_active())
+    Settings.set('VoicesmbPath', self.chooserLanguagePath.get_filename())
 
   def on_cboPlayer_changed(self, widget, data=None):
     "Enable and disable controls if custom command is not set"
@@ -127,10 +175,36 @@ class PreferencesWindow(object):
     except OSError, (errno, strerror):
       # Error during communicate"
       ShowDialogError(title=_('Audio testing'), showOk=True,
-        text=_('There was an error during the test for the audio player.\n'
-          'Error %s: %s' % (errno, strerror)))
+        text=_('There was an error during the test for the audio player.\n\n'
+          'Error %s: %s') % (errno, strerror))
     # Terminate test if it's still running, follows a broken pipe error
     if test.poll() is None:
       test.terminate()
     # Restore default cursor
     Window_change_cursor(self.dlgPrefs.window, None, False)
+
+  def on_btnRefresh_clicked(self, widget, data=None):
+    "Reload mbrola languages from the selected folder"
+    self.treeModel.clear()
+    selectedFolder = self.chooserLanguagePath.get_filename()
+    if not selectedFolder:
+      # Calling before the dialog is shown results in None path
+      selectedFolder = Settings.get('VoicesmbPath')
+    mbrolaVoices = self.espeak.loadMbrolaVoices(selectedFolder)
+    voicesFound = 0
+    for voice in mbrolaVoices:
+      if voice[2]:
+        voicesFound += 1
+      self.treeModel.append((
+        widget.render_icon(voice[2] and gtk.STOCK_YES or gtk.STOCK_NO, 
+        gtk.ICON_SIZE_BUTTON), voice[0], voice[1],
+        voice[2] and _('Installed') or _('Not installed')))
+    # lblLanguagesDetected
+    self.lblLanguagesDetected.set_text(_("%d languages of %d detected") % (
+      voicesFound, len(mbrolaVoices)))
+    # Check if mbrola exists
+    status = self.espeak.mbrolaExists(Settings.cmdMbrola)
+    self.imgExecutableMbrola.set_from_stock(size=gtk.ICON_SIZE_BUTTON,
+      stock_id=status and gtk.STOCK_YES or gtk.STOCK_NO)
+    self.lblExecutableMbrolaStatus.set_label('<b>%s</b>' % (status and 
+      _('Package mbrola installed') or _('Package mbrola not installed')))
