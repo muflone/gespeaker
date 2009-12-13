@@ -1,0 +1,33 @@
+Gespeaker is a GTK+ frontend for eSpeak and mbrola.
+Copyright 2009 Fabio Castelli <muflone@vbsimple.net>
+License: GPL-2+ (please see the copyright file)
+
+Description:
+  Gespeaker allows to play a text in many languages with settings  for voice,
+  pitch, volume, speed and word gap.
+
+  Since version 0.6 it can use mbrola package and voices to obtain a more
+  realistic text reading experience.
+
+Requirements:
+  Python >= 2.4
+  eSpeak (program + voices)
+  Python bindings for GTK2
+  Python bindings for Glade and libglade support
+  Python bindings for gObject
+  ALSA (aplay) or Pulseaudio server (paplay)
+
+Support for mbrola:
+  If mbrola package and mbrola voices are available then the program could use
+  them. Just enable them from the preferences dialog.
+
+Personal configuration
+  User's configuration will be kept under ~/.gespeaker
+
+Please report any bugs in Gespeaker to the author:
+  Fabio Castelli <muflone@vbsimple.net>
+
+Homepage:
+  Official project: http://code.google.com/p/gespeaker/
+  Italian project : http://ubuntrucchi.wordpress.com/progetti-projects/gespeaker/
+
