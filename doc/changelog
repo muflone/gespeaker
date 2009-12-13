@@ -1,3 +1,9 @@
+gespeaker (0.7) all; urgency=low
+
+  * New handlepaths module to reflect the changed directory structure.
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Sun, 6 Dec 2009 13:40:00 +0100
+
 gespeaker (0.6) all; urgency=low
 
   * Fixed audio testing localized string.
@@ -13,11 +19,11 @@ gespeaker (0.6) all; urgency=low
   * Added automatic wav extension on saving WAVE file. This was causing weird
     noises on playing the recorded track if it wasn't a .wav filename.
 
- -- Muflone <muflone@vbsimple.net>  Sat, 18 Jul 2009 11:42:00 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Sat, 18 Jul 2009 11:42:00 +0100
 
 gespeaker (0.5) all; urgency=low
 
-  * Added an exteder separator for settings to allow maximum usage of the
+  * Added an extender separator for settings to allow maximum usage of the
     window with the text.
   * Added filters for load/save text dialogs.
   * Added support for recording the audio track to wave.
@@ -31,7 +37,7 @@ gespeaker (0.5) all; urgency=low
     for extra voice variants.
   * Fixed stock icon for DialogFileOpenSave.
 
- -- Muflone <muflone@vbsimple.net>  Fri, 30 Jun 2009 18:48:50 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Fri, 30 Jun 2009 18:48:50 +0100
 
 gespeaker (0.4) all; urgency=medium
 
@@ -49,7 +55,7 @@ gespeaker (0.4) all; urgency=medium
   * New icon and logo, kindly provided by MIX.
   * New french translation provided by Emmanuel.
 
- -- Muflone <muflone@vbsimple.net>  Fri, 20 Jun 2009 18:55:40 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Fri, 20 Jun 2009 18:55:40 +0100
 
 gespeaker (0.3) all; urgency=low
 
@@ -61,7 +67,7 @@ gespeaker (0.3) all; urgency=low
     polled for exitcode and terminated if requested.
   * Added documentation and artists parameters to DialogAbout.
 
- -- Muflone <muflone@vbsimple.net>  Thu, 18 Jun 2009 01:21:30 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Thu, 18 Jun 2009 01:21:30 +0100
 
 gespeaker (0.2)
 
@@ -71,11 +77,11 @@ gespeaker (0.2)
     hardcoded.
   * Symlinked copyright file to /usr/share/doc/gespeaker/copyright
 
- -- Muflone <muflone@vbsimple.net>  Sun, 14 Jun 2009 22:06:20 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Sun, 14 Jun 2009 22:06:20 +0100
 
 gespeaker (0.1-1)
 
   * Initial release
 
- -- Muflone <muflone@vbsimple.net>  Sat, 13 Jun 2009 23:00:00 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Sat, 13 Jun 2009 23:00:00 +0100
 
