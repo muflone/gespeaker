@@ -51,6 +51,15 @@
                       </widget>
                     </child>
                     <child>
+                      <widget class="GtkImageMenuItem" id="imgmenuFileRec">
+                        <property name="label">gtk-media-record</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_imgmenuFileRec_activate"/>
+                      </widget>
+                    </child>
+                    <child>
                       <widget class="GtkSeparatorMenuItem" id="sepmenuFile">
                         <property name="visible">True</property>
                       </widget>
@@ -77,6 +86,35 @@
                 <child>
                   <widget class="GtkMenu" id="menuEdit">
                     <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="imgmenuEditCut">
+                        <property name="label">gtk-cut</property>
+                        <property name="visible">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_imgmenuEditCut_activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="imgmenuEditCopy">
+                        <property name="label">gtk-copy</property>
+                        <property name="visible">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_imgmenuEditCopy_activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="imgmenuEditPaste">
+                        <property name="label">gtk-paste</property>
+                        <property name="visible">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_imgmenuEditPaste_activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkSeparatorMenuItem" id="sepMenuEdit1">
+                        <property name="visible">True</property>
+                      </widget>
+                    </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="imgmenuEditPlay">
                         <property name="label">gtk-media-play</property>
@@ -110,17 +148,8 @@
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkSeparatorMenuItem" id="sepMenuEdit1">
+                      <widget class="GtkSeparatorMenuItem" id="sepMenuEdit2">
                         <property name="visible">True</property>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkImageMenuItem" id="imgmenuEditRec">
-                        <property name="label">gtk-media-record</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_imgmenuEditRec_activate"/>
                       </widget>
                     </child>
                     <child>
