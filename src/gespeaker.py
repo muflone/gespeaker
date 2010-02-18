@@ -25,9 +25,16 @@ import gettext
 import gtk.glade
 import gespeakerUI
 import handlepaths
+import gespeaker_dbus_service
 
 if __name__ == '__main__':
   for module in (gettext, gtk.glade):
     module.bindtextdomain(handlepaths.APP_NAME, handlepaths.getPath('locale'))
     module.textdomain(handlepaths.APP_NAME)
   main = gespeakerUI.gespeakerUI()
+  gespeaker_dbus_service.GespeakerDBUSService(main)
+  gespeaker_dbus_service.GespeakerDBUSServiceText(main)
+  gespeaker_dbus_service.GespeakerDBUSServiceUI(main)
+  gespeaker_dbus_service.GespeakerDBUSServiceEspeak(main)
+  gespeaker_dbus_service.GespeakerDBUSServiceVoice(main)
+  main.run()

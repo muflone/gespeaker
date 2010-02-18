@@ -47,10 +47,29 @@ class gespeakerUI(object):
     self.tempFilename = tempfile.mkstemp(prefix=handlepaths.APP_NAME)[1]
     self.timeoutCheck = None
     self.recordToFile = None
+    self.recordToFileRequested = False
     self.variants = ((), ())
     gladeUI = handlepaths.getPath('ui', 'gespeaker.glade')
     print 'loading interface from %s' % gladeUI
     self.gladeFile = gtk.glade.XML(fname=gladeUI, domain=handlepaths.APP_NAME)
+    # Proxy maps
+    self.proxy = {
+      'text.set': self.set_text,
+      'text.cut': self.on_imgmenuEditCut_activate,
+      'text.copy': self.on_imgmenuEditCopy_activate,
+      'text.paste': self.on_imgmenuEditPaste_activate,
+      'ui.new':  self.on_imgmenuFileNew_activate,
+      'ui.open': self.on_imgmenuFileOpen_activate,
+      'ui.save': self.on_imgmenuFileSaveAs_activate,
+      'ui.record': self.on_imgmenuFileRec_activate,
+      'ui.unrecord': self.disable_record,
+      'ui.reset': self.on_imgmenuEditResetSettings_activate,
+      'ui.quit': self.on_imgmenuFileQuit_activate,
+      'espeak.play': self.on_imgmenuEditPlay_activate,
+      'espeak.stop': self.on_imgmenuEditStop_activate,
+      'espeak.pause': self.on_imgmenuEditPause_activate,
+      'espeak.is_playing': self.checkIfPlaying,
+    }
     # Signals handler
     signals = {
       'on_imgmenuFileQuit_activate': self.on_imgmenuFileQuit_activate,
@@ -63,14 +82,21 @@ class gespeakerUI(object):
       'on_btnPause_toggled': self.on_btnPause_toggled,
       'on_tlbRecord_toggled': self.on_tlbRecord_toggled,
       'on_imgmenuEditPause_activate': self.on_imgmenuEditPause_activate,
-      'on_imgmenuEditRec_activate': self.on_imgmenuEditRec_activate,
+      'on_imgmenuFileRec_activate': self.on_imgmenuFileRec_activate,
       'on_imgmenuEditResetSettings_activate': self.on_imgmenuEditResetSettings_activate,
+      'on_imgmenuEditCut_activate': self.on_imgmenuEditCut_activate,
+      'on_imgmenuEditCopy_activate': self.on_imgmenuEditCopy_activate,
+      'on_imgmenuEditPaste_activate': self.on_imgmenuEditPaste_activate,
       'on_imgmenuHelpAbout_activate': self.on_imgmenuHelpAbout_activate,
       'on_imgmenuEditPreferences_activate': self.on_imgmenuEditPreferences_activate,
       'on_radioVoice_toggled': self.on_radioVoice_toggled,
       'on_cboLanguages_changed': self.on_cboLanguages_changed
     }
     self.gladeFile.signal_autoconnect(signals)
+    # Set clipboard
+    display = gtk.gdk.display_manager_get().get_default_display()
+    self.clipboard = gtk.Clipboard(display, "CLIPBOARD")
+
     # Load user settings
     Settings.load()
     # Load window and controls
@@ -87,6 +113,9 @@ class gespeakerUI(object):
         # Play default welcome message
         self.txvBuffer.set_text(Settings.default('WelcomeText'))
       self.btnPlayStop.set_active(True)
+  
+  def run(self):
+    "Start main loop"
     gtk.main()
   
   def loadControls(self):
@@ -114,7 +143,7 @@ class gespeakerUI(object):
     self.cboVariants = gw('cboVariants')
     self.imgmenuEditPlay = gw('imgmenuEditPlay')
     self.imgmenuEditStop = gw('imgmenuEditStop')
-    self.imgmenuEditRec = gw('imgmenuEditRec')
+    self.imgmenuFileRec = gw('imgmenuFileRec')
     self.tlbStop = gw('tlbStop')
     self.btnPlayStop = gw('btnPlayStop')
     self.btnPause = gw('btnPause')
@@ -233,33 +262,42 @@ class gespeakerUI(object):
     "Press button to start play, indirect cause button style"
     self.btnPlayStop.set_active(True)
   
-  def on_imgmenuFileNew_activate(self, widget, data=None):
+  def on_imgmenuFileNew_activate(self, widget, confirm=True):
     "Clears the whole text"
     if TextBuffer_get_text(self.txvBuffer):
-      dialog = DialogYesNo(
-        message=_('Do you want to delete the current text?'), 
-        default_button=gtk.RESPONSE_NO
-      )
-      dialog.set_icon_from_file(handlepaths.get_app_logo())
-      dialog.show()
-      if dialog.responseIsYes():
+      if confirm:
+        dialog = DialogYesNo(
+          message=_('Do you want to delete the current text?'), 
+          default_button=gtk.RESPONSE_NO
+        )
+        dialog.set_icon_from_file(handlepaths.get_app_logo())
+        dialog.show()
+      # Clear if confirm was not requested or if the user gave response
+      if not confirm or dialog.responseIsYes():
         self.txvBuffer.set_text('')
         print 'text cleared'
   
-  def on_imgmenuFileOpen_activate(self, widget, data=None):
+  def on_imgmenuFileOpen_activate(self, widget, filename=None):
     "Loads an external file"
-    dialog = DialogFileOpen(
-      title=_('Please select the text file to open'),
-      initialDir=os.path.expanduser('~'))
-    dialog.set_icon_from_file(handlepaths.get_app_logo())
-    dialog.addFilter(_('Text files (*.txt)'), ['*.txt'], None)
-    dialog.addFilter(_('All files'), ['*'], None)
-    if dialog.show():
+    if not filename:
+      # If filename was not provided show dialog
+      dialog = DialogFileOpen(
+        title=_('Please select the text file to open'),
+        initialDir=os.path.expanduser('~'))
+      dialog.set_icon_from_file(handlepaths.get_app_logo())
+      dialog.addFilter(_('Text files (*.txt)'), ['*.txt'], None)
+      dialog.addFilter(_('All files'), ['*'], None)
+      if dialog.show():
+        filename = dialog.filename
+      dialog.destroy()
+
+    # Open selected filename
+    if filename:
       file = None
       try:
-        file = open(dialog.filename, 'r')
+        file = open(filename, 'r')
         self.txvBuffer.set_text(file.read())
-        print 'loading text from %s' % dialog.filename
+        print 'loading text from %s' % filename
       except IOError, (errno, strerror):
         ShowDialogError(
           text=_('Error opening the file') + '\n\n%s' % strerror,
@@ -267,7 +305,7 @@ class gespeakerUI(object):
           icon=handlepaths.get_app_logo()
         )
         print 'unable to load %s (I/O error %s: %s)' % (
-          dialog.filename, errno, strerror
+          filename, errno, strerror
         )
       except:
         ShowDialogError(
@@ -275,23 +313,27 @@ class gespeakerUI(object):
           showOk=True,
           icon=handlepaths.get_app_logo()
         )
-        print 'error loading %s' % dialog.filename
+        print 'error loading %s' % filename
       if file:
         file.close()
   
-  def on_imgmenuFileSaveAs_activate(self, widget, data=None):
+  def on_imgmenuFileSaveAs_activate(self, widget, filename=None):
     "Saves the whole text in the specified filename"
-    dialog = DialogFileSave(
-      title=_('Please select where to save the text file'),
-      initialDir=os.path.expanduser('~'))
-    txtFilter = _('Text files (*.txt)')
-    dialog.addFilter(txtFilter, ['*.txt'], None)
-    dialog.addFilter(_('All files'), ['*'], None)
-    dialog.set_icon_from_file(handlepaths.get_app_logo())
-    if dialog.show():
-      filename = dialog.filename
-      if dialog.lastFilter.get_name() == txtFilter and filename[-4:] != '.txt':
-        filename += '.txt'
+    if not filename:
+      dialog = DialogFileSave(
+        title=_('Please select where to save the text file'),
+        initialDir=os.path.expanduser('~'))
+      txtFilter = _('Text files (*.txt)')
+      dialog.addFilter(txtFilter, ['*.txt'], None)
+      dialog.addFilter(_('All files'), ['*'], None)
+      dialog.set_icon_from_file(handlepaths.get_app_logo())
+      if dialog.show():
+        filename = dialog.filename
+        if dialog.lastFilter.get_name() == txtFilter and filename[-4:] != '.txt':
+          filename += '.txt'
+        dialog.destroy()
+    # Save selected filename
+    if filename:
       print 'saving text in %s' % filename
       file = None
       try:
@@ -317,15 +359,17 @@ class gespeakerUI(object):
       if file:
         file.close()
 
-  def on_imgmenuEditResetSettings_activate(self, widget, data=None):
+  def on_imgmenuEditResetSettings_activate(self, widget, confirm=True):
     "Restore default settings"
-    dialog = DialogYesNo(
-      message=_('Do you want to reset the default settings?'),
-      default_button=gtk.RESPONSE_NO
-    )
-    dialog.set_icon_from_file(handlepaths.get_app_logo())
-    dialog.show()
-    if dialog.responseIsYes():
+    if confirm:
+      dialog = DialogYesNo(
+        message=_('Do you want to reset the default settings?'),
+        default_button=gtk.RESPONSE_NO
+      )
+      dialog.set_icon_from_file(handlepaths.get_app_logo())
+      dialog.show()
+    # Reset if confirm was not requested or if the user gave response
+    if not confirm or dialog.responseIsYes():
       if self.defaultLanguageIndex:
         self.cboLanguages.set_active(self.defaultLanguageIndex)
       print 'restored default settings'
@@ -336,6 +380,19 @@ class gespeakerUI(object):
       Settings.load()
       self.loadSettings(True)
 
+
+  def on_imgmenuEditCut_activate(self, widget, data=None):
+    "Cut the selected text"
+    self.txvBuffer.cut_clipboard(self.clipboard, self.txvText.get_editable())
+
+  def on_imgmenuEditCopy_activate(self, widget, data=None):
+    "Copy the selected text"
+    self.txvBuffer.copy_clipboard(self.clipboard)
+    
+  def on_imgmenuEditPaste_activate(self, widget, data=None):
+    "Paste the clipboard in the buffer"
+    self.txvBuffer.paste_clipboard(self.clipboard, None, self.txvText.get_editable())
+    
   def on_imgmenuHelpAbout_activate(self, widget, data=None):
     "Show the about dialog"
     print 'show about dialog'
@@ -361,10 +418,20 @@ class gespeakerUI(object):
     "Press button to pause or continue"
     self.btnPause.set_active(not self.btnPause.get_active())
 
-  def on_imgmenuEditRec_activate(self, widget, data=None):
+  def on_imgmenuFileRec_activate(self, widget, filename=None):
     "Press button to record or disable recording"
-    self.tlbRecord.set_active(not self.tlbRecord.get_active())
-    
+    if filename:
+      if not self.tlbRecord.get_active():
+        # Workaround to press the button without showing the dialog
+        self.recordToFileRequested = True
+        self.tlbRecord.set_active(True)
+        self.recordToFileRequested = False
+        self.set_record(filename)
+      else:
+        return 'recording was already active, no action'
+    else:
+      self.tlbRecord.set_active(not self.tlbRecord.get_active())
+
   def checkIfPlaying(self):
     "Check if a process is still running"
     if self.espeak.isPlaying():
@@ -437,7 +504,7 @@ class gespeakerUI(object):
       self.imgmenuEditPlay.set_sensitive(False)
       self.imgmenuEditStop.set_sensitive(True)
       self.imgmenuEditPause.set_sensitive(True)
-      self.imgmenuEditRec.set_sensitive(False)
+      self.imgmenuFileRec.set_sensitive(False)
       self.btnPause.set_sensitive(True)
       self.btnPlayStop.set_label('gtk-media-stop')
       self.tlbRecord.set_sensitive(False)
@@ -462,7 +529,7 @@ class gespeakerUI(object):
     self.imgmenuEditPlay.set_sensitive(True)
     self.imgmenuEditStop.set_sensitive(False)
     self.imgmenuEditPause.set_sensitive(False)
-    self.imgmenuEditRec.set_sensitive(True)
+    self.imgmenuFileRec.set_sensitive(True)
     self.btnPause.set_sensitive(False)
     self.btnPlayStop.set_label('gtk-media-play')
     if Settings.get('SingleRecord'):
@@ -477,6 +544,9 @@ class gespeakerUI(object):
     self.loadSettings(False)
 
   def on_tlbRecord_toggled(self, widget, data=None):
+    # Workaround to avoid dialog show if the record was requested through dbus
+    if self.recordToFileRequested:
+      return
     self.recordToFile = None
     if self.tlbRecord.get_active():
       dialog = DialogFileSave(
@@ -489,16 +559,24 @@ class gespeakerUI(object):
         filename = dialog.filename
         if filename[-4:] != '.wav':
           filename += '.wav'
-        print 'record to %s' % filename
-        self.recordToFile = filename
-        self.stbStatus.push(self.statusContextId, 
-          _('Recording audio track to: %s' % self.recordToFile))
+        self.set_record(filename)
       else:
         self.tlbRecord.set_active(False)
       dialog.destroy()
     else:
       self.stbStatus.pop(self.statusContextId)
 
+  def set_record(self, filename):
+    "Set record filename"
+    print 'record to %s' % filename
+    self.recordToFile = filename
+    self.stbStatus.push(self.statusContextId, 
+      _('Recording audio track to: %s' % self.recordToFile))
+    
+  def disable_record(self):
+    "Disable recording"
+    self.tlbRecord.set_active(False)
+    
   def on_radioVoice_toggled(self, widget, data=None):
     "Assign variants after voice type change"
     if widget.get_active():
@@ -518,3 +596,18 @@ class gespeakerUI(object):
     self.radioVoiceFemale.set_sensitive(not status)
     self.lblVariants.set_sensitive(not status)
     self.cboVariants.set_sensitive(not status)
+
+  def set_text(self, text, insert_type=0):
+    "Set buffer text"
+    if insert_type == 0:
+      # Replace previous text
+      self.txvBuffer.set_text(text)
+    elif insert_type == 1:
+      # Insert at cursor
+      self.txvBuffer.insert_at_cursor(text)
+    elif insert_type == 2:
+      # Insert at the begin
+      self.txvBuffer.insert(self.txvBuffer.get_start_iter(), text)
+    elif insert_type == 3:
+      # Insert at the end
+      self.txvBuffer.insert(self.txvBuffer.get_end_iter(), text)
