@@ -12,9 +12,10 @@ Description:
 Requirements:
   Python >= 2.4
   eSpeak (program + voices)
-  Python bindings for GTK2
-  Python bindings for Glade and libglade support
-  Python bindings for gObject
+  Python bindings for GTK2 (python-gtk2)
+  Python bindings for Glade and libglade support (python-glade2)
+  Python bindings for gObject (python-gobject)
+  Python bindings for SVG (python-rsvg)
   ALSA (aplay) or Pulseaudio server (paplay)
 
 Support for mbrola:
