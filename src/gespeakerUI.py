@@ -1,7 +1,7 @@
 ##
 #   Project: gespeaker - A GTK frontend for espeak  
 #    Author: Fabio Castelli <muflone@vbsimple.net>
-# Copyright: 2009 Fabio Castelli
+# Copyright: 2009-2010 Fabio Castelli
 #   License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -65,6 +65,8 @@ class gespeakerUI(object):
       'ui.unrecord': self.disable_record,
       'ui.reset': self.on_imgmenuEditResetSettings_activate,
       'ui.quit': self.on_imgmenuFileQuit_activate,
+      'ui.hide': self.hide_window,
+      'ui.show': self.show_window,
       'espeak.play': self.on_imgmenuEditPlay_activate,
       'espeak.stop': self.on_imgmenuEditStop_activate,
       'espeak.pause': self.on_imgmenuEditPause_activate,
@@ -401,11 +403,11 @@ class gespeakerUI(object):
       version=handlepaths.APP_VERSION,
       comment=_('A GTK frontend for espeak'),
       copyright='Copyright 2009 Fabio Castelli',
-      license=open(handlepaths.getPath('doc', 'copyright'), 'r').read(), 
+      license=handlepaths.read_text_file('doc', 'copyright'), 
       website='http://code.google.com/p/gespeaker/',
       website_label='Gespeaker',
       authors=['Fabio Castelli <muflone@vbsimple.net>'],
-      translation=_('translation'), 
+      translation=handlepaths.read_text_file('doc', 'translators'),
       logo=handlepaths.get_app_logo(),
       icon=handlepaths.get_app_logo()
     )
@@ -611,3 +613,11 @@ class gespeakerUI(object):
     elif insert_type == 3:
       # Insert at the end
       self.txvBuffer.insert(self.txvBuffer.get_end_iter(), text)
+
+  def hide_window(self):
+    "Hide the window"
+    self.winMain.hide()
+
+  def show_window(self):
+    "Show the window"
+    self.winMain.show()

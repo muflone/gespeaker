@@ -3,7 +3,7 @@
 ##
 #   Project: gespeaker - A GTK frontend for espeak  
 #    Author: Fabio Castelli <muflone@vbsimple.net>
-# Copyright: 2009 Fabio Castelli
+# Copyright: 2009-2010 Fabio Castelli
 #   License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -63,7 +63,7 @@ class InstallData(install_data):
 
 
 setup(name='Gespeaker',
-      version='0.7',
+      version='0.8',
       description='A GTK+ frontend for eSpeak and mbrola',
       author='Fabio Castelli',
       author_email='muflone@vbsimple.net',

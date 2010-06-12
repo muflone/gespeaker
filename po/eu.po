@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gespeaker 0.7\n"
+"Project-Id-Version: Gespeaker 0.8\n"
 "Report-Msgid-Bugs-To: Fabio Castelli <muflone@vbsimple.net>\n"
-"POT-Creation-Date: 2009-12-06 21:15+0100\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
 "PO-Revision-Date: 2009-12-11 00:13+0100\n"
 "Last-Translator: Fabio Castelli <muflone@vbsimple.net>\n"
 "Language-Team: Basque\n"
@@ -160,13 +160,13 @@ msgstr ""
 msgid "_Use custom welcome message"
 msgstr ""
 
-#: ../src/EspeakFrontend.py:86 ../src/EspeakFrontend.py:108
-#: ../src/PreferencesWindow.py:197
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
 msgid "Audio testing"
 msgstr ""
 
-#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:109
-#: ../src/PreferencesWindow.py:198
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
 #, python-format
 msgid ""
 "There was an error during the test for the audio player.\n"
@@ -174,60 +174,56 @@ msgid ""
 "Error %s: %s"
 msgstr ""
 
-#: ../src/gespeakerUI.py:145 ../src/Settings.py:78
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
 msgstr ""
 
-#: ../src/gespeakerUI.py:241
+#: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
 msgstr ""
 
-#: ../src/gespeakerUI.py:253
+#: ../src/gespeakerUI.py:287
 msgid "Please select the text file to open"
 msgstr ""
 
-#: ../src/gespeakerUI.py:256 ../src/gespeakerUI.py:283
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
 msgid "Text files (*.txt)"
 msgstr ""
 
-#: ../src/gespeakerUI.py:257 ../src/gespeakerUI.py:285
-#: ../src/gespeakerUI.py:478
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
 msgid "All files"
 msgstr ""
 
-#: ../src/gespeakerUI.py:266 ../src/gespeakerUI.py:273
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
 msgid "Error opening the file"
 msgstr ""
 
-#: ../src/gespeakerUI.py:281
+#: ../src/gespeakerUI.py:326
 msgid "Please select where to save the text file"
 msgstr ""
 
-#: ../src/gespeakerUI.py:299 ../src/gespeakerUI.py:306
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
 msgid "Error saving the file"
 msgstr ""
 
-#: ../src/gespeakerUI.py:314
+#: ../src/gespeakerUI.py:368
 msgid "Do you want to reset the default settings?"
 msgstr ""
 
-#: ../src/gespeakerUI.py:336
+#: ../src/gespeakerUI.py:404
 msgid "A GTK frontend for espeak"
 msgstr ""
 
-#: ../src/gespeakerUI.py:342
-msgid "translation"
-msgstr ""
-
-#: ../src/gespeakerUI.py:474
+#: ../src/gespeakerUI.py:555
 msgid "Please select where to save the recorded file"
 msgstr ""
 
-#: ../src/gespeakerUI.py:477
+#: ../src/gespeakerUI.py:558
 msgid "Wave files (*.wav)"
 msgstr ""
 
-#: ../src/gespeakerUI.py:486
+#: ../src/gespeakerUI.py:576
 #, python-format
 msgid "Recording audio track to: %s"
 msgstr ""
@@ -260,24 +256,24 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: ../src/PreferencesWindow.py:221
+#: ../src/PreferencesWindow.py:225
 msgid "Installed"
 msgstr ""
 
-#: ../src/PreferencesWindow.py:221
+#: ../src/PreferencesWindow.py:225
 msgid "Not installed"
 msgstr ""
 
-#: ../src/PreferencesWindow.py:223
+#: ../src/PreferencesWindow.py:227
 #, python-format
 msgid "%d languages of %d detected"
 msgstr ""
 
-#: ../src/PreferencesWindow.py:230
+#: ../src/PreferencesWindow.py:234
 msgid "Package mbrola installed"
 msgstr ""
 
-#: ../src/PreferencesWindow.py:230
+#: ../src/PreferencesWindow.py:234
 msgid "Package mbrola not installed"
 msgstr ""
 

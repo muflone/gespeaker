@@ -1,7 +1,7 @@
 ##
 #   Project: gespeaker - A GTK frontend for espeak  
 #    Author: Fabio Castelli <muflone@vbsimple.net>
-# Copyright: 2009 Fabio Castelli
+# Copyright: 2009-2010 Fabio Castelli
 #   License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -23,7 +23,7 @@ import sys
 __base_path__ = os.path.dirname(os.path.abspath(__file__))
 APP_NAME = 'gespeaker'
 APP_TITLE = 'Gespeaker'
-APP_VERSION = '0.7'
+APP_VERSION = '0.8'
 
 PATHS = {
   'locale': [
@@ -52,3 +52,13 @@ def getPath(key, append = ''):
 def get_app_logo():
   "Returns the path of the icon logo"
   return getPath('icons', '%s.svg' % APP_NAME)
+
+def read_text_file(key, append = ''):
+  "Returns the content of the indicated text file"
+  try:
+    f = open(getPath(key, append), 'r')
+    text = f.read()
+    f.close()
+  except:
+    text = ''
+  return text

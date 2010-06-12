@@ -90,6 +90,7 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditCut">
                         <property name="label">gtk-cut</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditCut_activate"/>
                       </widget>
@@ -98,6 +99,7 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditCopy">
                         <property name="label">gtk-copy</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditCopy_activate"/>
                       </widget>
@@ -106,6 +108,7 @@
                       <widget class="GtkImageMenuItem" id="imgmenuEditPaste">
                         <property name="label">gtk-paste</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_imgmenuEditPaste_activate"/>
                       </widget>
@@ -323,7 +326,7 @@
                     <property name="can_focus">True</property>
                     <property name="border_width">1</property>
                     <property name="hadjustment">0 0 422 42.200000000000003 379.80000000000001 422</property>
-                    <property name="vadjustment">0 0 78 7.8000000000000007 70.200000000000003 78</property>
+                    <property name="vadjustment">0 0 26 2.6000000000000001 23.400000000000002 26</property>
                     <property name="hscrollbar_policy">automatic</property>
                     <property name="vscrollbar_policy">automatic</property>
                     <property name="shadow_type">in</property>
@@ -613,7 +616,7 @@
                       <widget class="GtkHScale" id="hscDelay">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="adjustment">10 5 100 1 10 0</property>
+                        <property name="adjustment">10 0 100 1 10 0</property>
                         <property name="digits">0</property>
                       </widget>
                       <packing>
