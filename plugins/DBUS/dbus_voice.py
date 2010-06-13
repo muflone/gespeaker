@@ -19,93 +19,6 @@
 
 import dbus
 import dbus.service
-import handlepaths
-
-class GespeakerDBUSServiceUI(dbus.service.Object):
-  "Class for UI handling"
-  def __init__(self, gespeakerUI):
-    self.gespeakerUI = gespeakerUI
-    bus_name = dbus.service.BusName('org.gtk.gespeaker', bus=dbus.SessionBus())
-    dbus.service.Object.__init__(self, bus_name, '/org/gtk/gespeaker/ui')
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='b')
-  def new(self, confirm=True):
-    "Clear the text with the confirm if requested"
-    self.gespeakerUI.proxy['ui.new'](None, confirm)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='s')
-  def open(self, filename=None):
-    "Open a text file with the dialog if filename was not provided"
-    self.gespeakerUI.proxy['ui.open'](None, filename)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='s')
-  def save(self, filename=None):
-    "Save the current text in a text file with the dialog if filename was not provided"
-    self.gespeakerUI.proxy['ui.save'](None, filename)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='s')
-  def record(self, filename=None):
-    "Record the voice in a wave file with dialog if filename was not provided"
-    return self.gespeakerUI.proxy['ui.record'](None, filename)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui')
-  def unrecord(self):
-    "Disable recording"
-    return self.gespeakerUI.proxy['ui.unrecord']()
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='b')
-  def reset(self, confirm=True):
-    "Reset the default settings with confirm if requested"
-    self.gespeakerUI.proxy['ui.reset'](None, confirm)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui')
-  def quit(self):
-    "Close the application"
-    self.gespeakerUI.proxy['ui.quit'](None, None)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui')
-  def hide(self):
-    "Hide the window"
-    self.gespeakerUI.proxy['ui.hide']()
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui')
-  def show(self):
-    "Show the window"
-    self.gespeakerUI.proxy['ui.show']()
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.ui', in_signature='s')
-  def play_text(self, text):
-    "Replace the current text and play it"
-    self.gespeakerUI.proxy['text.set'](text, 0)
-    self.gespeakerUI.proxy['espeak.stop'](None, None)
-    self.gespeakerUI.proxy['espeak.play'](None, None)
-
-class GespeakerDBUSServiceEspeak(dbus.service.Object):
-  "Class for espeak engine"
-  def __init__(self, gespeakerUI):
-    self.gespeakerUI = gespeakerUI
-    bus_name = dbus.service.BusName('org.gtk.gespeaker', bus=dbus.SessionBus())
-    dbus.service.Object.__init__(self, bus_name, '/org/gtk/gespeaker/espeak')
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.espeak')
-  def play(self):
-    "Play the current text"
-    self.gespeakerUI.proxy['espeak.play'](None, None)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.espeak')
-  def stop(self):
-    "Stop the current playing"
-    self.gespeakerUI.proxy['espeak.stop'](None, None)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.espeak')
-  def pause(self):
-    "Pause/restore the current play"
-    self.gespeakerUI.proxy['espeak.pause'](None, None)
-
-  @dbus.service.method(dbus_interface='org.gtk.gespeaker.espeak', out_signature='b')
-  def is_playing(self):
-    "Return if espeak is actually playing"
-    return self.gespeakerUI.proxy['espeak.is_playing']()
 
 class GespeakerDBUSServiceVoice(dbus.service.Object):
   "Class for voice settings"
@@ -243,7 +156,7 @@ class GespeakerDBUSServiceVoice(dbus.service.Object):
   @dbus.service.method(dbus_interface='org.gtk.gespeaker.voice', in_signature='i', out_signature='b')
   def set_delay(self, delay):
     "Set the current delay"
-    if value in range(0, 101):
+    if delay in range(0, 101):
       self.gespeakerUI.hscDelay.set_value(delay)
       return True
     else:

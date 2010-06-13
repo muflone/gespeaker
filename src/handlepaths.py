@@ -23,7 +23,7 @@ import sys
 __base_path__ = os.path.dirname(os.path.abspath(__file__))
 APP_NAME = 'gespeaker'
 APP_TITLE = 'Gespeaker'
-APP_VERSION = '0.8'
+APP_VERSION = '0.8.1'
 
 PATHS = {
   'locale': [
@@ -37,7 +37,10 @@ PATHS = {
     '%s/../data' % __base_path__],
   'doc': [
     '%s/../doc' % __base_path__,
-    '%s/share/doc/%s' % (sys.prefix, APP_NAME)]
+    '%s/share/doc/%s' % (sys.prefix, APP_NAME)],
+  'plugins': [
+    '%s/../plugins' % __base_path__,
+    '%s/share/plugins' % sys.prefix]
 }
 
 def getPath(key, append = ''):

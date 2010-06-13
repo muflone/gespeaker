@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 ##
 #   Project: gespeaker - A GTK frontend for espeak  
 #    Author: Fabio Castelli <muflone@vbsimple.net>
@@ -19,28 +17,23 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-import os
-import sys
-import gettext
-import pkgutil
-import imp
-import gtk.glade
-import gespeakerUI
+import dbus
+import dbus.service
 import handlepaths
-import plugins
 
-if __name__ == '__main__':
-  for module in (gettext, gtk.glade):
-    module.bindtextdomain(handlepaths.APP_NAME, handlepaths.getPath('locale'))
-    module.textdomain(handlepaths.APP_NAME)
-  print 'load available plugins...'
-  plugins_path = [handlepaths.getPath('plugins')]
-  for loader, name, isPkg in pkgutil.iter_modules(plugins_path):
-    file, pathname, description = imp.find_module(name, plugins_path)
-    imp.load_module(name, file, pathname, description)
-  
-  main = gespeakerUI.gespeakerUI()
-  plugins.signal_proxy('load', 1, main)
-  plugins.signal_proxy('uiready')
-  main.run()
-  plugins.signal_proxy('unload')
+class GespeakerDBUSService(dbus.service.Object):
+  "Class for general information"
+  def __init__(self, gespeakerUI):
+    self.gespeakerUI = gespeakerUI
+    bus_name = dbus.service.BusName('org.gtk.gespeaker', bus=dbus.SessionBus())
+    dbus.service.Object.__init__(self, bus_name, '/org/gtk/gespeaker')
+
+  @dbus.service.method(dbus_interface='org.gtk.gespeaker', out_signature='s')
+  def get_version(self):
+    "Return the current version"
+    return handlepaths.APP_VERSION
+    
+  @dbus.service.method(dbus_interface='org.gtk.gespeaker', out_signature='s')
+  def get_tempfilename(self):
+    "Return the temporary filename"
+    return self.gespeakerUI.tempFilename

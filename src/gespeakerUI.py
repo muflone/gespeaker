@@ -23,8 +23,6 @@ import pygtk
 import gobject
 pygtk.require('2.0')
 
-# No more used
-# import TempfileWrapper
 import tempfile
 import os
 from gettext import gettext as _
@@ -37,6 +35,7 @@ from EspeakFrontend import EspeakFrontend
 import PreferencesWindow
 import Settings
 import handlepaths
+import plugins
 from pygtkutils import *
 
 class gespeakerUI(object):
@@ -65,8 +64,9 @@ class gespeakerUI(object):
       'ui.unrecord': self.disable_record,
       'ui.reset': self.on_imgmenuEditResetSettings_activate,
       'ui.quit': self.on_imgmenuFileQuit_activate,
-      'ui.hide': self.hide_window,
-      'ui.show': self.show_window,
+      'ui.set_size': self.set_size,
+      'ui.set_position': self.set_position,
+      'ui.set_window': self.set_window,
       'espeak.play': self.on_imgmenuEditPlay_activate,
       'espeak.stop': self.on_imgmenuEditStop_activate,
       'espeak.pause': self.on_imgmenuEditPause_activate,
@@ -104,6 +104,9 @@ class gespeakerUI(object):
     # Load window and controls
     self.loadControls()
     self.loadSettings(True)
+  
+  def run(self):
+    "Start main loop"
     self.winMain.show()
     
     # Play welcome message if PlayWelcomeText is set
@@ -115,9 +118,6 @@ class gespeakerUI(object):
         # Play default welcome message
         self.txvBuffer.set_text(Settings.default('WelcomeText'))
       self.btnPlayStop.set_active(True)
-  
-  def run(self):
-    "Start main loop"
     gtk.main()
   
   def loadControls(self):
@@ -614,10 +614,58 @@ class gespeakerUI(object):
       # Insert at the end
       self.txvBuffer.insert(self.txvBuffer.get_end_iter(), text)
 
-  def hide_window(self):
-    "Hide the window"
-    self.winMain.hide()
+  def set_position(self, position):
+    "Set window position"
+    position = position.split('x', 1)
+    return self.winMain.move(int(position[0]), int(position[1]))
 
-  def show_window(self):
-    "Show the window"
-    self.winMain.show()
+  def set_size(self, size):
+    "Set window size"
+    size = size.split('x', 1)
+    return self.winMain.resize(int(size[0]), int(size[1]))
+
+  def set_window(self, action, data=None):
+    "Execute window action"
+    return_value = None
+    if action=='hide':
+      return_value = self.winMain.hide()
+    elif action=='show':
+      return_value = self.winMain.show()
+    elif action=='minimize':
+      return_value = self.winMain.iconify()
+    elif action=='unminimize':
+      return_value = self.winMain.deiconify()
+    elif action=='maximize':
+      return_value = self.winMain.maximize()
+    elif action=='unmaximize':
+      return_value = self.winMain.unmaximize()
+    elif action=='fullscreen':
+      return_value = self.winMain.fullscreen()
+    elif action=='unfullscreen':
+      return_value = self.winMain.unfullscreen()
+    elif action=='stick':
+      return_value = self.winMain.stick()
+    elif action=='unstick':
+      return_value = self.winMain.unstick()
+    elif action=='active':
+      return_value = self.winMain.is_active()
+    elif action=='activate':
+      return_value = self.winMain.present()
+    elif action=='get-opacity':
+      return_value = int(self.winMain.get_opacity() * 100)
+    elif action=='set-opacity':
+      return_value = self.winMain.set_opacity(0.01 * int(data))
+    elif action=='set-keep-above':
+      return_value = self.winMain.set_keep_above(True)
+    elif action=='unset-keep-above':
+      return_value = self.winMain.set_keep_above(False)
+    elif action=='set-keep-below':
+      return_value = self.winMain.set_keep_below(True)
+    elif action=='unset-keep-below':
+      return_value = self.winMain.set_keep_below(False)
+    elif action=='get-size':
+      return_value = 'x'.join(str(i) for i in list(self.winMain.get_size()))
+    elif action=='get-position':
+      return_value = 'x'.join(str(i) for i in list(self.winMain.get_position()))
+
+    return str(return_value)
