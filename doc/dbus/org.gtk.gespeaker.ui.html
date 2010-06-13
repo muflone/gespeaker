@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>gespeaker dbus interface - /org/gtk/gespeaker/ui</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="start" href="index.html" title="Gespeaker DBus API Reference Manual">
+  <link rel="up" href="interfaces.html" title="Available Interfaces">
+  <link rel="prev" href="org.gtk.gespeaker.text.html" title="/org/gtk/gespeaker/espeak">
+  <link rel="next" href="org.gtk.gespeaker.espeak.html" title="/org/gtk/gespeaker/espeak">
+</head>
+<body link="#0000ff" alink="#0000ff" bgcolor="white" text="black" vlink="#840084">
+  <div>
+    <!-- header -->
+    <table class="table_title">
+      <tbody>
+        <tr>
+          <th colspan="3" align="center">org.gtk.gespeaker</th>
+        </tr>
+        <tr>
+          <td align="left" width="20%"><a href="org.gtk.gespeaker.text.html">Prev</a>&nbsp;</td>
+          <th align="center" width="60%">gespeaker dbus interfaces</th>
+          <td align="right" width="20%">&nbsp;<a href="org.gtk.gespeaker.espeak.html">Next</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <!-- end of header -->
+
+    <div>
+      <h2>Interface /org/gtk/gespeaker/ui</h2>
+      <p>Manage the user interface.<br></p>
+    </div>
+
+    <div>
+      <h2>Methods</h2>
+      <table class="methods"><tbody class="method_definition"><tr><td>
+    void <a href="#hide">org.gtk.gespeaker.ui.hide</a>()
+    void <a href="#new">org.gtk.gespeaker.ui.new</a>(<span class="parameter">bool confirm</span>)
+    void <a href="#open">org.gtk.gespeaker.ui.open</a>(<span class="parameter">QString filename</span>)
+    void <a href="#play_text">org.gtk.gespeaker.ui.play_text</a>(<span class="parameter">QString text</span>)
+    void <a href="#quit">org.gtk.gespeaker.ui.quit</a>()
+    void <a href="#record">org.gtk.gespeaker.ui.record</a>(<span class="parameter">QString filename</span>)
+    void <a href="#reset">org.gtk.gespeaker.ui.reset</a>(<span class="parameter">bool confirm</span>)
+    void <a href="#save">org.gtk.gespeaker.ui.save</a>(<span class="parameter">QString filename</span>)
+    void <a href="#show">org.gtk.gespeaker.ui.show</a>()
+    void <a href="#unrecord">org.gtk.gespeaker.ui.unrecord</a>()
+      </td></tr></tbody></table>
+    </div>
+  </div>
+  <hr>
+
+  <div>
+    <a name="hide"></a>
+    <h3>org.gtk.gespeaker.ui.hide</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.hide()</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">hide</span> method hides the main window. 
+  </div>
+
+  <div>
+    <a name="new"></a>
+    <h3>org.gtk.gespeaker.ui.new</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.new(<span class="parameter">bool confirm</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">confirm:</td>
+        <td>Ask confirmation before clearing the existing text</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">new</span> method clears the text in the textbox. 
+  </div>
+
+  <div>
+    <a name="open"></a>
+    <h3>org.gtk.gespeaker.ui.open</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.open(<span class="parameter">QString filename</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">filename:</td>
+        <td>The filename where to save the text in the textbox</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">open</span> method loads in the textbox the text from the requested filename. 
+  </div>
+
+  <div>
+    <a name="play_text"></a>
+    <h3>org.gtk.gespeaker.ui.play_text</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.play_text(<span class="parameter">QString text</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">text:</td>
+        <td>The text to replace and play</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">play_text</span> method replaces the text in the textbox and plays it. 
+  </div>
+
+  <div>
+    <a name="quit"></a>
+    <h3>org.gtk.gespeaker.ui.quit</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.quit()</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">quit</span> method closes the application. 
+  </div>
+
+  <div>
+    <a name="record"></a>
+    <h3>org.gtk.gespeaker.ui.record</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.record(<span class="parameter">QString filename</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">filename:</td>
+        <td>The filename where to save the recorded voice</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">record</span> method activates the recording for the next play. 
+  </div>
+
+  <div>
+    <a name="reset"></a>
+    <h3>org.gtk.gespeaker.ui.reset</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.reset(<span class="parameter">bool confirm</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">confirm:</td>
+        <td>Ask confirmation before reset the default settings</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">reset</span> method restores the default settings. 
+  </div>
+
+  <div>
+    <a name="save"></a>
+    <h3>org.gtk.gespeaker.ui.save</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.save(<span class="parameter">QString filename</span>)</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">filename:</td>
+        <td>The filename where to save the text in the textbox</td>
+      </tr>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">save</span> method saves the current text in the requested filename. 
+  </div>
+
+  <div>
+    <a name="show"></a>
+    <h3>org.gtk.gespeaker.ui.show</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.show()</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">show</span> method shows the main window. 
+  </div>
+
+  <div>
+    <a name="unrecord"></a>
+    <h3>org.gtk.gespeaker.ui.unrecord</h3>
+    <p class="method_definition">void org.gtk.gespeaker.ui.unrecord()</p>
+    <table class="table_parameters"><col align="left" valign="top" width="10%"><tbody>
+      <tr>
+        <td class="method_parameters">Returns:</td>
+        <td>None</td>
+      </tr>
+    </tbody></table>
+    The <span class="method_name">unrecord</span> method disables the recording. 
+  </div>
+
+  <!-- footer -->
+  <div>
+    <br>
+    <hr>
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td align="left" width="40%"><a href="org.gtk.gespeaker.text.html">Prev</a>&nbsp;</td>
+          <td align="center" width="20%"><a href="interfaces.html">Up</a></td>
+          <td align="right" width="40%">&nbsp;<a href="org.gtk.gespeaker.espeak.html">Next</a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top" width="40%">/org/gtk/gespeaker/text&nbsp;</td>
+          <td align="center" width="20%"><a href="index.html">Home</a></td>
+          <td align="right" valign="top" width="40%">&nbsp;/org/gtk/gespeaker/espeak</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
