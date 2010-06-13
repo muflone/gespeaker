@@ -40,21 +40,23 @@ class InstallData(install_data):
       return data_files
 
     PO_DIR = 'po'
-    for po in glob.glob (os.path.join (PO_DIR,'*.po')):
-      lang = os.path.basename(po[:-3])
-      mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
+    for lang in open(os.path.join(PO_DIR, 'availables'), 'r').readlines():
+      lang = lang.strip()
+      if lang:
+        po = os.path.join(PO_DIR, '%s.po' % lang)
+        mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
 
-      directory = os.path.dirname(mo)
-      if not os.path.exists(directory):
-        info('creating %s' % directory)
-        os.makedirs(directory)
+        directory = os.path.dirname(mo)
+        if not os.path.exists(directory):
+          info('creating %s' % directory)
+          os.makedirs(directory)
 
-      if newer(po, mo):
-        # True if mo doesn't exist
-        cmd = 'msgfmt -o %s %s' % (mo, po)
-        info('compiling %s -> %s' % (po, mo))
-        if os.system(cmd) != 0:
-          raise SystemExit('Error while running msgfmt')
+        if newer(po, mo):
+          # True if mo doesn't exist
+          cmd = 'msgfmt -o %s %s' % (mo, po)
+          info('compiling %s -> %s' % (po, mo))
+          if os.system(cmd) != 0:
+            raise SystemExit('Error while running msgfmt')
 
         dest = os.path.dirname(os.path.join('share', 'locale', lang, 'LC_MESSAGES', 'gespeaker.mo'))
         data_files.append((dest, [mo]))
