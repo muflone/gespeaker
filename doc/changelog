@@ -2,8 +2,8 @@ gespeaker (0.8) all; urgency=low
 
   * Moved translators from .po files to doc/translators
   * New polish translation by Andrey J.
-  * New DBUS interface to interact from external apps
   * Fixed minimum words gap from 5 to 0 in main UI
+  * New DBUS interface to interact from external apps
     http://code.google.com/p/gespeaker/issues/detail?id=20
 
  -- Fabio Castelli <muflone@vbsimple.net>  Sat, 12 Jun 2010 14:13:40 +0100
