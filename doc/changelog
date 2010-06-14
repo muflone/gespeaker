@@ -1,3 +1,9 @@
+gespeaker (0.8.1) all; urgency=low
+
+  * New bulgarian translation by Svetoslav Stefanov.
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Mon, 14 Jun 2010 19:29:34 +0100
+
 gespeaker (0.8) all; urgency=low
 
   * Moved translators from .po files to doc/translators
