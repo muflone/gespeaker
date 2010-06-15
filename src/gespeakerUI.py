@@ -228,17 +228,6 @@ class gespeakerUI(object):
     plugins.signal_proxy('on_closing')
     if self.tempFilename and os.path.exists(self.tempFilename):
       os.remove(self.tempFilename)
-    # Save voice settings if SaveVoiceSettings is set
-    if Settings.get('SaveVoiceSettings'):
-      Settings.set('VoiceVolume', int(self.hscVolume.get_value()))
-      Settings.set('VoicePitch', int(self.hscPitch.get_value()))
-      Settings.set('VoiceSpeed', int(self.hscSpeed.get_value()))
-      Settings.set('VoiceDelay', int(self.hscDelay.get_value()))
-      Settings.set('VoiceTypeMale', self.radioVoiceMale.get_active())
-      # Save language only if different from defaultLanguageIndex
-      language = ComboBox_get_text(self.cboLanguages, 0)
-      language = self.listLanguages[self.cboLanguages.get_active()][0]
-      Settings.set('VoiceLanguage', language)
     gtk.main_quit()
     return 0
   
