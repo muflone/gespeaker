@@ -27,12 +27,17 @@ import imp
 import gtk.glade
 import gespeakerUI
 import handlepaths
+import Settings
 import plugins
 
 if __name__ == '__main__':
   for module in (gettext, gtk.glade):
     module.bindtextdomain(handlepaths.APP_NAME, handlepaths.getPath('locale'))
     module.textdomain(handlepaths.APP_NAME)
+
+  # Load user settings
+  Settings.load()
+
   print 'loading available plugins...'
   plugins_path = [handlepaths.getPath('plugins')]
   for loader, name, isPkg in pkgutil.iter_modules(plugins_path):
@@ -46,3 +51,6 @@ if __name__ == '__main__':
   plugins.signal_proxy('on_closed')
   plugins.signal_proxy('unload')
   plugins.signal_proxy('on_terminate')
+  # Save settings
+  print 'saving settings'
+  Settings.save(clearDefaults=True)
