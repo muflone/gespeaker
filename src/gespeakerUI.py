@@ -106,16 +106,6 @@ class gespeakerUI(object):
   def run(self):
     "Start main loop"
     self.winMain.show()
-    
-    # Play welcome message if PlayWelcomeText is set
-    if Settings.get('PlayWelcomeText'):
-      if Settings.get('UseCustomWelcome'):
-        # Play customized welcome message
-        self.txvBuffer.set_text(Settings.get('WelcomeText'))
-      else:
-        # Play default welcome message
-        self.txvBuffer.set_text(Settings.default('WelcomeText'))
-      self.btnPlayStop.set_active(True)
     gtk.main()
   
   def loadControls(self):
