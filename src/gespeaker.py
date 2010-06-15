@@ -33,7 +33,7 @@ if __name__ == '__main__':
   for module in (gettext, gtk.glade):
     module.bindtextdomain(handlepaths.APP_NAME, handlepaths.getPath('locale'))
     module.textdomain(handlepaths.APP_NAME)
-  print 'load available plugins...'
+  print 'loading available plugins...'
   plugins_path = [handlepaths.getPath('plugins')]
   for loader, name, isPkg in pkgutil.iter_modules(plugins_path):
     file, pathname, description = imp.find_module(name, plugins_path)
@@ -43,4 +43,6 @@ if __name__ == '__main__':
   plugins.signal_proxy('load')
   plugins.signal_proxy('on_uiready', argc=1, args=main)
   main.run()
+  plugins.signal_proxy('on_closed')
   plugins.signal_proxy('unload')
+  plugins.signal_proxy('on_terminate')
