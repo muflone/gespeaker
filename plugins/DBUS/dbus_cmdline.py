@@ -88,7 +88,7 @@ def parseArgs():
     help='open a text file')
   group.add_option('-e', '--save', action='store', type='string',
     help='save the current text in a text file')
-  group.add_option('--play_text', action='store', type='string',
+  group.add_option('--play-text', action='store', type='string',
     help='replace the whole text and play it')
   group.add_option('--append', action='store', type='string',
     help='insert the text at the end')
