@@ -27,37 +27,37 @@ from plugins import GespeakerPlugin, register_plugin
 class GespeakerPlugin_Debug(GespeakerPlugin):
   def __init__(self, name, version, description, author):
     "Module initialization"
-    print '%s.__init__("%s", "%s", "%s", "%s")' % (
-      NAME, NAME, VERSION, AUTHOR, DESCRIPTION)
     GespeakerPlugin.__init__(self, name, version, description, author)
+    self.logger('__init__("%s", "%s", "%s", "%s")' % (
+      NAME, VERSION, AUTHOR, DESCRIPTION))
 
   def load(self):
     "Plugin load"
-    print '%s.load()' % NAME
     GespeakerPlugin.load(self)
+    self.logger('load()')
   
   def unload(self):
     "Plugin unload"
-    print '%s.unload()' % NAME
     GespeakerPlugin.unload(self)
+    self.logger('unload()')
   
   def reload(self):
     "Plugin reload"
-    print '%s.reload()' % NAME
     GespeakerPlugin.reload(self)
+    self.logger('reload()')
 
   def configure(self):
     "Plugin custom configuration"
-    print '%s.configure()' % NAME
     GespeakerPlugin.configure(self)
+    self.logger('configure()')
 
   def update_ui(self):
     "Update UI for changes"
-    print '%s.update_ui()' % NAME
     GespeakerPlugin.update_ui(self)
+    self.logger('update_ui()')
   
   def on_uiready(self, ui):
-    print '%s.uiready(%s)' % (NAME, ui)
+    self.logger('uiready(%s)' % ui)
 
 plugin = GespeakerPlugin_Debug(NAME, VERSION, DESCRIPTION, AUTHOR)
 register_plugin(NAME, plugin)
