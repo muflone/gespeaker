@@ -1,6 +1,8 @@
 gespeaker (0.8.1) all; urgency=low
 
   * New bulgarian translation by Svetoslav Stefanov.
+  * Stop previous play on quit
+    http://code.google.com/p/gespeaker/issues/detail?id=24
 
  -- Fabio Castelli <muflone@vbsimple.net>  Mon, 14 Jun 2010 19:29:34 +0100
 

@@ -234,6 +234,9 @@ class gespeakerUI(object):
 
   def on_imgmenuFileQuit_activate(self, widget, data=None):
     "Close the program"
+    if self.checkIfPlaying():
+      print 'interrupting previous play'
+      self.stopPlaying()
     print 'quitting'
     if self.tempFilename and os.path.exists(self.tempFilename):
       os.remove(self.tempFilename)
