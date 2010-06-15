@@ -17,7 +17,7 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'Save window size'
+NAME = 'save-window-size'
 VERSION = '0.1'
 AUTHOR = 'Fabio Castelli'
 DESCRIPTION = 'Save window size on close and restore on startup'

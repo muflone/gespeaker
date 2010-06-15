@@ -17,7 +17,7 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'Debug'
+NAME = 'debug'
 VERSION = '0.1'
 AUTHOR = 'Fabio Castelli'
 DESCRIPTION = 'Debug interface plugin'
