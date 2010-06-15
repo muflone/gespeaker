@@ -59,6 +59,9 @@ class GespeakerPlugin_Debug(GespeakerPlugin):
   def on_uiready(self, ui):
     self.logger('on_uiready(%s)' % ui)
 
+  def on_closing(self):
+    self.logger('on_closing()')
+
   def on_closed(self):
     self.logger('on_closed()')
 
