@@ -39,7 +39,7 @@ class GespeakerPlugin(object):
   def __init__(self, name, version, description, author):
     "Module initialization"
     self.name = name
-    self.logger('init plugin %s v.%s [%s]' % (name, version, description))
+    self.logger('init plugin v.%s' % version)
     self.active = True
 
   def load(self):
