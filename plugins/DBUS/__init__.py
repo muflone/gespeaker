@@ -32,15 +32,9 @@ from dbus_voice import GespeakerDBUSServiceVoice
 from dbus_cmdline import parseArgs
 
 class GespeakerPlugin_DBUS(GespeakerPlugin):
-  def load(self, gespeakerUI):
+  def load(self):
     "Plugin load"
-    GespeakerPlugin.load(self, gespeakerUI)
-    GespeakerDBUSService(self.ui)
-    GespeakerDBUSServiceText(self.ui)
-    GespeakerDBUSServiceUI(self.ui)
-    GespeakerDBUSServiceEspeak(self.ui)
-    GespeakerDBUSServiceVoice(self.ui)
-    parseArgs()
+    GespeakerPlugin.load(self)
 
   def unload(self):
     "Plugin reload"
@@ -49,6 +43,14 @@ class GespeakerPlugin_DBUS(GespeakerPlugin):
   def reload(self):
     "Plugin reload"
     pass
+
+  def on_uiready(self, ui):
+    GespeakerDBUSService(ui)
+    GespeakerDBUSServiceText(ui)
+    GespeakerDBUSServiceUI(ui)
+    GespeakerDBUSServiceEspeak(ui)
+    GespeakerDBUSServiceVoice(ui)
+    parseArgs()
 
 plugin = GespeakerPlugin_DBUS(NAME, VERSION, DESCRIPTION, AUTHOR)
 register_plugin(NAME, plugin)

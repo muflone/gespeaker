@@ -40,7 +40,7 @@ if __name__ == '__main__':
     imp.load_module(name, file, pathname, description)
   
   main = gespeakerUI.gespeakerUI()
-  plugins.signal_proxy('load', 1, main)
-  plugins.signal_proxy('uiready')
+  plugins.signal_proxy('load')
+  plugins.signal_proxy('on_uiready', argc=1, args=main)
   main.run()
   plugins.signal_proxy('unload')

@@ -31,10 +31,10 @@ class GespeakerPlugin_Debug(GespeakerPlugin):
       NAME, NAME, VERSION, AUTHOR, DESCRIPTION)
     GespeakerPlugin.__init__(self, name, version, description, author)
 
-  def load(self, gespeakerUI):
+  def load(self):
     "Plugin load"
-    print '%s.load(%s)' % (NAME, gespeakerUI)
-    GespeakerPlugin.load(self, gespeakerUI)
+    print '%s.load()' % NAME
+    GespeakerPlugin.load(self)
   
   def unload(self):
     "Plugin unload"
@@ -56,8 +56,8 @@ class GespeakerPlugin_Debug(GespeakerPlugin):
     print '%s.update_ui()' % NAME
     GespeakerPlugin.update_ui(self)
   
-  def uiready(self):
-    print '%s.uiready()' % NAME
+  def on_uiready(self, ui):
+    print '%s.uiready(%s)' % (NAME, ui)
 
 plugin = GespeakerPlugin_Debug(NAME, VERSION, DESCRIPTION, AUTHOR)
 register_plugin(NAME, plugin)

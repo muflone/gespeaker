@@ -40,12 +40,11 @@ class GespeakerPlugin(object):
     "Module initialization"
     print 'plugin v.%s %s [%s]' % (name, version, description)
     self.active = True
-    self.ui = None
-    pass
+    self.on_uiready = None
 
-  def load(self, gespeakerUI):
+  def load(self):
     "Plugin load"
-    self.ui = gespeakerUI
+    pass
   
   def unload(self):
     "Plugin unload"
