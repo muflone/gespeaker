@@ -38,9 +38,9 @@ def signal_proxy(signal, argc=0, args=None):
 class GespeakerPlugin(object):
   def __init__(self, name, version, description, author):
     "Module initialization"
-    print 'plugin v.%s %s [%s]' % (name, version, description)
+    self.name = name
+    self.logger('init plugin %s v.%s [%s]' % (name, version, description))
     self.active = True
-    self.on_uiready = None
 
   def load(self):
     "Plugin load"
@@ -70,3 +70,7 @@ class GespeakerPlugin(object):
   def disable(self):
     "Disable the plugin"
     self.active = False
+
+  def logger(self, message):
+    "Print a message from a plugin"
+    print '[%s]: %s' % (self.name, message)
