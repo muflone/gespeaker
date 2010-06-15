@@ -45,16 +45,16 @@ class GespeakerPlugin(object):
   def load(self):
     "Plugin load"
     pass
-  
+
   def unload(self):
     "Plugin unload"
     pass
-  
+
   def reload(self):
     "Plugin reload"
     self.unload()
     self.load()
-  
+
   def configure(self):
     "Plugin custom configuration"
     pass
@@ -66,7 +66,7 @@ class GespeakerPlugin(object):
   def enable(self):
     "Enable the disabled plugin"
     self.active = True
-  
+
   def disable(self):
     "Disable the plugin"
     self.active = False
