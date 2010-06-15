@@ -99,8 +99,6 @@ class gespeakerUI(object):
     display = gtk.gdk.display_manager_get().get_default_display()
     self.clipboard = gtk.Clipboard(display, "CLIPBOARD")
 
-    # Load user settings
-    Settings.load()
     # Load window and controls
     self.loadControls()
     self.loadSettings(True)
@@ -184,17 +182,10 @@ class gespeakerUI(object):
     cell = gtk.CellRendererText()
     self.cboVariants.pack_start(cell, True)
     self.cboVariants.add_attribute(cell, 'text', 1)
-    # Restore window size
-    if Settings.get('SaveWindowSize'):
-      self.winMain.set_default_size(
-        Settings.get('MainWindowWidth'),
-        Settings.get('MainWindowHeight')
-      )
-    else:
-      self.winMain.set_default_size(
-        Settings.default('MainWindowWidth'),
-        Settings.default('MainWindowHeight')
-      )
+    self.winMain.set_default_size(
+      Settings.default('MainWindowWidth'),
+      Settings.default('MainWindowHeight')
+    )
     self.expSettings.set_expanded(Settings.get('SettingsExpander'))
 
   def loadSettings(self, loadEverything):
@@ -234,15 +225,9 @@ class gespeakerUI(object):
 
   def on_imgmenuFileQuit_activate(self, widget, data=None):
     "Close the program"
-    print 'quitting'
+    plugins.signal_proxy('on_closing')
     if self.tempFilename and os.path.exists(self.tempFilename):
       os.remove(self.tempFilename)
-    # Save window size if SaveWindowSize is set
-    if Settings.get('SaveWindowSize'):
-      sizes = self.winMain.get_size()
-      Settings.set('MainWindowWidth', sizes[0])
-      Settings.set('MainWindowHeight', sizes[1])
-      Settings.set('SettingsExpander', self.expSettings.get_expanded())
     # Save voice settings if SaveVoiceSettings is set
     if Settings.get('SaveVoiceSettings'):
       Settings.set('VoiceVolume', int(self.hscVolume.get_value()))
@@ -254,9 +239,6 @@ class gespeakerUI(object):
       language = ComboBox_get_text(self.cboLanguages, 0)
       language = self.listLanguages[self.cboLanguages.get_active()][0]
       Settings.set('VoiceLanguage', language)
-    # Save settings
-    print 'saving settings'
-    Settings.save(clearDefaults=True)
     gtk.main_quit()
     return 0
   
