@@ -27,7 +27,6 @@ from plugins import GespeakerPlugin, register_plugin
 
 class GespeakerPlugin_Welcome(GespeakerPlugin):
   def on_uiready(self, ui):
-    self.ui = ui
     # Play welcome message if PlayWelcomeText is set
     if Settings.get('PlayWelcomeText'):
       if Settings.get('UseCustomWelcome'):
@@ -37,8 +36,8 @@ class GespeakerPlugin_Welcome(GespeakerPlugin):
         # Play default welcome message
         message = Settings.default('WelcomeText')
       self.logger('Play welcome message: %s' % message)
-      self.ui.txvBuffer.set_text(message)
-      self.ui.btnPlayStop.set_active(True)
+      ui.txvBuffer.set_text(message)
+      ui.btnPlayStop.set_active(True)
 
 plugin = GespeakerPlugin_Welcome(NAME, VERSION, DESCRIPTION, AUTHOR)
 register_plugin(NAME, plugin)
