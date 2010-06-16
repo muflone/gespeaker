@@ -31,20 +31,18 @@ class GespeakerPlugin_SaveWindowSize(GespeakerPlugin):
   def on_uiready(self, ui):
     self.ui = ui
     # Restore window size
-    if Settings.get('SaveWindowSize'):
-      width = Settings.get('MainWindowWidth')
-      height = Settings.get('MainWindowHeight')
-      self.logger('Load window size (%dx%d)' % (width, height))
-      self.ui.winMain.set_default_size(width, height)
+    width = Settings.get('MainWindowWidth')
+    height = Settings.get('MainWindowHeight')
+    self.logger('Load window size (%dx%d)' % (width, height))
+    self.ui.winMain.set_default_size(width, height)
   
   def on_closing(self):
-    # Save window size if SaveWindowSize is set
-    if Settings.get('SaveWindowSize'):
-      sizes = self.ui.winMain.get_size()
-      self.logger('Save window size (%dx%d)' % (sizes[0], sizes[1]))
-      Settings.set('MainWindowWidth', sizes[0])
-      Settings.set('MainWindowHeight', sizes[1])
-      Settings.set('SettingsExpander', self.ui.expSettings.get_expanded())
+    # Save window size
+    sizes = self.ui.winMain.get_size()
+    self.logger('Save window size (%dx%d)' % (sizes[0], sizes[1]))
+    Settings.set('MainWindowWidth', sizes[0])
+    Settings.set('MainWindowHeight', sizes[1])
+    Settings.set('SettingsExpander', self.ui.expSettings.get_expanded())
 
 plugin = GespeakerPlugin_SaveWindowSize(
   PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 

@@ -31,19 +31,17 @@ class GespeakerPlugin_SaveWindowPosition(GespeakerPlugin):
   def on_uiready(self, ui):
     self.ui = ui
     # Restore window size
-    if Settings.get('SaveWindowSize'):
-      left = Settings.get('MainWindowLeft')
-      top = Settings.get('MainWindowTop')
-      self.logger('Load window position (%d,%d)' % (left, top))
-      self.ui.set_position('%dx%d' % (left, top))
+    left = Settings.get('MainWindowLeft')
+    top = Settings.get('MainWindowTop')
+    self.logger('Load window position (%d,%d)' % (left, top))
+    self.ui.set_position('%dx%d' % (left, top))
   
   def on_closing(self):
-    # Save window size if SaveWindowSize is set
-    if Settings.get('SaveWindowSize'):
-      sizes = self.ui.winMain.get_position()
-      self.logger('Save window position (%d,%d)' % (sizes[0], sizes[1]))
-      Settings.set('MainWindowLeft', sizes[0])
-      Settings.set('MainWindowTop', sizes[1])
+    # Save window size
+    sizes = self.ui.winMain.get_position()
+    self.logger('Save window position (%d,%d)' % (sizes[0], sizes[1]))
+    Settings.set('MainWindowLeft', sizes[0])
+    Settings.set('MainWindowTop', sizes[1])
 
 plugin = GespeakerPlugin_SaveWindowPosition(
   PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
