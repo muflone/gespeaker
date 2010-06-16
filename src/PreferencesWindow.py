@@ -46,7 +46,8 @@ class PreferencesWindow(object):
       'on_chkCustomWelcome_toggled': self.on_chkCustomWelcome_toggled,
       'on_btnRefresh_clicked': self.on_btnRefresh_clicked,
       'on_btnOk_clicked': self.on_btnOk_clicked,
-      'on_btnPluginInfo_clicked': self.on_btnPluginInfo_clicked
+      'on_btnPluginInfo_clicked': self.on_btnPluginInfo_clicked,
+      'on_tvwPlugins_row_activated': self.on_tvwPlugins_row_activated
     }
     self.gladeFile.signal_autoconnect(signals)
     # Load settings
@@ -297,3 +298,6 @@ class PreferencesWindow(object):
         logo=iter[COL_ICON],
         icon=handlepaths.get_app_logo()
       )
+
+  def on_tvwPlugins_row_activated(self, widget, path, column, data=None):
+    self.on_btnPluginInfo_clicked(widget, data)
