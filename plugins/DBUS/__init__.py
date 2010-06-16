@@ -25,7 +25,8 @@ PLUGIN_ICON = ''
 PLUGIN_WEBSITE = 'http://www.ubuntutrucchi.it/'
 
 from plugins import GespeakerPlugin, register_plugin
-import dbus.glib
+import dbus
+import dbus.mainloop.glib
 from dbus_service import GespeakerDBUSService
 from dbus_text import GespeakerDBUSServiceText
 from dbus_ui import GespeakerDBUSServiceUI
@@ -37,6 +38,8 @@ class GespeakerPlugin_DBUS(GespeakerPlugin):
   def load(self):
     "Plugin load"
     GespeakerPlugin.load(self)
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
 
   def unload(self):
     "Plugin reload"

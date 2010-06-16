@@ -37,3 +37,8 @@ class GespeakerDBUSService(dbus.service.Object):
   def get_tempfilename(self):
     "Return the temporary filename"
     return self.gespeakerUI.tempFilename
+
+  @dbus.service.method(dbus_interface='org.gtk.gespeaker', out_signature='i')
+  def ping(self):
+    "Return always 1"
+    return 1

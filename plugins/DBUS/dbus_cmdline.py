@@ -24,6 +24,7 @@ import handlepaths
 
 bus = None
 actionDone = False
+options = {}
 interfaces = {
   '/org/gtk/gespeaker': 'org.gtk.gespeaker',
   '/org/gtk/gespeaker/text': 'org.gtk.gespeaker.text',
@@ -39,6 +40,12 @@ def parseArgs():
     help='show temporary filename location')
   parser.add_option('-V', '--version', action='store_true',
     help='show version number of the running instance')
+  parser.add_option('--ping', action='store_true',
+    help='ping if is running')
+  parser.add_option('--server', action='store_true',
+    help='execute an instance if it not running')
+  parser.add_option('--async', action='store_true',
+    help='use async methods if possible')
 
   group = OptionGroup(parser, 'Playing control')
   parser.add_option_group(group)
@@ -151,6 +158,7 @@ def parseArgs():
   group.add_option('--set-volume', action='store', type='int', dest='volume',
     help='set voice volume')
 
+  global options
   (options, args) = parser.parse_args()
   # Check for mutual exclusive options
   mutex = lambda option1, option2: parser.error(
@@ -172,13 +180,27 @@ def parseArgs():
   # Create connection to DBUS
   global bus
   bus = dbus.SessionBus()
+  
+  # Check for single instance
+  if options.server:
+    try:
+      if callMethod('', 'ping', str)==1:
+        # Already running, exit
+        sys.exit(0)
+    except dbus.exceptions.DBusException:
+      options.async = True
+      global actionDone
+      actionDone = False
+  
   # Interface /org/freedesktop/gespeaker
+  if options.ping is not None:
+    callMethod('', 'ping', str)
   if options.tempfilename is not None:
     callMethod('', 'get_tempfilename', str)
   if options.version is not None:
     callMethod('', 'get_version', str)
-  if options.append is not None:
   # Interface /org/freedesktop/gespeaker/text
+  if options.append is not None:
     callMethod('/text', 'append', None, options.append)
   if options.clear is not None:
     callMethod('/text', 'clear')
@@ -273,7 +295,7 @@ def parseArgs():
     callMethod('/voice', 'set_volume', str, options.volume)
 
   # Quit application if a command line action was done
-  if actionDone:
+  if actionDone and not options.server:
     sys.exit(0)
     
 def voices_list(voices):
@@ -286,12 +308,29 @@ def callMethod(interface, methodName, result=None, *args):
   interface = '/org/gtk/gespeaker%s' % interface
   gespeakerService = bus.get_object('org.gtk.gespeaker', interface)
   method = gespeakerService.get_dbus_method(methodName, interfaces[interface])
+   
   if len(args) == 0:
-    return_value = method()
+    if options.async:
+      return_value = method(reply_handler=async_call, error_handler=async_error)
+    else:
+      return_value = method()
   elif len(args) == 1:
-    return_value = method(args[0])
+    if options.async:
+      return_value = method(args[0], reply_handler=async_call, error_handler=async_error)
+    else:
+      return_value = method(args[0])
 
   # Print result
   if result:
     print '[dbus_cmdline] %s: %s' % (methodName, result(return_value))
-  actionDone = True
+  # Don't close if it's running in async mode
+  if not options.async:
+    actionDone = True
+  
+  return return_value
+
+def async_call(r=None):
+  print 'reply: ', r
+  
+def async_error(e=None):
+  print 'error: ', e
