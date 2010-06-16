@@ -585,6 +585,7 @@
                   <widget class="GtkScrolledWindow" id="scrollPlugins">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="extension_events">all</property>
                     <property name="hscrollbar_policy">automatic</property>
                     <property name="vscrollbar_policy">automatic</property>
                     <property name="shadow_type">in</property>
@@ -593,6 +594,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="headers_visible">False</property>
+                        <signal name="row_activated" handler="on_tvwPlugins_row_activated"/>
                       </widget>
                     </child>
                   </widget>
