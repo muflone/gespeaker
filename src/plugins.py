@@ -18,6 +18,7 @@
 ##
 
 import gtk.gdk
+import os
 import handlepaths
 
 plugins = {}
@@ -84,8 +85,10 @@ class GespeakerPlugin(object):
     print '[%s]: %s' % (self.name, message)
 
   def render_icon(self):
-    icon = self.icon and gtk.gdk.pixbuf_new_from_file(self.icon) or None
-    if not icon:
+    icon = self.icon.replace('$icons', handlepaths.getPath('icons'))
+    if icon and os.path.exists(icon):
+      icon = gtk.gdk.pixbuf_new_from_file(icon)
+    else:
       icon = gtk.gdk.pixbuf_new_from_file(
         handlepaths.getPath('icons', 'generic-plugin.png'))
     return icon
