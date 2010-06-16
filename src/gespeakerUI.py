@@ -105,7 +105,7 @@ class gespeakerUI(object):
   
   def run(self):
     "Start main loop"
-    self.winMain.show()
+    self.proxy['ui.set_window']('show')
     gtk.main()
   
   def loadControls(self):
@@ -590,8 +590,10 @@ class gespeakerUI(object):
     return_value = None
     if action=='hide':
       return_value = self.winMain.hide()
+      plugins.signal_proxy('on_hidden')
     elif action=='show':
       return_value = self.winMain.show()
+      plugins.signal_proxy('on_shown')
     elif action=='minimize':
       return_value = self.winMain.iconify()
     elif action=='unminimize':

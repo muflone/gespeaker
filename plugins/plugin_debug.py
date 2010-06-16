@@ -65,6 +65,12 @@ class GespeakerPlugin_Debug(GespeakerPlugin):
   def on_closed(self):
     self.logger('on_closed()')
 
+  def on_shown(self):
+    self.logger('on_shown()')
+
+  def on_hidden(self):
+    self.logger('on_hidden()')
+
   def on_terminate(self):
     self.logger('on_terminate()')
 
