@@ -36,8 +36,8 @@ class GespeakerPlugin_Welcome(GespeakerPlugin):
         # Play default welcome message
         message = Settings.default('WelcomeText')
       self.logger('Play welcome message: %s' % message)
-      ui.txvBuffer.set_text(message)
-      ui.btnPlayStop.set_active(True)
+      ui.proxy['text.set'](message, 0)
+      ui.proxy['espeak.play'](None, None)
 
 plugin = GespeakerPlugin_Welcome(NAME, VERSION, DESCRIPTION, AUTHOR)
 register_plugin(NAME, plugin)
