@@ -19,6 +19,7 @@
 
 import ConfigParser
 import os
+from xdg.BaseDirectory import xdg_config_home
 from gettext import gettext as _
 
 cmdEspeak = '/usr/bin/espeak'
@@ -27,7 +28,8 @@ cmdMbrola = '/usr/bin/mbrola'
 argsMbrola = '-e %l -'
 
 config = None
-confdir = os.path.join(os.path.expanduser('~/.gespeaker'))
+confdir = os.path.join(xdg_config_home, 'gespeaker')
+
 conffile = os.path.join(confdir, 'settings.conf')
 __sectionSettings = 'settings'
 __sectionWindowSize = 'window size'
@@ -69,6 +71,8 @@ def loadDefaults():
     'LoadVariants': [strbool, True, __sectionSettings],
     'MainWindowWidth': [int, 440, __sectionWindowSize],
     'MainWindowHeight': [int, 470, __sectionWindowSize],
+    'MainWindowLeft': [int, 10, __sectionWindowSize],
+    'MainWindowTop': [int, 20, __sectionWindowSize],
     'SettingsExpander': [strbool, True, __sectionWindowSize],
     'VoiceVolume': [int, 100, __sectionVoiceSetting],
     'VoicePitch': [int, 50, __sectionVoiceSetting],

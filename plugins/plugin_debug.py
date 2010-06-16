@@ -17,19 +17,22 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'debug'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'Debug interface plugin'
+PLUGIN_NAME = 'Debug'
+PLUGIN_VERSION = '0.2'
+PLUGIN_DESCRIPTION = 'Debug interface'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = ''
 
 from plugins import GespeakerPlugin, register_plugin
 
 class GespeakerPlugin_Debug(GespeakerPlugin):
-  def __init__(self, name, version, description, author):
+  def __init__(self, name, version, description, author, icon, website):
     "Module initialization"
-    GespeakerPlugin.__init__(self, name, version, description, author)
-    self.logger('__init__("%s", "%s", "%s", "%s")' % (
-      NAME, VERSION, AUTHOR, DESCRIPTION))
+    GespeakerPlugin.__init__(self, name, version, description, author, icon, website)
+    self.logger('__init__("%s", "%s", "%s", "%s", "%s", "%s")' % (
+      PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR, PLUGIN_DESCRIPTION, 
+      PLUGIN_ICON, PLUGIN_WEBSITE))
 
   def load(self):
     "Plugin load"
@@ -74,5 +77,7 @@ class GespeakerPlugin_Debug(GespeakerPlugin):
   def on_terminate(self):
     self.logger('on_terminate()')
 
-plugin = GespeakerPlugin_Debug(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_Debug(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

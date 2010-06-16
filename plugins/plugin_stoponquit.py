@@ -17,10 +17,12 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'stop-on-quit'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'Terminate play on quit'
+PLUGIN_NAME = 'Stop on quit'
+PLUGIN_VERSION = '0.1'
+PLUGIN_DESCRIPTION = 'Terminate previous play on quit'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = ''
 
 from plugins import GespeakerPlugin, register_plugin
 
@@ -33,5 +35,7 @@ class GespeakerPlugin_StopOnQuit(GespeakerPlugin):
       self.logger('interrupting previous play')
       self.ui.stopPlaying()
 
-plugin = GespeakerPlugin_StopOnQuit(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_StopOnQuit(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

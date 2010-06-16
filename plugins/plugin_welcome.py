@@ -17,10 +17,12 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'welcome'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'Play welcome message on startup'
+PLUGIN_NAME = 'Welcome message'
+PLUGIN_VERSION = '0.1'
+PLUGIN_DESCRIPTION = 'Play welcome message on startup'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = ''
 
 import Settings
 from plugins import GespeakerPlugin, register_plugin
@@ -39,5 +41,7 @@ class GespeakerPlugin_Welcome(GespeakerPlugin):
       ui.proxy['text.set'](message, 0)
       ui.proxy['espeak.play'](None, None)
 
-plugin = GespeakerPlugin_Welcome(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_Welcome(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

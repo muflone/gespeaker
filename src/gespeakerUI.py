@@ -38,6 +38,8 @@ import handlepaths
 import plugins
 from pygtkutils import *
 
+COL_LANGUAGE, COL_NAME, COL_MBROLA = range(3)
+
 class gespeakerUI(object):
   def __init__(self):
     print 'starting %s' % handlepaths.APP_NAME
@@ -164,7 +166,7 @@ class gespeakerUI(object):
     if defaultLanguage == 'default language':
       defaultLanguage = 'default'
     self.defaultLanguageIndex = TreeModel_find_text(
-      self.listLanguages, 0, defaultLanguage)
+      self.listLanguages, COL_LANGUAGE, defaultLanguage)
     # Prepare sorted model for voice variants
     self.listVariants = gtk.ListStore(str, str)
     self.listVariants.set_sort_column_id(0, gtk.SORT_ASCENDING)
@@ -191,10 +193,10 @@ class gespeakerUI(object):
         self.radioVoiceFemale.set_active(True)
       # Sets default language
       language = Settings.get('VoiceLanguage')
-      languageIndex = TreeModel_find_text(self.listLanguages, 0, language)
+      languageIndex = TreeModel_find_text(self.listLanguages, COL_LANGUAGE, language)
       if not ComboBox_set_item_from_text(self.cboLanguages, 0, language):
         self.cboLanguages.set_active(self.defaultLanguageIndex)
-      Settings.set('VoiceLanguage', self.listLanguages[self.cboLanguages.get_active()][1])
+      Settings.set('VoiceLanguage', self.listLanguages[self.cboLanguages.get_active()][COL_NAME])
     # Load standard settings
     self.txvText.set_wrap_mode(
       Settings.get('WordWrap') and gtk.WRAP_WORD or gtk.WRAP_NONE)
@@ -442,8 +444,8 @@ class gespeakerUI(object):
       tmpFile.write(text)
       tmpFile.close()
       # Replace espeak's arguments with dialog values
-      language = self.listLanguages[self.cboLanguages.get_active()][1]
-      isMbrola = self.listLanguages[self.cboLanguages.get_active()][2]
+      language = self.listLanguages[self.cboLanguages.get_active()][COL_NAME]
+      isMbrola = self.listLanguages[self.cboLanguages.get_active()][COL_MBROLA]
       # Apply variant and voice to non-mbrola voices
       if not isMbrola:
         # Choose voice variant
@@ -551,7 +553,7 @@ class gespeakerUI(object):
 
   def on_cboLanguages_changed(self, widget, data=None):
     "Check if a mbrola voice has been selected"
-    status = self.listLanguages[self.cboLanguages.get_active()][2]
+    status = self.listLanguages[self.cboLanguages.get_active()][COL_MBROLA]
     self.imgMbrola.set_from_stock(size=gtk.ICON_SIZE_BUTTON,
       stock_id=status and gtk.STOCK_YES or gtk.STOCK_NO)
     self.lblVoice.set_sensitive(not status)

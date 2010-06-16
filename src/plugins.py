@@ -17,6 +17,9 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
+import gtk.gdk
+import handlepaths
+
 plugins = {}
 
 def register_plugin(name, plugin_class):
@@ -36,9 +39,14 @@ def signal_proxy(signal, argc=0, args=None):
           method()
 
 class GespeakerPlugin(object):
-  def __init__(self, name, version, description, author):
+  def __init__(self, name, version, description, author, icon='', website=''):
     "Module initialization"
     self.name = name
+    self.version = version
+    self.description = description
+    self.author = author
+    self.icon = icon
+    self.website = website
     self.logger('init plugin v.%s' % version)
     self.active = True
 
@@ -74,3 +82,10 @@ class GespeakerPlugin(object):
   def logger(self, message):
     "Print a message from a plugin"
     print '[%s]: %s' % (self.name, message)
+
+  def render_icon(self):
+    icon = self.icon and gtk.gdk.pixbuf_new_from_file(self.icon) or None
+    if not icon:
+      icon = gtk.gdk.pixbuf_new_from_file(
+        handlepaths.getPath('icons', 'generic-plugin.png'))
+    return icon

@@ -19,7 +19,7 @@
             <property name="can_focus">True</property>
             <property name="tab_hborder">4</property>
             <child>
-              <widget class="GtkVBox" id="vboxPreferences2">
+              <widget class="GtkVBox" id="vboxGeneral">
                 <property name="visible">True</property>
                 <property name="border_width">6</property>
                 <property name="orientation">vertical</property>
@@ -497,7 +497,7 @@
                     </child>
                     <child>
                       <widget class="GtkButton" id="btnRefresh">
-                        <property name="label" translatable="no">gtk-refresh</property>
+                        <property name="label">gtk-refresh</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -563,11 +563,93 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <widget class="GtkVBox" id="vboxPlugins">
+                <property name="visible">True</property>
+                <property name="border_width">6</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">5</property>
+                <child>
+                  <widget class="GtkLabel" id="lblAvailablePlugins">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Available plugins&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="padding">2</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkScrolledWindow" id="scrollPlugins">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <widget class="GtkTreeView" id="tvwPlugins">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="headers_visible">False</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkHBox" id="hboxPluginButtons">
+                    <property name="visible">True</property>
+                    <property name="spacing">7</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <widget class="GtkButton" id="btnPluginInfo">
+                        <property name="label" translatable="yes">gtk-about</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="clicked" handler="on_btnPluginInfo_clicked"/>
+                      </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkButton" id="btnPluginConfigure">
+                        <property name="label" translatable="yes">gtk-preferences</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="clicked" handler="on_btnPluginConfigure_clicked"/>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="position">2</property>
+              </packing>
             </child>
             <child>
-              <placeholder/>
+              <widget class="GtkLabel" id="lblTabPlugins">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Plugins</property>
+              </widget>
               <packing>
+                <property name="position">2</property>
+                <property name="tab_fill">False</property>
                 <property name="type">tab</property>
               </packing>
             </child>

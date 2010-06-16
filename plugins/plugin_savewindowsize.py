@@ -17,10 +17,12 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'save-window-size'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'Save window size on close and restore on startup'
+PLUGIN_NAME = 'Save window size'
+PLUGIN_VERSION = '0.1'
+PLUGIN_DESCRIPTION = 'Save window size on close and restore it on startup'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = ''
 
 import Settings
 from plugins import GespeakerPlugin, register_plugin
@@ -44,5 +46,7 @@ class GespeakerPlugin_SaveWindowSize(GespeakerPlugin):
       Settings.set('MainWindowHeight', sizes[1])
       Settings.set('SettingsExpander', self.ui.expSettings.get_expanded())
 
-plugin = GespeakerPlugin_SaveWindowSize(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_SaveWindowSize(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

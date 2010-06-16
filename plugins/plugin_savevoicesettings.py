@@ -17,10 +17,12 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'save-voice'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'Save voice settings on close'
+PLUGIN_NAME = 'Save voice settings'
+PLUGIN_VERSION = '0.1'
+PLUGIN_DESCRIPTION = 'Save voice settings on close'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = ''
 
 import Settings
 from plugins import GespeakerPlugin, register_plugin
@@ -45,5 +47,7 @@ class GespeakerPlugin_SaveVoiceSettings(GespeakerPlugin):
         language = self.ui.listLanguages[self.ui.cboLanguages.get_active()][0]
         Settings.set('VoiceLanguage', language)
 
-plugin = GespeakerPlugin_SaveVoiceSettings(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_SaveVoiceSettings(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

@@ -22,9 +22,14 @@ import Settings
 import SubprocessWrapper
 import os.path
 import handlepaths
+import plugins
+import pango
 from gettext import gettext as _
 from DialogSimpleMessages import ShowDialogError
+from DialogAbout import DialogAbout
 from pygtkutils import *
+
+COL_ACTIVE, COL_ICON, COL_NAME, COL_MARKUP = range(4)
 
 def showPreferencesWindow(gladeFile, espeak):
   prefsWindow = PreferencesWindow(gladeFile, espeak)
@@ -40,7 +45,8 @@ class PreferencesWindow(object):
       'on_btnPlayerTest_clicked': self.on_btnPlayerTest_clicked,
       'on_chkCustomWelcome_toggled': self.on_chkCustomWelcome_toggled,
       'on_btnRefresh_clicked': self.on_btnRefresh_clicked,
-      'on_btnOk_clicked': self.on_btnOk_clicked
+      'on_btnOk_clicked': self.on_btnOk_clicked,
+      'on_btnPluginInfo_clicked': self.on_btnPluginInfo_clicked
     }
     self.gladeFile.signal_autoconnect(signals)
     # Load settings
@@ -61,6 +67,15 @@ class PreferencesWindow(object):
     self.dlgPrefs.window.set_functions(gtk.gdk.FUNC_CLOSE | gtk.gdk.FUNC_MOVE)
     # Reload mbrola languages list
     self.btnRefresh.clicked()
+    # Load plugins list
+    self.modelPlugins.clear()
+    for pl in plugins.plugins.itervalues():
+      self.modelPlugins.append([
+        pl.active,
+        pl.render_icon(),
+        pl.name,
+        '<b>%s</b>\n%s' % (pl.name, pl.description)
+      ])
     self.dlgPrefs.run()
     self.dlgPrefs.destroy()
 
@@ -113,41 +128,70 @@ class PreferencesWindow(object):
     # Change testing button caption
     Button_change_stock_description(self.btnPlayerTest, _('_Test'), True)
     # Create model and sorted model for mbrola languages
-    self.treeModel = gtk.ListStore(gtk.gdk.Pixbuf, str, str, str)
-    #self.tvwLanguages.set_model(self.treeModel)
-    sortedModel = gtk.TreeModelSort(self.treeModel)
+    self.modelMbrola = gtk.ListStore(gtk.gdk.Pixbuf, str, str, str)
+    #self.tvwLanguages.set_model(self.modelMbrola)
+    sortedModel = gtk.TreeModelSort(self.modelMbrola)
     sortedModel.set_sort_column_id(1, gtk.SORT_ASCENDING)
     self.tvwLanguages.set_model(sortedModel)
     # Create columns for tvwLanguages
-    COL_IMG, COL_LANG, COL_RES, COL_STATUS = range(4)
+    COL_LANG_IMG, COL_LANG_LANG, COL_LANG_RES, COL_LANG_STATUS = range(4)
     cell = gtk.CellRendererPixbuf()
     column = gtk.TreeViewColumn('')
     column.pack_start(cell)
-    column.set_attributes(cell, pixbuf=COL_IMG)
+    column.set_attributes(cell, pixbuf=COL_LANG_IMG)
     self.tvwLanguages.append_column(column)
     
     cell = gtk.CellRendererText()
-    column = gtk.TreeViewColumn(_('Language'), cell, text=COL_LANG)
-    column.set_sort_column_id(COL_LANG)
+    column = gtk.TreeViewColumn(_('Language'), cell, text=COL_LANG_LANG)
+    column.set_sort_column_id(COL_LANG_LANG)
     column.set_resizable(True)
     self.tvwLanguages.append_column(column)
 
     cell = gtk.CellRendererText()
-    column = gtk.TreeViewColumn(_('Resource'), cell, text=COL_RES)
-    column.set_sort_column_id(COL_RES)
+    column = gtk.TreeViewColumn(_('Resource'), cell, text=COL_LANG_RES)
+    column.set_sort_column_id(COL_LANG_RES)
     column.set_resizable(True)
     self.tvwLanguages.append_column(column)
 
     cell = gtk.CellRendererText()
-    column = gtk.TreeViewColumn(_('Status'), cell, text=COL_STATUS)
-    column.set_sort_column_id(COL_STATUS)
+    column = gtk.TreeViewColumn(_('Status'), cell, text=COL_LANG_STATUS)
+    column.set_sort_column_id(COL_LANG_STATUS)
     column.set_resizable(True)
     self.tvwLanguages.append_column(column)
     # Order by Language column
-    #column = self.tvwLanguages.get_column(COL_LANG)
-    #column.set_sort_column_id(COL_LANG)
+    #column = self.tvwLanguages.get_column(COL_LANG_LANG)
+    #column.set_sort_column_id(COL_LANG_LANG)
     #column.set_sort_order(gtk.SORT_ASCENDING)
     #column.set_sort_indicator(True)
+    
+    # Plugins
+    self.tvwPlugins = gw('tvwPlugins')
+    self.btnPluginInfo = gw('btnPluginInfo')
+    self.btnPluginConfigure = gw('btnPluginConfigure')
+    Button_change_stock_description(self.btnPluginInfo, _('_About plugin'), True)
+    Button_change_stock_description(self.btnPluginConfigure, _('_Configure plugin'), True)
+    # Create model for plugins list
+    self.modelPlugins = gtk.ListStore(
+      bool,           # active
+      gtk.gdk.Pixbuf, # icon
+      str,            # name
+      str             # markup
+    )
+    self.tvwPlugins.set_model(self.modelPlugins)
+    cell = gtk.CellRendererToggle()
+    cell.connect('toggled', self.on_pluginenable_toggle)
+    column = gtk.TreeViewColumn(None, cell, active=COL_ACTIVE)
+    self.tvwPlugins.append_column(column)
+    
+    cell = gtk.CellRendererPixbuf()
+    column = gtk.TreeViewColumn(None, cell, pixbuf=COL_ICON)
+    self.tvwPlugins.append_column(column)
+    
+    cell = gtk.CellRendererText()
+    cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+    column = gtk.TreeViewColumn(None, cell, markup=COL_MARKUP)
+    column.set_resizable(True)
+    self.tvwPlugins.append_column(column)   
 
   def on_chkCustomWelcome_toggled(self, widget, data=None):
     self.lblCustomWelcome.set_sensitive(self.chkCustomWelcome.get_active())
@@ -209,7 +253,7 @@ class PreferencesWindow(object):
 
   def on_btnRefresh_clicked(self, widget, data=None):
     "Reload mbrola languages from the selected folder"
-    self.treeModel.clear()
+    self.modelMbrola.clear()
     selectedFolder = self.chooserLanguagePath.get_filename()
     if not selectedFolder:
       # Calling before the dialog is shown results in None path
@@ -219,7 +263,7 @@ class PreferencesWindow(object):
     for voice in mbrolaVoices:
       if voice[2]:
         voicesFound += 1
-      self.treeModel.append((
+      self.modelMbrola.append((
         widget.render_icon(voice[2] and gtk.STOCK_YES or gtk.STOCK_NO, 
         gtk.ICON_SIZE_BUTTON), voice[0], voice[1],
         voice[2] and _('Installed') or _('Not installed')))
@@ -232,3 +276,24 @@ class PreferencesWindow(object):
       stock_id=status and gtk.STOCK_YES or gtk.STOCK_NO)
     self.lblExecutableMbrolaStatus.set_label('<b>%s</b>' % (status and 
       _('Package mbrola installed') or _('Package mbrola not installed')))
+
+  def on_pluginenable_toggle(self, renderer, path, data=None):
+    "Select or deselect a plugin"
+    self.modelPlugins[path][COL_ACTIVE] = not self.modelPlugins[path][COL_ACTIVE]
+
+  def on_btnPluginInfo_clicked(self, widget, data=None):
+    "Show information about plugin"
+    path = self.tvwPlugins.get_selection().get_selected()[1]
+    if path:
+      iter = self.modelPlugins[path]
+      plugin = plugins.plugins[iter[COL_NAME]]
+      DialogAbout(
+        name=iter[COL_NAME],
+        version=plugin.version,
+        comment=plugin.description,
+        copyright='Copyright %s' % plugin.author,
+        website=plugin.website,
+        website_label=plugin.website,
+        logo=iter[COL_ICON],
+        icon=handlepaths.get_app_logo()
+      )

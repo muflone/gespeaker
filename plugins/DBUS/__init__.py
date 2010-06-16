@@ -17,10 +17,12 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-NAME = 'DBUS'
-VERSION = '0.1'
-AUTHOR = 'Fabio Castelli'
-DESCRIPTION = 'DBUS interface plugin'
+PLUGIN_NAME = 'DBUS'
+PLUGIN_VERSION = '0.2'
+PLUGIN_DESCRIPTION = 'DBUS interfaces'
+PLUGIN_AUTHOR = 'Fabio Castelli'
+PLUGIN_ICON = ''
+PLUGIN_WEBSITE = 'http://www.ubuntutrucchi.it/'
 
 from plugins import GespeakerPlugin, register_plugin
 import dbus.glib
@@ -52,5 +54,7 @@ class GespeakerPlugin_DBUS(GespeakerPlugin):
     GespeakerDBUSServiceVoice(ui)
     parseArgs()
 
-plugin = GespeakerPlugin_DBUS(NAME, VERSION, DESCRIPTION, AUTHOR)
-register_plugin(NAME, plugin)
+plugin = GespeakerPlugin_DBUS(
+  PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
+  PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
+register_plugin(PLUGIN_NAME, plugin)

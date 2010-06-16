@@ -49,7 +49,10 @@ def DialogAbout(name=None, version=None, comment=None,
     if artists:
       about.set_artists(artists)
     if logo:
-      about.set_logo(gtk.gdk.pixbuf_new_from_file(logo))
+      if isinstance(logo, gtk.gdk.Pixbuf):
+        about.set_logo(logo)
+      else:
+        about.set_logo(gtk.gdk.pixbuf_new_from_file(logo))
     if icon:
       about.set_icon_from_file(icon)
 
