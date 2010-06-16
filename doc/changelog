@@ -1,10 +1,21 @@
 gespeaker (0.8.1) all; urgency=low
 
   * New bulgarian translation by Svetoslav Stefanov.
-  * Stop previous play on quit
+  * User configuration moved in XDG_CONFIG_HOME instead of previous hardcoded
+    folder (sorry for your saved settings).
+    http://live.gnome.org/GnomeGoals/XDGConfigFolders
+    http://ploum.frimouvy.org/?207-modify-your-application-to-use-xdg-folders
+  * New plugins architecture
+  * Moved dbus, save voice settings, save window size, welcome message in
+    external plugins.
+  * Stop previous play on quit (moved on external plugin)
     http://code.google.com/p/gespeaker/issues/detail?id=24
+  * New plugins: debug, save window position
+  * New plugins minimal configuration in preferences dialog
+  * New Telepathy and Pidgin plugins
+    http://developer.pidgin.im/wiki/DbusHowto
 
- -- Fabio Castelli <muflone@vbsimple.net>  Mon, 14 Jun 2010 19:29:34 +0100
+ -- Fabio Castelli <muflone@vbsimple.net>  Thu, 17 Jun 2010 01:15:21 +0200
 
 gespeaker (0.8) all; urgency=low
 
