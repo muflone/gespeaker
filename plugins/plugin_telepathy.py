@@ -42,10 +42,10 @@ class GespeakerPlugin_Telepathy(GespeakerPlugin):
   def on_uiready(self, ui):
     self.ui = ui
 
-  def message_received(self, id, timestamp, sender, type, flags, message):
+  def message_received(self, msgid, timestamp, sender, msgtype, flags, message):
     "New message received"
     self.logger('message_received(%d, %d, %d, %d, %d, %s)' % (
-      id, timestamp, sender, type, flags, message))
+      msgid, timestamp, sender, msgtype, flags, message))
     self.ui.proxy['text.set'](message, 0)
     self.ui.proxy['espeak.play'](None, None)
 

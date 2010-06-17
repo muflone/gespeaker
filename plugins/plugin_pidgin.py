@@ -53,8 +53,9 @@ class GespeakerPlugin_Pidgin(GespeakerPlugin):
     message = re.compile(r'<.*?>').sub('', message)
     for k, v in replaces.iteritems():
       message = message.replace(k, v)
+    print account, sender, message, conversation, flags
     self.logger('message_received(%d, %s, %s, %d, %d)' % (
-      id, sender, message, type, flags))
+      account, sender, message, conversation, flags))
     self.ui.proxy['text.set'](message, 0)
     self.ui.proxy['espeak.play'](None, None)
 
