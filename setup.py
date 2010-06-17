@@ -80,6 +80,8 @@ setup(name='Gespeaker',
                   ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
                   ('share/gespeaker/data/ui', glob.glob('data/ui/*.glade')),
                   ('share/gespeaker/src', glob.glob('src/*.py')),
+                  ('share/gespeaker/plugins', glob.glob('plugins/*.py')),
+                  ('share/gespeaker/plugins/DBUS', glob.glob('plugins/DBUS/*.py'))
                  ],
       cmdclass={'install_data': InstallData}
      )
