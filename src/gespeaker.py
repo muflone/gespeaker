@@ -36,6 +36,7 @@ if __name__ == '__main__':
     module.textdomain(handlepaths.APP_NAME)
 
   # Load user settings
+  plugins.loadPluginsSettings()
   Settings.load()
 
   print 'loading available plugins...'

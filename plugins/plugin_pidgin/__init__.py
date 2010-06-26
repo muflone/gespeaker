@@ -17,39 +17,49 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-PLUGIN_NAME = 'Telepathy'
+PLUGIN_NAME = 'Pidgin'
 PLUGIN_VERSION = '0.1'
-PLUGIN_DESCRIPTION = 'Interface for Telepathy received messages'
+PLUGIN_DESCRIPTION = 'Interface for Pidgin received messages'
 PLUGIN_AUTHOR = 'Fabio Castelli'
-PLUGIN_ICON = '$icons/empathy.png'
+PLUGIN_ICON = '%s/icon.svg' % __path__[0]
 PLUGIN_WEBSITE = ''
 
 import dbus
 import dbus.mainloop.glib
+import re
 from plugins import GespeakerPlugin, register_plugin
 
-class GespeakerPlugin_Telepathy(GespeakerPlugin):
+class GespeakerPlugin_Pidgin(GespeakerPlugin):
   def __init__(self, name, version, description, author, icon, website):
     "Module initialization"
     GespeakerPlugin.__init__(self, name, version, description, author, icon, website)
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     bus = dbus.SessionBus()
     bus.add_signal_receiver(self.message_received, 
-      dbus_interface='org.freedesktop.Telepathy.Channel.Type.Text',
-      signal_name = 'Received'
+      dbus_interface='im.pidgin.purple.PurpleInterface',
+      signal_name = 'ReceivingImMsg'
     )
 
   def on_uiready(self, ui):
     self.ui = ui
 
-  def message_received(self, msgid, timestamp, sender, msgtype, flags, message):
+  def message_received(self, account, sender, message, conversation, flags):
     "New message received"
-    self.logger('message_received(%d, %d, %d, %d, %d, %s)' % (
-      msgid, timestamp, sender, msgtype, flags, message))
-    self.ui.proxy['text.set'](message, 0)
-    self.ui.proxy['espeak.play'](None, None)
+    if self.active:
+      replaces = {
+        '&lt;': '<',
+        '&gt;': '>',
+        '&amp;': '&'
+      }
+      message = re.compile(r'<.*?>').sub('', message)
+      for k, v in replaces.iteritems():
+        message = message.replace(k, v)
+      self.logger('message_received(%d, %s, %s, %d, %d)' % (
+        account, sender, message, conversation, flags))
+      self.ui.proxy['text.set'](message, 0)
+      self.ui.proxy['espeak.play'](None, None)
 
-plugin = GespeakerPlugin_Telepathy(
+plugin = GespeakerPlugin_Pidgin(
   PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
   PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
 register_plugin(PLUGIN_NAME, plugin)

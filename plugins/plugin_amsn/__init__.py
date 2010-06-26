@@ -17,34 +17,38 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-PLUGIN_NAME = 'Save window size'
+PLUGIN_NAME = 'aMSN'
 PLUGIN_VERSION = '0.1'
-PLUGIN_DESCRIPTION = 'Save window size on close and restore it on startup'
+PLUGIN_DESCRIPTION = 'aMSN plugin'
 PLUGIN_AUTHOR = 'Fabio Castelli'
-PLUGIN_ICON = ''
-PLUGIN_WEBSITE = ''
+PLUGIN_ICON = '%s/icon.png' % __path__[0]
+PLUGIN_WEBSITE = 'http://www.ubuntutrucchi.it/'
 
-import Settings
+import os
+from os.path import join, exists, isdir, islink
+from xdg.BaseDirectory import _home as xdg_home
 from plugins import GespeakerPlugin, register_plugin
 
-class GespeakerPlugin_SaveWindowSize(GespeakerPlugin):
-  def on_uiready(self, ui):
-    self.ui = ui
-    # Restore window size
-    width = Settings.get('MainWindowWidth')
-    height = Settings.get('MainWindowHeight')
-    self.logger('Load window size (%dx%d)' % (width, height))
-    self.ui.winMain.set_default_size(width, height)
-  
-  def on_closing(self):
-    # Save window size
-    sizes = self.ui.winMain.get_size()
-    self.logger('Save window size (%dx%d)' % (sizes[0], sizes[1]))
-    Settings.set('MainWindowWidth', sizes[0])
-    Settings.set('MainWindowHeight', sizes[1])
-    Settings.set('SettingsExpander', self.ui.expSettings.get_expanded())
+class GespeakerPlugin_AMSN(GespeakerPlugin):
+  def load(self):
+    "Plugin load"
+    GespeakerPlugin.load(self)
+    plugin_path = join(xdg_home, '.amsn', 'plugins')
+    plugin_filename = join(plugin_path, 'Gespeaker')
+    #
+    if exists(plugin_path) and isdir(plugin_path):
+      if exists(plugin_filename):
+        if islink(plugin_filename):
+          # Remove previous gespeaker symlink
+          os.remove(plugin_filename)
+        else:
+          self.logger('WARNING: %s already exists' % plugin_filename)
+      if not exists(plugin_filename):
+        # Symlink plugin
+        os.symlink(__path__[0], plugin_filename)
+        
 
-plugin = GespeakerPlugin_SaveWindowSize(
+plugin = GespeakerPlugin_AMSN(
   PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
   PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
 register_plugin(PLUGIN_NAME, plugin)

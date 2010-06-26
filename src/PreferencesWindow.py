@@ -178,7 +178,9 @@ class PreferencesWindow(object):
       str,            # name
       str             # markup
     )
-    self.tvwPlugins.set_model(self.modelPlugins)
+    sortedModel = gtk.TreeModelSort(self.modelPlugins)
+    sortedModel.set_sort_column_id(COL_NAME, gtk.SORT_ASCENDING)
+    self.tvwPlugins.set_model(sortedModel)
     cell = gtk.CellRendererToggle()
     cell.connect('toggled', self.on_pluginenable_toggle)
     column = gtk.TreeViewColumn(None, cell, active=COL_ACTIVE)
@@ -280,22 +282,25 @@ class PreferencesWindow(object):
 
   def on_pluginenable_toggle(self, renderer, path, data=None):
     "Select or deselect a plugin"
-    self.modelPlugins[path][COL_ACTIVE] = not self.modelPlugins[path][COL_ACTIVE]
+    path = self.tvwPlugins.get_model().convert_path_to_child_path(path)
+    p = self.modelPlugins[path]
+    p[COL_ACTIVE] = not p[COL_ACTIVE]
+    plugins.plugins[p[COL_NAME]].active = not plugins.plugins[p[COL_NAME]].active
+
 
   def on_btnPluginInfo_clicked(self, widget, data=None):
     "Show information about plugin"
-    path = self.tvwPlugins.get_selection().get_selected()[1]
-    if path:
-      iter = self.modelPlugins[path]
-      plugin = plugins.plugins[iter[COL_NAME]]
+    model, iter = self.tvwPlugins.get_selection().get_selected()
+    if model:
+      plugin = plugins.plugins[model[iter][COL_NAME]]
       DialogAbout(
-        name=iter[COL_NAME],
+        name=model[iter][COL_NAME],
         version=plugin.version,
         comment=plugin.description,
         copyright='Copyright %s' % plugin.author,
         website=plugin.website,
         website_label=plugin.website,
-        logo=iter[COL_ICON],
+        logo=model[iter][COL_ICON],
         icon=handlepaths.get_app_logo()
       )
 

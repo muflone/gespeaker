@@ -31,6 +31,7 @@ config = None
 confdir = os.path.join(xdg_config_home, 'gespeaker')
 
 conffile = os.path.join(confdir, 'settings.conf')
+pluginsfile = os.path.join(confdir, 'plugins.conf')
 __sectionSettings = 'settings'
 __sectionWindowSize = 'window size'
 __sectionVoiceSetting = 'voice settings'

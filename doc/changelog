@@ -8,14 +8,15 @@ gespeaker (0.8.1) all; urgency=low
   * New plugins architecture
   * Moved dbus, save voice settings, save window size, welcome message in
     external plugins.
+  * New command-line features
   * Stop previous play on quit (moved on external plugin)
     http://code.google.com/p/gespeaker/issues/detail?id=24
   * New plugins: debug, save window position
   * New plugins minimal configuration in preferences dialog
-  * New Telepathy and Pidgin plugins
+  * New Telepathy, Pidgin, Emesene, Kopete and aMSN plugins
     http://developer.pidgin.im/wiki/DbusHowto
 
- -- Fabio Castelli <muflone@vbsimple.net>  Thu, 17 Jun 2010 01:15:21 +0200
+ -- Fabio Castelli <muflone@vbsimple.net>  Sat, 26 Jun 2010 18:48:21 +0200
 
 gespeaker (0.8) all; urgency=low
 

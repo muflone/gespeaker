@@ -23,7 +23,7 @@ from distutils.core import setup
 from distutils.command.install_data import install_data
 from distutils.dep_util import newer
 from distutils.log import info
-import glob
+from glob import glob
 import os
 import sys
 
@@ -64,24 +64,36 @@ class InstallData(install_data):
     return data_files
 
 
-setup(name='Gespeaker',
-      version='0.8.1',
-      description='A GTK+ frontend for eSpeak and mbrola',
-      author='Fabio Castelli',
-      author_email='muflone@vbsimple.net',
-      url='http://code.google.com/p/gespeaker/',
-      license='GPL v2',
-      scripts=['gespeaker'],
-      data_files=[
-                  ('share/applications', ['data/gespeaker.desktop']),
-                  ('share/man/man1', ['man/gespeaker.1']),
-                  ('share/doc/gespeaker', ['doc/README', 'doc/changelog']),
-                  ('share/gespeaker/data', ['data/testing.wav']),
-                  ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
-                  ('share/gespeaker/data/ui', glob.glob('data/ui/*.glade')),
-                  ('share/gespeaker/src', glob.glob('src/*.py')),
-                  ('share/gespeaker/plugins', glob.glob('plugins/*.py')),
-                  ('share/gespeaker/plugins/DBUS', glob.glob('plugins/DBUS/*.py'))
-                 ],
-      cmdclass={'install_data': InstallData}
-     )
+setup(
+  name='Gespeaker',
+  version='0.8.1',
+  description='A GTK+ frontend for eSpeak and mbrola',
+  author='Fabio Castelli',
+  author_email='muflone@vbsimple.net',
+  url='http://code.google.com/p/gespeaker/',
+  license='GPL v2',
+  scripts=['gespeaker'],
+  data_files=[
+    ('share/applications', ['data/gespeaker.desktop']),
+    ('share/gespeaker/data', ['data/testing.wav']),
+    ('share/gespeaker/data/icons', glob('data/icons/*')),
+    ('share/gespeaker/data/ui', glob('data/ui/*.glade')),
+    ('share/doc/gespeaker', ['doc/README', 'doc/changelog', 'doc/translators']),
+    ('share/doc/gespeaker/dbus', glob('doc/dbus/*')),
+    ('share/man/man1', ['man/gespeaker.1']),
+    ('share/gespeaker/plugins/plugin_amsn', glob('plugins/plugin_amsn/*')),
+    ('share/gespeaker/plugins/plugin_dbus', glob('plugins/plugin_dbus/*')),
+    ('share/gespeaker/plugins/plugin_debug', glob('plugins/plugin_debug/*')),
+    ('share/gespeaker/plugins/plugin_emesene', glob('plugins/plugin_emesene/*')),
+    ('share/gespeaker/plugins/plugin_kopete', glob('plugins/plugin_kopete/*')),
+    ('share/gespeaker/plugins/plugin_pidgin', glob('plugins/plugin_pidgin/*')),
+    ('share/gespeaker/plugins/plugin_stoponquit', glob('plugins/plugin_stoponquit/*')),
+    ('share/gespeaker/plugins/plugin_telepathy', glob('plugins/plugin_telepathy/*')),
+    ('share/gespeaker/plugins/plugin_voicesettings', glob('plugins/plugin_voicesettings/*')),
+    ('share/gespeaker/plugins/plugin_welcome', glob('plugins/plugin_welcome/*')),
+    ('share/gespeaker/plugins/plugin_windowposition', glob('plugins/plugin_windowposition/*')),
+    ('share/gespeaker/plugins/plugin_windowsize', glob('plugins/plugin_windowsize/*')),
+    ('share/gespeaker/src', glob('src/*.py'))
+  ],
+  cmdclass={'install_data': InstallData}
+)

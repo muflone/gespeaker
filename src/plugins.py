@@ -20,8 +20,14 @@
 import gtk.gdk
 import os
 import handlepaths
+import ConfigParser
+import Settings
+
+ICON_WIDTH = 48
+ICON_HEIGHT = 48
 
 plugins = {}
+config = None
 
 def register_plugin(name, plugin_class):
   "Register a new plugin"
@@ -38,6 +44,14 @@ def signal_proxy(signal, argc=0, args=None):
           method(args)
         elif argc==0:
           method()
+
+def loadPluginsSettings():
+  "Load plugins from the configuration file"
+  global config
+  config = ConfigParser.RawConfigParser()
+  if os.path.exists(Settings.pluginsfile):
+    config.read(Settings.pluginsfile)
+  print config
 
 class GespeakerPlugin(object):
   def __init__(self, name, version, description, author, icon='', website=''):
@@ -85,10 +99,8 @@ class GespeakerPlugin(object):
     print '[%s]: %s' % (self.name, message)
 
   def render_icon(self):
-    icon = self.icon.replace('$icons', handlepaths.getPath('icons'))
-    if icon and os.path.exists(icon):
-      icon = gtk.gdk.pixbuf_new_from_file(icon)
-    else:
-      icon = gtk.gdk.pixbuf_new_from_file(
-        handlepaths.getPath('icons', 'generic-plugin.png'))
-    return icon
+    filename = self.icon.replace('$icons', handlepaths.getPath('icons'))
+    if not filename or not os.path.exists(filename):
+      filename = handlepaths.getPath('icons', 'generic-plugin.png')
+    return gtk.gdk.pixbuf_new_from_file_at_size(filename, 
+      ICON_WIDTH, ICON_HEIGHT)

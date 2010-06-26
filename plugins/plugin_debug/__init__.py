@@ -21,7 +21,7 @@ PLUGIN_NAME = 'Debug'
 PLUGIN_VERSION = '0.2'
 PLUGIN_DESCRIPTION = 'Debug interface'
 PLUGIN_AUTHOR = 'Fabio Castelli'
-PLUGIN_ICON = ''
+PLUGIN_ICON = '%s/icon.svg' % __path__[0]
 PLUGIN_WEBSITE = ''
 
 from plugins import GespeakerPlugin, register_plugin

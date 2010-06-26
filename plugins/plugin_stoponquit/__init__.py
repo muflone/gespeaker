@@ -17,47 +17,25 @@
 # can be found in the file /usr/share/common-licenses/GPL-2.
 ##
 
-PLUGIN_NAME = 'DBUS'
-PLUGIN_VERSION = '0.2'
-PLUGIN_DESCRIPTION = 'DBUS interfaces'
+PLUGIN_NAME = 'Stop on quit'
+PLUGIN_VERSION = '0.1'
+PLUGIN_DESCRIPTION = 'Terminate previous play on quit'
 PLUGIN_AUTHOR = 'Fabio Castelli'
-PLUGIN_ICON = ''
-PLUGIN_WEBSITE = 'http://www.ubuntutrucchi.it/'
+PLUGIN_ICON = '%s/icon.svg' % __path__[0]
+PLUGIN_WEBSITE = ''
 
 from plugins import GespeakerPlugin, register_plugin
-import dbus
-import dbus.mainloop.glib
-from dbus_service import GespeakerDBUSService
-from dbus_text import GespeakerDBUSServiceText
-from dbus_ui import GespeakerDBUSServiceUI
-from dbus_espeak import GespeakerDBUSServiceEspeak
-from dbus_voice import GespeakerDBUSServiceVoice
-from dbus_cmdline import parseArgs
 
-class GespeakerPlugin_DBUS(GespeakerPlugin):
-  def load(self):
-    "Plugin load"
-    GespeakerPlugin.load(self)
-    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-
-
-  def unload(self):
-    "Plugin reload"
-    pass
-
-  def reload(self):
-    "Plugin reload"
-    pass
-
+class GespeakerPlugin_StopOnQuit(GespeakerPlugin):
   def on_uiready(self, ui):
-    GespeakerDBUSService(ui)
-    GespeakerDBUSServiceText(ui)
-    GespeakerDBUSServiceUI(ui)
-    GespeakerDBUSServiceEspeak(ui)
-    GespeakerDBUSServiceVoice(ui)
-    parseArgs()
+    self.ui = ui
+  
+  def on_closed(self):
+    if self.ui.checkIfPlaying():
+      self.logger('interrupting previous play')
+      self.ui.stopPlaying()
 
-plugin = GespeakerPlugin_DBUS(
+plugin = GespeakerPlugin_StopOnQuit(
   PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_DESCRIPTION, 
   PLUGIN_AUTHOR, PLUGIN_ICON, PLUGIN_WEBSITE)
 register_plugin(PLUGIN_NAME, plugin)
