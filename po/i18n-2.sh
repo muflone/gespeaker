@@ -20,5 +20,6 @@ msginit $INITOPTS --output-file=new/pt.po --locale=pt_PT
 msginit $INITOPTS --output-file=new/sk.po --locale=sk
 msginit $INITOPTS --output-file=new/tr.po --locale=tr
 msginit $INITOPTS --output-file=new/zh_CN.po --locale=zh_CN
+msginit $INITOPTS --output-file=new/fo.po --locale=fo
 
 read

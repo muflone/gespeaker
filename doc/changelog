@@ -1,3 +1,14 @@
+gespeaker (0.8.2) all; urgency=low
+
+  * New german translation by Heinrich Schwietering
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Sun, 7 Dic 2010 18:14:44 +0100
+
+  * New faroese translation by Gunleif Joensen.
+  * Fixed handling of broken symlinks for amsn and emesene plugins
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Sun, 17 Oct 2010 20:48:43 +0200
+
 gespeaker (0.8.1) all; urgency=low
 
   * New bulgarian translation by Svetoslav Stefanov.
