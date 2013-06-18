@@ -27,7 +27,7 @@ PLUGIN_WEBSITE = 'http://www.ubuntutrucchi.it/'
 EMESENE_PLUGIN_FILENAME = 'gespeaker_emesene.py'
 
 import os
-from os.path import join, exists, isdir
+from os.path import join, exists, isdir, islink
 from xdg.BaseDirectory import xdg_config_home
 from plugins import GespeakerPlugin, register_plugin
 
@@ -40,7 +40,7 @@ class GespeakerPlugin_Emesene(GespeakerPlugin):
       xdg_config_home, 'emesene1.0', 'pluginsEmesene')
     self.plugin_filename = join(self.plugins_path, EMESENE_PLUGIN_FILENAME)
     if exists(self.plugins_path) and isdir(self.plugins_path):
-      if exists(self.plugin_filename):
+      if exists(self.plugin_filename) or islink(self.plugin_filename):
         # Remove previous .py file
         os.remove(self.plugin_filename)
       if exists('%sc' % self.plugin_filename):
