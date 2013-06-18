@@ -477,8 +477,9 @@ class gespeakerUI(object):
         self.espeak.play(cmd, self.cmdPlayer, self.recordToFile)
       else:
         args = {
-          '%l': '%s/%s' % (
+          '%l': '%s/%s/%s' % (
             Settings.get('VoicesmbPath'), 
+            language.replace('mb-', '', 1),
             language.replace('mb-', '', 1))
         }
         cmdMbrola = [Settings.cmdMbrola] + [

@@ -120,7 +120,6 @@ class EspeakFrontend(object):
     # Save both processes espeak and player
     if procPlay:
       self.procTalk = (procFrom, procPlay)
-    
 
   def stop(self):
     "Stop audio killing espeak and player"
@@ -178,7 +177,7 @@ class EspeakFrontend(object):
     voicesmb = []
     pathVoices = '/usr/share/espeak-data/voices/mb/'
     if not pathVoicesmb:
-      pathVoicesmb = '/usr/share/mbrola/voices'
+      pathVoicesmb = '/usr/share/mbrola'
     if os.path.isdir(pathVoices) and os.path.isdir(pathVoicesmb):
       for voice in os.listdir(pathVoices):
         # Only files
@@ -189,7 +188,7 @@ class EspeakFrontend(object):
           # Check if it's a valid voice
           for line in voicecontent:
             if line[:5] == 'name ':
-              voicesmb.append((line[5:], voice, os.path.isfile(os.path.join(pathVoicesmb, voice[3:]))))
+              voicesmb.append((line[5:], voice, os.path.isfile(os.path.join(pathVoicesmb, voice[3:], voice[3:]))))
               break
     return voicesmb
 

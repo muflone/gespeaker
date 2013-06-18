@@ -81,7 +81,7 @@ def loadDefaults():
     'VoiceDelay': [int, 10, __sectionVoiceSetting],
     'VoiceTypeMale': [strbool, True, __sectionVoiceSetting],
     'VoiceLanguage': [str, _('default language'), __sectionVoiceSetting],
-    'VoicesmbPath': [str, '/usr/share/mbrola/voices', __sectionMbrola]
+    'VoicesmbPath': [str, '/usr/share/mbrola', __sectionMbrola]
   }
 
 def save(filename=conffile, clearDefaults=False):
