@@ -1,0 +1,6 @@
+# Compiled source #
+###################
+*.pyc
+# Language translations #
+#########################
+*.mo
