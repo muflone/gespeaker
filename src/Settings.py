@@ -23,7 +23,7 @@ from xdg.BaseDirectory import xdg_config_home
 from gettext import gettext as _
 
 cmdEspeak = '/usr/bin/espeak'
-argsEspeak = '-a %v -p %p -s %s -g %d -v %l -f %f'
+argsEspeak = '-a %v -p %p -s %s -g %d -v %l -f %f --pho'
 cmdMbrola = '/usr/bin/mbrola'
 argsMbrola = '-e %l -'
 
