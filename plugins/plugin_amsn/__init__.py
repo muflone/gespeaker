@@ -37,15 +37,11 @@ class GespeakerPlugin_AMSN(GespeakerPlugin):
     plugin_filename = join(plugin_path, 'Gespeaker')
     #
     if exists(plugin_path) and isdir(plugin_path):
-      if exists(plugin_filename):
-        if islink(plugin_filename):
-          # Remove previous gespeaker symlink
-          os.remove(plugin_filename)
-        else:
-          self.logger('WARNING: %s already exists' % plugin_filename)
-      if not exists(plugin_filename):
-        # Symlink plugin
-        os.symlink(__path__[0], plugin_filename)
+      if exists(plugin_filename) or islink(plugin_filename):
+        # Remove previous gespeaker symlink
+        os.remove(plugin_filename)
+      # Symlink plugin
+      os.symlink(__path__[0], plugin_filename)
         
 
 plugin = GespeakerPlugin_AMSN(
