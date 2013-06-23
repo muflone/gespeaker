@@ -1,5 +1,9 @@
 gespeaker (0.8.2) all; urgency=low
 
+  * Switch to the new mbrola and espeak versions
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Sat, 22 Jun 2013 17:14:32 +0100
+
   * New german translation by Heinrich Schwietering
 
  -- Fabio Castelli <muflone@vbsimple.net>  Sun, 7 Dic 2010 18:14:44 +0100
