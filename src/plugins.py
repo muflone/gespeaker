@@ -51,7 +51,6 @@ def loadPluginsSettings():
   config = ConfigParser.RawConfigParser()
   if os.path.exists(Settings.pluginsfile):
     config.read(Settings.pluginsfile)
-  print config
 
 class GespeakerPlugin(object):
   def __init__(self, name, version, description, author, icon='', website=''):
