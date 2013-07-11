@@ -19,6 +19,7 @@
 
 import SubprocessWrapper
 import os
+import handlepaths
 from gettext import gettext as _
 from DialogSimpleMessages import ShowDialogError
 
@@ -176,7 +177,7 @@ class EspeakFrontend(object):
     "Load mbrola languages list"
     voicesmb = []
     pathVoices = '/usr/share/espeak-data/voices/mb/'
-    if not pathVoicesmb:
+    if not pathVoicesmb or not os.path.isdir(pathVoicesmb):
       pathVoicesmb = '/usr/share/mbrola'
     if os.path.isdir(pathVoices) and os.path.isdir(pathVoicesmb):
       for voice in os.listdir(pathVoices):
