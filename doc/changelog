@@ -1,5 +1,12 @@
 gespeaker (0.8.2) all; urgency=low
 
+  * Removed the plugins amsn, emesene, kopete, pidgin, telepathy. They were
+    moved to another source repository for separated maintenance and versioning
+  * Added handlepaths to EspeakFrontend.py
+  * If the specified MBROLA folder doesn't exist fallback to the default path
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Thu, 11 Jul 2013 09:55:28 +0100
+
   * Switch to the new mbrola and espeak versions
 
  -- Fabio Castelli <muflone@vbsimple.net>  Sat, 22 Jun 2013 17:14:32 +0100
