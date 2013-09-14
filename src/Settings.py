@@ -25,7 +25,7 @@ from gettext import gettext as _
 cmdEspeak = '/usr/bin/espeak'
 argsEspeak = '-a %v -p %p -s %s -g %d -v %l -f %f --pho'
 cmdMbrola = '/usr/bin/mbrola'
-argsMbrola = '-e %l -'
+argsMbrola = '-v %v -e %l -'
 
 config = None
 confdir = os.path.join(xdg_config_home, 'gespeaker')
