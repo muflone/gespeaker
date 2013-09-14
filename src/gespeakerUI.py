@@ -477,6 +477,7 @@ class gespeakerUI(object):
         self.espeak.play(cmd, self.cmdPlayer, self.recordToFile)
       else:
         args = {
+          '%v': str(int(self.hscVolume.get_value())/100.), 
           '%l': '%s/%s/%s' % (
             Settings.get('VoicesmbPath'), 
             language.replace('mb-', '', 1),
