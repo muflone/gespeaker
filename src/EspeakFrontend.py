@@ -176,7 +176,17 @@ class EspeakFrontend(object):
   def loadMbrolaVoices(self, pathVoicesmb):
     "Load mbrola languages list"
     voicesmb = []
-    pathVoices = '/usr/share/espeak-data/voices/mb/'
+    espeak_data_paths = (
+      '/usr/share/espeak-data/voices/mb/',
+      '/usr/lib/x86_64-linux-gnu/espeak-data/voices/mb/',
+      '/usr/lib/i386-linux-gnu/espeak-data/voices/mb/',
+    )
+    for pathVoices in espeak_data_paths:
+      if os.path.isdir(pathVoices):
+        break
+    else:
+      print 'Cannot find any espeak-data voices folder, unable to detect MBROLA voices'
+      pathVoices = ''
     if not pathVoicesmb or not os.path.isdir(pathVoicesmb):
       pathVoicesmb = '/usr/share/mbrola'
     if os.path.isdir(pathVoices) and os.path.isdir(pathVoicesmb):
