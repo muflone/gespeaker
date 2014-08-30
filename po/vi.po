@@ -1,0 +1,289 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license as the gpTrace package.
+# Polish translation for Gespeaker.
+#
+# Translators:
+# Anh Phan <vietnamesel10n(at)gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2014-08-31 00:06+0200\n"
+"Last-Translator: Anh Phan <vietnamesel10n(at)gmail.com>\n"
+"Language: vi\n"
+"Language-Team: Vietnamese (http://www.transifex.com/projects/p/gespeaker/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Thiết lập nâng cao</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Thiết lập cơ bản</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Điền vào văn bản để đọc</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "Độ t_rễ:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "Gi_ọng nữ"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "M_ức độ:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "T_ốc độ:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Độ b_iến đổi:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Giọng:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Chỉnh sửa"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Tập ti"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Trợ giúp"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Ngôn ngữ:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Giọng nam"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Âm lượng:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Chương trình phát Audio</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Ứng dụng Mbrola</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Hiện đã có giọng nói của Mbrola</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Các thiết lập khác</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Ghi âm</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Lưu lại các chỉnh sửa</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Nội dung phần chào mừng</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "L_ệnh:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Thông b_áo tự chọn:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Bật tính năng c_anh lề"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Tổng quan"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Tải độ cao _giọng phát"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Chương trình chính trong mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Giọng nói kiểu Mbrola"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Đường dẫn đến giọng kiểu Mbrola:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Tùy biến"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Lưu lại kí_ch thước cửa sổ"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Lưu lại _track đơn lẻ"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Phát _âm chào mừng khi chương trình được khởi động"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "_Tự động lưu lại các thiết lập về giọng phát"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "_Sử dụng lời chào mừng do người dùng lựa chọn"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Phát thử audio"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr "Xảy ra lỗi khi kiểm thử phần phát audio.\n"
+"\n"
+"Lỗi %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "ngôn ngữ mặc địn"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Bạn có muốn xóa đoạn văn bản hiện tại hay không?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Xin vui lòng chọn một tập tin văn bản để mở"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Tập tin văn bản (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Tất cả các loại tập tin"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Xảy ra lỗi khi mở tập tin"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Xin vui lòng chọn nơi để lưu lại tập tin văn bản"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Xảy ra lỗi khi lưu lại tập tin"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Bạn có muốn cài đặt lại toàn bộ các thiết lập về trạng thái mặc định hay không?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Sử dụng GTK cho espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Xin vui lòng chọn nơi để lưu lại tập tin đã ghi âm"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Tập tin dạng Wave (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Ghi âm lại track audio tại: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio sound server"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Ứng dụng âm thanh tự lựa chọn"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_Kiểm thử"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Nguồn công cụ"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Trạng thái"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Đã cài đặt"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Chưa cài đặt"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d ngôn ngữ trong tổng số %d đã được nhận diện"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Đã cài đặt gói mbrola"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Vẫn chưa cài đặt gói mbrola"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Chào mừng bạn đã đến với Gespeaker"
