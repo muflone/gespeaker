@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[gespeaker.gespeaker]
+file_filter = po/<lang>.po
+source_file = po/gespeaker.pot
+source_lang = en
+
