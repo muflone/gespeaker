@@ -1,7 +1,7 @@
 ##
 #   Project: gespeaker - A GTK frontend for espeak  
 #    Author: Fabio Castelli <muflone@vbsimple.net>
-# Copyright: 2009-2013 Fabio Castelli
+# Copyright: 2009-2014 Fabio Castelli
 #   License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -365,7 +365,7 @@ class gespeakerUI(object):
       name=handlepaths.APP_TITLE,
       version=handlepaths.APP_VERSION,
       comment=_('A GTK frontend for espeak'),
-      copyright='Copyright 2009 Fabio Castelli',
+      copyright='Copyright 2009-2014 Fabio Castelli',
       license=handlepaths.read_text_file('doc', 'copyright'), 
       website='http://code.google.com/p/gespeaker/',
       website_label='Gespeaker',
