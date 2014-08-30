@@ -1,170 +1,174 @@
-# gespeaker - A GTK frontend for eSpeak
-# Copyright (C) 2009 Fabio Castelli
-# This file is distributed under the GPL v2 license (see copyright file).
-# Fabio Castelli <muflone@vbsimple.net>, 2009.
-# Turkish translation for gespeaker package.
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license as the gpTrace package.
+# Turkish translation for Gespeaker.
 #
+# Translators:
+# Necdet Yücel <necdetyucel(at)gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: Gespeaker 0.8\n"
-"Report-Msgid-Bugs-To: Fabio Castelli <muflone@vbsimple.net>\n"
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
 "POT-Creation-Date: 2010-06-12 14:02+0200\n"
-"PO-Revision-Date: 2010-02-13 17:16+0100\n"
-"Last-Translator: Fabio Castelli <muflone@vbsimple.net>\n"
-"Language-Team: Turkish\n"
+"PO-Revision-Date: 2014-08-31 00:06+0200\n"
+"Last-Translator: Necdet Yücel <necdetyucel(at)gmail.com>\n"
+"Language: tr\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/gespeaker/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/ui/gespeaker.glade.h:1
 msgid "<b>Advanced settings</b>"
-msgstr ""
+msgstr "<b>Gelişmiş ayarlar</b>"
 
 #: ../data/ui/gespeaker.glade.h:2
 msgid "<b>Base settings</b>"
-msgstr ""
+msgstr "<b>Temel ayarlar</b>"
 
 #: ../data/ui/gespeaker.glade.h:3
 msgid "<b>Insert text to play</b>"
-msgstr ""
+msgstr "<b>Çalınacak metni girin</b>"
 
 #: ../data/ui/gespeaker.glade.h:4
 msgid "Dela_y:"
-msgstr ""
+msgstr "_Gecikme:"
 
 #: ../data/ui/gespeaker.glade.h:5
 msgid "Fem_ale"
-msgstr ""
+msgstr "_Kadın"
 
 #: ../data/ui/gespeaker.glade.h:6
 msgid "P_itch:"
-msgstr ""
+msgstr "T_on:"
 
 #: ../data/ui/gespeaker.glade.h:7
 msgid "Spee_d:"
-msgstr ""
+msgstr "_Hız:"
 
 #: ../data/ui/gespeaker.glade.h:8
 msgid "Varia_nt:"
-msgstr ""
+msgstr "_Seçenekler:"
 
 #: ../data/ui/gespeaker.glade.h:9
 msgid "Voice:"
-msgstr ""
+msgstr "Ses:"
 
 #: ../data/ui/gespeaker.glade.h:10
 msgid "_Edit"
-msgstr ""
+msgstr "_Düzenle:"
 
 #: ../data/ui/gespeaker.glade.h:11
 msgid "_File"
-msgstr ""
+msgstr "Do_sya"
 
 #: ../data/ui/gespeaker.glade.h:12
 msgid "_Help"
-msgstr ""
+msgstr "_Yardım"
 
 #: ../data/ui/gespeaker.glade.h:13
 msgid "_Language:"
-msgstr ""
+msgstr "Di_l"
 
 #: ../data/ui/gespeaker.glade.h:14
 msgid "_Male"
-msgstr ""
+msgstr "_Erkek"
 
 #: ../data/ui/gespeaker.glade.h:15
 msgid "_Volume:"
-msgstr ""
+msgstr "Ses düze_yi:"
 
 #: ../data/ui/preferences.glade.h:1
 msgid "<b>Audio player</b>"
-msgstr ""
+msgstr "<b>Ses oynatıcı</b>"
 
 #: ../data/ui/preferences.glade.h:2
 msgid "<b>Mbrola application</b>"
-msgstr ""
+msgstr "<b>Mbrola uygulaması</b>"
 
 #: ../data/ui/preferences.glade.h:3
 msgid "<b>Mbrola voices available</b>"
-msgstr ""
+msgstr "<b>Mbrola sesi mevcut</b>"
 
 #: ../data/ui/preferences.glade.h:4
 msgid "<b>Other settings</b>"
-msgstr ""
+msgstr "<b>Diğer ayarlar</b>"
 
 #: ../data/ui/preferences.glade.h:5
 msgid "<b>Recording</b>"
-msgstr ""
+msgstr "<b>Kaydediyor</b>"
 
 #: ../data/ui/preferences.glade.h:6
 msgid "<b>Saving preferences</b>"
-msgstr ""
+msgstr "<b>Tercihler kaydediliyor</b>"
 
 #: ../data/ui/preferences.glade.h:7
 msgid "<b>Welcome message</b>"
-msgstr ""
+msgstr "<b>Karşılama mesajı</b>"
 
 #: ../data/ui/preferences.glade.h:8
 msgid "Co_mmand:"
-msgstr ""
+msgstr "Kom_ut:"
 
 #: ../data/ui/preferences.glade.h:9
 msgid "Custom mess_age:"
-msgstr ""
+msgstr "Özel mesa_j"
 
 #: ../data/ui/preferences.glade.h:10
 msgid "Enable te_xt wrapping"
-msgstr ""
+msgstr "Metin ka_ydırmayı etkinleştir"
 
 #: ../data/ui/preferences.glade.h:11
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: ../data/ui/preferences.glade.h:12
 msgid "Load voice _variants"
-msgstr ""
+msgstr "Ses seçeneklerini _yükle"
 
 #: ../data/ui/preferences.glade.h:13
 msgid "Main program mbrola"
-msgstr ""
+msgstr "Temel program mbrola"
 
 #: ../data/ui/preferences.glade.h:14
 msgid "Mbrola voices"
-msgstr ""
+msgstr "Mbrola sesleri"
 
 #: ../data/ui/preferences.glade.h:15
 msgid "Mbrola voices path:"
-msgstr ""
+msgstr "Mbrola ses yolu:"
 
 #: ../data/ui/preferences.glade.h:16
 msgid "Preferences"
-msgstr ""
+msgstr "Seçenekler"
 
 #: ../data/ui/preferences.glade.h:17
 msgid "Save main window s_ize"
-msgstr ""
+msgstr "Ana pencere boyutunu _kaydet"
 
 #: ../data/ui/preferences.glade.h:18
 msgid "Single track _record"
-msgstr ""
+msgstr "Tek parça _kaydı"
 
 #: ../data/ui/preferences.glade.h:19
 msgid "Speak _welcome text on program start"
-msgstr ""
+msgstr "_Program açılırken karşılama mesajını oku"
 
 #: ../data/ui/preferences.glade.h:20
 msgid "_Save voice settings automatically"
-msgstr ""
+msgstr "_Ses ayarlarını otomatik olarak kaydet"
 
 #: ../data/ui/preferences.glade.h:21
 msgid "_Use custom welcome message"
-msgstr ""
+msgstr "_Özelleştirilmiş karşılama mesajı kullan"
 
 #: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
 #: ../src/PreferencesWindow.py:198
 msgid "Audio testing"
-msgstr ""
+msgstr "Ses deneniyor"
 
 #: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
 #: ../src/PreferencesWindow.py:200
@@ -174,110 +178,113 @@ msgid ""
 "\n"
 "Error %s: %s"
 msgstr ""
+"Ses oynatıcı deneirken hatayla karşılaşıldı.\n"
+"\n"
+"Hata %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr ""
+msgstr "öntanımlı dil:"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
-msgstr ""
+msgstr "Mevcut metni silmek istiyor musunuz?"
 
 #: ../src/gespeakerUI.py:287
 msgid "Please select the text file to open"
-msgstr ""
+msgstr "Lütfen açılacak metin dosyasını seçin"
 
 #: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
 msgid "Text files (*.txt)"
-msgstr ""
+msgstr "Metin dosyaları (*.txt)"
 
 #: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
 #: ../src/gespeakerUI.py:559
 msgid "All files"
-msgstr ""
+msgstr "Tüm dosyalar"
 
 #: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
 msgid "Error opening the file"
-msgstr ""
+msgstr "Dosya açılamadı"
 
 #: ../src/gespeakerUI.py:326
 msgid "Please select where to save the text file"
-msgstr ""
+msgstr "Lütfen metin dosyasının nereye kaydedileceğini seçin"
 
 #: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
 msgid "Error saving the file"
-msgstr ""
+msgstr "Dosya kaydedilemedi"
 
 #: ../src/gespeakerUI.py:368
 msgid "Do you want to reset the default settings?"
-msgstr ""
+msgstr "Öntanımlı ayarlara dönmek istiyor musunuz?"
 
 #: ../src/gespeakerUI.py:404
 msgid "A GTK frontend for espeak"
-msgstr ""
+msgstr "Espeak için bir GTK önyüzü"
 
 #: ../src/gespeakerUI.py:555
 msgid "Please select where to save the recorded file"
-msgstr ""
+msgstr "Lütfen kaydedilen dosyanın nereye kaydedileceğini seçin."
 
 #: ../src/gespeakerUI.py:558
 msgid "Wave files (*.wav)"
-msgstr ""
+msgstr "Wave dosyaları (*.wav)"
 
 #: ../src/gespeakerUI.py:576
 #, python-format
 msgid "Recording audio track to: %s"
-msgstr ""
+msgstr "Ses dosyaları kaydediliyor: %s"
 
 #: ../src/PreferencesWindow.py:107
 msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr ""
+msgstr "ALSA - Gelişmiş Linux Ses Mimarisi"
 
 #: ../src/PreferencesWindow.py:110
 msgid "PulseAudio sound server"
-msgstr ""
+msgstr "PulseAudio ses sunucusu"
 
 #: ../src/PreferencesWindow.py:112
 msgid "Custom sound application"
-msgstr ""
+msgstr "Özel ses uygulaması"
 
 #: ../src/PreferencesWindow.py:114
 msgid "_Test"
-msgstr ""
+msgstr "De_neme"
 
 #: ../src/PreferencesWindow.py:130
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: ../src/PreferencesWindow.py:136
 msgid "Resource"
-msgstr ""
+msgstr "Kaynak"
 
 #: ../src/PreferencesWindow.py:142
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: ../src/PreferencesWindow.py:225
 msgid "Installed"
-msgstr ""
+msgstr "Yüklendi"
 
 #: ../src/PreferencesWindow.py:225
 msgid "Not installed"
-msgstr ""
+msgstr "Yüklenmedi"
 
 #: ../src/PreferencesWindow.py:227
 #, python-format
 msgid "%d languages of %d detected"
-msgstr ""
+msgstr "%d için %d dil algılandı"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola installed"
-msgstr ""
+msgstr "Mbrola paketi yüklendi"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola not installed"
-msgstr ""
+msgstr "Mbrola paketi yüklenmedi"
 
 #: ../src/Settings.py:64
 msgid "Welcome in Gespeaker"
-msgstr ""
+msgstr "Gespeaker'a hoşgeldiniz"
