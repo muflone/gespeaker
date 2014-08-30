@@ -1,0 +1,287 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license as the gpTrace package.
+# Arabic translation for Gespeaker.
+#
+# Translators:
+# M I <moayad.esa(at)gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2014-08-31 00:06+0200\n"
+"Last-Translator: M I <moayad.esa(at)gmail.com>\n"
+"Language: ar\n"
+"Language-Team: Arabic (https://www.transifex.com/projects/p/gespeaker/language/ar/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>الإعدادات المتقدمة</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>الإعدادات الأساسية</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>أكتب نصاً لقرائته</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "تأخير:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "أنثى"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "نغمة الصوت:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "السرعة:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "متنوع:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "صوت القارئ:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_تعديل"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_ملف"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_مساعدة"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_اللغة:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_ذكر"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_الصوت:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>قارئ الصوت</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola application</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<Mbrola<b الأصوات المتاحة <b/>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>إعدادات أُخرى</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>تسجيل</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>حفظ التعديلات</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>رسالة الترحيب</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Co_mmand:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "رسالة الترحيب:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "تمكين التفاف النص"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "عام"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "تحميل اﻷصوات _المتنوعة"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "البرنامج الرئيسي mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "أصوات Mbrola "
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "مسار أصوات Mbrola:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "الإعدادات"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "حفظ _حجم النافذة الرئيسية"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "_تسجيل كل القرائات في ملف صوتي واحد "
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "أقرأ _نص الترحيب عند بدء البرنامج"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "_حفظ إعدادات الصوت تلقائيا"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "_استخدم رسالة ترحيب خاصة"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "تجربة الصوت"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr "حدث خطأ خلال تجربة تطبيق الصوت.\n\nخطأ %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "Arabic "
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "هل تريد حذف النص الحالي؟"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "الرجاء اختيار ملف نصي لفتحه"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "ملفات نصية (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "جميع الملفات "
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "خطأ في فتح الملف"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "الرجاء اختيار مكان حفظ الملف النصي"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "خطأ في حفظ الملف"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "هل تريد إعادة ضبط الإعدادات الافتراضية؟"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "واجهة رسومية بإستخدام GTK لبرنامج espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "الرجاء اختيار مكان حفظ الملف المسجل"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wave ملف (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "يتم حفظ الملف الصوتي في : %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio sound server"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "تطبيق صوت خاص "
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_إختبار"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "اللغة"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "المصدر"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "الحالة"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "مثبّت"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "غير مثبّت"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d لغة من أصل %d تم إيجادها"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "برنامج mbrola مثبّت"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "برنامج mbrola غير مثبّت"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "أهلا بك في Gespeaker"
