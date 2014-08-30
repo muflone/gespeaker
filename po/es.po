@@ -24,11 +24,11 @@ msgstr ""
 
 #: ../data/ui/gespeaker.glade.h:1
 msgid "<b>Advanced settings</b>"
-msgstr "<b>Ajustes avanzados</b>"
+msgstr "<b>Configuración avanzada</b>"
 
 #: ../data/ui/gespeaker.glade.h:2
 msgid "<b>Base settings</b>"
-msgstr "<b>Ajustes básicos</b>"
+msgstr "<b>Configuración básica</b>"
 
 #: ../data/ui/gespeaker.glade.h:3
 msgid "<b>Insert text to play</b>"
@@ -92,7 +92,7 @@ msgstr "<b>Aplicación mbrola</b>"
 
 #: ../data/ui/preferences.glade.h:3
 msgid "<b>Mbrola voices available</b>"
-msgstr "<b>Mbrola voces disponibles</b>"
+msgstr "<b>Voces disponibles de mbrola</b>"
 
 #: ../data/ui/preferences.glade.h:4
 msgid "<b>Other settings</b>"
@@ -189,11 +189,11 @@ msgstr "spanish"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
-msgstr "¿Quiere borrar el texto actual?"
+msgstr "¿Quiere eliminar el texto actual?"
 
 #: ../src/gespeakerUI.py:287
 msgid "Please select the text file to open"
-msgstr "Elija el archivo que quiere abrir"
+msgstr "Seleccione el archivo de texto a abrir"
 
 #: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
 msgid "Text files (*.txt)"
@@ -263,7 +263,7 @@ msgstr "Recursos"
 
 #: ../src/PreferencesWindow.py:142
 msgid "Status"
-msgstr "Estatus"
+msgstr "Estado"
 
 #: ../src/PreferencesWindow.py:225
 msgid "Installed"
@@ -271,24 +271,21 @@ msgstr "Instalado"
 
 #: ../src/PreferencesWindow.py:225
 msgid "Not installed"
-msgstr "No se instala"
+msgstr "No instalado"
 
 #: ../src/PreferencesWindow.py:227
 #, python-format
 msgid "%d languages of %d detected"
-msgstr "%d idiomas de los %d detectado"
+msgstr "%d idiomas de los %d detectados"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola installed"
-msgstr "Mbrola paquete instalado"
+msgstr "El paquete mbrola está instalado"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola not installed"
-msgstr "Mbrola paquete no se instala"
+msgstr "El paquete mbrola no está instalado"
 
 #: ../src/Settings.py:64
 msgid "Welcome in Gespeaker"
 msgstr "Bienvenido a Gespeaker"
-
-#~ msgid "translation"
-#~ msgstr "Traducción al español de David Prieto <frandavid100@gmail.com>"
