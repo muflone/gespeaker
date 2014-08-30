@@ -288,6 +288,3 @@ msgstr "Paquet mbrola pas installé"
 #: ../src/Settings.py:64
 msgid "Welcome in Gespeaker"
 msgstr "Bienvenu dans Gespeaker"
-
-#~ msgid "translation"
-#~ msgstr "Traduction française par Emmanuel <info@simple-linux.com>"
