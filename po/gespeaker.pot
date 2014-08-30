@@ -5,7 +5,6 @@
 # This file is distributed under the same license as the gpTrace package.
 # X translation for Gespeaker.
 #
-# Translators:
 #, fuzzy
 msgid ""
 msgstr ""
