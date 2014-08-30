@@ -70,7 +70,7 @@ setup(
   description='A GTK+ frontend for eSpeak and mbrola',
   author='Fabio Castelli',
   author_email='muflone@vbsimple.net',
-  url='http://code.google.com/p/gespeaker/',
+  url='http://www.muflone.com/gespeaker/',
   license='GPL v2',
   scripts=['gespeaker'],
   data_files=[

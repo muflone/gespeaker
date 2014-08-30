@@ -367,9 +367,9 @@ class gespeakerUI(object):
       comment=_('A GTK frontend for espeak'),
       copyright='Copyright 2009-2014 Fabio Castelli',
       license=handlepaths.read_text_file('doc', 'copyright'), 
-      website='http://code.google.com/p/gespeaker/',
-      website_label='Gespeaker',
-      authors=['Fabio Castelli <muflone@vbsimple.net>'],
+      website='http://www.muflone.com/gespeaker/',
+      website_label='http://www.muflone.com/gespeaker/',
+      authors=['Fabio Castelli (Muflone) <muflone@vbsimple.net>'],
       translation=handlepaths.read_text_file('doc', 'translators').replace('(at)', '@'),
       logo=handlepaths.get_app_logo(),
       icon=handlepaths.get_app_logo()
