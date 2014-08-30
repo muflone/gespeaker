@@ -1,22 +1,25 @@
-# gespeaker - A GTK frontend for eSpeak
-# Copyright (C) 2009 Fabio Castelli
-# This file is distributed under the GPL v2 license (see copyright file).
-# Fabio Castelli <muflone@vbsimple.net>, 2009-2010.
-# Polish translation for gespeaker package.
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license as the gpTrace package.
+# Polish translation for Gespeaker.
 #
+# Translators:
+# Andrey J. <newsgrabber(at)poczta.onet.pl>
 msgid ""
 msgstr ""
-"Project-Id-Version: Gespeaker 0.8\n"
-"Report-Msgid-Bugs-To: Fabio Castelli <muflone@vbsimple.net>\n"
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
 "POT-Creation-Date: 2010-06-12 14:02+0200\n"
-"PO-Revision-Date: 2010-02-13 17:16+0100\n"
-"Last-Translator: Andrey J. <newsgrabber@poczta.onet.pl>\n"
-"Language-Team: Polish\n"
+"PO-Revision-Date: 2014-08-31 00:06+0200\n"
+"Last-Translator: Andrey J. <newsgrabber(at)poczta.onet.pl>\n"
+"Language: pl\n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/gespeaker/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/ui/gespeaker.glade.h:1
 msgid "<b>Advanced settings</b>"

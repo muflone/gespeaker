@@ -1,14 +1,16 @@
-# gespeaker - A GTK frontend for eSpeak
-# Copyright (C) 2009 Fabio Castelli
-# This file is distributed under the GPL v2 license (see copyright file).
-# Fabio Castelli <muflone@vbsimple.net>, 2009.
-# X translation for gespeaker package.
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license as the gpTrace package.
+# X translation for Gespeaker.
 #
+# Translators:
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: Fabio Castelli <muflone@vbsimple.net>\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
 "POT-Creation-Date: 2010-06-12 14:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
