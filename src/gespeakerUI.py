@@ -370,7 +370,7 @@ class gespeakerUI(object):
       website='http://code.google.com/p/gespeaker/',
       website_label='Gespeaker',
       authors=['Fabio Castelli <muflone@vbsimple.net>'],
-      translation=handlepaths.read_text_file('doc', 'translators'),
+      translation=handlepaths.read_text_file('doc', 'translators').replace('(at)', '@'),
       logo=handlepaths.get_app_logo(),
       icon=handlepaths.get_app_logo()
     )

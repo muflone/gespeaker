@@ -1,3 +1,12 @@
+gespeaker (0.8.3) all; urgency=low
+
+  * Updated translations
+  * New Arabic translation by M I
+  * New Vietnamese translation by Anh Phan
+  * New Turkish translation by Necdet Yücel
+
+ -- Fabio Castelli <muflone@vbsimple.net>  Sun, 31 Aug 2014 00:38:49 +0200
+
 gespeaker (0.8.2) all; urgency=low
 
   * Removed the plugins amsn, emesene, kopete, pidgin, telepathy. They were
