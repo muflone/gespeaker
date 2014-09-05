@@ -2,7 +2,7 @@
 # A GTK frontend for eSpeak
 # Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
 # Website: http://www.muflone.com/gespeaker/
-# This file is distributed under the same license as the gpTrace package.
+# This file is distributed under the same license of Gespeaker.
 # English translation for Gespeaker.
 #
 # Translators:
