@@ -1,6 +1,6 @@
 # Gespeaker
 # A GTK frontend for eSpeak
-# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <webreg(at)vbsimple.net>
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
 # Website: http://www.muflone.com/gespeaker/
 # This file is distributed under the same license of Gespeaker.
 # Spanish translation for Gespeaker.
