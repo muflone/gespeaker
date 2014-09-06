@@ -23,7 +23,7 @@ import sys
 __base_path__ = os.path.dirname(os.path.abspath(__file__))
 APP_NAME = 'gespeaker'
 APP_TITLE = 'Gespeaker'
-APP_VERSION = '0.8.3'
+APP_VERSION = '0.8.4'
 
 PATHS = {
   'locale': [
