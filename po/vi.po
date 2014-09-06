@@ -173,13 +173,8 @@ msgstr "Phát thử audio"
 #: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
 #: ../src/PreferencesWindow.py:200
 #, python-format
-msgid ""
-"There was an error during the test for the audio player.\n"
-"\n"
-"Error %s: %s"
-msgstr "Xảy ra lỗi khi kiểm thử phần phát audio.\n"
-"\n"
-"Lỗi %s: %s"
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Xảy ra lỗi khi kiểm thử phần phát audio.\n\nLỗi %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"

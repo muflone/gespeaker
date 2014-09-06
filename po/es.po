@@ -174,14 +174,8 @@ msgstr "Comprobar el audio"
 #: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
 #: ../src/PreferencesWindow.py:200
 #, python-format
-msgid ""
-"There was an error during the test for the audio player.\n"
-"\n"
-"Error %s: %s"
-msgstr ""
-"Se ha producido un error al comprobar el reproductor de audio.\n"
-"\n"
-"Error %s: %s"
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Se ha producido un error al comprobar el reproductor de audio.\n\nError %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"

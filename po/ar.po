@@ -173,10 +173,7 @@ msgstr "تجربة الصوت"
 #: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
 #: ../src/PreferencesWindow.py:200
 #, python-format
-msgid ""
-"There was an error during the test for the audio player.\n"
-"\n"
-"Error %s: %s"
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
 msgstr "حدث خطأ خلال تجربة تطبيق الصوت.\n\nخطأ %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
