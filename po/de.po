@@ -7,13 +7,14 @@
 #
 # Translators:
 # Heinrich Schwietering <hankschwie(at)freenet.de>
+# Ettore Atalan <atalanttore(at)googlemail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Gespeaker\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues \n"
 "POT-Creation-Date: 2010-06-12 14:02+0200\n"
-"PO-Revision-Date: 2014-08-31 00:06+0200\n"
-"Last-Translator: Heinrich Schwietering <hankschwie(at)freenet.de>\n"
+"PO-Revision-Date: 2014-09-23 21:54+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore(at)googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/gespeaker/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,23 +36,23 @@ msgstr "<b>Text zur Wiedergabe eingeben</b>"
 
 #: ../data/ui/gespeaker.glade.h:4
 msgid "Dela_y:"
-msgstr "Verzögerun_g"
+msgstr "Verzögerun_g:"
 
 #: ../data/ui/gespeaker.glade.h:5
 msgid "Fem_ale"
-msgstr "wei_blich"
+msgstr "Wei_blich"
 
 #: ../data/ui/gespeaker.glade.h:6
 msgid "P_itch:"
-msgstr "T_onhöhe"
+msgstr "T_onhöhe:"
 
 #: ../data/ui/gespeaker.glade.h:7
 msgid "Spee_d:"
-msgstr "Geschwin_digkeit"
+msgstr "Geschwin_digkeit:"
 
 #: ../data/ui/gespeaker.glade.h:8
 msgid "Varia_nt:"
-msgstr "Varia_nte"
+msgstr "Varia_nte:"
 
 #: ../data/ui/gespeaker.glade.h:9
 msgid "Voice:"
@@ -75,27 +76,27 @@ msgstr "_Sprache"
 
 #: ../data/ui/gespeaker.glade.h:14
 msgid "_Male"
-msgstr "_männlich"
+msgstr "_Männlich"
 
 #: ../data/ui/gespeaker.glade.h:15
 msgid "_Volume:"
-msgstr "_Lautstärke"
+msgstr "_Lautstärke:"
 
 #: ../data/ui/preferences.glade.h:1
 msgid "<b>Audio player</b>"
-msgstr "<b>Wiedergabe-System</b>"
+msgstr "<b>Audiospieler</b>"
 
 #: ../data/ui/preferences.glade.h:2
 msgid "<b>Mbrola application</b>"
-msgstr "<b>Mbrola-Programm</b>"
+msgstr "<b>Mbrola-Anwendung</b>"
 
 #: ../data/ui/preferences.glade.h:3
 msgid "<b>Mbrola voices available</b>"
-msgstr "<b>verfügbare Mbrola-Stimmen</b>"
+msgstr "<b>Verfügbare Mbrola-Stimmen</b>"
 
 #: ../data/ui/preferences.glade.h:4
 msgid "<b>Other settings</b>"
-msgstr "<b>weitere Einstellungen</b>"
+msgstr "<b>Weitere Einstellungen</b>"
 
 #: ../data/ui/preferences.glade.h:5
 msgid "<b>Recording</b>"
@@ -103,11 +104,11 @@ msgstr "<b>Aufnahme</b>"
 
 #: ../data/ui/preferences.glade.h:6
 msgid "<b>Saving preferences</b>"
-msgstr "<b>Speicher-Einstellungen</b>"
+msgstr "<b>Speicherungseinstellungen</b>"
 
 #: ../data/ui/preferences.glade.h:7
 msgid "<b>Welcome message</b>"
-msgstr "<b>Begrüßung</b>"
+msgstr "<b>Willkommensnachricht</b>"
 
 #: ../data/ui/preferences.glade.h:8
 msgid "Co_mmand:"
@@ -119,7 +120,7 @@ msgstr "Eigene N_achricht:"
 
 #: ../data/ui/preferences.glade.h:10
 msgid "Enable te_xt wrapping"
-msgstr "Ermögliche Te_xt-Wrapping"
+msgstr "Te_xt-Wrapping aktivieren"
 
 #: ../data/ui/preferences.glade.h:11
 msgid "General"
@@ -127,7 +128,7 @@ msgstr "Allgemein"
 
 #: ../data/ui/preferences.glade.h:12
 msgid "Load voice _variants"
-msgstr "Lade Stimm_varianten"
+msgstr "Stimm_varianten laden"
 
 #: ../data/ui/preferences.glade.h:13
 msgid "Main program mbrola"
@@ -155,15 +156,15 @@ msgstr "Mono-Aufn_ahme"
 
 #: ../data/ui/preferences.glade.h:19
 msgid "Speak _welcome text on program start"
-msgstr "Ausgabe des _Willkommenstextes beim Start"
+msgstr "Ausgabe des _Willkommenstextes beim Programmstart"
 
 #: ../data/ui/preferences.glade.h:20
 msgid "_Save voice settings automatically"
-msgstr "_Speicher Stimm-Einstellungen automatisch"
+msgstr "_Stimmen-Einstellungen automatisch speichern"
 
 #: ../data/ui/preferences.glade.h:21
 msgid "_Use custom welcome message"
-msgstr "_Verwende eigene Begrüßung"
+msgstr "_Eigene Willkommensnachricht verwenden"
 
 #: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
 #: ../src/PreferencesWindow.py:198
@@ -178,19 +179,19 @@ msgstr "Feher beim Testen des Soundsystems.\n\nFehler %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "german"
+msgstr "Standardsprache"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
-msgstr "Soll der derzeitige Text gelöscht werden?"
+msgstr "Soll der aktuelle Text gelöscht werden?"
 
 #: ../src/gespeakerUI.py:287
 msgid "Please select the text file to open"
-msgstr "Bitte die zu öffnende Textdatei auswählen"
+msgstr "Bitte wählen Sie die zu öffnende Textdatei aus"
 
 #: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
 msgid "Text files (*.txt)"
-msgstr "Textdatei (*.txt)"
+msgstr "Textdateien (*.txt)"
 
 #: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
 #: ../src/gespeakerUI.py:559
@@ -244,7 +245,7 @@ msgstr "Andere Sound-Anwendung "
 
 #: ../src/PreferencesWindow.py:114
 msgid "_Test"
-msgstr "_Teste"
+msgstr "_Testen"
 
 #: ../src/PreferencesWindow.py:130
 msgid "Language"
@@ -252,7 +253,7 @@ msgstr "Sprache"
 
 #: ../src/PreferencesWindow.py:136
 msgid "Resource"
-msgstr "Resource"
+msgstr "Ressource"
 
 #: ../src/PreferencesWindow.py:142
 msgid "Status"

@@ -282,6 +282,3 @@ msgstr "Package mbrola not installed"
 #: ../src/Settings.py:64
 msgid "Welcome in Gespeaker"
 msgstr "Welcome in Gespeaker"
-
-#~ msgid "translation"
-#~ msgstr "English translation by Fabio Castelli <muflone@vbsimple.net>"
