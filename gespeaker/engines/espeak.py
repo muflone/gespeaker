@@ -18,8 +18,6 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-# Package placeholder
-
 import os
 
 from gespeaker.engines.base import EngineBase
@@ -50,19 +48,21 @@ class EngineEspeak(EngineBase):
           # Iter each subdirectory
           self.get_languages_from_path(filepath, languages)
         else:
-          # Get and add new languages from filename
-          new_language = self.get_languages_from_filename(filepath)
+          # Get and add new language from filename
+          new_language = self.get_language_from_filename(filepath)
           if new_language:
             languages.append(new_language)
 
-  def get_languages_from_filename(self, filename):
+  def get_language_from_filename(self, filename):
     info = None
+    # Only process files littler than max file size
     if os.path.getsize(filename) <= MAX_FILE_SIZE:
       with open(filename, 'r') as f:
         info = {}
         info[KEY_ENGINE] = self.name
         info[KEY_FILENAME] = filename
         info[KEY_NAME] = os.path.basename(filename)
+        # Extract information from the voice file
         for line in f.readlines():
           # Remove newline characters
           line = line.replace('\r', '')
@@ -72,7 +72,10 @@ class EngineEspeak(EngineBase):
             key = values[0]
             if key == KEY_ESPEAK_NAME:
               # Save the language name
-              info[KEY_LANGUAGE] = values[1].title()
+              description = values[1]
+              description = description.replace('-', ' ')
+              description = description.replace('_', ' ')
+              info[KEY_LANGUAGE] = description.title()
             if key == KEY_ESPEAK_GENDER:
               # Save the gender
               info[KEY_GENDER] = values[1]

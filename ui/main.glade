@@ -137,23 +137,11 @@
     <columns>
       <!-- column-name Engine -->
       <column type="gchararray"/>
-      <!-- column-name Language -->
+      <!-- column-name Description -->
       <column type="gchararray"/>
       <!-- column-name Name -->
       <column type="gchararray"/>
     </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">a</col>
-        <col id="1" translatable="yes">English</col>
-        <col id="2" translatable="yes"/>
-      </row>
-      <row>
-        <col id="0" translatable="yes">b</col>
-        <col id="1" translatable="yes">Italian</col>
-        <col id="2" translatable="yes"/>
-      </row>
-    </data>
   </object>
   <object class="GtkTreeModelSort" id="sortmodelLanguages">
     <property name="model">modelLanguages</property>
