@@ -32,6 +32,7 @@ class EngineEspeak(EngineBase):
   def __init__(self):
     super(self.__class__, self).__init__()
     self.name = 'espeak'
+    self.include_test_voices = True
     self.languages_path = '/usr/share/espeak-data/voices'
 
   def get_languages(self):
@@ -42,7 +43,9 @@ class EngineEspeak(EngineBase):
   def get_languages_from_path(self, path, languages):
     for filename in os.listdir(path):
       # Skip variants and MBROLA voices
-      if filename not in ('!v', 'mb'):
+      # If requested, also skip test voices
+      if filename not in ('!v', 'mb') and \
+          (self.include_test_voices or filename != 'test'):
         filepath = os.path.join(path, filename)
         if os.path.isdir(filepath):
           # Iter each subdirectory
