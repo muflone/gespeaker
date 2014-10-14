@@ -18,9 +18,34 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-# Package placeholder
+from gespeaker.engines.base import EngineBase
+from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
-from .espeak import EngineEspeak
-from .dummy import EngineDummy
+class EngineDummy(EngineBase):
+  def __init__(self):
+    super(self.__class__, self).__init__()
+    self.name = 'Dummy'
+    self.has_gender = False
+    self.has_variants = True
 
-engines = (EngineEspeak, EngineDummy)
+  def get_languages(self):
+    result = super(self.__class__, self).get_languages()
+    result.append({
+      KEY_ENGINE: self.name,
+      KEY_FILENAME: '',
+      KEY_NAME: 'dummy',
+      KEY_LANGUAGE: 'A dummy language',
+      KEY_GENDER: ''
+      })
+    return result
+
+  def get_variants(self):
+    result = super(self.__class__, self).get_variants()
+    result.append({
+      KEY_ENGINE: self.name,
+      KEY_FILENAME: '',
+      KEY_NAME: 'dummy',
+      KEY_LANGUAGE: 'A dummy variant',
+      KEY_GENDER: ''
+      })
+    return result
