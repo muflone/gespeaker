@@ -56,7 +56,6 @@ class MainWindow(object):
     """Load the interface UI"""
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
     for language in self.backend.get_languages():
-      print language
       self.modelLanguages.add(
         engine=language[KEY_ENGINE],
         description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),

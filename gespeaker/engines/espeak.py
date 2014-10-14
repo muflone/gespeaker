@@ -28,6 +28,10 @@ MAX_FILE_SIZE = 2000
 KEY_ESPEAK_NAME = 'name'
 KEY_ESPEAK_GENDER = 'gender'
 
+DIR_VARIANTS = '!v'
+DIR_MBROLA = 'mb'
+DIR_TEST = 'test'
+
 class EngineEspeak(EngineBase):
   def __init__(self):
     super(self.__class__, self).__init__()
@@ -44,8 +48,8 @@ class EngineEspeak(EngineBase):
     for filename in os.listdir(path):
       # Skip variants and MBROLA voices
       # If requested, also skip test voices
-      if filename not in ('!v', 'mb') and \
-          (self.include_test_voices or filename != 'test'):
+      if filename not in (DIR_VARIANTS, DIR_MBROLA) and \
+          (self.include_test_voices or filename != DIR_TEST):
         filepath = os.path.join(path, filename)
         if os.path.isdir(filepath):
           # Iter each subdirectory
@@ -58,7 +62,7 @@ class EngineEspeak(EngineBase):
 
   def get_language_from_filename(self, filename):
     info = None
-    # Only process files littler than max file size
+    # Only process files whose size is less than max file size
     if os.path.getsize(filename) <= MAX_FILE_SIZE:
       with open(filename, 'r') as f:
         info = {}
