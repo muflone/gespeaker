@@ -99,3 +99,24 @@ class MainWindow(object):
     self.about.destroy()
     self.ui.winMain.destroy()
     self.application.quit()
+
+  def on_cboLanguages_changed(self, widget):
+    "Check if a mbrola voice has been selected"
+    voice_engine = self.modelLanguages.get_engine(
+      self.ui.sortmodelLanguages.convert_iter_to_child_iter(
+      self.ui.cboLanguages.get_active_iter()))
+    if self.backend.engines.has_key(voice_engine):
+      self.ui.lblEngine.set_text('Engine: %s' % voice_engine)
+      has_gender = self.backend.engines[voice_engine].has_gender
+      has_variants = self.backend.engines[voice_engine].has_variants
+    else:
+      self.ui.lblEngine.set_text('Unknown engine: %s' % voice_engine)
+      has_gender = False
+      has_variants = False
+    # Set widgets gender sensitive
+    self.ui.lblVoice.set_sensitive(has_gender)
+    self.ui.optionVoiceMale.set_sensitive(has_gender)
+    self.ui.optionVoiceFemale.set_sensitive(has_gender)
+    # Set widgets variants sensitive
+    self.ui.lblVariant.set_sensitive(has_variants)
+    self.ui.cboVariants.set_sensitive(has_variants)
