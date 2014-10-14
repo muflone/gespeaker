@@ -156,8 +156,11 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkTreeModelFilter" id="filtermodelVariants">
+    <property name="child_model">modelVariants</property>
+  </object>
   <object class="GtkTreeModelSort" id="sortmodelVariants">
-    <property name="model">modelVariants</property>
+    <property name="model">filtermodelVariants</property>
   </object>
   <object class="GtkWindow" id="winMain">
     <property name="can_focus">False</property>
@@ -607,7 +610,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
-                        <property name="spacing">10</property>
+                        <property name="spacing">7</property>
                         <child>
                           <object class="GtkComboBox" id="cboLanguages">
                             <property name="visible">True</property>
@@ -637,6 +640,18 @@
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="lblEngineName">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Unknown</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>

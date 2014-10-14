@@ -28,7 +28,6 @@ class EngineBase(object):
   def __init__(self):
     self.__name = None
     self.has_gender = True
-    self.has_variants = True
 
   def get_languages(self):
     return []

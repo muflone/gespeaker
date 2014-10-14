@@ -54,6 +54,11 @@ class MainWindow(object):
 
   def loadUI(self):
     """Load the interface UI"""
+    def filter_variants_cb(model, iter, data):
+      """Filter the variants for the current voice engine"""
+      return model.get_value(iter, self.modelVariants.COL_ENGINE) in (
+        self._get_current_language_engine(), '')
+    # Load available languages
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
     for language in self.backend.get_languages():
       self.modelLanguages.add(
@@ -63,11 +68,18 @@ class MainWindow(object):
         )
     self.ui.sortmodelLanguages.set_sort_column_id(
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
-
+    # Load available variants
     self.modelVariants = ModelVariants(self.ui.modelVariants)
     self.modelVariants.clear()
+    for language in self.backend.get_variants():
+      self.modelVariants.add(
+        engine=language[KEY_ENGINE],
+        description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
+        name=language[KEY_NAME]
+        )
     self.ui.sortmodelVariants.set_sort_column_id(
       self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
+    self.ui.filtermodelVariants.set_visible_func(filter_variants_cb)
 
     # Set various properties
     self.ui.winMain.set_title(APP_NAME)
@@ -93,35 +105,27 @@ class MainWindow(object):
     self.ui.winMain.destroy()
     self.application.quit()
 
-  def on_cboLanguages_changed(self, widget):
-    """Update widgets after a language change"""
-    voice_engine = self.modelLanguages.get_engine(
+  def _get_current_language_engine(self):
+    """Return the engine used for the currently selected language"""
+    return self.modelLanguages.get_engine(
       self.ui.sortmodelLanguages.convert_iter_to_child_iter(
       self.ui.cboLanguages.get_active_iter()))
+
+  def on_cboLanguages_changed(self, widget):
+    """Update widgets after a language change"""
+    voice_engine = self._get_current_language_engine()
     # Update data only if the engine is different from the previous
-    if ('Engine: %s' % voice_engine) != self.ui.lblEngine.get_text():
-      # Remove existing variants
-      self.modelVariants.clear()
+    if voice_engine != self.ui.lblEngineName.get_text():
       # Check voice engine
+      self.ui.lblEngineName.set_text(voice_engine)
       if self.backend.engines.has_key(voice_engine):
-        self.ui.lblEngine.set_text('Engine: %s' % voice_engine)
         has_gender = self.backend.engines[voice_engine].has_gender
-        has_variants = self.backend.engines[voice_engine].has_variants
-        # Load variants for the voice engine
-        for language in self.backend.engines[voice_engine].get_variants():
-          self.modelVariants.add(
-            engine=language[KEY_ENGINE],
-            description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
-            name=language[KEY_NAME]
-            )
       else:
-        self.ui.lblEngine.set_text('Unknown engine: %s' % voice_engine)
+        # This shouldn't happen
         has_gender = False
-        has_variants = False
       # Set widgets gender sensitive
       self.ui.lblVoice.set_sensitive(has_gender)
       self.ui.optionVoiceMale.set_sensitive(has_gender)
       self.ui.optionVoiceFemale.set_sensitive(has_gender)
-      # Set widgets variants sensitive
-      self.ui.lblVariant.set_sensitive(has_variants)
-      self.ui.cboVariants.set_sensitive(has_variants)
+      # Update variants list
+      self.ui.filtermodelVariants.refilter()

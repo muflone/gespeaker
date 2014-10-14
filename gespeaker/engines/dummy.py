@@ -26,7 +26,6 @@ class EngineDummy(EngineBase):
     super(self.__class__, self).__init__()
     self.name = 'Dummy'
     self.has_gender = False
-    self.has_variants = True
 
   def get_languages(self):
     result = super(self.__class__, self).get_languages()
