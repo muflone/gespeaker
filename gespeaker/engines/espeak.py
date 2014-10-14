@@ -38,10 +38,16 @@ class EngineEspeak(EngineBase):
     self.name = 'espeak'
     self.include_test_voices = True
     self.languages_path = '/usr/share/espeak-data/voices'
+    self.variants_path = os.path.join(self.languages_path, DIR_VARIANTS)
 
   def get_languages(self):
     result = super(self.__class__, self).get_languages()
     self.get_languages_from_path(self.languages_path, result)
+    return result
+
+  def get_variants(self):
+    result = super(self.__class__, self).get_variants()
+    self.get_languages_from_path(self.variants_path, result)
     return result
 
   def get_languages_from_path(self, path, languages):
@@ -59,6 +65,16 @@ class EngineEspeak(EngineBase):
           new_language = self.get_language_from_filename(filepath)
           if new_language:
             languages.append(new_language)
+
+  def get_variants_from_path(self, path, languages):
+    for filename in os.listdir(path):
+      # Include only variants
+      filepath = os.path.join(path, filename)
+      if not os.path.isdir(filepath):
+        # Get and add new variant from filename
+        new_variant = self.get_language_from_filename(filepath)
+        if new_language:
+          languages.append(new_language)
 
   def get_language_from_filename(self, filename):
     info = None

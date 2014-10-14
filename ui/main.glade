@@ -148,21 +148,16 @@
   </object>
   <object class="GtkListStore" id="modelVariants">
     <columns>
-      <!-- column-name Variant -->
+      <!-- column-name Engine -->
       <column type="gchararray"/>
-      <!-- column-name Variant1 -->
+      <!-- column-name Description -->
+      <column type="gchararray"/>
+      <!-- column-name Name -->
       <column type="gchararray"/>
     </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">normal</col>
-        <col id="1" translatable="yes">Normal</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">strong</col>
-        <col id="1" translatable="yes">Strong</col>
-      </row>
-    </data>
+  </object>
+  <object class="GtkTreeModelSort" id="sortmodelVariants">
+    <property name="model">modelVariants</property>
   </object>
   <object class="GtkWindow" id="winMain">
     <property name="can_focus">False</property>
@@ -667,7 +662,7 @@
                       <object class="GtkComboBox" id="cboVariants">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="model">modelVariants</property>
+                        <property name="model">sortmodelVariants</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellVariants"/>
                           <attributes>

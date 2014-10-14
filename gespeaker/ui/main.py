@@ -65,6 +65,16 @@ class MainWindow(object):
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
 
     self.modelVariants = ModelVariants(self.ui.modelVariants)
+    self.modelVariants.add(engine='', 
+      description='Normal voice', name='')
+    for language in self.backend.get_variants():
+      self.modelVariants.add(
+        engine=language[KEY_ENGINE],
+        description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
+        name=language[KEY_NAME]
+        )
+    self.ui.sortmodelVariants.set_sort_column_id(
+      self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
 
     # Set various properties
     self.ui.winMain.set_title(APP_NAME)

@@ -35,3 +35,9 @@ class Backend(object):
     for engine in self.engines.values():
       result.extend(engine.get_languages())
     return result
+
+  def get_variants(self):
+    result = []
+    for engine in self.engines.values():
+      result.extend(engine.get_variants())
+    return result

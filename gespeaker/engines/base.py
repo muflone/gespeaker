@@ -30,3 +30,6 @@ class EngineBase(object):
 
   def get_languages(self):
     return []
+
+  def get_variants(self):
+    return []

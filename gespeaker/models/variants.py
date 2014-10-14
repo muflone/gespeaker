@@ -23,21 +23,26 @@ from gi.repository import Gtk
 from .base import ModelBase
 
 class ModelVariants(ModelBase):
-  COL_VARIANT = 0
+  COL_ENGINE = 0
   COL_DESCRIPTION = 1
+  COL_NAME = 2
   def __init__(self, model):
     super(self.__class__, self).__init__(model)
     self.model = model
 
-  def add(self, variant, description):
+  def add(self, engine, description, name):
     """Add a new row in the model"""
     super(self.__class__, self).add(
-      items=(variant, description))
+      items=(engine, description, name))
 
-  def get_variant(self, treepath):
+  def get_engine(self, treepath):
     """Get the engine of a row"""
-    return self.get_model_data(treepath, self.COL_VARIANT)
+    return self.get_model_data(treepath, self.COL_ENGINE)
 
   def get_description(self, treepath):
-    """Get the language of a row"""
+    """Get the description of a row"""
     return self.get_model_data(treepath, self.COL_DESCRIPTION)
+
+  def get_name(self, treepath):
+    """Get the name of a row"""
+    return self.get_model_data(treepath, self.COL_NAME)
