@@ -35,7 +35,7 @@ DIR_TEST = 'test'
 class EngineEspeak(EngineBase):
   def __init__(self):
     super(self.__class__, self).__init__()
-    self.name = 'espeak'
+    self.name = 'eSpeak'
     self.include_test_voices = True
     self.languages_path = '/usr/share/espeak-data/voices'
     self.variants_path = os.path.join(self.languages_path, DIR_VARIANTS)
