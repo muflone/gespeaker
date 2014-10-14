@@ -35,6 +35,11 @@ class ModelVariants(ModelBase):
     super(self.__class__, self).add(
       items=(engine, description, name))
 
+  def clear(self):
+    """Clear the model and add the standard normal variant"""
+    super(self.__class__, self).clear()
+    self.add(engine='', description='Normal voice', name='')
+
   def get_engine(self, treepath):
     """Get the engine of a row"""
     return self.get_model_data(treepath, self.COL_ENGINE)
