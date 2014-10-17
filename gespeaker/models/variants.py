@@ -23,6 +23,8 @@ from gi.repository import Gtk
 from .base import ModelBase
 
 class ModelVariants(ModelBase):
+  NORMAL_VOICE_DESCRIPTION = 'Normal voice'
+
   COL_ENGINE = 0
   COL_DESCRIPTION = 1
   COL_NAME = 2
@@ -41,7 +43,7 @@ class ModelVariants(ModelBase):
   def clear(self):
     """Clear the model and add the standard normal variant"""
     super(self.__class__, self).clear()
-    self.add(engine='', description='Normal voice', name='')
+    self.add(engine='', description=self.NORMAL_VOICE_DESCRIPTION, name='')
 
   def get_engine(self, treepath):
     """Get the engine of a row"""
