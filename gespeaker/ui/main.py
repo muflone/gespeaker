@@ -68,6 +68,7 @@ class MainWindow(object):
         )
     self.ui.sortmodelLanguages.set_sort_column_id(
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
+    self.ui.cboLanguages.set_active(0)
     # Load available variants
     self.modelVariants = ModelVariants(self.ui.modelVariants)
     self.modelVariants.clear()
@@ -80,7 +81,7 @@ class MainWindow(object):
     self.ui.sortmodelVariants.set_sort_column_id(
       self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
     self.ui.filtermodelVariants.set_visible_func(filter_variants_cb)
-
+    self.on_cboLanguages_changed(None)
     # Set various properties
     self.ui.winMain.set_title(APP_NAME)
     self.ui.winMain.set_icon_from_file(FILE_ICON)
@@ -129,3 +130,10 @@ class MainWindow(object):
       self.ui.optionVoiceFemale.set_sensitive(has_gender)
       # Update variants list
       self.ui.filtermodelVariants.refilter()
+      if self.ui.cboVariants.get_active() == -1:
+        # Position the variant again to the normal voice variant
+        treepath = self.modelVariants.get_row_from_description(
+          self.modelVariants.NORMAL_VOICE_DESCRIPTION).path
+        self.ui.cboVariants.set_active(int(
+          self.ui.sortmodelVariants.convert_child_path_to_path(
+          treepath).to_string()))

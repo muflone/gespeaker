@@ -553,17 +553,6 @@ class gespeakerUI(object):
         self.listVariants.append(v)
       self.cboVariants.set_active(0)
 
-  def on_cboLanguages_changed(self, widget, data=None):
-    "Check if a mbrola voice has been selected"
-    status = self.listLanguages[self.cboLanguages.get_active()][COL_MBROLA]
-    self.imgMbrola.set_from_stock(size=gtk.ICON_SIZE_BUTTON,
-      stock_id=status and gtk.STOCK_YES or gtk.STOCK_NO)
-    self.lblVoice.set_sensitive(not status)
-    self.radioVoiceMale.set_sensitive(not status)
-    self.radioVoiceFemale.set_sensitive(not status)
-    self.lblVariants.set_sensitive(not status)
-    self.cboVariants.set_sensitive(not status)
-
   def set_text(self, text, insert_type=0):
     "Set buffer text"
     if insert_type == 0:

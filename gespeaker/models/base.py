@@ -45,6 +45,16 @@ class ModelBase(object):
     """Set a specific column from a treepath"""
     self.model[self.path_from_row(treepath)][column] = value
 
+  def get_iter_from_data(self, column, value):
+    for row in self.model:
+      if self.get_model_data(row, column) == value:
+        return row
+
+  def get_row_from_data(self, column, value):
+    row = self.get_iter_from_data(column, value)
+    if row:
+      return self.model[row.path]
+
   def add(self, items):
     """Add a new treerow to the model"""
     if isinstance(self.model, Gtk.ListStore):

@@ -56,3 +56,9 @@ class ModelVariants(ModelBase):
   def get_name(self, treepath):
     """Get the name of a row"""
     return self.get_model_data(treepath, self.COL_NAME)
+
+  def get_row_from_description(self, description):
+    if not self.rows.has_key(description):
+      self.rows[description] = self.get_row_from_data(
+        self.COL_DESCRIPTION, description)
+    return self.rows[description]
