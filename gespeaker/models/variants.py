@@ -29,11 +29,14 @@ class ModelVariants(ModelBase):
   def __init__(self, model):
     super(self.__class__, self).__init__(model)
     self.model = model
+    self.rows = {}
 
   def add(self, engine, description, name):
     """Add a new row in the model"""
     super(self.__class__, self).add(
       items=(engine, description, name))
+    self.rows[description] = self.row_from_iter(len(self.model) -1)
+    return self.rows[description]
 
   def clear(self):
     """Clear the model and add the standard normal variant"""
