@@ -43,16 +43,11 @@ COL_LANGUAGE, COL_NAME, COL_MBROLA = range(3)
 class gespeakerUI(object):
   def __init__(self):
     print 'starting %s' % handlepaths.APP_NAME
-    self.espeak = EspeakFrontend()
     # Create temporary filename
     self.tempFilename = tempfile.mkstemp(prefix=handlepaths.APP_NAME)[1]
     self.timeoutCheck = None
     self.recordToFile = None
     self.recordToFileRequested = False
-    self.variants = ((), ())
-    gladeUI = handlepaths.getPath('ui', 'gespeaker.glade')
-    print 'loading interface from %s' % gladeUI
-    self.gladeFile = gtk.glade.XML(fname=gladeUI, domain=handlepaths.APP_NAME)
     # Proxy maps
     self.proxy = {
       'text.set': self.set_text,
@@ -94,9 +89,7 @@ class gespeakerUI(object):
       'on_imgmenuHelpAbout_activate': self.on_imgmenuHelpAbout_activate,
       'on_imgmenuEditPreferences_activate': self.on_imgmenuEditPreferences_activate,
       'on_radioVoice_toggled': self.on_radioVoice_toggled,
-      'on_cboLanguages_changed': self.on_cboLanguages_changed
     }
-    self.gladeFile.signal_autoconnect(signals)
     # Set clipboard
     display = gtk.gdk.display_manager_get().get_default_display()
     self.clipboard = gtk.Clipboard(display, "CLIPBOARD")
@@ -358,23 +351,6 @@ class gespeakerUI(object):
     "Paste the clipboard in the buffer"
     self.txvBuffer.paste_clipboard(self.clipboard, None, self.txvText.get_editable())
     
-  def on_imgmenuHelpAbout_activate(self, widget, data=None):
-    "Show the about dialog"
-    print 'show about dialog'
-    DialogAbout(
-      name=handlepaths.APP_TITLE,
-      version=handlepaths.APP_VERSION,
-      comment=_('A GTK frontend for espeak'),
-      copyright='Copyright 2009-2014 Fabio Castelli',
-      license=handlepaths.read_text_file('doc', 'copyright'), 
-      website='http://www.muflone.com/gespeaker/',
-      website_label='http://www.muflone.com/gespeaker/',
-      authors=['Fabio Castelli (Muflone) <muflone@vbsimple.net>'],
-      translation=handlepaths.read_text_file('doc', 'translators').replace('(at)', '@'),
-      logo=handlepaths.get_app_logo(),
-      icon=handlepaths.get_app_logo()
-    )
-
   def on_imgmenuEditStop_activate(self, widget, data=None):
     "Press button to stop play, indirect cause button style"
     self.btnPlayStop.set_active(False)

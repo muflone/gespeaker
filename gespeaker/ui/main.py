@@ -93,11 +93,11 @@ class MainWindow(object):
     """Close the application"""
     self.on_actionQuit_activate(widget)
 
-  def on_actionAbout_activate(self, widget):
+  def on_actionAbout_activate(self, action):
     """Show the about dialog"""
     self.about.show()
 
-  def on_actionQuit_activate(self, widget):
+  def on_actionQuit_activate(self, action):
     """Quit the application"""
     # Save settings for window size, intercepted syscalls and visible columns
     self.settings.set_sizes(self.ui.winMain)
