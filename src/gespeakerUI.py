@@ -90,10 +90,6 @@ class gespeakerUI(object):
       'on_imgmenuEditPreferences_activate': self.on_imgmenuEditPreferences_activate,
       'on_radioVoice_toggled': self.on_radioVoice_toggled,
     }
-    # Set clipboard
-    display = gtk.gdk.display_manager_get().get_default_display()
-    self.clipboard = gtk.Clipboard(display, "CLIPBOARD")
-
     # Load window and controls
     self.loadControls()
     self.loadSettings(True)
@@ -339,18 +335,6 @@ class gespeakerUI(object):
       self.loadSettings(True)
 
 
-  def on_imgmenuEditCut_activate(self, widget, data=None):
-    "Cut the selected text"
-    self.txvBuffer.cut_clipboard(self.clipboard, self.txvText.get_editable())
-
-  def on_imgmenuEditCopy_activate(self, widget, data=None):
-    "Copy the selected text"
-    self.txvBuffer.copy_clipboard(self.clipboard)
-    
-  def on_imgmenuEditPaste_activate(self, widget, data=None):
-    "Paste the clipboard in the buffer"
-    self.txvBuffer.paste_clipboard(self.clipboard, None, self.txvText.get_editable())
-    
   def on_imgmenuEditStop_activate(self, widget, data=None):
     "Press button to stop play, indirect cause button style"
     self.btnPlayStop.set_active(False)

@@ -39,6 +39,7 @@
       <object class="GtkAction" id="actionCut">
         <property name="label" translatable="yes">Cut</property>
         <property name="icon_name">edit-cut</property>
+        <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
       <accelerator key="x" modifiers="GDK_CONTROL_MASK"/>
     </child>
@@ -46,6 +47,7 @@
       <object class="GtkAction" id="actionCopy">
         <property name="label" translatable="yes">Copy</property>
         <property name="icon_name">edit-copy</property>
+        <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
       <accelerator key="c" modifiers="GDK_CONTROL_MASK"/>
     </child>
@@ -53,6 +55,7 @@
       <object class="GtkAction" id="actionPaste">
         <property name="label" translatable="yes">Paste</property>
         <property name="icon_name">edit-paste</property>
+        <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
       <accelerator key="v" modifiers="GDK_CONTROL_MASK"/>
     </child>

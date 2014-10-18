@@ -19,6 +19,7 @@
 ##
 
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 from .about import AboutWindow
 
@@ -86,6 +87,8 @@ class MainWindow(object):
     self.ui.winMain.set_title(APP_NAME)
     self.ui.winMain.set_icon_from_file(FILE_ICON)
     self.ui.winMain.set_application(self.application)
+    # Define the clipboard object for cut/copy/paste actions
+    self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
     # Connect signals from the glade file to the functions with the same name
     self.ui.connect_signals(self)
 
@@ -137,3 +140,13 @@ class MainWindow(object):
         self.ui.cboVariants.set_active(int(
           self.ui.sortmodelVariants.convert_child_path_to_path(
           treepath).to_string()))
+
+  def on_actionClipboard_activate(self, action):
+    """Cut and copy the selected text or paste it"""
+    bEditable = self.ui.txtText.get_editable()
+    if action is self.ui.actionCut:
+      self.ui.bufferText.cut_clipboard(self.clipboard, bEditable)
+    elif action is self.ui.actionCopy:
+      self.ui.bufferText.copy_clipboard(self.clipboard)
+    elif action is self.ui.actionPaste:
+      self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
