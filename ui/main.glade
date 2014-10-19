@@ -87,26 +87,38 @@
   <object class="GtkActionGroup" id="actionsMedia">
     <property name="accel_group">accelerators</property>
     <child>
-      <object class="GtkToggleAction" id="actionPlay">
-        <property name="label" translatable="yes">Play</property>
-        <property name="icon_name">media-playback-start</property>
-        <property name="is_important">True</property>
-      </object>
-      <accelerator key="F5"/>
-    </child>
-    <child>
       <object class="GtkToggleAction" id="actionPause">
         <property name="label" translatable="yes">Pause</property>
         <property name="icon_name">media-playback-pause</property>
         <property name="is_important">True</property>
       </object>
-      <accelerator key="F6"/>
     </child>
     <child>
       <object class="GtkToggleAction" id="actionRecord">
         <property name="label" translatable="yes">Record</property>
         <property name="icon_name">media-record</property>
         <property name="is_important">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="actionPlay">
+        <property name="label" translatable="yes">Play</property>
+        <property name="icon_name">media-playback-start</property>
+        <property name="is_important">True</property>
+        <signal name="activate" handler="on_actionPlay_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="actionStop">
+        <property name="label" translatable="yes">Stop</property>
+        <property name="icon_name">media-playback-stop</property>
+        <signal name="activate" handler="on_actionStop_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleAction" id="actionPlayStop">
+        <property name="label" translatable="yes">Play</property>
+        <signal name="toggled" handler="on_actionPlayStop_toggled" swapped="no"/>
       </object>
     </child>
   </object>
@@ -320,9 +332,18 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkCheckMenuItem" id="menuitemPlay">
+                      <object class="GtkMenuItem" id="menuitemPlay">
                         <property name="use_action_appearance">True</property>
                         <property name="related_action">actionPlay</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitemStop">
+                        <property name="use_action_appearance">True</property>
+                        <property name="related_action">actionStop</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -534,7 +555,8 @@
                     <property name="layout_style">start</property>
                     <child>
                       <object class="GtkToggleButton" id="btnPlay">
-                        <property name="related_action">actionPlay</property>
+                        <property name="use_action_appearance">True</property>
+                        <property name="related_action">actionPlayStop</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
