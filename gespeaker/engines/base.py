@@ -26,11 +26,14 @@ KEY_GENDER = 'gender'
 
 class EngineBase(object):
   def __init__(self):
+    """Initialize the engine"""
     self.__name = None
     self.has_gender = True
 
   def get_languages(self):
+    """Get the list of all the supported languages"""
     return []
 
   def get_variants(self):
+    """Get the list of all the supported variants"""
     return []

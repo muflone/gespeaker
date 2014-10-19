@@ -140,39 +140,6 @@ class EspeakFrontend(object):
     else:
       return False
 
-  def loadLanguages(self, cmdEspeak):
-    "Load languages list from espeak"
-    print 'loading languages from %s --voices' % cmdEspeak
-    proc = SubprocessWrapper.Popen((cmdEspeak, '--voices'), 
-      stdout=SubprocessWrapper.PIPE)
-    return proc.communicate()[0].split('\n')[1:-1]
-
-  def loadVariants(self, cmdEspeak):
-    "Load variants list from espeak"
-    vardir = '/usr/share/espeak-data/voices/!v'
-    print 'loading variants from %s' % vardir
-    variantsM = []
-    variantsF = []
-    # Check if voice variants dir exists
-    if os.path.exists(vardir) and os.path.isdir(vardir):
-      # Load files from vardir
-      for f in os.listdir(vardir):
-        # Only files
-        if os.path.isfile(os.path.join(vardir, f)):
-          varfile = open(os.path.join(vardir, f), mode='r')
-          varcontent = varfile.read().split('\n')
-          varfile.close()
-          # Check if it's a valid variant
-          if varcontent[0] == 'language variant' and \
-            varcontent[1][:5] == 'name ' and \
-            varcontent[2][:7] == 'gender ':
-            # Check gender
-            if varcontent[2][7:] == 'female':
-              variantsF.append((f, varcontent[1][5:]))
-            else:
-              variantsM.append((f, varcontent[1][5:]))
-    return (variantsM, variantsF)
-
   def loadMbrolaVoices(self, pathVoicesmb):
     "Load mbrola languages list"
     voicesmb = []

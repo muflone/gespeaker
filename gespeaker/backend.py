@@ -22,21 +22,22 @@ import gespeaker.engines
 
 class Backend(object):
   def __init__(self):
+    """Initialize the backend"""
     self.engines = {}
+    # Load engines
     for engine in gespeaker.engines.engines:
       obj_engine = engine()
       self.engines[obj_engine.name] = obj_engine
 
-  def get_engines(self):
-    return self.engines
-
   def get_languages(self):
+    """Get the list of the languages for all the engines"""
     result = []
     for engine in self.engines.values():
       result.extend(engine.get_languages())
     return result
 
   def get_variants(self):
+    """Get the list of the variants for all the engines"""
     result = []
     for engine in self.engines.values():
       result.extend(engine.get_variants())

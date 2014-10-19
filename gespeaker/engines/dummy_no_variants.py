@@ -23,11 +23,13 @@ from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGU
 
 class EngineDummyNoVariants(EngineBase):
   def __init__(self):
+    """Initialize the engine"""
     super(self.__class__, self).__init__()
     self.name = 'Dummy no variants'
     self.has_gender = False
 
   def get_languages(self):
+    """Get the list of all the supported languages"""
     result = super(self.__class__, self).get_languages()
     result.append({
       KEY_ENGINE: self.name,
@@ -39,5 +41,6 @@ class EngineDummyNoVariants(EngineBase):
     return result
 
   def get_variants(self):
+    """Get the list of all the supported variants"""
     result = super(self.__class__, self).get_variants()
     return result
