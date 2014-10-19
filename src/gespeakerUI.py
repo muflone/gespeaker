@@ -71,7 +71,6 @@ class gespeakerUI(object):
     }
     # Signals handler
     signals = {
-      'on_imgmenuFileQuit_activate': self.on_imgmenuFileQuit_activate,
       'on_imgmenuEditPlay_activate': self.on_imgmenuEditPlay_activate,
       'on_imgmenuFileNew_activate': self.on_imgmenuFileNew_activate,
       'on_imgmenuFileOpen_activate': self.on_imgmenuFileOpen_activate,
@@ -108,20 +107,12 @@ class gespeakerUI(object):
     self.winMain.set_title(handlepaths.APP_TITLE)
     self.winMain.set_icon_from_file(handlepaths.get_app_logo())
     
-    self.txvText = gw('txvText')
-    self.txvBuffer = self.txvText.get_buffer()
-    self.winMain.set_focus(self.txvText)
     self.expSettings = gw('expSettings')
     self.hscVolume = gw('hscVolume')
     self.hscPitch = gw('hscPitch')
     self.hscSpeed = gw('hscSpeed')
     self.hscDelay = gw('hscDelay')
     self.lblVoice = gw('lblVoice')
-    self.radioVoiceMale = gw('radioVoiceMale')
-    self.radioVoiceFemale = gw('radioVoiceFemale')
-    self.cboLanguages = gw('cboLanguages')
-    self.lblVariants = gw('lblVariants')
-    self.cboVariants = gw('cboVariants')
     self.imgmenuEditPlay = gw('imgmenuEditPlay')
     self.imgmenuEditStop = gw('imgmenuEditStop')
     self.imgmenuFileRec = gw('imgmenuFileRec')
@@ -133,22 +124,6 @@ class gespeakerUI(object):
     self.statusContextId = self.stbStatus.get_context_id(handlepaths.APP_NAME)
     self.imgmenuEditPause = gw('imgmenuEditPause')
     self.imgMbrola = gw('imgMbrola')
-    # Create model for cboLanguages by (language, shortname, mbrola)
-    self.listLanguages = gtk.ListStore(str, str, bool)
-    self.cboLanguages.set_model(self.listLanguages)
-    cell = gtk.CellRendererText()
-    self.cboLanguages.pack_start(cell, True)
-    self.cboLanguages.add_attribute(cell, 'text', 0)
-    # Load languages list from espeak --voices
-    for langs in self.espeak.loadLanguages(Settings.cmdEspeak):
-      lang = langs[22:52].rsplit(None, 1)
-      self.listLanguages.append(lang + [False])
-    # Load mbrola voices if mbrola is available
-    if self.espeak.mbrolaExists(Settings.cmdMbrola):
-      for lang in self.espeak.loadMbrolaVoices(Settings.get('VoicesmbPath')):
-        if lang[2]:
-          self.listLanguages.append(lang)
-    self.listLanguages.set_sort_column_id(0, gtk.SORT_ASCENDING)
     # Select default voice
     self.defaultLanguageIndex = 0
     defaultLanguage = _('default language')
@@ -156,17 +131,6 @@ class gespeakerUI(object):
       defaultLanguage = 'default'
     self.defaultLanguageIndex = TreeModel_find_text(
       self.listLanguages, COL_LANGUAGE, defaultLanguage)
-    # Prepare sorted model for voice variants
-    self.listVariants = gtk.ListStore(str, str)
-    self.listVariants.set_sort_column_id(0, gtk.SORT_ASCENDING)
-    self.cboVariants.set_model(self.listVariants)
-    cell = gtk.CellRendererText()
-    self.cboVariants.pack_start(cell, True)
-    self.cboVariants.add_attribute(cell, 'text', 1)
-    self.winMain.set_default_size(
-      Settings.default('MainWindowWidth'),
-      Settings.default('MainWindowHeight')
-    )
     self.expSettings.set_expanded(Settings.get('SettingsExpander'))
 
   def loadSettings(self, loadEverything):

@@ -107,7 +107,7 @@ class MainWindow(object):
 
   def on_actionQuit_activate(self, action):
     """Quit the application"""
-    # Save settings for window size, intercepted syscalls and visible columns
+    # Save settings for window size
     self.settings.set_sizes(self.ui.winMain)
     self.settings.save()
     self.about.destroy()
