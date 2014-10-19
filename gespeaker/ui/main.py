@@ -126,6 +126,13 @@ class MainWindow(object):
       self.ui.sortmodelLanguages.convert_iter_to_child_iter(
       self.ui.cboLanguages.get_active_iter()))
 
+  def _get_current_variant_name(self):
+    """Return the name for the currently selected variant"""
+    return self.modelVariants.get_name(
+      self.ui.filtermodelVariants.convert_iter_to_child_iter(
+      self.ui.sortmodelVariants.convert_iter_to_child_iter(
+      self.ui.cboVariants.get_active_iter())))
+
   def on_cboLanguages_changed(self, widget):
     """Update widgets after a language change"""
     if self._get_current_language_engine() != self.ui.lblEngineName.get_text():
