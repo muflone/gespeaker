@@ -85,6 +85,7 @@ class EngineEspeak(EngineBase):
         info[KEY_ENGINE] = self.name
         info[KEY_FILENAME] = filename
         info[KEY_NAME] = os.path.basename(filename)
+        info[KEY_GENDER] = ''
         # Extract information from the voice file
         for line in f.readlines():
           # Remove newline characters
