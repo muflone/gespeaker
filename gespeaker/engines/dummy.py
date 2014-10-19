@@ -51,3 +51,11 @@ class EngineDummy(EngineBase):
       KEY_GENDER: ''
       })
     return result
+
+  def play(self, text, language, variant, on_play_completed):
+    """Play a text using the specified language and variant"""
+    import time
+    for letter in text:
+      print letter
+      time.sleep(0.1)
+    super(self.__class__, self).play(text, language, variant, on_play_completed)

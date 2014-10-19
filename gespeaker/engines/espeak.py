@@ -19,6 +19,7 @@
 ##
 
 import os
+import subprocess
 
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
@@ -110,3 +111,15 @@ class EngineEspeak(EngineBase):
               # Save the gender
               info[KEY_GENDER] = values[1]
     return info
+
+  def play(self, text, language, variant, on_play_completed):
+    """Play a text using the specified language and variant"""
+    arguments = ['espeak', '-v']
+    if not variant:
+      arguments.append(language)
+    else:
+      arguments.append('%s+%s' % (language, variant))
+    print arguments
+    self.espeak = subprocess.Popen(arguments, stdin=subprocess.PIPE)
+    self.espeak.communicate(text)
+    super(self.__class__, self).play(text, language, variant, on_play_completed)

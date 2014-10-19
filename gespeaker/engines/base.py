@@ -37,3 +37,11 @@ class EngineBase(object):
   def get_variants(self):
     """Get the list of all the supported variants"""
     return []
+
+  def play(self, text, language, variant, on_play_completed):
+    """Play a text using the specified language and variant"""
+    if on_play_completed:
+      on_play_completed()
+      return True
+    else:
+      return False
