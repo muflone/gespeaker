@@ -77,7 +77,8 @@ class MainWindow(object):
       self.modelVariants.add(
         engine=language[KEY_ENGINE],
         description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
-        name=language[KEY_NAME]
+        name=language[KEY_NAME],
+        gender=language[KEY_GENDER]
         )
     self.ui.sortmodelVariants.set_sort_column_id(
       self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)

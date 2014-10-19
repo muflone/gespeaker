@@ -28,22 +28,24 @@ class ModelVariants(ModelBase):
   COL_ENGINE = 0
   COL_DESCRIPTION = 1
   COL_NAME = 2
+  COL_GENDER = 3
   def __init__(self, model):
     super(self.__class__, self).__init__(model)
     self.model = model
     self.rows = {}
 
-  def add(self, engine, description, name):
+  def add(self, engine, description, name, gender):
     """Add a new row in the model"""
     super(self.__class__, self).add(
-      items=(engine, description, name))
+      items=(engine, description, name, gender))
     self.rows[description] = self.row_from_iter(len(self.model) -1)
     return self.rows[description]
 
   def clear(self):
     """Clear the model and add the standard normal variant"""
     super(self.__class__, self).clear()
-    self.add(engine='', description=self.NORMAL_VOICE_DESCRIPTION, name='')
+    self.add(engine='', description=self.NORMAL_VOICE_DESCRIPTION, name='',
+      gender='')
 
   def get_engine(self, treepath):
     """Get the engine of a row"""
@@ -56,6 +58,10 @@ class ModelVariants(ModelBase):
   def get_name(self, treepath):
     """Get the name of a row"""
     return self.get_model_data(treepath, self.COL_NAME)
+
+  def get_gender(self, treepath):
+    """Get the gender of a row"""
+    return self.get_model_data(treepath, self.COL_GENDER)
 
   def get_row_from_description(self, description):
     if not self.rows.has_key(description):
