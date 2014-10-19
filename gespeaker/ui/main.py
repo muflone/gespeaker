@@ -57,8 +57,12 @@ class MainWindow(object):
     """Load the interface UI"""
     def filter_variants_cb(model, iter, data):
       """Filter the variants for the current voice engine"""
-      return model.get_value(iter, self.modelVariants.COL_ENGINE) in (
-        self._get_current_language_engine(), '')
+      current_engine = self._get_current_language_engine()
+      genders = ['', ]
+      if self.backend.engines[current_engine].has_gender:
+        genders.append(self.ui.optionVoiceMale.get_active() and 'male' or 'female')
+      return model.get_value(iter, self.modelVariants.COL_ENGINE) in (current_engine, '') and \
+        model.get_value(iter, self.modelVariants.COL_GENDER) in genders
     # Load available languages
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
     for language in self.backend.get_languages():
@@ -118,29 +122,32 @@ class MainWindow(object):
 
   def on_cboLanguages_changed(self, widget):
     """Update widgets after a language change"""
-    voice_engine = self._get_current_language_engine()
-    # Update data only if the engine is different from the previous
-    if voice_engine != self.ui.lblEngineName.get_text():
-      # Check voice engine
-      self.ui.lblEngineName.set_text(voice_engine)
-      if self.backend.engines.has_key(voice_engine):
-        has_gender = self.backend.engines[voice_engine].has_gender
-      else:
-        # This shouldn't happen
-        has_gender = False
-      # Set widgets gender sensitive
-      self.ui.lblVoice.set_sensitive(has_gender)
-      self.ui.optionVoiceMale.set_sensitive(has_gender)
-      self.ui.optionVoiceFemale.set_sensitive(has_gender)
-      # Update variants list
-      self.ui.filtermodelVariants.refilter()
-      if self.ui.cboVariants.get_active() == -1:
-        # Position the variant again to the normal voice variant
-        treepath = self.modelVariants.get_row_from_description(
-          self.modelVariants.NORMAL_VOICE_DESCRIPTION).path
-        self.ui.cboVariants.set_active(int(
-          self.ui.sortmodelVariants.convert_child_path_to_path(
-          treepath).to_string()))
+    if self._get_current_language_engine() != self.ui.lblEngineName.get_text():
+      self.on_optionVoice_toggled(widget)
+
+  def on_optionVoice_toggled(self, widget):
+    """Refresh variants for language or gender change"""
+    current_engine = self._get_current_language_engine()
+    # Check voice engine
+    self.ui.lblEngineName.set_text(current_engine)
+    if self.backend.engines.has_key(current_engine):
+      has_gender = self.backend.engines[current_engine].has_gender
+    else:
+      # This shouldn't happen
+      has_gender = False
+    # Set widgets gender sensitive
+    self.ui.lblVoice.set_sensitive(has_gender)
+    self.ui.optionVoiceMale.set_sensitive(has_gender)
+    self.ui.optionVoiceFemale.set_sensitive(has_gender)
+    # Update variants list
+    self.ui.filtermodelVariants.refilter()
+    if self.ui.cboVariants.get_active() == -1:
+      # Position the variant again to the normal voice variant
+      treepath = self.modelVariants.get_row_from_description(
+        self.modelVariants.NORMAL_VOICE_DESCRIPTION).path
+      self.ui.cboVariants.set_active(int(
+        self.ui.sortmodelVariants.convert_child_path_to_path(
+        treepath).to_string()))
 
   def on_actionClipboard_activate(self, action):
     """Cut and copy the selected text or paste it"""
