@@ -35,6 +35,7 @@ class MainWindow(object):
     self.application = application
     self.ui = GtkBuilderLoader(FILE_UI_MAIN)
     self.backend = backend
+    self.backend.on_play_complete = lambda: self.ui.actionPlayStop.set_active(False)
     self.settings = settings
     self.loadUI()
     # Restore the saved size and position
@@ -171,3 +172,23 @@ class MainWindow(object):
       self.ui.bufferText.copy_clipboard(self.clipboard)
     elif action is self.ui.actionPaste:
       self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
+
+  def on_actionPlay_activate(self, action):
+    print 'play'
+    self.ui.actionPlayStop.set_active(True)
+    self.backend.play(
+      engine=self._get_current_language_engine(),
+      text=self.ui.bufferText.get_text(self.ui.bufferText.get_start_iter(),
+        self.ui.bufferText.get_end_iter(), False),
+      language=self._get_current_language_name(),
+      variant=self._get_current_variant_name())
+
+  def on_actionStop_activate(self, action):
+    print 'stop'
+    self.ui.actionPlayStop.set_active(False)
+
+  def on_actionPlayStop_toggled(self, action):
+    if self.ui.actionPlayStop.get_active():
+      self.on_actionPlay_activate(action)
+    else:
+      self.on_actionStop_activate(action)
