@@ -69,18 +69,19 @@ class MainWindow(object):
       engines = ['', current_engine]
       return model.get_value(iter, self.modelVariants.COL_ENGINE) in engines and \
         model.get_value(iter, self.modelVariants.COL_GENDER) in genders
+    # Load available engines
+    for engine_name, obj_engine in self.backend.engines.items():
+      # Add a new CheckMenuItem for each engine
+      menuengine = Gtk.CheckMenuItem(engine_name)
+      # Load the engine status from the settings
+      obj_engine.enabled = self.backend.settings.get_engine_status(engine_name)
+      menuengine.set_active(obj_engine.enabled)
+      menuengine.connect('toggled', self.on_actionEnableEngine_toggled, obj_engine)
+      self.ui.menuEngines.append(menuengine)
     # Load available languages
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
-    for language in self.backend.get_languages():
-      self.modelLanguages.add(
-        engine=language[KEY_ENGINE],
-        description='%s%s' % (language[KEY_LANGUAGE],
-          self.backend.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
-        name=language[KEY_NAME]
-        )
     self.ui.sortmodelLanguages.set_sort_column_id(
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
-    self.ui.cboLanguages.set_active(0)
     # Load available variants
     self.modelVariants = ModelVariants(self.ui.modelVariants)
     self.modelVariants.clear()
@@ -95,6 +96,7 @@ class MainWindow(object):
     self.ui.sortmodelVariants.set_sort_column_id(
       self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
     self.ui.filtermodelVariants.set_visible_func(filter_variants_cb)
+    self.on_actionRefresh_activate(None)
     self.on_cboLanguages_changed(None)
     # Set various properties
     self.ui.winMain.set_title(APP_NAME)
@@ -143,13 +145,14 @@ class MainWindow(object):
 
   def on_cboLanguages_changed(self, widget):
     """Update widgets after a language change"""
-    if self._get_current_language_engine() != self.ui.lblEngineName.get_text():
+    if self.ui.cboLanguages.get_sensitive() and \
+        self.ui.cboLanguages.get_active_iter() and \
+        self._get_current_language_engine() != self.ui.lblEngineName.get_text():
       self.on_optionVoice_toggled(widget)
 
   def on_optionVoice_toggled(self, widget):
     """Refresh variants for language or gender change"""
     current_engine = self._get_current_language_engine()
-    # Check voice engine
     self.ui.lblEngineName.set_text(current_engine)
     if self.backend.engines.has_key(current_engine):
       has_gender = self.backend.engines[current_engine].has_gender
@@ -201,3 +204,45 @@ class MainWindow(object):
     else:
       # Stop any previous play
       self.backend.stop()
+
+  def on_actionRefresh_activate(self, action):
+    """Reload the available voices list"""
+    self.modelLanguages.clear()
+    for obj_engine in self.backend.engines.values():
+      # Load languages only for enabled engines
+      if obj_engine.enabled:
+        for language in obj_engine.get_languages():
+          self.modelLanguages.add(
+            engine=obj_engine.name,
+            description='%s%s' % (
+              language[KEY_LANGUAGE],
+              self.backend.settings.is_debug() and \
+              ' (%s)' % language[KEY_NAME] or ''),
+            name=language[KEY_NAME]
+            )
+    # Enable or disable widgets if at least a language is available
+    enabled_engines = self.modelLanguages.count() > 0
+    self.ui.actionPlayStop.set_sensitive(enabled_engines)
+    self.ui.actionPause.set_sensitive(enabled_engines)
+    self.ui.actionRecord.set_sensitive(enabled_engines)
+    self.ui.actionPlay.set_sensitive(enabled_engines)
+    self.ui.actionStop.set_sensitive(enabled_engines)
+    self.ui.cboLanguages.set_sensitive(enabled_engines)
+    self.ui.lblLanguage.set_sensitive(enabled_engines)
+    self.ui.lblVoice.set_sensitive(enabled_engines)
+    self.ui.optionVoiceMale.set_sensitive(enabled_engines)
+    self.ui.optionVoiceFemale.set_sensitive(enabled_engines)
+    self.ui.lblEngine.set_sensitive(enabled_engines)
+    self.ui.lblEngineName.set_sensitive(enabled_engines)
+    # Add dummy option
+    if self.modelLanguages.count() == 0:
+      self.modelLanguages.add('', 'No enabled engines', '')
+      self.ui.lblEngineName.set_text('Unknown')
+    # Select the first item
+    self.ui.cboLanguages.set_active(0)
+
+  def on_actionEnableEngine_toggled(self, action, engine):
+    """Enable or disable an engine"""
+    engine.enabled = action.get_active()
+    self.backend.settings.set_engine_status(engine.name, engine.enabled)
+    self.on_actionRefresh_activate(action)

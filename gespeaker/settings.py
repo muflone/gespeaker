@@ -29,6 +29,7 @@ from gespeaker.constants import *
 
 SECTION_MAINWIN = 'main window'
 SECTION_APPLICATION = 'application'
+SECTION_ENGINES = 'engines'
 
 class Settings(object):
   def __init__(self):
@@ -100,6 +101,14 @@ class Settings(object):
       self.config.add_section(section)
     self.config.set(section, name, value and '1' or '0')
     
+  def get_engine_status(self, engine):
+    """Get an engine status"""
+    return self.get_boolean(SECTION_ENGINES, engine, True)
+
+  def set_engine_status(self, engine, status):
+    """Set an engine status"""
+    return self.set_boolean(SECTION_ENGINES, engine, status)
+
   def save(self):
     """Save the whole configuration"""
     # Always save the settings in the new configuration file

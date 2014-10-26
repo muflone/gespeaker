@@ -32,6 +32,18 @@
         <property name="icon_name">preferences-desktop</property>
       </object>
     </child>
+    <child>
+      <object class="GtkAction" id="actionRefresh">
+        <property name="label" translatable="yes">Reload voices</property>
+        <property name="icon_name">view-refresh</property>
+        <signal name="activate" handler="on_actionRefresh_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleAction" id="actionEnableEngine">
+        <signal name="toggled" handler="on_actionEnableEngine_toggled" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkActionGroup" id="actionsEdit">
     <property name="accel_group">accelerators</property>
@@ -357,6 +369,35 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitemEngines">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Engines</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menuEngines">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menuitemEnginesRefresh">
+                                <property name="use_action_appearance">True</property>
+                                <property name="related_action">actionRefresh</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separatorEngines">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

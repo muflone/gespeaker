@@ -33,6 +33,7 @@ class EngineBase(object):
     self.has_gender = True
     self.playing = False
     self.settings = settings
+    self.enabled = True
 
   def get_languages(self):
     """Get the list of all the supported languages"""
