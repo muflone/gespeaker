@@ -39,19 +39,19 @@ class EngineEspeak(EngineBase):
     super(self.__class__, self).__init__(settings)
     self.name = 'eSpeak'
     self.include_test_voices = True
-    self.languages_path = '/usr/share/espeak-data/voices'
-    self.variants_path = os.path.join(self.languages_path, DIR_VARIANTS)
+    self.dir_languages = '/usr/share/espeak-data/voices'
 
   def get_languages(self):
     """Get the list of all the supported languages"""
     result = super(self.__class__, self).get_languages()
-    self.get_languages_from_path(self.languages_path, result)
+    self.get_languages_from_path(self.dir_languages, result)
     return result
 
   def get_variants(self):
     """Get the list of all the supported variants"""
     result = super(self.__class__, self).get_variants()
-    self.get_languages_from_path(self.variants_path, result)
+    self.get_languages_from_path(os.path.join(self.dir_languages, DIR_VARIANTS),
+      result)
     return result
 
   def get_languages_from_path(self, path, languages):
@@ -107,7 +107,7 @@ class EngineEspeak(EngineBase):
               description = description.replace('-', ' ')
               description = description.replace('_', ' ')
               info[KEY_LANGUAGE] = description.title()
-            if key == KEY_ESPEAK_GENDER:
+            elif key == KEY_ESPEAK_GENDER:
               # Save the gender
               info[KEY_GENDER] = values[1]
     return info

@@ -18,10 +18,12 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-# Package placeholder
-
 from .espeak import EngineEspeak
 from .dummy import EngineDummy
 from .dummy_no_variants import EngineDummyNoVariants
 
-engines = (EngineEspeak, EngineDummy, EngineDummyNoVariants)
+engines = (
+  EngineEspeak,
+  EngineDummy,
+  EngineDummyNoVariants,
+)

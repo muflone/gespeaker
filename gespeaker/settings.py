@@ -111,7 +111,7 @@ class Settings(object):
   def logText(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
     """Print a text with current date and time based on verbose level"""
     if verbose_level <= self.options.verbose_level:
-      print '[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text)
+      print('[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text))
 
   def is_debug(self):
     """Return True if the debug is currently active"""

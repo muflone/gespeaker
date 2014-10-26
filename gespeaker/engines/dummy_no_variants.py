@@ -59,7 +59,7 @@ class EngineDummyNoVariants(EngineBase):
   def _do_play(self, text):
     """Play the text"""
     for letter in text[::-1]:
-      print letter
+      print(letter)
       time.sleep(0.1)
 
   def is_playing(self, on_play_completed):

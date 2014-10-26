@@ -42,7 +42,6 @@ COL_LANGUAGE, COL_NAME, COL_MBROLA = range(3)
 
 class gespeakerUI(object):
   def __init__(self):
-    print 'starting %s' % handlepaths.APP_NAME
     # Create temporary filename
     self.tempFilename = tempfile.mkstemp(prefix=handlepaths.APP_NAME)[1]
     self.timeoutCheck = None
