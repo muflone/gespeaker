@@ -103,7 +103,6 @@ class gespeakerUI(object):
     # Load controls from gladeFile
     print 'loading controls from UI'
     gw = self.gladeFile.get_widget
-    self.winMain = gw('winMain')
     self.winMain.set_title(handlepaths.APP_TITLE)
     self.winMain.set_icon_from_file(handlepaths.get_app_logo())
     
@@ -113,17 +112,12 @@ class gespeakerUI(object):
     self.hscSpeed = gw('hscSpeed')
     self.hscDelay = gw('hscDelay')
     self.lblVoice = gw('lblVoice')
-    self.imgmenuEditPlay = gw('imgmenuEditPlay')
-    self.imgmenuEditStop = gw('imgmenuEditStop')
     self.imgmenuFileRec = gw('imgmenuFileRec')
     self.tlbStop = gw('tlbStop')
-    self.btnPlayStop = gw('btnPlayStop')
     self.btnPause = gw('btnPause')
     self.tlbRecord = gw('tlbRecord')
     self.stbStatus = gw('stbStatus')
     self.statusContextId = self.stbStatus.get_context_id(handlepaths.APP_NAME)
-    self.imgmenuEditPause = gw('imgmenuEditPause')
-    self.imgMbrola = gw('imgMbrola')
     # Select default voice
     self.defaultLanguageIndex = 0
     defaultLanguage = _('default language')
@@ -298,10 +292,6 @@ class gespeakerUI(object):
       Settings.load()
       self.loadSettings(True)
 
-
-  def on_imgmenuEditStop_activate(self, widget, data=None):
-    "Press button to stop play, indirect cause button style"
-    self.btnPlayStop.set_active(False)
 
   def on_imgmenuEditPause_activate(self, widget, data=None):
     "Press button to pause or continue"

@@ -62,7 +62,11 @@ class MainWindow(object):
       genders = ['', ]
       if self.backend.engines[current_engine].has_gender:
         genders.append(self.ui.optionVoiceMale.get_active() and 'male' or 'female')
-      return model.get_value(iter, self.modelVariants.COL_ENGINE) in (current_engine, '') and \
+      # Return True if the variant is the normal voice (without engine name)
+      # or it's of the currently selected engine
+      # and of the currently selected gender or gender agnostic
+      engines = ['', current_engine]
+      return model.get_value(iter, self.modelVariants.COL_ENGINE) in engines and \
         model.get_value(iter, self.modelVariants.COL_GENDER) in genders
     # Load available languages
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
@@ -176,7 +180,7 @@ class MainWindow(object):
       self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
 
   def on_actionPlay_activate(self, action):
-    print 'play'
+    """Play the text in the buffer"""
     self.ui.actionPlayStop.set_active(True)
     self.backend.play(
       engine=self._get_current_language_engine(),
@@ -186,10 +190,11 @@ class MainWindow(object):
       variant=self._get_current_variant_name())
 
   def on_actionStop_activate(self, action):
-    print 'stop'
+    """Stop any previous play"""
     self.ui.actionPlayStop.set_active(False)
 
   def on_actionPlayStop_toggled(self, action):
+    """Play or stop play"""
     if self.ui.actionPlayStop.get_active():
       self.on_actionPlay_activate(action)
     else:
