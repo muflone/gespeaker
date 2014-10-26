@@ -19,11 +19,13 @@
 ##
 
 from .espeak import EngineEspeak
+from .mbrola import EngineMBROLA
 from .dummy import EngineDummy
 from .dummy_no_variants import EngineDummyNoVariants
 
 engines = (
   EngineEspeak,
+  EngineMBROLA,
   EngineDummy,
   EngineDummyNoVariants,
 )
