@@ -120,8 +120,7 @@ class EngineEspeak(EngineBase):
       arguments.append(language)
     else:
       arguments.append('%s+%s' % (language, variant))
-    if self.settings.is_debug():
-      print arguments
+    self.settings.debug_line(arguments)
     self._espeak_process = subprocess.Popen(arguments, stdin=subprocess.PIPE)
     self._espeak_process.stdin.write(text)
     self._espeak_process.stdin.flush()
@@ -139,8 +138,7 @@ class EngineEspeak(EngineBase):
     """Stop any previous play"""
     if self._espeak_process:
       # Show terminate message when debug is activated
-      if self.settings.is_debug():
-        print 'Terminate %s engine with pid %d' % (
-          self.name, self._espeak_process.pid)
+      self.settings.debug_line('Terminate %s engine with pid %d' % (
+          self.name, self._espeak_process.pid))
       self._espeak_process.terminate()
     return super(self.__class__, self).stop()

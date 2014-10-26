@@ -81,8 +81,7 @@ class EngineDummy(EngineBase):
     """Stop any previous play"""
     if self._player_process:
       # Show terminate message when debug is activated
-      if self.settings.is_debug():
-        print 'Terminate %s engine with pid %d' % (
-          self.name, self._player_process.pid)
+      self.settings.debug_line('Terminate %s engine with pid %d' % (
+          self.name, self._player_process.pid))
       self._player_process.terminate()
     return super(self.__class__, self).stop()

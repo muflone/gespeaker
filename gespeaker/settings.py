@@ -116,3 +116,8 @@ class Settings(object):
   def is_debug(self):
     """Return True if the debug is currently active"""
     return self.get_boolean(SECTION_APPLICATION, 'debug', False)
+
+  def debug_line(self, text):
+    """Print a text if the debug is enabled"""
+    if self.is_debug():
+      print(text)
