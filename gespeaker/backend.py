@@ -25,6 +25,7 @@ class Backend(object):
     """Initialize the backend"""
     self.engines = {}
     self.on_play_complete = None
+    self.current_engine = None
     # Load engines
     for engine in gespeaker.engines.engines:
       obj_engine = engine()
@@ -44,7 +45,11 @@ class Backend(object):
       result.extend(engine.get_variants())
     return result
 
-  def play(self, engine, text, language, variant):
+  def set_current_engine(self, engine):
+    """Set the current engine"""
+    self.current_engine = engine
+
+  def play(self, text, language, variant):
     """Play the text using the language and the variant"""
-    return self.engines[engine].play(
+    return self.engines[self.current_engine].play(
       text, language, variant, self.on_play_complete)

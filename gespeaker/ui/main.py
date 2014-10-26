@@ -182,8 +182,8 @@ class MainWindow(object):
   def on_actionPlay_activate(self, action):
     """Play the text in the buffer"""
     self.ui.actionPlayStop.set_active(True)
+    self.backend.set_current_engine(self._get_current_language_engine())
     self.backend.play(
-      engine=self._get_current_language_engine(),
       text=self.ui.bufferText.get_text(self.ui.bufferText.get_start_iter(),
         self.ui.bufferText.get_end_iter(), False),
       language=self._get_current_language_name(),

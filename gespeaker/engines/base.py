@@ -18,6 +18,8 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
+from gi.repository import GObject
+
 KEY_ENGINE = 'engine'
 KEY_FILENAME = 'filename'
 KEY_NAME = 'name'
@@ -29,6 +31,7 @@ class EngineBase(object):
     """Initialize the engine"""
     self.__name = None
     self.has_gender = True
+    self.playing = False
 
   def get_languages(self):
     """Get the list of all the supported languages"""
@@ -40,8 +43,18 @@ class EngineBase(object):
 
   def play(self, text, language, variant, on_play_completed):
     """Play a text using the specified language and variant"""
-    if on_play_completed:
-      on_play_completed()
+    self.playing = True
+    # Add a timer to check when the playing has stopped
+    GObject.timeout_add(500, self.is_playing, on_play_completed)
+
+  def is_playing(self, on_play_completed):
+    """Check if the engine is playing and call on_play_completed callback
+    when the playing has been completed"""
+    if self.playing:
       return True
     else:
+      # Call the callback if provided
+      if on_play_completed:
+        on_play_completed()
+      # Stop iterations
       return False

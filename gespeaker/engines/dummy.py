@@ -18,6 +18,9 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
+import multiprocessing
+import time
+
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
@@ -27,6 +30,7 @@ class EngineDummy(EngineBase):
     super(self.__class__, self).__init__()
     self.name = 'Dummy'
     self.has_gender = False
+    self._player_process = None
 
   def get_languages(self):
     """Get the list of all the supported languages"""
@@ -54,8 +58,19 @@ class EngineDummy(EngineBase):
 
   def play(self, text, language, variant, on_play_completed):
     """Play a text using the specified language and variant"""
-    import time
+    super(self.__class__, self).play(text, language, variant, on_play_completed)
+    self._player_process = multiprocessing.Process(
+      target= self._do_play, args=(text, ))
+    self._player_process.start()
+
+  def _do_play(self, text):
+    """Play the text"""
     for letter in text:
       print letter
       time.sleep(0.1)
-    super(self.__class__, self).play(text, language, variant, on_play_completed)
+
+  def is_playing(self, on_play_completed):
+    if self._player_process and not self._player_process.is_alive():
+      self.playing = False
+      self._player_process = None
+    return super(self.__class__, self).is_playing(on_play_completed)
