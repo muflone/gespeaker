@@ -69,7 +69,8 @@ class MainWindow(object):
     for language in self.backend.get_languages():
       self.modelLanguages.add(
         engine=language[KEY_ENGINE],
-        description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
+        description='%s%s' % (language[KEY_LANGUAGE],
+          self.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
         name=language[KEY_NAME]
         )
     self.ui.sortmodelLanguages.set_sort_column_id(
@@ -81,7 +82,8 @@ class MainWindow(object):
     for language in self.backend.get_variants():
       self.modelVariants.add(
         engine=language[KEY_ENGINE],
-        description='%s (%s)' % (language[KEY_LANGUAGE], language[KEY_NAME]),
+        description='%s%s' % (language[KEY_LANGUAGE],
+          self.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
         name=language[KEY_NAME],
         gender=language[KEY_GENDER]
         )
