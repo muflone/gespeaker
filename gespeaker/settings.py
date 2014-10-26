@@ -112,3 +112,7 @@ class Settings(object):
     """Print a text with current date and time based on verbose level"""
     if verbose_level <= self.options.verbose_level:
       print '[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text)
+
+  def is_debug(self):
+    """Return True if the debug is currently active"""
+    return self.get_boolean(SECTION_APPLICATION, 'debug', False)
