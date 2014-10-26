@@ -24,16 +24,6 @@ from gettext import gettext as _
 from DialogSimpleMessages import ShowDialogError
 
 class EspeakFrontend(object):
-  def __init__(self):
-    self.procTalk = None
-    print 'python version detected: %d.%d' % (
-      SubprocessWrapper.PYTHON_VERSION[0], SubprocessWrapper.PYTHON_VERSION[1])
-
-  def isPlaying(self):
-    "Check if a process is still running"
-    return self.procTalk and (
-      self.procTalk[0].poll() == None or self.procTalk[1].poll() == None)
-
   def pauseOrResume(self, status):
     "Pause or Resume the playing, based on status"
     if self.procTalk:

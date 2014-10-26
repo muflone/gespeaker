@@ -103,7 +103,6 @@ class gespeakerUI(object):
     # Load controls from gladeFile
     print 'loading controls from UI'
     gw = self.gladeFile.get_widget
-    self.winMain.set_title(handlepaths.APP_TITLE)
     self.winMain.set_icon_from_file(handlepaths.get_app_logo())
     
     self.expSettings = gw('expSettings')
