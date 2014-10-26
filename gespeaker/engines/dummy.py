@@ -70,6 +70,8 @@ class EngineDummy(EngineBase):
       time.sleep(0.1)
 
   def is_playing(self, on_play_completed):
+    """Check if the engine is playing and call on_play_completed callback
+    when the playing has been completed"""
     if self._player_process and not self._player_process.is_alive():
       self.playing = False
       self._player_process = None

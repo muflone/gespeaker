@@ -91,6 +91,7 @@
         <property name="label" translatable="yes">Pause</property>
         <property name="icon_name">media-playback-pause</property>
         <property name="is_important">True</property>
+        <property name="sensitive">False</property>
       </object>
     </child>
     <child>
@@ -570,6 +571,7 @@
                     </child>
                     <child>
                       <object class="GtkToggleButton" id="btnPause">
+                        <property name="use_action_appearance">True</property>
                         <property name="related_action">actionPause</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>

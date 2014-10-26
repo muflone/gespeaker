@@ -182,12 +182,6 @@ class MainWindow(object):
   def on_actionPlay_activate(self, action):
     """Play the text in the buffer"""
     self.ui.actionPlayStop.set_active(True)
-    self.backend.set_current_engine(self._get_current_language_engine())
-    self.backend.play(
-      text=self.ui.bufferText.get_text(self.ui.bufferText.get_start_iter(),
-        self.ui.bufferText.get_end_iter(), False),
-      language=self._get_current_language_name(),
-      variant=self._get_current_variant_name())
 
   def on_actionStop_activate(self, action):
     """Stop any previous play"""
@@ -196,6 +190,13 @@ class MainWindow(object):
   def on_actionPlayStop_toggled(self, action):
     """Play or stop play"""
     if self.ui.actionPlayStop.get_active():
-      self.on_actionPlay_activate(action)
+      # Play the text
+      self.backend.set_current_engine(self._get_current_language_engine())
+      self.backend.play(
+        text=self.ui.bufferText.get_text(self.ui.bufferText.get_start_iter(),
+          self.ui.bufferText.get_end_iter(), False),
+        language=self._get_current_language_name(),
+        variant=self._get_current_variant_name())
     else:
-      self.on_actionStop_activate(action)
+      # Stop any previous play
+      self.backend.stop()
