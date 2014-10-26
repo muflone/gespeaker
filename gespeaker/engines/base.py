@@ -58,3 +58,7 @@ class EngineBase(object):
         on_play_completed()
       # Stop iterations
       return False
+
+  def stop(self):
+    """Stop any previous play"""
+    self.playing = False

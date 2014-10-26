@@ -53,3 +53,7 @@ class Backend(object):
     """Play the text using the language and the variant"""
     return self.engines[self.current_engine].play(
       text, language, variant, self.on_play_complete)
+
+  def stop(self):
+    """Stop any previous play"""
+    return self.engines[self.current_engine].stop()

@@ -67,3 +67,9 @@ class EngineDummyNoVariants(EngineBase):
       self.playing = False
       self._player_process = None
     return super(self.__class__, self).is_playing(on_play_completed)
+
+  def stop(self):
+    """Stop any previous play"""
+    if self._player_process:
+      self._player_process.terminate()
+    return super(self.__class__, self).stop()
