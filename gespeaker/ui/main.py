@@ -31,22 +31,23 @@ from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 from gespeaker.engines.base import KEY_ENGINE, KEY_LANGUAGE, KEY_NAME, KEY_GENDER
 
 class MainWindow(object):
-  def __init__(self, application, backend, settings):
+  def __init__(self, application, backend):
     self.application = application
     self.ui = GtkBuilderLoader(FILE_UI_MAIN)
     self.backend = backend
     self.backend.on_play_complete = lambda: self.ui.actionPlayStop.set_active(False)
-    self.settings = settings
     self.loadUI()
     # Restore the saved size and position
-    if self.settings.get_value('width', 0) and self.settings.get_value('height', 0):
+    if self.backend.settings.get_value('width', 0) and \
+        self.backend.settings.get_value('height', 0):
       self.ui.winMain.set_default_size(
-        self.settings.get_value('width', -1),
-        self.settings.get_value('height', -1))
-    if self.settings.get_value('left', 0) and self.settings.get_value('top', 0):
+        self.backend.settings.get_value('width', -1),
+        self.backend.settings.get_value('height', -1))
+    if self.backend.settings.get_value('left', 0) and \
+        self.backend.settings.get_value('top', 0):
       self.ui.winMain.move(
-        self.settings.get_value('left', 0),
-        self.settings.get_value('top', 0))
+        self.backend.settings.get_value('left', 0),
+        self.backend.settings.get_value('top', 0))
     # Load the others dialogs
     self.about = AboutWindow(self.ui.winMain, False)
 
@@ -74,7 +75,7 @@ class MainWindow(object):
       self.modelLanguages.add(
         engine=language[KEY_ENGINE],
         description='%s%s' % (language[KEY_LANGUAGE],
-          self.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
+          self.backend.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
         name=language[KEY_NAME]
         )
     self.ui.sortmodelLanguages.set_sort_column_id(
@@ -87,7 +88,7 @@ class MainWindow(object):
       self.modelVariants.add(
         engine=language[KEY_ENGINE],
         description='%s%s' % (language[KEY_LANGUAGE],
-          self.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
+          self.backend.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
         name=language[KEY_NAME],
         gender=language[KEY_GENDER]
         )
@@ -115,8 +116,8 @@ class MainWindow(object):
   def on_actionQuit_activate(self, action):
     """Quit the application"""
     # Save settings for window size
-    self.settings.set_sizes(self.ui.winMain)
-    self.settings.save()
+    self.backend.settings.set_sizes(self.ui.winMain)
+    self.backend.settings.save()
     self.about.destroy()
     self.ui.winMain.destroy()
     self.application.quit()

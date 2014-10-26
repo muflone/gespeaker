@@ -30,14 +30,14 @@ from gespeaker.ui.main import MainWindow
 class Application(Gtk.Application):
   def __init__(self, settings):
     super(self.__class__, self).__init__(application_id=APP_ID)
-    self.backend = Backend()
+    self.backend = Backend(settings)
     self.settings = settings
     self.connect("activate", self.activate)
     self.connect('startup', self.startup)
 
   def startup(self, application):
     """Configure the application during the startup"""
-    self.ui = MainWindow(self, self.backend, self.settings)
+    self.ui = MainWindow(self, self.backend)
     # Add the actions related to the app menu
     action = Gio.SimpleAction(name="about")
     action.connect("activate", self.on_app_about_activate)

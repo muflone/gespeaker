@@ -34,9 +34,9 @@ DIR_MBROLA = 'mb'
 DIR_TEST = 'test'
 
 class EngineEspeak(EngineBase):
-  def __init__(self):
+  def __init__(self, settings):
     """Initialize the engine"""
-    super(self.__class__, self).__init__()
+    super(self.__class__, self).__init__(settings)
     self.name = 'eSpeak'
     self.include_test_voices = True
     self.languages_path = '/usr/share/espeak-data/voices'

@@ -25,9 +25,9 @@ from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
 class EngineDummy(EngineBase):
-  def __init__(self):
+  def __init__(self, settings):
     """Initialize the engine"""
-    super(self.__class__, self).__init__()
+    super(self.__class__, self).__init__(settings)
     self.name = 'Dummy'
     self.has_gender = False
     self._player_process = None

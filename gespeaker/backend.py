@@ -21,14 +21,15 @@
 import gespeaker.engines
 
 class Backend(object):
-  def __init__(self):
+  def __init__(self, settings):
     """Initialize the backend"""
     self.engines = {}
     self.on_play_complete = None
     self.current_engine = None
+    self.settings = settings
     # Load engines
     for engine in gespeaker.engines.engines:
-      obj_engine = engine()
+      obj_engine = engine(settings)
       self.engines[obj_engine.name] = obj_engine
 
   def get_languages(self):
