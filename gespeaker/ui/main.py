@@ -165,6 +165,8 @@ class MainWindow(object):
     self.ui.optionVoiceFemale.set_sensitive(has_gender)
     # Update variants list
     self.ui.filtermodelVariants.refilter()
+    self.ui.cboVariants.set_tooltip_text(
+      '%d variant(s) available' % len(self.ui.filtermodelVariants))
     if self.ui.cboVariants.get_active() == -1:
       # Position the variant again to the normal voice variant
       treepath = self.modelVariants.get_row_from_description(
@@ -234,6 +236,8 @@ class MainWindow(object):
     self.ui.optionVoiceFemale.set_sensitive(enabled_engines)
     self.ui.lblEngine.set_sensitive(enabled_engines)
     self.ui.lblEngineName.set_sensitive(enabled_engines)
+    self.ui.cboLanguages.set_tooltip_text('%d languages available' % 
+      self.modelLanguages.count())
     # Add dummy option
     if self.modelLanguages.count() == 0:
       self.modelLanguages.add('', 'No enabled engines', '')
