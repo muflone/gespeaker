@@ -114,30 +114,34 @@ class EngineMBROLA(EngineBase):
   def play(self, text, language, variant, on_play_completed):
     """Play a text using the specified language and variant"""
     super(self.__class__, self).play(text, language, variant, on_play_completed)
-    arguments = ['espeak', '-v']
+    espeak_arguments = ['espeak', '--stdout', '-v']
     if not variant:
-      arguments.append(language)
+      espeak_arguments.append(language)
     else:
-      arguments.append('%s+%s' % (language, variant))
-    self.settings.debug_line(arguments)
-    self._espeak_process = subprocess.Popen(arguments, stdin=subprocess.PIPE)
-    self._espeak_process.stdin.write(text)
-    self._espeak_process.stdin.flush()
-    self._espeak_process.stdin.close()
+      espeak_arguments.append('%s+%s' % (language, variant))
+    self.settings.debug_line(espeak_arguments)
+    process_espeak = subprocess.Popen(espeak_arguments,
+      stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    process_espeak.stdin.write(text)
+    process_espeak.stdin.flush()
+    process_espeak.stdin.close()
+    player_arguments = ('paplay', )
+    self._player_process = subprocess.Popen(player_arguments,
+      stdin=process_espeak.stdout)
 
   def is_playing(self, on_play_completed):
     """Check if the engine is playing and call on_play_completed callback
     when the playing has been completed"""
-    if self._espeak_process and self._espeak_process.poll() is not None:
+    if self._player_process and self._player_process.poll() is not None:
       self.playing = False
-      self._espeak_process = None
+      self._player_process = None
     return super(self.__class__, self).is_playing(on_play_completed)
 
   def stop(self):
     """Stop any previous play"""
-    if self._espeak_process:
+    if self._player_process:
       # Show terminate message when debug is activated
       self.settings.debug_line('Terminate %s engine with pid %d' % (
-          self.name, self._espeak_process.pid))
-      self._espeak_process.terminate()
+          self.name, self._player_process.pid))
+      self._player_process.terminate()
     return super(self.__class__, self).stop()
