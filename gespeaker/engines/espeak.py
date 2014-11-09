@@ -121,24 +121,24 @@ class EngineEspeak(EngineBase):
     else:
       arguments.append('%s+%s' % (language, variant))
     self.settings.debug_line(arguments)
-    self._espeak_process = subprocess.Popen(arguments, stdin=subprocess.PIPE)
-    self._espeak_process.stdin.write(text)
-    self._espeak_process.stdin.flush()
-    self._espeak_process.stdin.close()
+    self.process_espeak = subprocess.Popen(arguments, stdin=subprocess.PIPE)
+    self.process_espeak.stdin.write(text)
+    self.process_espeak.stdin.flush()
+    self.process_espeak.stdin.close()
 
   def is_playing(self, on_play_completed):
     """Check if the engine is playing and call on_play_completed callback
     when the playing has been completed"""
-    if self._espeak_process and self._espeak_process.poll() is not None:
+    if self.process_espeak and self.process_espeak.poll() is not None:
       self.playing = False
-      self._espeak_process = None
+      self.process_espeak = None
     return super(self.__class__, self).is_playing(on_play_completed)
 
   def stop(self):
     """Stop any previous play"""
-    if self._espeak_process:
+    if self.process_espeak:
       # Show terminate message when debug is activated
       self.settings.debug_line('Terminate %s engine with pid %d' % (
-          self.name, self._espeak_process.pid))
-      self._espeak_process.terminate()
+          self.name, self.process_espeak.pid))
+      self.process_espeak.terminate()
     return super(self.__class__, self).stop()
