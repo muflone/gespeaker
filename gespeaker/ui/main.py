@@ -35,7 +35,7 @@ class MainWindow(object):
     self.application = application
     self.ui = GtkBuilderLoader(FILE_UI_MAIN)
     self.backend = backend
-    self.backend.on_play_complete = lambda: self.ui.actionPlayStop.set_active(False)
+    self.backend.on_play_complete = self.on_backend_play_complete
     self.loadUI()
     # Restore the saved size and position
     if self.backend.settings.get_value('width', 0) and \
@@ -203,9 +203,20 @@ class MainWindow(object):
           self.ui.bufferText.get_end_iter(), False),
         language=self._get_current_language_name(),
         variant=self._get_current_variant_name())
+      self.ui.actionPause.set_active(False)
+      self.ui.actionPause.set_sensitive(True)
     else:
       # Stop any previous play
       self.backend.stop()
+
+  def on_actionPause_toggled(self, action):
+    """Pause or resume"""
+    if self.ui.actionPlayStop.get_active():
+      # Pause or resume
+      self.backend.pause(self.ui.actionPause.get_active())
+    else:
+      # Uncheck the Pause button if no playing is active
+      self.ui.actionPause.set_active(False)
 
   def on_actionRefresh_activate(self, action):
     """Reload the available voices list"""
@@ -250,3 +261,9 @@ class MainWindow(object):
     engine.enabled = action.get_active()
     self.backend.settings.set_engine_status(engine.name, engine.enabled)
     self.on_actionRefresh_activate(action)
+
+  def on_backend_play_complete(self):
+    """Whenever a playing is completed uncheck the Play button and
+    disable the Pause button"""
+    self.ui.actionPlayStop.set_active(False)
+    self.ui.actionPause.set_sensitive(False)

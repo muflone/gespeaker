@@ -24,22 +24,6 @@ from gettext import gettext as _
 from DialogSimpleMessages import ShowDialogError
 
 class EspeakFrontend(object):
-  def pauseOrResume(self, status):
-    "Pause or Resume the playing, based on status"
-    if self.procTalk:
-      # Check if espeak is still runnning
-      if self.procTalk[0].poll() == None:
-        if status:
-          self.procTalk[0].stop()
-        else:
-          self.procTalk[0].resume()
-      # Check if player is still runnning
-      if self.procTalk[1].poll() == None:
-        if status:
-          self.procTalk[1].stop()
-        else:
-          self.procTalk[1].resume()
-
   def play(self, cmdEspeak, cmdPlayer, fileToRecord=None):
     "Play the command provided"
     # If save to file has been requested add -w else --stdout
@@ -90,45 +74,6 @@ class EspeakFrontend(object):
       procMbrola = SubprocessWrapper.Popen(['cat', fileToRecord],
         stdout=SubprocessWrapper.PIPE)
       self.__playAudio(procMbrola, cmdPlayer)
-
-  def __playAudio(self, procFrom, cmdPlayer):
-    "Play audio with the player piping from a process"
-    try:
-      procPlay = SubprocessWrapper.Popen(cmdPlayer.split(), 
-        stdin=procFrom.stdout,
-        stdout=SubprocessWrapper.PIPE,
-        stderr=SubprocessWrapper.PIPE)
-    except OSError, (errno, strerror):
-      # Error during communicate"
-      ShowDialogError(
-        title=_('Audio testing'),
-        showOk=True,
-        text=_('There was an error during the test for the audio player.\n\n'
-          'Error %s: %s') % (errno, strerror),
-        icon=handlepaths.get_app_logo()
-      )
-      procPlay = None
-    # Save both processes espeak and player
-    if procPlay:
-      self.procTalk = (procFrom, procPlay)
-
-  def stop(self):
-    "Stop audio killing espeak and player"
-    # If played at least once then we have procTalk
-    if self.procTalk:
-      # Check if espeak is still running
-      if self.procTalk[0].poll() == None:
-        print 'killing espeak with pid %d' % self.procTalk[0].pid
-        self.procTalk[0].terminate()
-      # Check if player is still runnning
-      if self.procTalk[1].poll() == None:
-        print 'killing player with pid %d' % self.procTalk[1].pid
-        self.procTalk[1].terminate()
-      # We don't need processes anymore
-      self.procTalk = None
-      return True
-    else:
-      return False
 
   def loadMbrolaVoices(self, pathVoicesmb):
     "Load mbrola languages list"

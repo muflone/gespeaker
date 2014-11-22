@@ -66,3 +66,7 @@ FILE_LICENSE = os.path.join(DIR_DOCS, 'license')
 FILE_RESOURCES = os.path.join(DIR_DOCS, 'resources')
 # Set the paths for configuration files
 FILE_SETTINGS_NEW = os.path.join(DIR_SETTINGS, 'settings.conf')
+
+# Signals for pause and resume
+SIGCONT = 18
+SIGSTOP = 19

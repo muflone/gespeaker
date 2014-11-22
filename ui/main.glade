@@ -104,6 +104,7 @@
         <property name="icon_name">media-playback-pause</property>
         <property name="is_important">True</property>
         <property name="sensitive">False</property>
+        <signal name="toggled" handler="on_actionPause_toggled" swapped="no"/>
       </object>
     </child>
     <child>

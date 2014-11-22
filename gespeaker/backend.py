@@ -57,4 +57,9 @@ class Backend(object):
 
   def stop(self):
     """Stop any previous play"""
+    self.pause(False)
     return self.engines[self.current_engine].stop()
+
+  def pause(self, status):
+    """Pause a previous play or resume after pause"""
+    return self.engines[self.current_engine].pause(status)

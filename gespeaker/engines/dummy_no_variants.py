@@ -20,7 +20,9 @@
 
 import multiprocessing
 import time
+import os
 
+from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
@@ -78,3 +80,14 @@ class EngineDummyNoVariants(EngineBase):
           self.name, self._player_process.pid))
       self._player_process.terminate()
     return super(self.__class__, self).stop()
+
+  def pause(self, status):
+    """Pause a previous play or resume after pause"""
+    super(self.__class__, self).pause(status)
+    if self._player_process:
+      # Show pause message when debug is activated
+      self.settings.debug_line('%s %s engine with pid %d' % (
+        status and 'Pause' or 'Resume',
+        self.name, self._player_process.pid))
+      os.kill(self._player_process.pid, status and SIGSTOP or SIGCONT)
+    return True

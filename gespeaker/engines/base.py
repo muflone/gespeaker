@@ -64,3 +64,7 @@ class EngineBase(object):
   def stop(self):
     """Stop any previous play"""
     self.playing = False
+
+  def pause(self, status):
+    """Pause a previous play or resume after pause"""
+    return True

@@ -70,21 +70,12 @@ class gespeakerUI(object):
     }
     # Signals handler
     signals = {
-      'on_imgmenuEditPlay_activate': self.on_imgmenuEditPlay_activate,
       'on_imgmenuFileNew_activate': self.on_imgmenuFileNew_activate,
       'on_imgmenuFileOpen_activate': self.on_imgmenuFileOpen_activate,
       'on_imgmenuFileSaveAs_activate': self.on_imgmenuFileSaveAs_activate,
-      'on_imgmenuEditStop_activate': self.on_imgmenuEditStop_activate,
-      'on_btnPlayStop_toggled': self.on_btnPlayStop_toggled,
-      'on_btnPause_toggled': self.on_btnPause_toggled,
       'on_tlbRecord_toggled': self.on_tlbRecord_toggled,
-      'on_imgmenuEditPause_activate': self.on_imgmenuEditPause_activate,
       'on_imgmenuFileRec_activate': self.on_imgmenuFileRec_activate,
       'on_imgmenuEditResetSettings_activate': self.on_imgmenuEditResetSettings_activate,
-      'on_imgmenuEditCut_activate': self.on_imgmenuEditCut_activate,
-      'on_imgmenuEditCopy_activate': self.on_imgmenuEditCopy_activate,
-      'on_imgmenuEditPaste_activate': self.on_imgmenuEditPaste_activate,
-      'on_imgmenuHelpAbout_activate': self.on_imgmenuHelpAbout_activate,
       'on_imgmenuEditPreferences_activate': self.on_imgmenuEditPreferences_activate,
       'on_radioVoice_toggled': self.on_radioVoice_toggled,
     }
@@ -111,8 +102,6 @@ class gespeakerUI(object):
     self.hscDelay = gw('hscDelay')
     self.lblVoice = gw('lblVoice')
     self.imgmenuFileRec = gw('imgmenuFileRec')
-    self.tlbStop = gw('tlbStop')
-    self.btnPause = gw('btnPause')
     self.tlbRecord = gw('tlbRecord')
     self.stbStatus = gw('stbStatus')
     self.statusContextId = self.stbStatus.get_context_id(handlepaths.APP_NAME)
@@ -167,10 +156,6 @@ class gespeakerUI(object):
       os.remove(self.tempFilename)
     gtk.main_quit()
     return 0
-  
-  def on_imgmenuEditPlay_activate(self, widget, data=None):
-    "Press button to start play, indirect cause button style"
-    self.btnPlayStop.set_active(True)
   
   def on_imgmenuFileNew_activate(self, widget, confirm=True):
     "Clears the whole text"
@@ -290,11 +275,6 @@ class gespeakerUI(object):
       Settings.load()
       self.loadSettings(True)
 
-
-  def on_imgmenuEditPause_activate(self, widget, data=None):
-    "Press button to pause or continue"
-    self.btnPause.set_active(not self.btnPause.get_active())
-
   def on_imgmenuFileRec_activate(self, widget, filename=None):
     "Press button to record or disable recording"
     if filename:
@@ -309,55 +289,8 @@ class gespeakerUI(object):
     else:
       self.tlbRecord.set_active(not self.tlbRecord.get_active())
 
-  def checkIfPlaying(self):
-    "Check if a process is still running"
-    if self.espeak.isPlaying():
-      # Still running
-      return True
-    else:
-      # Disable stop buttons on menu and toolbar
-      self.btnPlayStop.set_active(False)
-      return False
-
-  def setStopCheck(self, active):
-    "Set/unset timeout check for running processes"
-    if active:
-      self.timeoutCheck = gobject.timeout_add(500, self.checkIfPlaying)
-    else:
-      gobject.source_remove(self.timeoutCheck)
-      self.timeoutCheck = None
-
-  def on_btnPlayStop_toggled(self, widget, data=None):
-    "Play and stop by pressing and releasing the button"
-    if self.btnPlayStop.get_active() and TextBuffer_get_text(self.txvBuffer):
-      # Button active so we have to start to play
-      self.startPlaying()
-    elif self.btnPlayStop.get_active():
-      self.btnPlayStop.set_active(False)
-    elif TextBuffer_get_text(self.txvBuffer):
-      # If Pause button is active then we have to continue before to kill
-      if self.btnPause.get_active():
-        self.btnPause.set_active(False)
-      # Button inactive so we have to stop the playing
-      self.stopPlaying()
-
-  def on_btnPause_toggled(self, widget, data=None):
-    "Pause and unpause espeak and player by signals STOP/CONT"
-    self.espeak.pauseOrResume(self.btnPause.get_active())
-
-  def startPlaying(self):
-    "Play whole text"
-    self.playText(TextBuffer_get_text(self.txvBuffer))
-
   def playText(self, text):
     if text:
-      # Save buffer text on temporary filename and play it
-      tmpFile = open(self.tempFilename, mode='w')
-      tmpFile.write(text)
-      tmpFile.close()
-      # Replace espeak's arguments with dialog values
-      language = self.listLanguages[self.cboLanguages.get_active()][COL_NAME]
-      isMbrola = self.listLanguages[self.cboLanguages.get_active()][COL_MBROLA]
       # Apply variant and voice to non-mbrola voices
       if not isMbrola:
         # Choose voice variant
@@ -378,13 +311,8 @@ class gespeakerUI(object):
       cmd = [Settings.cmdEspeak] + [
         args.get(p, p) for p in Settings.argsEspeak.split()]
       # Enable stop buttons on menu and toolbar
-      self.imgmenuEditPlay.set_sensitive(False)
-      self.imgmenuEditStop.set_sensitive(True)
-      self.imgmenuEditPause.set_sensitive(True)
       self.imgmenuFileRec.set_sensitive(False)
       self.btnPause.set_sensitive(True)
-      self.btnPlayStop.set_label('gtk-media-stop')
-      self.tlbRecord.set_sensitive(False)
       if not isMbrola:
         self.espeak.play(cmd, self.cmdPlayer, self.recordToFile)
       else:
@@ -398,22 +326,7 @@ class gespeakerUI(object):
         cmdMbrola = [Settings.cmdMbrola] + [
           args.get(p, p) for p in Settings.argsMbrola.split()]
         self.espeak.playMbrola(cmd, self.cmdPlayer, cmdMbrola, self.recordToFile)
-      # Enable check for running processes
-      self.setStopCheck(True)
 
-  def stopPlaying(self):
-    self.espeak.stop()
-    # Disable buttons and menus
-    self.setStopCheck(False)
-    self.imgmenuEditPlay.set_sensitive(True)
-    self.imgmenuEditStop.set_sensitive(False)
-    self.imgmenuEditPause.set_sensitive(False)
-    self.imgmenuFileRec.set_sensitive(True)
-    self.btnPause.set_sensitive(False)
-    self.btnPlayStop.set_label('gtk-media-play')
-    if Settings.get('SingleRecord'):
-      self.tlbRecord.set_active(False)
-    self.tlbRecord.set_sensitive(True)
 
   def on_imgmenuEditPreferences_activate(self, widget, data=None):
     "Show preferences dialog"
@@ -464,21 +377,6 @@ class gespeakerUI(object):
       for v in self.variants[widget is self.radioVoiceFemale and 1 or 0]:
         self.listVariants.append(v)
       self.cboVariants.set_active(0)
-
-  def set_text(self, text, insert_type=0):
-    "Set buffer text"
-    if insert_type == 0:
-      # Replace previous text
-      self.txvBuffer.set_text(text)
-    elif insert_type == 1:
-      # Insert at cursor
-      self.txvBuffer.insert_at_cursor(text)
-    elif insert_type == 2:
-      # Insert at the begin
-      self.txvBuffer.insert(self.txvBuffer.get_start_iter(), text)
-    elif insert_type == 3:
-      # Insert at the end
-      self.txvBuffer.insert(self.txvBuffer.get_end_iter(), text)
 
   def set_position(self, position):
     "Set window position"
