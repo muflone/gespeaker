@@ -117,6 +117,8 @@ class MainWindow(object):
 
   def on_actionQuit_activate(self, action):
     """Quit the application"""
+    # Stop any previous play
+    self.ui.actionPlayStop.set_active(False)
     # Save settings for window size
     self.backend.settings.set_sizes(self.ui.winMain)
     self.backend.settings.save()
