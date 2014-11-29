@@ -34,6 +34,8 @@ class EngineBase(object):
     self.playing = False
     self.settings = settings
     self.enabled = True
+    self.process_speaker = None
+    self.process_player = None
 
   def get_languages(self):
     """Get the list of all the supported languages"""

@@ -121,39 +121,39 @@ class EngineMBROLA(EngineBase):
     else:
       espeak_arguments.append('%s+%s' % (language, variant))
     self.settings.debug_line(espeak_arguments)
-    process_espeak = subprocess.Popen(espeak_arguments,
+    self.process_speaker = subprocess.Popen(espeak_arguments,
       stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    process_espeak.stdin.write(text)
-    process_espeak.stdin.flush()
-    process_espeak.stdin.close()
+    self.process_speaker.stdin.write(text)
+    self.process_speaker.stdin.flush()
+    self.process_speaker.stdin.close()
     player_arguments = ('paplay', )
-    self._player_process = subprocess.Popen(player_arguments,
-      stdin=process_espeak.stdout)
+    self.process_player = subprocess.Popen(player_arguments,
+      stdin=self.process_speaker.stdout)
 
   def is_playing(self, on_play_completed):
     """Check if the engine is playing and call on_play_completed callback
     when the playing has been completed"""
-    if self._player_process and self._player_process.poll() is not None:
+    if self.process_player and self.process_player.poll() is not None:
       self.playing = False
-      self._player_process = None
+      self.process_player = None
     return super(self.__class__, self).is_playing(on_play_completed)
 
   def stop(self):
     """Stop any previous play"""
-    if self._player_process:
+    if self.process_player:
       # Show terminate message when debug is activated
       self.settings.debug_line('Terminate %s engine with pid %d' % (
-          self.name, self._player_process.pid))
-      self._player_process.terminate()
+          self.name, self.process_player.pid))
+      self.process_player.terminate()
     return super(self.__class__, self).stop()
 
   def pause(self, status):
     """Pause a previous play or resume after pause"""
     super(self.__class__, self).pause(status)
-    if self._player_process:
+    if self.process_player:
       # Show pause message when debug is activated
       self.settings.debug_line('%s %s engine with pid %d' % (
         status and 'Pause' or 'Resume',
-        self.name, self._player_process.pid))
-      os.kill(self._player_process.pid, status and SIGSTOP or SIGCONT)
+        self.name, self.process_player.pid))
+      os.kill(self.process_player.pid, status and SIGSTOP or SIGCONT)
     return True

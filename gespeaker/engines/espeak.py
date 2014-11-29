@@ -122,35 +122,35 @@ class EngineEspeak(EngineBase):
     else:
       arguments.append('%s+%s' % (language, variant))
     self.settings.debug_line(arguments)
-    self.process_espeak = subprocess.Popen(arguments, stdin=subprocess.PIPE)
-    self.process_espeak.stdin.write(text)
-    self.process_espeak.stdin.flush()
-    self.process_espeak.stdin.close()
+    self.process_speaker = subprocess.Popen(arguments, stdin=subprocess.PIPE)
+    self.process_speaker.stdin.write(text)
+    self.process_speaker.stdin.flush()
+    self.process_speaker.stdin.close()
 
   def is_playing(self, on_play_completed):
     """Check if the engine is playing and call on_play_completed callback
     when the playing has been completed"""
-    if self.process_espeak and self.process_espeak.poll() is not None:
+    if self.process_speaker and self.process_speaker.poll() is not None:
       self.playing = False
-      self.process_espeak = None
+      self.process_speaker = None
     return super(self.__class__, self).is_playing(on_play_completed)
 
   def stop(self):
     """Stop any previous play"""
-    if self.process_espeak:
+    if self.process_speaker:
       # Show terminate message when debug is activated
       self.settings.debug_line('Terminate %s engine with pid %d' % (
-          self.name, self.process_espeak.pid))
-      self.process_espeak.terminate()
+          self.name, self.process_speaker.pid))
+      self.process_speaker.terminate()
     return super(self.__class__, self).stop()
 
   def pause(self, status):
     """Pause a previous play or resume after pause"""
     super(self.__class__, self).pause(status)
-    if self.process_espeak:
+    if self.process_speaker:
       # Show pause message when debug is activated
       self.settings.debug_line('%s %s engine with pid %d' % (
         status and 'Pause' or 'Resume',
-        self.name, self.process_espeak.pid))
-      os.kill(self.process_espeak.pid, status and SIGSTOP or SIGCONT)
+        self.name, self.process_speaker.pid))
+      os.kill(self.process_speaker.pid, status and SIGSTOP or SIGCONT)
     return True
