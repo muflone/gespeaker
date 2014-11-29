@@ -28,6 +28,7 @@ class FilesDialog(object):
     self.parent = winParent
     self.title = APP_NAME
     self.filters = []
+    self.last_used_filter = None
     self.current_folder = os.path.expanduser('~')
 
   def show_open(self):
@@ -61,6 +62,7 @@ class FilesDialog(object):
       result = dialog.get_filename()
     else:
       result = None
+    self.last_used_filter = dialog.get_filter()
     dialog.destroy()
     return result
 
