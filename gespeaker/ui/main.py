@@ -285,18 +285,10 @@ class MainWindow(object):
         with open(filename, 'r') as f:
           print 'loading text from %s' % filename
           self.ui.bufferText.set_text(f.read())
-      except IOError, (error_number, error_message):
-        # Handle IOError exception
-        print 'Unable to load %s (I/O error %d: %s)' % (filename, error_number,
-          error_message)
+      except Exception, error:
+        # Handle any exception
+        print 'Error loading %s (Error: %s)' % (filename, error)
         dialog = MessagesDialog(self.ui.winMain)
         dialog.primary_text = _('Error opening the file')
-        dialog.secondary_text = error_message
-        dialog.show_error()
-      except Exception, error_message:
-        # Handle every other exception
-        print 'Error loading %s (Error: %s)' % (filename, error_message)
-        dialog = MessagesDialog(self.ui.winMain)
-        dialog.primary_text = _('Error opening the file')
-        dialog.secondary_text = error_message
+        dialog.secondary_text = error
         dialog.show_error()
