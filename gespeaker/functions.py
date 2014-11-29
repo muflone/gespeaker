@@ -28,24 +28,6 @@ from gettext import gettext as _
 
 from gespeaker.constants import *
 
-def show_dialog_fileopen(parent, title):
-  """Show a FileChooserDialog with open and cancel buttons"""
-  dialog = Gtk.FileChooserDialog(
-    parent=parent,
-    flags=Gtk.DialogFlags.MODAL,
-    type=Gtk.WindowType.TOPLEVEL,
-    buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
-  )
-  if title:
-    dialog.set_title(title)
-  if dialog.run() == Gtk.ResponseType.OK:
-    result = dialog.get_filename()
-  else:
-    result = None
-  dialog.destroy()
-  return result
-
 def readlines(filename, empty_lines = False):
   """Read all the text in the specified filename, allowing to skip empty lines"""
   result = []
@@ -89,7 +71,6 @@ def show_popup_menu(menu):
   return menu.popup(None, None, None, 0, 0, Gtk.get_current_event_time())
   
 __all__ = [
-  'show_dialog_fileopen',
   'readlines',
   'process_events',
   'find_button_from_gtktreeviewcolumn',
