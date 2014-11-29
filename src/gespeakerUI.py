@@ -172,46 +172,6 @@ class gespeakerUI(object):
         self.txvBuffer.set_text('')
         print 'text cleared'
   
-  def on_imgmenuFileOpen_activate(self, widget, filename=None):
-    "Loads an external file"
-    if not filename:
-      # If filename was not provided show dialog
-      dialog = DialogFileOpen(
-        title=_('Please select the text file to open'),
-        initialDir=os.path.expanduser('~'))
-      dialog.set_icon_from_file(handlepaths.get_app_logo())
-      dialog.addFilter(_('Text files (*.txt)'), ['*.txt'], None)
-      dialog.addFilter(_('All files'), ['*'], None)
-      if dialog.show():
-        filename = dialog.filename
-      dialog.destroy()
-
-    # Open selected filename
-    if filename:
-      file = None
-      try:
-        file = open(filename, 'r')
-        self.txvBuffer.set_text(file.read())
-        print 'loading text from %s' % filename
-      except IOError, (errno, strerror):
-        ShowDialogError(
-          text=_('Error opening the file') + '\n\n%s' % strerror,
-          showOk=True,
-          icon=handlepaths.get_app_logo()
-        )
-        print 'unable to load %s (I/O error %s: %s)' % (
-          filename, errno, strerror
-        )
-      except:
-        ShowDialogError(
-          text=_('Error opening the file'), 
-          showOk=True,
-          icon=handlepaths.get_app_logo()
-        )
-        print 'error loading %s' % filename
-      if file:
-        file.close()
-  
   def on_imgmenuFileSaveAs_activate(self, widget, filename=None):
     "Saves the whole text in the specified filename"
     if not filename:

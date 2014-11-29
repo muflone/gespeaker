@@ -22,6 +22,8 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 
 from .about import AboutWindow
+from .files_dialog import FilesDialog
+from .messages_dialog import MessagesDialog
 
 from gespeaker.constants import *
 from gespeaker.functions import *
@@ -269,3 +271,32 @@ class MainWindow(object):
     disable the Pause button"""
     self.ui.actionPlayStop.set_active(False)
     self.ui.actionPause.set_sensitive(False)
+
+  def on_actionOpen_activate(self, action):
+    """Load an external text file"""
+    dialog = FilesDialog(self.ui.winMain)
+    dialog.add_filter(_('Text files'), ('text/*', ), ('*.txt', ), )
+    dialog.add_filter(_('All files'), None, ('*', ))
+    dialog.title = _('Please select the text file to open')
+    filename = dialog.show_open()
+    if filename:
+      try:
+        # Open the selected text file
+        with open(filename, 'r') as f:
+          print 'loading text from %s' % filename
+          self.ui.bufferText.set_text(f.read())
+      except IOError, (error_number, error_message):
+        # Handle IOError exception
+        print 'Unable to load %s (I/O error %d: %s)' % (filename, error_number,
+          error_message)
+        dialog = MessagesDialog(self.ui.winMain)
+        dialog.primary_text = _('Error opening the file')
+        dialog.secondary_text = error_message
+        dialog.show_error()
+      except Exception, error_message:
+        # Handle every other exception
+        print 'Error loading %s (Error: %s)' % (filename, error_message)
+        dialog = MessagesDialog(self.ui.winMain)
+        dialog.primary_text = _('Error opening the file')
+        dialog.secondary_text = error_message
+        dialog.show_error()
