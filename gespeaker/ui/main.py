@@ -26,7 +26,7 @@ from .files_dialog import FilesDialog
 from .messages_dialog import MessagesDialog
 
 from gespeaker.constants import *
-from gespeaker.functions import *
+from gespeaker.functions import _
 from gespeaker.models.languages import ModelLanguages
 from gespeaker.models.variants import ModelVariants
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader

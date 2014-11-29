@@ -44,37 +44,14 @@ def process_events():
   while Gtk.events_pending():
     Gtk.main_iteration()
 
-def find_button_from_gtktreeviewcolumn(tvwcolumn):
-  """Find the Button widget contained inside a TreeViewColumn"""
-  # Save the column title to restore it later
-  column_title = tvwcolumn.get_title()
-  # Create a Label widget and add it to the TreeViewColumn
-  label_widget = Gtk.Label('')
-  tvwcolumn.set_widget(label_widget)
-  # Iter every parent until a Button is found
-  widget = label_widget
-  while not isinstance(widget, Gtk.Button):
-    widget = widget.get_parent()
-  # Remove the Label from the TreeViewColumn and restore the column title
-  tvwcolumn.set_widget(None)
-  tvwcolumn.set_title(column_title)
-  label_widget.destroy()
-  return widget
-
 def GTK30_(message, context=None):
   """Get a translated message from GTK+ 3 domain"""
   return gettext_with_domain('gtk30', 
     context and '%s\x04%s' % (context, message) or message)
 
-def show_popup_menu(menu):
-  """Show a popup menu at the current position"""
-  return menu.popup(None, None, None, 0, 0, Gtk.get_current_event_time())
-  
 __all__ = [
   'readlines',
   'process_events',
-  'find_button_from_gtktreeviewcolumn',
   '_',
   'GTK30_',
-  'show_popup_menu'
 ]

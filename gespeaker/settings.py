@@ -24,7 +24,6 @@ import optparse
 import time
 import ConfigParser
 
-from gespeaker.functions import *
 from gespeaker.constants import *
 
 SECTION_MAINWIN = 'main window'

@@ -22,7 +22,7 @@ from gi.repository import Gtk
 from gi.repository.GdkPixbuf import Pixbuf
 
 from gespeaker.constants import *
-from gespeaker.functions import *
+from gespeaker.functions import readlines
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 
 class AboutWindow(object):
