@@ -172,48 +172,6 @@ class gespeakerUI(object):
         self.txvBuffer.set_text('')
         print 'text cleared'
   
-  def on_imgmenuFileSaveAs_activate(self, widget, filename=None):
-    "Saves the whole text in the specified filename"
-    if not filename:
-      dialog = DialogFileSave(
-        title=_('Please select where to save the text file'),
-        initialDir=os.path.expanduser('~'))
-      txtFilter = _('Text files (*.txt)')
-      dialog.addFilter(txtFilter, ['*.txt'], None)
-      dialog.addFilter(_('All files'), ['*'], None)
-      dialog.set_icon_from_file(handlepaths.get_app_logo())
-      if dialog.show():
-        filename = dialog.filename
-        if dialog.lastFilter.get_name() == txtFilter and filename[-4:] != '.txt':
-          filename += '.txt'
-        dialog.destroy()
-    # Save selected filename
-    if filename:
-      print 'saving text in %s' % filename
-      file = None
-      try:
-        file = open(filename, 'w')
-        file.write(TextBuffer_get_text(self.txvBuffer))
-        print 'file %s saved' % filename
-      except IOError, (errno, strerror):
-        ShowDialogError(
-          text=_('Error saving the file') + '\n\n%s' % strerror,
-          showOk=True,
-          icon=handlepaths.get_app_logo()
-        )
-        print 'unable to save %s (I/O error %s: %s)' % (
-          filename, errno, strerror
-        )
-      except:
-        ShowDialogError(
-          text=_('Error saving the file'),
-          showOk=True,
-          icon=handlepaths.get_app_logo()
-        )
-        print 'error saving %s' % filename
-      if file:
-        file.close()
-
   def on_imgmenuEditResetSettings_activate(self, widget, confirm=True):
     "Restore default settings"
     if confirm:

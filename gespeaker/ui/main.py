@@ -292,3 +292,27 @@ class MainWindow(object):
         dialog.primary_text = _('Error opening the file')
         dialog.secondary_text = error
         dialog.show_error()
+
+  def on_actionSaveAs_activate(self, action):
+    """Save the text to an external text file"""
+    dialog = FilesDialog(self.ui.winMain)
+    dialog.add_filter(_('Text files'), ('text/*', ), ('*.txt', ), )
+    dialog.add_filter(_('All files'), None, ('*', ))
+    dialog.title = _('Please select where to save the text file')
+    filename = dialog.show_save()
+    if filename:
+      try:
+        # Save to the selected text file
+        with open(filename, 'w') as f:
+          print 'saving text in %s' % filename
+          f.write(self.ui.bufferText.get_text(
+            start=self.ui.bufferText.get_start_iter(),
+            end=self.ui.bufferText.get_end_iter(),
+            include_hidden_chars=False))
+      except Exception, error:
+        # Handle any exception
+        print 'Error saving to %s (Error: %s)' % (filename, error)
+        dialog = MessagesDialog(self.ui.winMain)
+        dialog.primary_text = _('Error saving the file')
+        dialog.secondary_text = error
+        dialog.show_error()
