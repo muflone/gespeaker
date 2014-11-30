@@ -27,8 +27,8 @@ class MessagesDialog(object):
   def __init__(self, winParent):
     self.parent = winParent
     self.title = APP_NAME
-    self.primary_text = ""
-    self.secondary_text = ""
+    self.primary_text = ''
+    self.secondary_text = None
 
   def show_info(self, buttons=Gtk.ButtonsType.OK):
     """Show an information dialog"""
@@ -45,7 +45,7 @@ class MessagesDialog(object):
     return self.__show_dialog(message_type=Gtk.MessageType.ERROR,
       buttons=buttons)
 
-  def show_question(self, buttons=Gtk.ButtonsType.YES_NO):
+  def show_question(self, buttons=Gtk.ButtonsType.OK_CANCEL):
     """Show a question dialog"""
     return self.__show_dialog(message_type=Gtk.MessageType.QUESTION,
       buttons=buttons)
