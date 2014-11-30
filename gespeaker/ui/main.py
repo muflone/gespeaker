@@ -283,11 +283,12 @@ class MainWindow(object):
       try:
         # Open the selected text file
         with open(filename, 'r') as f:
-          print 'loading text from %s' % filename
+          self.backend.settings.debug_line('loading text from %s' % filename)
           self.ui.bufferText.set_text(f.read())
       except Exception, error:
         # Handle any exception
-        print 'Error loading %s (Error: %s)' % (filename, error)
+        self.backend.settings.debug_line('Error loading %s (Error: %s)' % (
+          filename, error))
         dialog = MessagesDialog(self.ui.winMain)
         dialog.primary_text = _('Error opening the file')
         dialog.secondary_text = error
@@ -304,14 +305,15 @@ class MainWindow(object):
       try:
         # Save to the selected text file
         with open(filename, 'w') as f:
-          print 'saving text in %s' % filename
+          self.backend.settings.debug_line('saving text in %s' % filename)
           f.write(self.ui.bufferText.get_text(
             start=self.ui.bufferText.get_start_iter(),
             end=self.ui.bufferText.get_end_iter(),
             include_hidden_chars=False))
       except Exception, error:
         # Handle any exception
-        print 'Error saving to %s (Error: %s)' % (filename, error)
+        self.backend.settings.debug_line('Error saving to %s (Error: %s)' % (
+          filename, error))
         dialog = MessagesDialog(self.ui.winMain)
         dialog.primary_text = _('Error saving the file')
         dialog.secondary_text = error
