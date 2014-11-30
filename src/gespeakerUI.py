@@ -70,9 +70,6 @@ class gespeakerUI(object):
     }
     # Signals handler
     signals = {
-      'on_imgmenuFileNew_activate': self.on_imgmenuFileNew_activate,
-      'on_imgmenuFileOpen_activate': self.on_imgmenuFileOpen_activate,
-      'on_imgmenuFileSaveAs_activate': self.on_imgmenuFileSaveAs_activate,
       'on_tlbRecord_toggled': self.on_tlbRecord_toggled,
       'on_imgmenuFileRec_activate': self.on_imgmenuFileRec_activate,
       'on_imgmenuEditResetSettings_activate': self.on_imgmenuEditResetSettings_activate,
@@ -149,29 +146,6 @@ class gespeakerUI(object):
     voicebutton = Radio_get_active(self.radioVoiceMale.get_group())
     self.on_radioVoice_toggled(voicebutton, None)
 
-  def on_imgmenuFileQuit_activate(self, widget, data=None):
-    "Close the program"
-    plugins.signal_proxy('on_closing')
-    if self.tempFilename and os.path.exists(self.tempFilename):
-      os.remove(self.tempFilename)
-    gtk.main_quit()
-    return 0
-  
-  def on_imgmenuFileNew_activate(self, widget, confirm=True):
-    "Clears the whole text"
-    if TextBuffer_get_text(self.txvBuffer):
-      if confirm:
-        dialog = DialogYesNo(
-          message=_('Do you want to delete the current text?'), 
-          default_button=gtk.RESPONSE_NO
-        )
-        dialog.set_icon_from_file(handlepaths.get_app_logo())
-        dialog.show()
-      # Clear if confirm was not requested or if the user gave response
-      if not confirm or dialog.responseIsYes():
-        self.txvBuffer.set_text('')
-        print 'text cleared'
-  
   def on_imgmenuEditResetSettings_activate(self, widget, confirm=True):
     "Restore default settings"
     if confirm:

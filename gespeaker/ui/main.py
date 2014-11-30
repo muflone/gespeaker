@@ -318,3 +318,16 @@ class MainWindow(object):
         dialog.primary_text = _('Error saving the file')
         dialog.secondary_text = error
         dialog.show_error()
+
+  def on_actionNew_activate(self, action):
+    """Clear the text buffer"""
+    if len(self.ui.bufferText.get_text(
+        start=self.ui.bufferText.get_start_iter(),
+        end=self.ui.bufferText.get_end_iter(),
+        include_hidden_chars=False)) > 0:
+      dialog = MessagesDialog(self.ui.winMain)
+      dialog.title = ''
+      dialog.primary_text = _('Do you want to delete the current text?')
+      if dialog.show_question() == Gtk.ResponseType.OK:
+        self.backend.settings.debug_line('text cleared')
+        self.ui.bufferText.set_text('')
