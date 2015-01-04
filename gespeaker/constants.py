@@ -28,7 +28,7 @@ APP_VERSION = '2.0.0'
 APP_DESCRIPTION = 'A GTK frontend for espeak'
 APP_ID = 'gespeaker.muflone.com'
 APP_URL = 'http://www.muflone.com/gespeaker'
-APP_AUTHOR = 'Fabio Castelli'
+APP_AUTHOR = 'Fabio Castelli (Muflone)'
 APP_AUTHOR_EMAIL = 'muflone@vbsimple.net'
 APP_COPYRIGHT = 'Copyright 2009-2014 %s' % APP_AUTHOR
 # Other constants
