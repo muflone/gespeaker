@@ -66,7 +66,7 @@ class InstallData(install_data):
 
 setup(
   name='Gespeaker',
-  version='0.8.5',
+  version='0.8.6',
   description='A GTK+ frontend for eSpeak and mbrola',
   author='Fabio Castelli',
   author_email='muflone@vbsimple.net',
