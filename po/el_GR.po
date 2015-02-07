@@ -1,0 +1,287 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2015 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Greek translation for Gespeaker.
+# 
+# Translators:
+# osar1 <hellaspigs(at)gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2015-01-24 17:31+0000\n"
+"Last-Translator: osar1 <hellaspigs(at)gmail.com>\n"
+"Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/gespeaker/language/el_GR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el_GR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Προχωρημένες Ρυθμίσεις</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b> Βασικές ρυθμίσεις </ b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Εισαγωγή κειμένου για αναπαραγωγή</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "Kαθυστέρηση"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "Γυναίκεια"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "pitch"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "Ταχύτητα "
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Παραλλαγή:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Φωνή"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Επεξεργασία"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Αρχείο"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Γλώσσα"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Αντρική"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Ένταση:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Audio player</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola εφαρμογή</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Διαθέσιμες φωνές Mbrola </b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Άλλες ρυθμίσεις</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Εγγραφή</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Αποθήκευση προτιμήσεων</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Μήνυμα καλωσορίσματος</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Εντολή"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Προσαρμοσμένο μήνυμα"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Ενεργοποίηση αναδίπλωσης κειμένου"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Γενικά "
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Φόρτωση φωνητικών παραλλαγών"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Κυρίως πρόγραμμα mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola φωνές"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Διαδρομή για Mbrola φωνές"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Αποθήκευση  μέγεθος του κυρίου παραθύρου"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Εγγραφή μονού αρχείου"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Ηχητικό μήνυμα καλωσορίσματος κατά την έναρξη του προγράμματος"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "_Αποθήκευση των φωνητικών ρυθμίσεων αυτόματα"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "Χρησιμοποιήστε προσαρμοσμένο μήνυμα καλωσορίσματος"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Δοκιμή ήχου"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr "Υπήρξε ένα σφάλμα κατά τη διάρκεια της δοκιμής για τη συσκευή αναπαραγωγής ήχου\n\n\nΣφάλμα %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "προεπιλεγμένη γλώσσα"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Θέλετε να διαγράψετε το τρέχον κείμενο;"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Επιλέξτε αρχείο κειμένου"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Αρχεία κειμένου (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Όλα τα αρχεία"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Σφάλμα κατά το άνοιγμα του αρχείου"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Επιλέξτε πού θέλετε να αποθηκεύσετε το αρχείο κειμένου"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Αποθηκεύσετε το αρχείο σφαλμάτων"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Ένα GTK frontend για το espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Επιλέξτε πού θέλετε να αποθηκεύσετε το εγγεγραμμένο αρχείο"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wave αρχεία (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Εγγραφή ήχου στο:ν %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Σύνθετη αρχιτεκτονική ήχου στο Linux"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "Εξυπηρετητής ήχου PulseAudio"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Προσαρμοσμένη εφαρμογή αναπαραγωγής ήχου"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_Δοκιμή"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Γλώσσα "
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Πόροι"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Εγκαταστάθηκε"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Δεν έχει εγκατασταθεί"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d ανίχνευση%d γλώσσας"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Το πακέτο mbrola έχει εγκατασταθεί"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Το πακέτο mbrola δεν έχει εγκατασταθεί"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Καλώς ήρθατε στο Gespeaker"
