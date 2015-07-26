@@ -4,3 +4,6 @@
 # Language translations #
 #########################
 *.mo
+# Backup files #
+################
+*.glade~
