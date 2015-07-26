@@ -167,6 +167,12 @@ class gespeakerUI(object):
       defaultLanguage = 'default'
     self.defaultLanguageIndex = TreeModel_find_text(
       self.listLanguages, COL_LANGUAGE, defaultLanguage)
+    # Handle wrong default language in translation, fallback to 'default'
+    if not self.defaultLanguageIndex:
+      print 'default language "%s" not found in the languages list, ' \
+        'fallback to "default"' % defaultLanguage
+      self.defaultLanguageIndex = TreeModel_find_text(
+        self.listLanguages, COL_LANGUAGE, 'default')
     # Prepare sorted model for voice variants
     self.listVariants = gtk.ListStore(str, str)
     self.listVariants.set_sort_column_id(0, gtk.SORT_ASCENDING)
