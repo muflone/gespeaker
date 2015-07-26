@@ -27,7 +27,7 @@ APP_VERSION = '0.8.6'
 
 PATHS = {
   'locale': [
-    '%s/../po' % __base_path__,
+    '%s/../locale' % __base_path__,
     '%s/share/locale' % sys.prefix],
   'ui': [
     '%s/../data/ui' % __base_path__],

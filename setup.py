@@ -29,39 +29,27 @@ import sys
 
 class InstallData(install_data):
   def run (self):
-    self.data_files.extend (self._compile_po_files ())
-    install_data.run (self)
+    self.install_translations()
+    install_data.run(self)
 
-  def _compile_po_files (self):
-    data_files = []
+  def install_translations(self):
+    info('Installing translations...')
+    for po in glob(os.path.join('po', '*.po')):
+      lang = os.path.basename(po[:-3])
+      mo = os.path.join('build', 'mo', lang, '%s.mo' % DOMAIN_NAME)
 
-    # Don't install language files on win32
-    if sys.platform == 'win32':
-      return data_files
+      directory = os.path.dirname(mo)
+      if not os.path.exists(directory):
+        info('creating %s' % directory)
+        os.makedirs(directory)
 
-    PO_DIR = 'po'
-    for lang in open(os.path.join(PO_DIR, 'availables'), 'r').readlines():
-      lang = lang.strip()
-      if lang:
-        po = os.path.join(PO_DIR, '%s.po' % lang)
-        mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
+      cmd = 'msgfmt -o %s %s' % (mo, po)
+      info('compiling %s -> %s' % (po, mo))
+      if os.system(cmd) != 0:
+        raise SystemExit('Error while running msgfmt')
 
-        directory = os.path.dirname(mo)
-        if not os.path.exists(directory):
-          info('creating %s' % directory)
-          os.makedirs(directory)
-
-        if newer(po, mo):
-          # True if mo doesn't exist
-          cmd = 'msgfmt -o %s %s' % (mo, po)
-          info('compiling %s -> %s' % (po, mo))
-          if os.system(cmd) != 0:
-            raise SystemExit('Error while running msgfmt')
-
-        dest = os.path.dirname(os.path.join('share', 'locale', lang, 'LC_MESSAGES', 'gespeaker.mo'))
-        data_files.append((dest, [mo]))
-
-    return data_files
+      dest = os.path.join('share', 'locale', lang, 'LC_MESSAGES')
+      self.data_files.append((dest, [mo]))
 
 
 setup(
