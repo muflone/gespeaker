@@ -178,7 +178,7 @@ msgstr "Възникна грешка при пробата на аудио пл
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "default"
+msgstr "bulgarian"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"

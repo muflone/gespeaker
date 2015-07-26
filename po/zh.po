@@ -181,7 +181,7 @@ msgstr "音频播放器测试出错\n\n错误 %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "默认语言"
+msgstr "Mandarin"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"

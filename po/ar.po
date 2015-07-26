@@ -178,7 +178,7 @@ msgstr "حدث خطأ خلال تجربة تطبيق الصوت.\n\nخطأ %s: %
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "Arabic "
+msgstr "default"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"

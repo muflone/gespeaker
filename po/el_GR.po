@@ -181,7 +181,7 @@ msgstr "Υπήρξε ένα σφάλμα κατά τη διάρκεια της �
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "προεπιλεγμένη γλώσσα"
+msgstr "greek"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"

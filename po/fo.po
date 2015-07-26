@@ -178,7 +178,7 @@ msgstr "Har var ein villa undir ljóðroyndini av ljóðavspælaranum.\n\nVilla 
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr ""
+msgstr "default"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"

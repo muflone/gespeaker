@@ -3,7 +3,7 @@
 # Copyright (C) 2009-2014 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
 # Website: http://www.muflone.com/gespeaker/
 # This file is distributed under the same license of Gespeaker.
-# Polish translation for Gespeaker.
+# Vietnamese translation for Gespeaker.
 #
 # Translators:
 # Anh Phan <vietnamesel10n(at)gmail.com>
@@ -178,7 +178,7 @@ msgstr "Xảy ra lỗi khi kiểm thử phần phát audio.\n\nLỗi %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "ngôn ngữ mặc địn"
+msgstr "vietnam"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
