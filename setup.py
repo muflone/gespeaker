@@ -36,7 +36,7 @@ class InstallData(install_data):
     info('Installing translations...')
     for po in glob(os.path.join('po', '*.po')):
       lang = os.path.basename(po[:-3])
-      mo = os.path.join('build', 'mo', lang, '%s.mo' % DOMAIN_NAME)
+      mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
 
       directory = os.path.dirname(mo)
       if not os.path.exists(directory):
