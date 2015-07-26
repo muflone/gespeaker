@@ -2,6 +2,7 @@ gespeaker (0.8.6) all; urgency=low
 
   * New Greek translation by osar1
   * New Chinese translation by Dolores Li
+  * New Dutch translation by Heimen Stoffels
   * Updated default language for all translations
 
  -- Fabio Castelli <muflone@vbsimple.net>  Sun, 26 Jul 2015 23:38:13 +0200

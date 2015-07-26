@@ -1,0 +1,287 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Dutch translation for Gespeaker.
+# 
+# Translators:
+# Heimen Stoffels <vistausss@outlook.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2015-03-01 12:43+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss(at)outlook.com>\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/projects/p/gespeaker/language/nl_NL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Geavanceerde instellingen</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Basisinstellingen</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Voer tekst in om af te spelen</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "Vertr_aging:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "Vrouw_elijk"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "T_oonhoogte:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "Snel_heid:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Varia_nt:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Stem:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Bewerken"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "Be_stand"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Hulp"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Taal:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Mannelijk"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Volume:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Audiospeler</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola-applicatie</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Mbrola-stemmen beschikbaar</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Andere instellingen</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Opname</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Bezig met opslaan van voorkeuren</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Welkomstbericht</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Co_mmando:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Aangepast _bericht:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Te_kstomloop inschakelen"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Algemeen"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Stem_varianten laden"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Algemene applicatie mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola-stemmen"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Pad naar Mbrola-stemmen:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Algemene venster_grootte opslaan"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Losse track_opname"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "_Welkomsttekst uitspreken bij programmastart"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "Steminstellingen automatisch _opslaan"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "Aangepast welkomstbericht _gebruiken"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Audiotest"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr "Er is een fout opgetreden tijdens het testen van de audiospeler.\n\nFout %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "default"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Wilt u de huidige tekst verwijderen?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Selecteer een tekstbestand om te openen"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Tekstbestanden (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Alle bestanden"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Fout bij openen van bestand"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Selecteer opslaglocatie van tekstbestand"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Fout bij opslaan van bestand"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Wilt u de standaardinstellingen herstellen?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Een GTK-frontend voor espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Selecteer een opslaglocatie voor het opnamebestand"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wave-bestanden (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Bezig met opnemen van audiotrack naar: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio-geluidsserver"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Aangepaste geluidsapplicatie"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_Testen"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Taal"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Bron"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Status"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Geïnstalleerd"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Niet geïnstalleerd"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d talen van %d gevonden"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Het mbrola-pakket is geïnstalleerd"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Het mbrola-pakket is niet geïnstalleerd"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Welkom bij Gespeaker"
