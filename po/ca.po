@@ -1,0 +1,287 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2014 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Catalan translation for Gespeaker.
+# 
+# Translators:
+# Adolfo Jayme Barrientos <fitoschido(at)ubuntu.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2015-07-11 20:55+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/gespeaker/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Paràmetres avançats</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Paràmetres bàsics</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Inseriu el text a reproduir</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "_Retard:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "_Femenina"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "_To:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "Velo_citat:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Varia_nt:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Veu:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Edita"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Fitxer"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Ajuda"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Idioma:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Masculina"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Volum:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Reproductor d’àudio</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Aplicació MBROLA</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Veus MBROLA disponibles</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Altres paràmetres</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>S’està enregistrant</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>S’estan desant les preferències</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Missatge de benvinguda</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Or_dre:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Miss_atge personalitzat:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Habilita l’ajust del te_xt"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "General"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Carrega les _variants de veu"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Programa MBROLA principal"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Veus MBROLA"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Camí de les veus MBROLA:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Preferències"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Desa la m_ida de la finestra principal"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr ""
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr ""
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "_Desa els parmetres de veu automàticament"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "_Utilitza un missatge de benvinguda personalitzat"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Prova d’àudio"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid ""
+"There was an error during the test for the audio player.\n"
+"\n"
+"Error %s: %s"
+msgstr "S’ha produït un error en fer la prova per al reproductor d’àudio.\n\nError %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "catalan"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Voleu suprimir el text actual?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Trieu el fitxer de text que voleu obrir"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Fitxers de text (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Tots els fitxers"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "S’ha produït un error en obrir el fitxer"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Trieu el lloc on es desarà el fitxer de text"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "S’ha produït un error en desar el fitxer"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Voleu restablir els paràmetres per defecte?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr ""
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Trieu el lloc on es desarà el fitxer enregistrat"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Fitxers WAV (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr ""
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA (Advanced Linux Sound Architecture)"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "Servidor de so PulseAudio"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr ""
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_Prova"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Idioma"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr ""
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Estat"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Instal·lat"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "No instal·lat"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr ""
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr ""
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr ""
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Us donem la benvinguda al Gespeaker"
