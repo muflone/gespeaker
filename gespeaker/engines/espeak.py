@@ -28,7 +28,6 @@ from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGU
 MAX_FILE_SIZE = 2000
 
 KEY_ESPEAK_NAME = 'name'
-KEY_ESPEAK_GENDER = 'gender'
 
 DIR_VARIANTS = '!v'
 DIR_MBROLA = 'mb'
@@ -48,13 +47,6 @@ class EngineEspeak(EngineBase):
     self.get_languages_from_path(self.dir_languages, result)
     return result
 
-  def get_variants(self):
-    """Get the list of all the supported variants"""
-    result = super(self.__class__, self).get_variants()
-    self.get_languages_from_path(os.path.join(self.dir_languages, DIR_VARIANTS),
-      result)
-    return result
-
   def get_languages_from_path(self, path, languages):
     """Get all the languages from the specified path"""
     for filename in os.listdir(path):
@@ -71,17 +63,10 @@ class EngineEspeak(EngineBase):
           new_language = self.get_language_from_filename(filepath)
           if new_language:
             languages.append(new_language)
-
-  def get_variants_from_path(self, path, languages):
-    """Get all the variants from the specified path"""
-    for filename in os.listdir(path):
-      # Include only variants
-      filepath = os.path.join(path, filename)
-      if not os.path.isdir(filepath):
-        # Get and add new variant from filename
-        new_variant = self.get_language_from_filename(filepath)
-        if new_language:
-          languages.append(new_language)
+            new_language = dict(new_language)
+            new_language[KEY_NAME] = '%s+12' % new_language[KEY_NAME]
+            new_language[KEY_GENDER] = 'female'
+            languages.append(new_language)
 
   def get_language_from_filename(self, filename):
     """Get language information from the specified filename"""
@@ -93,7 +78,7 @@ class EngineEspeak(EngineBase):
         info[KEY_ENGINE] = self.name
         info[KEY_FILENAME] = filename
         info[KEY_NAME] = os.path.basename(filename)
-        info[KEY_GENDER] = ''
+        info[KEY_GENDER] = 'male'
         # Extract information from the voice file
         for line in f.readlines():
           # Remove newline characters
@@ -108,19 +93,13 @@ class EngineEspeak(EngineBase):
               description = description.replace('-', ' ')
               description = description.replace('_', ' ')
               info[KEY_LANGUAGE] = description.title()
-            elif key == KEY_ESPEAK_GENDER:
-              # Save the gender
-              info[KEY_GENDER] = values[1]
     return info
 
-  def play(self, text, language, variant, on_play_completed):
-    """Play a text using the specified language and variant"""
-    super(self.__class__, self).play(text, language, variant, on_play_completed)
+  def play(self, text, language, on_play_completed):
+    """Play a text using the specified language"""
+    super(self.__class__, self).play(text, language, on_play_completed)
     arguments = ['espeak', '-v']
-    if not variant:
-      arguments.append(language)
-    else:
-      arguments.append('%s+%s' % (language, variant))
+    arguments.append(language)
     self.settings.debug_line(arguments)
     self.process_speaker = subprocess.Popen(arguments, stdin=subprocess.PIPE)
     self.process_speaker.stdin.write(text)

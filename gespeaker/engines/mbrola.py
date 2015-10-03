@@ -36,7 +36,6 @@ class EngineMBROLA(EngineBase):
     """Initialize the engine"""
     super(self.__class__, self).__init__(settings)
     self.name = 'eSpeak + MBROLA'
-    self.has_gender = False
     self.dir_languages = '/usr/share/espeak-data/voices/mb'
     self.dir_mbrola_voices = '/usr/share/mbrola'
 
@@ -50,11 +49,6 @@ class EngineMBROLA(EngineBase):
         new_language = self.get_language_from_filename(filepath)
         if new_language:
           result.append(new_language)
-    return result
-
-  def get_variants(self):
-    """Get the list of all the supported variants"""
-    result = super(self.__class__, self).get_variants()
     return result
 
   def get_language_from_filename(self, filename):
@@ -112,14 +106,11 @@ class EngineMBROLA(EngineBase):
           dir_mb_voice, info[KEY_NAME]))
       return None
 
-  def play(self, text, language, variant, on_play_completed):
-    """Play a text using the specified language and variant"""
-    super(self.__class__, self).play(text, language, variant, on_play_completed)
+  def play(self, text, language, on_play_completed):
+    """Play a text using the specified language"""
+    super(self.__class__, self).play(text, language, on_play_completed)
     espeak_arguments = ['espeak', '--stdout', '-v']
-    if not variant:
-      espeak_arguments.append(language)
-    else:
-      espeak_arguments.append('%s+%s' % (language, variant))
+    espeak_arguments.append(language)
     self.settings.debug_line(espeak_arguments)
     self.process_speaker = subprocess.Popen(espeak_arguments,
       stdin=subprocess.PIPE, stdout=subprocess.PIPE)

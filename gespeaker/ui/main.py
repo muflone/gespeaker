@@ -27,8 +27,8 @@ from .messages_dialog import MessagesDialog
 
 from gespeaker.constants import *
 from gespeaker.functions import _
+from gespeaker.models.engines import ModelEngines
 from gespeaker.models.languages import ModelLanguages
-from gespeaker.models.variants import ModelVariants
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 from gespeaker.engines.base import KEY_ENGINE, KEY_LANGUAGE, KEY_NAME, KEY_GENDER
 
@@ -59,19 +59,8 @@ class MainWindow(object):
 
   def loadUI(self):
     """Load the interface UI"""
-    def filter_variants_cb(model, iter, data):
-      """Filter the variants for the current voice engine"""
-      current_engine = self._get_current_language_engine()
-      genders = ['', ]
-      if self.backend.engines[current_engine].has_gender:
-        genders.append(self.ui.optionVoiceMale.get_active() and 'male' or 'female')
-      # Return True if the variant is the normal voice (without engine name)
-      # or it's of the currently selected engine
-      # and of the currently selected gender or gender agnostic
-      engines = ['', current_engine]
-      return model.get_value(iter, self.modelVariants.COL_ENGINE) in engines and \
-        model.get_value(iter, self.modelVariants.COL_GENDER) in genders
     # Load available engines
+    self.modelEngines = ModelEngines(self.ui.modelEngines)
     for engine_name, obj_engine in self.backend.engines.items():
       # Add a new CheckMenuItem for each engine
       menuengine = Gtk.CheckMenuItem(engine_name)
@@ -84,22 +73,8 @@ class MainWindow(object):
     self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
     self.ui.sortmodelLanguages.set_sort_column_id(
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
-    # Load available variants
-    self.modelVariants = ModelVariants(self.ui.modelVariants)
-    self.modelVariants.clear()
-    for language in self.backend.get_variants():
-      self.modelVariants.add(
-        engine=language[KEY_ENGINE],
-        description='%s%s' % (language[KEY_LANGUAGE],
-          self.backend.settings.is_debug() and ' (%s)' % language[KEY_NAME] or ''),
-        name=language[KEY_NAME],
-        gender=language[KEY_GENDER]
-        )
-    self.ui.sortmodelVariants.set_sort_column_id(
-      self.modelVariants.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
-    self.ui.filtermodelVariants.set_visible_func(filter_variants_cb)
     self.on_actionRefresh_activate(None)
-    self.on_cboLanguages_changed(None)
+    self.on_cboEngines_changed(None)
     # Set various properties
     self.ui.winMain.set_title(APP_NAME)
     self.ui.winMain.set_icon_from_file(FILE_ICON)
@@ -128,6 +103,14 @@ class MainWindow(object):
     self.ui.winMain.destroy()
     self.application.quit()
 
+  def _get_current_engine(self):
+    """Return the currently selected engine"""
+    if self.ui.cboEngines.get_active_iter():
+      return self.modelEngines.get_engine(
+        self.ui.cboEngines.get_active_iter())
+    else:
+      return None
+
   def _get_current_language_engine(self):
     """Return the engine used for the currently selected language"""
     return self.modelLanguages.get_engine(
@@ -140,44 +123,42 @@ class MainWindow(object):
       self.ui.sortmodelLanguages.convert_iter_to_child_iter(
       self.ui.cboLanguages.get_active_iter()))
 
-  def _get_current_variant_name(self):
-    """Return the name for the currently selected variant"""
-    return self.modelVariants.get_name(
-      self.ui.filtermodelVariants.convert_iter_to_child_iter(
-      self.ui.sortmodelVariants.convert_iter_to_child_iter(
-      self.ui.cboVariants.get_active_iter())))
-
-  def on_cboLanguages_changed(self, widget):
-    """Update widgets after a language change"""
-    if self.ui.cboLanguages.get_sensitive() and \
-        self.ui.cboLanguages.get_active_iter() and \
-        self._get_current_language_engine() != self.ui.lblEngineName.get_text():
-      self.on_optionVoice_toggled(widget)
-
-  def on_optionVoice_toggled(self, widget):
-    """Refresh variants for language or gender change"""
-    current_engine = self._get_current_language_engine()
-    self.ui.lblEngineName.set_text(current_engine)
-    if self.backend.engines.has_key(current_engine):
-      has_gender = self.backend.engines[current_engine].has_gender
-    else:
-      # This shouldn't happen
-      has_gender = False
-    # Set widgets gender sensitive
-    self.ui.lblVoice.set_sensitive(has_gender)
-    self.ui.optionVoiceMale.set_sensitive(has_gender)
-    self.ui.optionVoiceFemale.set_sensitive(has_gender)
-    # Update variants list
-    self.ui.filtermodelVariants.refilter()
-    self.ui.cboVariants.set_tooltip_text(
-      '%d variant(s) available' % len(self.ui.filtermodelVariants))
-    if self.ui.cboVariants.get_active() == -1:
-      # Position the variant again to the normal voice variant
-      treepath = self.modelVariants.get_row_from_description(
-        self.modelVariants.NORMAL_VOICE_DESCRIPTION).path
-      self.ui.cboVariants.set_active(int(
-        self.ui.sortmodelVariants.convert_child_path_to_path(
-        treepath).to_string()))
+  def on_cboEngines_changed(self, widget):
+    """Update languages list after engine change"""
+    self.modelLanguages.clear()
+    current_engine = self._get_current_engine()
+    if current_engine is None:
+      return
+    for obj_engine in self.backend.engines.values():
+      # Load languages only for selected engine
+      if obj_engine.name == current_engine and obj_engine.enabled:
+        for language in obj_engine.get_languages():
+          self.modelLanguages.add(
+            engine=obj_engine.name,
+            description='%s%s' % (
+              language[KEY_LANGUAGE],
+              self.backend.settings.is_debug() and \
+              ' (%s)' % language[KEY_NAME] or ''),
+            name=language[KEY_NAME],
+            gender=language[KEY_GENDER]
+            )
+    # Enable or disable widgets if at least a language is available
+    enabled_engines = self.modelLanguages.count() > 0
+    self.ui.actionPlayStop.set_sensitive(enabled_engines)
+    self.ui.actionPause.set_sensitive(enabled_engines)
+    self.ui.actionRecord.set_sensitive(enabled_engines)
+    self.ui.actionPlay.set_sensitive(enabled_engines)
+    self.ui.actionStop.set_sensitive(enabled_engines)
+    self.ui.cboLanguages.set_sensitive(enabled_engines)
+    self.ui.lblLanguage.set_sensitive(enabled_engines)
+    self.ui.cboLanguages.set_tooltip_text('%d languages available' % 
+      self.modelLanguages.count())
+    # Add dummy option
+    if self.modelLanguages.count() == 0:
+      self.modelLanguages.add('', 'No enabled engines', '')
+      self.ui.lblEngineName.set_text('Unknown')
+    # Select the first item
+    self.ui.cboLanguages.set_active(0)
 
   def on_actionClipboard_activate(self, action):
     """Cut and copy the selected text or paste it"""
@@ -205,8 +186,7 @@ class MainWindow(object):
       self.backend.play(
         text=self.ui.bufferText.get_text(self.ui.bufferText.get_start_iter(),
           self.ui.bufferText.get_end_iter(), False),
-        language=self._get_current_language_name(),
-        variant=self._get_current_variant_name())
+        language=self._get_current_language_name())
       self.ui.actionPause.set_active(False)
       self.ui.actionPause.set_sensitive(True)
     else:
@@ -224,40 +204,14 @@ class MainWindow(object):
 
   def on_actionRefresh_activate(self, action):
     """Reload the available voices list"""
+    self.modelEngines.clear()
     self.modelLanguages.clear()
     for obj_engine in self.backend.engines.values():
       # Load languages only for enabled engines
       if obj_engine.enabled:
-        for language in obj_engine.get_languages():
-          self.modelLanguages.add(
-            engine=obj_engine.name,
-            description='%s%s' % (
-              language[KEY_LANGUAGE],
-              self.backend.settings.is_debug() and \
-              ' (%s)' % language[KEY_NAME] or ''),
-            name=language[KEY_NAME]
-            )
-    # Enable or disable widgets if at least a language is available
-    enabled_engines = self.modelLanguages.count() > 0
-    self.ui.actionPlayStop.set_sensitive(enabled_engines)
-    self.ui.actionPause.set_sensitive(enabled_engines)
-    self.ui.actionRecord.set_sensitive(enabled_engines)
-    self.ui.actionPlay.set_sensitive(enabled_engines)
-    self.ui.actionStop.set_sensitive(enabled_engines)
-    self.ui.cboLanguages.set_sensitive(enabled_engines)
-    self.ui.lblLanguage.set_sensitive(enabled_engines)
-    self.ui.lblVoice.set_sensitive(enabled_engines)
-    self.ui.optionVoiceMale.set_sensitive(enabled_engines)
-    self.ui.optionVoiceFemale.set_sensitive(enabled_engines)
-    self.ui.lblEngine.set_sensitive(enabled_engines)
-    self.ui.lblEngineName.set_sensitive(enabled_engines)
-    self.ui.cboLanguages.set_tooltip_text('%d languages available' % 
-      self.modelLanguages.count())
-    # Add dummy option
-    if self.modelLanguages.count() == 0:
-      self.modelLanguages.add('', 'No enabled engines', '')
-      self.ui.lblEngineName.set_text('Unknown')
+        self.modelEngines.add(obj_engine.name, obj_engine.name)
     # Select the first item
+    self.ui.cboEngines.set_active(0)
     self.ui.cboLanguages.set_active(0)
 
   def on_actionEnableEngine_toggled(self, action, engine):

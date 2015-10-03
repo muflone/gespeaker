@@ -31,7 +31,6 @@ class EngineDummy(EngineBase):
     """Initialize the engine"""
     super(self.__class__, self).__init__(settings)
     self.name = 'Dummy'
-    self.has_gender = False
 
   def get_languages(self):
     """Get the list of all the supported languages"""
@@ -41,27 +40,15 @@ class EngineDummy(EngineBase):
       KEY_FILENAME: '',
       KEY_NAME: 'dummy',
       KEY_LANGUAGE: 'A dummy language',
-      KEY_GENDER: ''
+      KEY_GENDER: 'male'
       })
     return result
 
-  def get_variants(self):
-    """Get the list of all the supported variants"""
-    result = super(self.__class__, self).get_variants()
-    result.append({
-      KEY_ENGINE: self.name,
-      KEY_FILENAME: '',
-      KEY_NAME: 'dummy',
-      KEY_LANGUAGE: 'A dummy variant',
-      KEY_GENDER: ''
-      })
-    return result
-
-  def play(self, text, language, variant, on_play_completed):
-    """Play a text using the specified language and variant"""
-    super(self.__class__, self).play(text, language, variant, on_play_completed)
+  def play(self, text, language, on_play_completed):
+    """Play a text using the specified language"""
+    super(self.__class__, self).play(text, language, on_play_completed)
     self.process_speaker = multiprocessing.Process(
-      target= self._do_play, args=(text, ))
+      target=self._do_play, args=(text, ))
     self.process_speaker.start()
 
   def _do_play(self, text):

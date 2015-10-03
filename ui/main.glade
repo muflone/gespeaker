@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.19.0 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkAccelGroup" id="accelerators"/>
@@ -165,20 +165,15 @@
     <property name="page_increment">10</property>
   </object>
   <object class="GtkTextBuffer" id="bufferText"/>
-  <object class="GtkListStore" id="modelLanguages">
+  <object class="GtkListStore" id="modelEngines">
     <columns>
       <!-- column-name Engine -->
       <column type="gchararray"/>
       <!-- column-name Description -->
       <column type="gchararray"/>
-      <!-- column-name Name -->
-      <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkTreeModelSort" id="sortmodelLanguages">
-    <property name="model">modelLanguages</property>
-  </object>
-  <object class="GtkListStore" id="modelVariants">
+  <object class="GtkListStore" id="modelLanguages">
     <columns>
       <!-- column-name Engine -->
       <column type="gchararray"/>
@@ -190,11 +185,8 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkTreeModelFilter" id="filtermodelVariants">
-    <property name="child_model">modelVariants</property>
-  </object>
-  <object class="GtkTreeModelSort" id="sortmodelVariants">
-    <property name="model">filtermodelVariants</property>
+  <object class="GtkTreeModelSort" id="sortmodelLanguages">
+    <property name="model">modelLanguages</property>
   </object>
   <object class="GtkWindow" id="winMain">
     <property name="can_focus">False</property>
@@ -541,9 +533,9 @@
               <object class="GtkLabel" id="lblText">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
                 <property name="label" translatable="yes">Insert text to play</property>
                 <property name="ellipsize">start</property>
+                <property name="xalign">0</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -581,8 +573,8 @@
                   <object class="GtkLabel" id="lblBasicSettings">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="yalign">1</property>
                     <property name="label" translatable="yes">Basic settings</property>
+                    <property name="yalign">1</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -653,14 +645,14 @@
                   <object class="GtkGrid" id="gridBasicSettings">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="row_spacing">7</property>
+                    <property name="row_spacing">5</property>
                     <property name="column_spacing">5</property>
                     <child>
-                      <object class="GtkLabel" id="lblLanguage">
+                      <object class="GtkLabel" id="lblEngine">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Engine:</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Language:</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -668,148 +660,57 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="lblVoice">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Voice:</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="boxLanguagess">
+                      <object class="GtkComboBox" id="cboEngines">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
-                        <property name="spacing">7</property>
+                        <property name="model">modelEngines</property>
+                        <signal name="changed" handler="on_cboEngines_changed" swapped="no"/>
                         <child>
-                          <object class="GtkComboBox" id="cboLanguages">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">sortmodelLanguages</property>
-                            <signal name="changed" handler="on_cboLanguages_changed" swapped="no"/>
-                            <child>
-                              <object class="GtkCellRendererText" id="cellLanguage"/>
-                              <attributes>
-                                <attribute name="text">1</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="lblEngine">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Engine:</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="lblEngineName">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Unknown</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
-                        <property name="width">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="lblVariant">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
-                        <property name="xalign">1</property>
-                        <property name="label" translatable="yes">Variant:</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="cboVariants">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="model">sortmodelVariants</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellVariants"/>
+                          <object class="GtkCellRendererText" id="cellEngine"/>
                           <attributes>
                             <attribute name="text">1</attribute>
                           </attributes>
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="top_attach">1</property>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkBox" id="boxVoices">
+                      <object class="GtkComboBox" id="cboLanguages">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
-                        <property name="spacing">11</property>
+                        <property name="model">sortmodelLanguages</property>
                         <child>
-                          <object class="GtkRadioButton" id="optionVoiceMale">
-                            <property name="label" translatable="yes">Male</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="yalign">0.54000002145767212</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <property name="group">optionVoiceFemale</property>
-                            <signal name="toggled" handler="on_optionVoice_toggled" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
+                          <object class="GtkCellRendererText" id="cellLanguage"/>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="optionVoiceFemale">
-                            <property name="label" translatable="yes">Female</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="xalign">0.5</property>
-                            <property name="draw_indicator">True</property>
-                            <property name="group">optionVoiceMale</property>
-                            <signal name="toggled" handler="on_optionVoice_toggled" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
+                          <object class="GtkCellRendererText" id="cellGender"/>
+                          <attributes>
+                            <attribute name="text">3</attribute>
+                          </attributes>
                         </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="lblLanguage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Language:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
                       </packing>
                     </child>
@@ -840,8 +741,8 @@
                           <object class="GtkLabel" id="lblPitch">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="label" translatable="yes">Pitch:</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -866,8 +767,8 @@
                           <object class="GtkLabel" id="lblVolume">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="label" translatable="yes">Volume:</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -892,8 +793,8 @@
                           <object class="GtkLabel" id="lblSpeed">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="label" translatable="yes">Speed:</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -918,8 +819,8 @@
                           <object class="GtkLabel" id="lblDelay">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="label" translatable="yes">Delay:</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>

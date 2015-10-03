@@ -30,7 +30,6 @@ class EngineBase(object):
   def __init__(self, settings):
     """Initialize the engine"""
     self.__name = None
-    self.has_gender = True
     self.playing = False
     self.settings = settings
     self.enabled = True
@@ -41,12 +40,8 @@ class EngineBase(object):
     """Get the list of all the supported languages"""
     return []
 
-  def get_variants(self):
-    """Get the list of all the supported variants"""
-    return []
-
-  def play(self, text, language, variant, on_play_completed):
-    """Play a text using the specified language and variant"""
+  def play(self, text, language, on_play_completed):
+    """Play a text using the specified language"""
     self.playing = True
     # Add a timer to check when the playing has stopped
     GObject.timeout_add(500, self.is_playing, on_play_completed)

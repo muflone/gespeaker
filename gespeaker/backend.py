@@ -39,21 +39,14 @@ class Backend(object):
       result.extend(engine.get_languages())
     return result
 
-  def get_variants(self):
-    """Get the list of the variants for all the engines"""
-    result = []
-    for engine in self.engines.values():
-      result.extend(engine.get_variants())
-    return result
-
   def set_current_engine(self, engine):
     """Set the current engine"""
     self.current_engine = engine
 
-  def play(self, text, language, variant):
-    """Play the text using the language and the variant"""
+  def play(self, text, language):
+    """Play the text using the language"""
     return self.engines[self.current_engine].play(
-      text, language, variant, self.on_play_complete)
+      text, language, self.on_play_complete)
 
   def stop(self):
     """Stop any previous play"""

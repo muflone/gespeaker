@@ -26,15 +26,15 @@ class ModelLanguages(ModelBase):
   COL_ENGINE = 0
   COL_DESCRIPTION = 1
   COL_NAME = 2
-  COL_ICON = 3
+  COL_GENDER = 3
   def __init__(self, model):
     super(self.__class__, self).__init__(model)
     self.model = model
 
-  def add(self, engine, description, name):
+  def add(self, engine, description, name, gender):
     """Add a new row in the model"""
     super(self.__class__, self).add(
-      items=(engine, description, name))
+      items=(engine, description, name, gender))
 
   def get_engine(self, treepath):
     """Get the engine of a row"""
@@ -48,6 +48,6 @@ class ModelLanguages(ModelBase):
     """Get the name of a row"""
     return self.get_model_data(treepath, self.COL_NAME)
 
-  def get_icon(self, treepath):
-    """Get the icon of a row"""
-    return self.get_model_data(treepath, self.COL_ICON)
+  def get_gender(self, treepath):
+    """Get the gender of a row"""
+    return self.get_model_data(treepath, self.COL_GENDER)
