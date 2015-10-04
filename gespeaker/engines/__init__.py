@@ -24,6 +24,7 @@ engine_modules = (
   'engine_dummy',
   'engine_espeak',
   'engine_mbrola',
+  'engine_google_tts',
 )
 
 def detect_engines():
