@@ -18,6 +18,8 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
+import importlib
+
 engine_modules = (
   'engine_dummy',
   'engine_espeak',
@@ -30,9 +32,8 @@ def detect_engines():
   # Dynamic import of engines modules
   for module_name in engine_modules:
     try:
-      module = __import__('gespeaker.engines.%s' % module_name)
-      engine_classes = getattr(getattr(module.engines, module_name),
-        'engine_classes')
+      module = importlib.import_module('gespeaker.engines.%s' % module_name)
+      engine_classes = getattr(module, 'engine_classes')
       # Cycle each engine class
       for engine_class in engine_classes:
         engines[engine_class.name] = engine_class
