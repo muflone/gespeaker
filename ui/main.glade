@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.19.0 -->
 <interface>
-  <requires lib="gtk+" version="3.12"/>
+  <requires lib="gtk+" version="3.6"/>
   <object class="GtkAccelGroup" id="accelerators"/>
   <object class="GtkActionGroup" id="actionsApplication">
     <property name="accel_group">accelerators</property>
