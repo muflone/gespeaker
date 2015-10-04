@@ -27,10 +27,11 @@ from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
 class EngineDummy(EngineBase):
+  name = 'Dummy'
+
   def __init__(self, settings):
     """Initialize the engine"""
     super(self.__class__, self).__init__(settings)
-    self.name = 'Dummy'
 
   def get_languages(self):
     """Get the list of all the supported languages"""
@@ -83,3 +84,5 @@ class EngineDummy(EngineBase):
         self.name, self.__process_speaker.pid))
       os.kill(self.__process_speaker.pid, status and SIGSTOP or SIGCONT)
     return True
+
+engine_classes = (EngineDummy, )

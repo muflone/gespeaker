@@ -34,10 +34,11 @@ DIR_MBROLA = 'mb'
 DIR_TEST = 'test'
 
 class EngineEspeak(EngineBase):
+  name = 'eSpeak'
+
   def __init__(self, settings):
     """Initialize the engine"""
     super(self.__class__, self).__init__(settings)
-    self.name = 'eSpeak'
     self.include_test_voices = False
     self.dir_languages = '/usr/share/espeak-data/voices'
 
@@ -132,3 +133,5 @@ class EngineEspeak(EngineBase):
         self.name, self.__process_speaker.pid))
       os.kill(self.__process_speaker.pid, status and SIGSTOP or SIGCONT)
     return True
+
+engine_classes = (EngineEspeak, )

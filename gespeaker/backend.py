@@ -28,9 +28,9 @@ class Backend(object):
     self.current_engine = None
     self.settings = settings
     # Load engines
-    for engine in gespeaker.engines.engines:
-      obj_engine = engine(settings)
-      self.engines[obj_engine.name] = obj_engine
+    for engine_name, engine_class in gespeaker.engines.detect_engines().items():
+      obj_engine = engine_class(settings)
+      self.engines[engine_name] = obj_engine
 
   def get_languages(self):
     """Get the list of the languages for all the engines"""

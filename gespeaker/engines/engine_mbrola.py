@@ -32,10 +32,11 @@ KEY_ESPEAK_GENDER = 'gender'
 KEY_ESPEAK_MBROLA = 'mbrola'
 
 class EngineMBROLA(EngineBase):
+  name = 'eSpeak + MBROLA'
+
   def __init__(self, settings):
     """Initialize the engine"""
     super(self.__class__, self).__init__(settings)
-    self.name = 'eSpeak + MBROLA'
     self.dir_languages = '/usr/share/espeak-data/voices/mb'
     self.dir_mbrola_voices = '/usr/share/mbrola'
 
@@ -147,3 +148,5 @@ class EngineMBROLA(EngineBase):
         self.name, self.__process_player.pid))
       os.kill(self.__process_player.pid, status and SIGSTOP or SIGCONT)
     return True
+
+engine_classes = (EngineMBROLA, )
