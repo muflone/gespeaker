@@ -18,9 +18,9 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-from .espeak import EngineEspeak
-from .mbrola import EngineMBROLA
-from .dummy import EngineDummy
+from .engine_espeak import EngineEspeak
+from .engine_mbrola import EngineMBROLA
+from .engine_dummy import EngineDummy
 
 engines = (
   EngineEspeak,
