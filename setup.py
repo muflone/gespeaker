@@ -80,15 +80,7 @@ setup(
     ('share/gespeaker/data/icons', glob('data/icons/*')),
     ('share/gespeaker/data/ui', glob('data/ui/*.glade')),
     ('share/doc/gespeaker', ['doc/README', 'doc/changelog', 'doc/translators']),
-    ('share/doc/gespeaker/dbus', glob('doc/dbus/*')),
     ('share/man/man1', ['man/gespeaker.1']),
-    ('share/gespeaker/plugins/plugin_dbus', glob('plugins/plugin_dbus/*')),
-    ('share/gespeaker/plugins/plugin_debug', glob('plugins/plugin_debug/*')),
-    ('share/gespeaker/plugins/plugin_stoponquit', glob('plugins/plugin_stoponquit/*')),
-    ('share/gespeaker/plugins/plugin_voicesettings', glob('plugins/plugin_voicesettings/*')),
-    ('share/gespeaker/plugins/plugin_welcome', glob('plugins/plugin_welcome/*')),
-    ('share/gespeaker/plugins/plugin_windowposition', glob('plugins/plugin_windowposition/*')),
-    ('share/gespeaker/plugins/plugin_windowsize', glob('plugins/plugin_windowsize/*')),
     ('share/gespeaker/src', glob('src/*.py'))
   ],
   cmdclass={'install_data': InstallData}
