@@ -24,7 +24,7 @@ import os
 
 from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
-from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
+from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
 class EngineDummy(EngineBase):
   def __init__(self, settings):
@@ -37,7 +37,6 @@ class EngineDummy(EngineBase):
     result = super(self.__class__, self).get_languages()
     result.append({
       KEY_ENGINE: self.name,
-      KEY_FILENAME: '',
       KEY_NAME: 'dummy',
       KEY_LANGUAGE: 'A dummy language',
       KEY_GENDER: 'unknown'

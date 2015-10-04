@@ -21,7 +21,6 @@
 from gi.repository import GObject
 
 KEY_ENGINE = 'engine'
-KEY_FILENAME = 'filename'
 KEY_NAME = 'name'
 KEY_LANGUAGE = 'language'
 KEY_GENDER = 'gender'

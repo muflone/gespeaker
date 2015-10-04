@@ -23,7 +23,7 @@ import subprocess
 
 from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
-from gespeaker.engines.base import KEY_ENGINE, KEY_FILENAME, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
+from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
 MAX_FILE_SIZE = 2000
 
@@ -59,7 +59,6 @@ class EngineMBROLA(EngineBase):
       with open(filename, 'r') as f:
         info = {}
         info[KEY_ENGINE] = self.name
-        info[KEY_FILENAME] = filename
         info[KEY_NAME] = os.path.basename(filename)
         info[KEY_GENDER] = ''
         info[KEY_ESPEAK_MBROLA] = ''
