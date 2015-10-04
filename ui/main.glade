@@ -568,9 +568,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="boxBasicSettings">
+              <object class="GtkBox" id="boxVoiceSettings">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="spacing">10</property>
                 <child>
                   <object class="GtkLabel" id="lblVoiceSelection">
                     <property name="visible">True</property>
@@ -639,16 +640,16 @@
               </packing>
             </child>
             <child>
-              <object class="GtkAlignment" id="alignBasicSettings">
+              <object class="GtkAlignment" id="alignVoiceSettings">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="left_padding">12</property>
                 <child>
-                  <object class="GtkGrid" id="gridBasicSettings">
+                  <object class="GtkGrid" id="gridVoiceSettings">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="row_spacing">5</property>
-                    <property name="column_spacing">5</property>
+                    <property name="column_spacing">7</property>
                     <child>
                       <object class="GtkLabel" id="lblEngine">
                         <property name="visible">True</property>
