@@ -35,6 +35,7 @@ DIR_TEST = 'test'
 
 class EngineEspeak(EngineBase):
   name = 'eSpeak'
+  required_executables = ('espeak', )
 
   def __init__(self, settings):
     """Initialize the engine"""

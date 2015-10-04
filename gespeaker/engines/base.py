@@ -20,12 +20,28 @@
 
 from gi.repository import GObject
 
+from gespeaker.find_executable import find_executable
+
 KEY_ENGINE = 'engine'
 KEY_NAME = 'name'
 KEY_LANGUAGE = 'language'
 KEY_GENDER = 'gender'
 
 class EngineBase(object):
+  required_executables = ()
+  required_modules = ()
+  
+  @classmethod
+  def check_requirements(cls):
+    """Check the module requirements to enable it"""
+    print 'Checking requirements for engine %s' % cls.name
+    # Check for required executable files
+    for executable_name in cls.required_executables:
+      if not find_executable(executable_name):
+        print ('  > Executable %s not found in the path' % executable_name)
+        return False
+    return True
+
   def __init__(self, settings):
     """Initialize the engine"""
     self.playing = False

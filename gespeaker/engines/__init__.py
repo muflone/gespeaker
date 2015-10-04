@@ -36,7 +36,10 @@ def detect_engines():
       engine_classes = getattr(module, 'engine_classes')
       # Cycle each engine class
       for engine_class in engine_classes:
-        engines[engine_class.name] = engine_class
+        if engine_class.check_requirements():
+          engines[engine_class.name] = engine_class
+        else:
+          print ('  > Skipping engine %s for unmet requirements' % module_name)
     except ImportError:
-      print ('Skipping engine %s' % module_name)
+      print ('  > Skipping engine %s' % module_name)
   return engines

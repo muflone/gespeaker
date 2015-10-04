@@ -33,6 +33,7 @@ KEY_ESPEAK_MBROLA = 'mbrola'
 
 class EngineMBROLA(EngineBase):
   name = 'eSpeak + MBROLA'
+  required_executables = ('espeak', 'paplay')
 
   def __init__(self, settings):
     """Initialize the engine"""
