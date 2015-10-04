@@ -2,7 +2,7 @@
 #     Project: Gespeaker
 # Description: A GTK frontend for espeak
 #      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
-#   Copyright: 2009-2014 Fabio Castelli
+#   Copyright: 2009-2015 Fabio Castelli
 #     License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -30,7 +30,7 @@ APP_ID = 'gespeaker.muflone.com'
 APP_URL = 'http://www.muflone.com/gespeaker'
 APP_AUTHOR = 'Fabio Castelli (Muflone)'
 APP_AUTHOR_EMAIL = 'muflone@vbsimple.net'
-APP_COPYRIGHT = 'Copyright 2009-2014 %s' % APP_AUTHOR
+APP_COPYRIGHT = 'Copyright 2009-2015 %s' % APP_AUTHOR
 # Other constants
 DOMAIN_NAME = 'gespeaker'
 VERBOSE_LEVEL_QUIET = 0
