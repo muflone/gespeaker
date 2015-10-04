@@ -46,9 +46,9 @@ class EngineDummy(EngineBase):
   def play(self, text, language, on_play_completed):
     """Play a text using the specified language"""
     super(self.__class__, self).play(text, language, on_play_completed)
-    self.process_speaker = multiprocessing.Process(
+    self.__process_speaker = multiprocessing.Process(
       target=self._do_play, args=(text, ))
-    self.process_speaker.start()
+    self.__process_speaker.start()
 
   def _do_play(self, text):
     """Play the text"""
@@ -59,27 +59,27 @@ class EngineDummy(EngineBase):
   def is_playing(self, on_play_completed):
     """Check if the engine is playing and call on_play_completed callback
     when the playing has been completed"""
-    if self.process_speaker and not self.process_speaker.is_alive():
+    if self.__process_speaker and not self.__process_speaker.is_alive():
       self.playing = False
-      self.process_speaker = None
+      self.__process_speaker = None
     return super(self.__class__, self).is_playing(on_play_completed)
 
   def stop(self):
     """Stop any previous play"""
-    if self.process_speaker:
+    if self.__process_speaker:
       # Show terminate message when debug is activated
       self.settings.debug_line('Terminate %s engine with pid %d' % (
-        self.name, self.process_speaker.pid))
-      self.process_speaker.terminate()
+        self.name, self.__process_speaker.pid))
+      self.__process_speaker.terminate()
     return super(self.__class__, self).stop()
 
   def pause(self, status):
     """Pause a previous play or resume after pause"""
     super(self.__class__, self).pause(status)
-    if self.process_speaker:
+    if self.__process_speaker:
       # Show pause message when debug is activated
       self.settings.debug_line('%s %s engine with pid %d' % (
         status and 'Pause' or 'Resume',
-        self.name, self.process_speaker.pid))
-      os.kill(self.process_speaker.pid, status and SIGSTOP or SIGCONT)
+        self.name, self.__process_speaker.pid))
+      os.kill(self.__process_speaker.pid, status and SIGSTOP or SIGCONT)
     return True

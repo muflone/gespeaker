@@ -28,12 +28,11 @@ KEY_GENDER = 'gender'
 class EngineBase(object):
   def __init__(self, settings):
     """Initialize the engine"""
-    self.__name = None
     self.playing = False
     self.settings = settings
     self.enabled = True
-    self.process_speaker = None
-    self.process_player = None
+    self.__process_speaker = None
+    self.__process_player = None
 
   def get_languages(self):
     """Get the list of all the supported languages"""
