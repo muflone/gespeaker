@@ -18,6 +18,8 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
+import importlib
+
 from gi.repository import GObject
 
 from gespeaker.find_executable import find_executable
@@ -35,6 +37,13 @@ class EngineBase(object):
   def check_requirements(cls):
     """Check the module requirements to enable it"""
     print 'Checking requirements for engine %s' % cls.name
+    # Check for required Python modules to import
+    for module_name in cls.required_modules:
+      try:
+        importlib.import_module(module_name)
+      except ImportError:
+        print ('  > Module %s not found' % module_name)
+        return False
     # Check for required executable files
     for executable_name in cls.required_executables:
       if not find_executable(executable_name):
@@ -42,13 +51,16 @@ class EngineBase(object):
         return False
     return True
 
-  def __init__(self, settings):
+  def __init__(self, settings, module_globals):
     """Initialize the engine"""
     self.playing = False
     self.settings = settings
     self.enabled = True
     self.__process_speaker = None
     self.__process_player = None
+    # Inject required modules into the module global namespace
+    for module_name in self.required_modules:
+      module_globals[module_name] = importlib.import_module(module_name)
 
   def get_languages(self):
     """Get the list of all the supported languages"""

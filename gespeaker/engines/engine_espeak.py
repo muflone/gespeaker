@@ -39,7 +39,7 @@ class EngineEspeak(EngineBase):
 
   def __init__(self, settings):
     """Initialize the engine"""
-    super(self.__class__, self).__init__(settings)
+    super(self.__class__, self).__init__(settings, globals())
     self.include_test_voices = False
     self.dir_languages = '/usr/share/espeak-data/voices'
 
