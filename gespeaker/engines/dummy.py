@@ -40,7 +40,7 @@ class EngineDummy(EngineBase):
       KEY_FILENAME: '',
       KEY_NAME: 'dummy',
       KEY_LANGUAGE: 'A dummy language',
-      KEY_GENDER: 'male'
+      KEY_GENDER: 'unknown'
       })
     return result
 

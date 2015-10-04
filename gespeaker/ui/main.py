@@ -20,6 +20,7 @@
 
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 
 from .about import AboutWindow
 from .files_dialog import FilesDialog
@@ -70,7 +71,10 @@ class MainWindow(object):
       menuengine.connect('toggled', self.on_actionEnableEngine_toggled, obj_engine)
       self.ui.menuEngines.append(menuengine)
     # Load available languages
-    self.modelLanguages = ModelLanguages(self.ui.modelLanguages)
+    self.modelLanguages = ModelLanguages(self.ui.modelLanguages,
+      GdkPixbuf.Pixbuf.new_from_file_at_size(FILE_GENDER_MALE, 24, 24),
+      GdkPixbuf.Pixbuf.new_from_file_at_size(FILE_GENDER_FEMALE, 24, 24),
+      GdkPixbuf.Pixbuf.new_from_file_at_size(FILE_GENDER_UNKNOWN, 24, 24))
     self.ui.sortmodelLanguages.set_sort_column_id(
       self.modelLanguages.COL_DESCRIPTION, Gtk.SortType.ASCENDING)
     self.on_actionRefresh_activate(None)
@@ -135,10 +139,12 @@ class MainWindow(object):
         for language in obj_engine.get_languages():
           self.modelLanguages.add(
             engine=obj_engine.name,
-            description='%s%s' % (
+            description='%s%s (%s)' % (
               language[KEY_LANGUAGE],
-              self.backend.settings.is_debug() and \
-              ' (%s)' % language[KEY_NAME] or ''),
+              ' (%s)' % language[KEY_NAME] if self.backend.settings.is_debug() \
+              else '',
+              {'male': _('Male'), 'female': _('Female'),
+              'other': _('Unknown')}.get(language[KEY_GENDER], 'other')),
             name=language[KEY_NAME],
             gender=language[KEY_GENDER]
             )

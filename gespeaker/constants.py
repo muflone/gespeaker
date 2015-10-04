@@ -52,7 +52,7 @@ else:
 DIR_DATA = os.path.join(DIR_PREFIX, 'data')
 DIR_UI = os.path.join(DIR_PREFIX, 'ui')
 DIR_SETTINGS = BaseDirectory.save_config_path(DOMAIN_NAME)
-DIR_BT_ICONS = os.path.join(DIR_DATA, 'icons')
+DIR_ICONS = os.path.join(DIR_DATA, 'icons')
 # Set the paths for the UI files
 FILE_UI_MAIN = os.path.join(DIR_UI, 'main.glade')
 FILE_UI_ABOUT = os.path.join(DIR_UI, 'about.glade')
@@ -64,6 +64,9 @@ FILE_ICON = os.path.join(DIR_DATA, 'gespeaker.png')
 FILE_TRANSLATORS = os.path.join(DIR_DOCS, 'translators')
 FILE_LICENSE = os.path.join(DIR_DOCS, 'license')
 FILE_RESOURCES = os.path.join(DIR_DOCS, 'resources')
+FILE_GENDER_MALE = os.path.join(DIR_ICONS, 'gender-male.svg')
+FILE_GENDER_FEMALE = os.path.join(DIR_ICONS, 'gender-female.svg')
+FILE_GENDER_UNKNOWN = os.path.join(DIR_ICONS, 'gender-unknown.svg')
 # Set the paths for configuration files
 FILE_SETTINGS_NEW = os.path.join(DIR_SETTINGS, 'settings.conf')
 
