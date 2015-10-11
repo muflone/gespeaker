@@ -217,6 +217,7 @@ class MainWindow(object):
     """Whenever a playing is completed uncheck the Play button and
     disable the Pause button"""
     self.ui.actionPlayStop.set_active(False)
+    self.ui.actionPause.set_active(False)
     self.ui.actionPause.set_sensitive(False)
 
   def on_actionOpen_activate(self, action):
