@@ -150,8 +150,6 @@ class MainWindow(object):
     available_voices = self.modelLanguages.count() > 0
     self.ui.actionPlayStop.set_sensitive(available_voices)
     self.ui.actionRecord.set_sensitive(available_voices)
-    self.ui.actionPlay.set_sensitive(available_voices)
-    self.ui.actionStop.set_sensitive(available_voices)
     self.ui.lblEngine.set_sensitive(available_voices)
     self.ui.cboLanguages.set_sensitive(available_voices)
     self.ui.lblLanguage.set_sensitive(available_voices)
@@ -168,14 +166,6 @@ class MainWindow(object):
       self.ui.bufferText.copy_clipboard(self.clipboard)
     elif action is self.ui.actionPaste:
       self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
-
-  def on_actionPlay_activate(self, action):
-    """Play the text in the buffer"""
-    self.ui.actionPlayStop.set_active(True)
-
-  def on_actionStop_activate(self, action):
-    """Stop any previous play"""
-    self.ui.actionPlayStop.set_active(False)
 
   def on_actionPlayStop_toggled(self, action):
     """Play or stop play"""
