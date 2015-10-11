@@ -131,8 +131,6 @@ class MainWindow(object):
     """Update languages list after engine change"""
     self.modelLanguages.clear()
     current_engine = self._get_current_engine()
-    if current_engine is None:
-      return
     for obj_engine in self.backend.engines.values():
       # Load languages only for selected engine
       if obj_engine.name == current_engine and obj_engine.enabled:
@@ -149,21 +147,16 @@ class MainWindow(object):
             gender=language[KEY_GENDER]
             )
     # Enable or disable widgets if at least a language is available
-    enabled_engines = self.modelLanguages.count() > 0
-    self.ui.actionPlayStop.set_sensitive(enabled_engines)
-    self.ui.actionPause.set_sensitive(enabled_engines)
-    self.ui.actionRecord.set_sensitive(enabled_engines)
-    self.ui.actionPlay.set_sensitive(enabled_engines)
-    self.ui.actionStop.set_sensitive(enabled_engines)
-    self.ui.cboLanguages.set_sensitive(enabled_engines)
-    self.ui.lblLanguage.set_sensitive(enabled_engines)
+    available_voices = self.modelLanguages.count() > 0
+    self.ui.actionPlayStop.set_sensitive(available_voices)
+    self.ui.actionRecord.set_sensitive(available_voices)
+    self.ui.actionPlay.set_sensitive(available_voices)
+    self.ui.actionStop.set_sensitive(available_voices)
+    self.ui.lblEngine.set_sensitive(available_voices)
+    self.ui.cboLanguages.set_sensitive(available_voices)
+    self.ui.lblLanguage.set_sensitive(available_voices)
     self.ui.cboLanguages.set_tooltip_text('%d languages available' % 
       self.modelLanguages.count())
-    # Add dummy option
-    if self.modelLanguages.count() == 0:
-      self.modelLanguages.add('', 'No enabled engines', '')
-      self.ui.lblEngineName.set_text('Unknown')
-    # Select the first item
     self.ui.cboLanguages.set_active(0)
 
   def on_actionClipboard_activate(self, action):
