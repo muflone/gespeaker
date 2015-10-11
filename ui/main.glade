@@ -184,7 +184,7 @@
       <column type="gchararray"/>
       <!-- column-name Gender -->
       <column type="gchararray"/>
-      <!-- column-name Gender Pixbuf -->
+      <!-- column-name GenderIcon -->
       <column type="GdkPixbuf"/>
     </columns>
   </object>
