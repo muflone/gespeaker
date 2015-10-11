@@ -83,6 +83,12 @@ class MainWindow(object):
     self.ui.winMain.set_title(APP_NAME)
     self.ui.winMain.set_icon_from_file(FILE_ICON)
     self.ui.winMain.set_application(self.application)
+    # Set the actions accelerator group
+    for group_name in ('actionsApplication', 'actionsEdit', 'actionsFile',
+        'actionsMedia'):
+      if isinstance(self.ui.get_object(group_name), Gtk.ActionGroup):
+        for action in self.ui.get_object(group_name).list_actions():
+          action.set_accel_group(self.ui.accelerators)
     # Define the clipboard object for cut/copy/paste actions
     self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
     # Connect signals from the glade file to the functions with the same name

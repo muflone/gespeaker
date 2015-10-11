@@ -11,6 +11,7 @@
         <property name="icon_name">application-exit</property>
         <signal name="activate" handler="on_actionQuit_activate" swapped="no"/>
       </object>
+      <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
     </child>
     <child>
       <object class="GtkAction" id="actionRevert">
@@ -110,6 +111,7 @@
         <property name="always_show_image">True</property>
         <signal name="toggled" handler="on_actionPause_toggled" swapped="no"/>
       </object>
+      <accelerator key="F6"/>
     </child>
     <child>
       <object class="GtkToggleAction" id="actionRecord">
@@ -117,6 +119,7 @@
         <property name="icon_name">media-record</property>
         <property name="is_important">True</property>
       </object>
+      <accelerator key="r" modifiers="GDK_CONTROL_MASK"/>
     </child>
     <child>
       <object class="GtkToggleAction" id="actionPlayStop">
