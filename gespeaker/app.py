@@ -60,6 +60,6 @@ class Application(Gtk.Application):
     """Show the about dialog from the app menu"""
     self.ui.on_actionAbout_activate(action)
 
-  def on_app_quit_activate(self, action):
+  def on_app_quit_activate(self, action, data):
     """Quit the application from the app menu"""
     self.ui.on_actionQuit_activate(action)
