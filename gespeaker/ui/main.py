@@ -180,6 +180,8 @@ class MainWindow(object):
   def on_actionPlayStop_toggled(self, action):
     """Play or stop play"""
     if self.ui.actionPlayStop.get_active():
+      self.ui.actionPlayStop.set_label(self.ui.actionStop.get_label())
+      self.ui.btnPlay.set_image(self.ui.imageStop)
       # Play the text
       self.backend.set_current_engine(self._get_current_language_engine())
       self.backend.play(
@@ -190,6 +192,8 @@ class MainWindow(object):
       self.ui.actionPause.set_sensitive(True)
     else:
       # Stop any previous play
+      self.ui.btnPlay.set_image(self.ui.imagePlay)
+      self.ui.actionPlayStop.set_label(self.ui.actionPlay.get_label())
       self.backend.stop()
 
   def on_actionPause_toggled(self, action):

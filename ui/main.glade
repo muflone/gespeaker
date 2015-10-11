@@ -107,6 +107,7 @@
         <property name="icon_name">media-playback-pause</property>
         <property name="is_important">True</property>
         <property name="sensitive">False</property>
+        <property name="always_show_image">True</property>
         <signal name="toggled" handler="on_actionPause_toggled" swapped="no"/>
       </object>
     </child>
@@ -120,8 +121,7 @@
     <child>
       <object class="GtkAction" id="actionPlay">
         <property name="label" translatable="yes">Play</property>
-        <property name="icon_name">media-playback-start</property>
-        <property name="is_important">True</property>
+        <property name="always_show_image">True</property>
         <signal name="activate" handler="on_actionPlay_activate" swapped="no"/>
       </object>
     </child>
@@ -166,6 +166,21 @@
     <property name="page_increment">10</property>
   </object>
   <object class="GtkTextBuffer" id="bufferText"/>
+  <object class="GtkImage" id="imagePause">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">media-playback-pause</property>
+  </object>
+  <object class="GtkImage" id="imagePlay">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">media-playback-start</property>
+  </object>
+  <object class="GtkImage" id="imageStop">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">media-playback-stop</property>
+  </object>
   <object class="GtkListStore" id="modelEngines">
     <columns>
       <!-- column-name Engine -->
@@ -605,7 +620,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="always_show_image">True</property>
+                        <property name="image">imagePlay</property>
                         <accelerator key="F5" signal="activate"/>
                       </object>
                       <packing>
@@ -621,7 +636,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="always_show_image">True</property>
+                        <property name="image">imagePause</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
