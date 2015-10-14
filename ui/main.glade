@@ -14,12 +14,6 @@
       <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
     </child>
     <child>
-      <object class="GtkAction" id="actionRevert">
-        <property name="label" translatable="yes">Revert</property>
-        <property name="icon_name">document-revert</property>
-      </object>
-    </child>
-    <child>
       <object class="GtkAction" id="actionAbout">
         <property name="label" translatable="yes">About</property>
         <property name="icon_name">help-about</property>
@@ -321,15 +315,6 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitemRevert">
-                        <property name="use_action_appearance">True</property>
-                        <property name="related_action">actionRevert</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkMenuItem" id="menuitemPreferences">
                         <property name="use_action_appearance">True</property>
                         <property name="related_action">actionPreferences</property>
@@ -498,29 +483,6 @@
                 <property name="related_action">actionRecord</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSeparatorToolItem" id="separatorToolbar2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkToolButton" id="btnRevert">
-                <property name="use_action_appearance">True</property>
-                <property name="related_action">actionRevert</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="is_important">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
