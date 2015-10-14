@@ -9,3 +9,6 @@
 ################
 *.glade~
 \#*.glade#
+# Geany files #
+###############
+geany_run_script.bat
