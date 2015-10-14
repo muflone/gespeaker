@@ -4,6 +4,7 @@
 # Language translations #
 #########################
 *.mo
+/po/new/
 # Backup files #
 ################
 *.glade~
