@@ -22,6 +22,8 @@ import multiprocessing
 import time
 import os
 
+import psutil
+
 from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
@@ -82,7 +84,11 @@ class EngineDummy(EngineBase):
       self.settings.debug_line('%s %s engine with pid %d' % (
         status and 'Pause' or 'Resume',
         self.name, self.__process_speaker.pid))
-      os.kill(self.__process_speaker.pid, status and SIGSTOP or SIGCONT)
+      psprocess = psutil.Process(self.__process_speaker.pid)
+      if status:
+        psprocess.suspend()
+      else:
+        psprocess.resume()
     return True
 
 engine_classes = (EngineDummy, )
