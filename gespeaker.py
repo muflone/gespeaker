@@ -29,8 +29,10 @@ from gespeaker.constants import *
 if __name__ == '__main__':
   # Load domain for translation
   for module in (gettext, locale):
-    module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
-    module.textdomain(DOMAIN_NAME)
+    if hasattr(module, 'bindtextdomain'):
+      module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
+    if hasattr(module, 'textdomain'):
+      module.textdomain(DOMAIN_NAME)
 
   # Load the settings from the configuration file
   settings = Settings()
