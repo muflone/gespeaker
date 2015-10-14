@@ -152,13 +152,7 @@ class MainWindow(object):
             name=language[KEY_NAME],
             gender=language[KEY_GENDER]
             )
-    # Enable or disable widgets if at least a language is available
-    available_voices = self.modelLanguages.count() > 0
-    self.ui.actionPlayStop.set_sensitive(available_voices)
-    self.ui.actionRecord.set_sensitive(available_voices)
-    self.ui.lblEngine.set_sensitive(available_voices)
-    self.ui.cboLanguages.set_sensitive(available_voices)
-    self.ui.lblLanguage.set_sensitive(available_voices)
+    self.on_bufferText_changed(None)
     self.ui.cboLanguages.set_tooltip_text('%d languages available' % 
       self.modelLanguages.count())
     self.ui.cboLanguages.set_active(0)
@@ -285,3 +279,22 @@ class MainWindow(object):
       if dialog.show_question() == Gtk.ResponseType.OK:
         self.backend.settings.debug_line('text cleared')
         self.ui.bufferText.set_text('')
+
+  def on_bufferText_changed(self, widget):
+    """Enable or disable the New and Save actions on text change"""
+    text = self.ui.bufferText.get_text(
+      self.ui.bufferText.get_start_iter(),
+      self.ui.bufferText.get_end_iter(),
+      True)
+    has_text = len(text) > 0
+    # New and Save actions depend on the written text
+    self.ui.actionNew.set_sensitive(has_text)
+    self.ui.actionSaveAs.set_sensitive(has_text)
+    # For voices settings and Play action check the number of languages
+    has_languages = self.modelLanguages.count() > 0
+    self.ui.actionPlayStop.set_sensitive(has_languages)
+    self.ui.actionRecord.set_sensitive(has_languages)
+    self.ui.lblEngine.set_sensitive(has_languages)
+    self.ui.cboLanguages.set_sensitive(has_languages)
+    self.ui.lblLanguage.set_sensitive(has_languages)
+    self.ui.actionPlayStop.set_sensitive(has_text and has_languages)
