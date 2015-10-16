@@ -7,7 +7,7 @@
     <property name="accel_group">accelerators</property>
     <child>
       <object class="GtkAction" id="actionQuit">
-        <property name="label" translatable="yes">Quit</property>
+        <property name="label" translatable="yes">_Quit</property>
         <property name="icon_name">application-exit</property>
         <signal name="activate" handler="on_actionQuit_activate" swapped="no"/>
       </object>
@@ -15,7 +15,7 @@
     </child>
     <child>
       <object class="GtkAction" id="actionAbout">
-        <property name="label" translatable="yes">About</property>
+        <property name="label" translatable="yes">_About</property>
         <property name="icon_name">help-about</property>
         <signal name="activate" handler="on_actionAbout_activate" swapped="no"/>
       </object>
@@ -23,13 +23,13 @@
     </child>
     <child>
       <object class="GtkAction" id="actionPreferences">
-        <property name="label" translatable="yes">Preferences</property>
+        <property name="label" translatable="yes">_Preferences</property>
         <property name="icon_name">preferences-desktop</property>
       </object>
     </child>
     <child>
       <object class="GtkAction" id="actionRefresh">
-        <property name="label" translatable="yes">Reload voices</property>
+        <property name="label" translatable="yes">_Reload voices</property>
         <property name="icon_name">view-refresh</property>
         <signal name="activate" handler="on_actionRefresh_activate" swapped="no"/>
       </object>
@@ -39,12 +39,17 @@
         <signal name="toggled" handler="on_actionEnableEngine_toggled" swapped="no"/>
       </object>
     </child>
+    <child>
+      <object class="GtkAction" id="actionEngines">
+        <property name="label" translatable="yes">_Engines</property>
+      </object>
+    </child>
   </object>
   <object class="GtkActionGroup" id="actionsEdit">
     <property name="accel_group">accelerators</property>
     <child>
       <object class="GtkAction" id="actionCut">
-        <property name="label" translatable="yes">Cut</property>
+        <property name="label" translatable="yes">Cu_t</property>
         <property name="icon_name">edit-cut</property>
         <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
@@ -52,7 +57,7 @@
     </child>
     <child>
       <object class="GtkAction" id="actionCopy">
-        <property name="label" translatable="yes">Copy</property>
+        <property name="label" translatable="yes">_Copy</property>
         <property name="icon_name">edit-copy</property>
         <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
@@ -60,7 +65,7 @@
     </child>
     <child>
       <object class="GtkAction" id="actionPaste">
-        <property name="label" translatable="yes">Paste</property>
+        <property name="label" translatable="yes">_Paste</property>
         <property name="icon_name">edit-paste</property>
         <signal name="activate" handler="on_actionClipboard_activate" swapped="no"/>
       </object>
@@ -80,7 +85,7 @@
     </child>
     <child>
       <object class="GtkAction" id="actionOpen">
-        <property name="label" translatable="yes">Open</property>
+        <property name="label" translatable="yes">_Open</property>
         <property name="icon_name">document-open</property>
         <signal name="activate" handler="on_actionOpen_activate" swapped="no"/>
       </object>
@@ -88,7 +93,7 @@
     </child>
     <child>
       <object class="GtkAction" id="actionSaveAs">
-        <property name="label" translatable="yes">Save as...</property>
+        <property name="label" translatable="yes">_Save as...</property>
         <property name="icon_name">document-save-as</property>
         <property name="sensitive">False</property>
         <signal name="activate" handler="on_actionSaveAs_activate" swapped="no"/>
@@ -100,7 +105,7 @@
     <property name="accel_group">accelerators</property>
     <child>
       <object class="GtkToggleAction" id="actionPause">
-        <property name="label" translatable="yes">Pause</property>
+        <property name="label" translatable="yes">Pa_use</property>
         <property name="icon_name">media-playback-pause</property>
         <property name="is_important">True</property>
         <property name="sensitive">False</property>
@@ -111,7 +116,7 @@
     </child>
     <child>
       <object class="GtkToggleAction" id="actionRecord">
-        <property name="label" translatable="yes">Record</property>
+        <property name="label" translatable="yes">_Record</property>
         <property name="icon_name">media-record</property>
         <property name="is_important">True</property>
       </object>
@@ -119,7 +124,7 @@
     </child>
     <child>
       <object class="GtkToggleAction" id="actionPlayStop">
-        <property name="label" translatable="yes">Play</property>
+        <property name="label" translatable="yes">_Play</property>
         <property name="sensitive">False</property>
         <property name="always_show_image">True</property>
         <signal name="toggled" handler="on_actionPlayStop_toggled" swapped="no"/>
@@ -128,12 +133,12 @@
     </child>
     <child>
       <object class="GtkAction" id="actionStop">
-        <property name="label" translatable="yes">Stop</property>
+        <property name="label" translatable="yes">_Stop</property>
       </object>
     </child>
     <child>
       <object class="GtkAction" id="actionPlay">
-        <property name="label" translatable="yes">Play</property>
+        <property name="label" translatable="yes">_Play</property>
       </object>
     </child>
   </object>
@@ -371,9 +376,10 @@
                     </child>
                     <child>
                       <object class="GtkMenuItem" id="menuitemEngines">
+                        <property name="use_action_appearance">True</property>
+                        <property name="related_action">actionEngines</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Engines</property>
                         <property name="use_underline">True</property>
                         <child type="submenu">
                           <object class="GtkMenu" id="menuEngines">
@@ -512,7 +518,9 @@
               <object class="GtkLabel" id="lblText">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Insert text to play</property>
+                <property name="label" translatable="yes">Insert _text to play</property>
+                <property name="use_underline">True</property>
+                <property name="mnemonic_widget">txtText</property>
                 <property name="ellipsize">start</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -632,7 +640,9 @@
                       <object class="GtkLabel" id="lblEngine">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Engine:</property>
+                        <property name="label" translatable="yes">E_ngine:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">cboEngines</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -689,7 +699,9 @@
                       <object class="GtkLabel" id="lblLanguage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Language:</property>
+                        <property name="label" translatable="yes">_Language:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">cboLanguages</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
