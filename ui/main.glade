@@ -530,6 +530,8 @@
                   <object class="GtkTextView" id="txtText">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="has_focus">True</property>
+                    <property name="is_focus">True</property>
                     <property name="buffer">bufferText</property>
                   </object>
                 </child>
