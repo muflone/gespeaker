@@ -287,6 +287,7 @@ class MainWindow(object):
     dialog = MessagesDialog(self.ui.winMain)
     dialog.primary_text = _('Not implemented yet!')
     dialog.show_warning()
+    self.ui.actionPlayStop.activate()
     
   def on_actionPreferences_activate(self, action):
     """Show the preferences dialog"""
