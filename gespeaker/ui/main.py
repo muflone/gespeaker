@@ -180,10 +180,12 @@ class MainWindow(object):
         language=self._get_current_language_name())
       self.ui.actionPause.set_active(False)
       self.ui.actionPause.set_sensitive(True)
+      self.ui.actionRecord.set_sensitive(False)
     else:
       # Stop any previous play
       self.ui.btnPlay.set_image(self.ui.imagePlay)
       self.ui.actionPlayStop.set_label(self.ui.actionPlay.get_label())
+      self.ui.actionRecord.set_sensitive(True)
       self.backend.stop()
 
   def on_actionPause_toggled(self, action):
@@ -280,6 +282,12 @@ class MainWindow(object):
         self.backend.settings.debug_line('text cleared')
         self.ui.bufferText.set_text('')
 
+  def on_actionRecord_activate(self, action):
+    """Record the text to play"""
+    dialog = MessagesDialog(self.ui.winMain)
+    dialog.primary_text = _('Not implemented yet!')
+    dialog.show_warning()
+    
   def on_bufferText_changed(self, widget):
     """Enable or disable the New and Save actions on text change"""
     text = self.ui.bufferText.get_text(
@@ -292,9 +300,8 @@ class MainWindow(object):
     self.ui.actionSaveAs.set_sensitive(has_text)
     # For voices settings and Play action check the number of languages
     has_languages = self.modelLanguages.count() > 0
-    self.ui.actionPlayStop.set_sensitive(has_languages)
-    self.ui.actionRecord.set_sensitive(has_languages)
     self.ui.lblEngine.set_sensitive(has_languages)
     self.ui.cboLanguages.set_sensitive(has_languages)
     self.ui.lblLanguage.set_sensitive(has_languages)
     self.ui.actionPlayStop.set_sensitive(has_text and has_languages)
+    self.ui.actionRecord.set_sensitive(has_text and has_languages)
