@@ -25,7 +25,9 @@
       <object class="GtkAction" id="actionPreferences">
         <property name="label" translatable="yes">_Preferences</property>
         <property name="icon_name">preferences-desktop</property>
+        <signal name="activate" handler="on_actionPreferences_activate" swapped="no"/>
       </object>
+      <accelerator key="p" modifiers="GDK_CONTROL_MASK"/>
     </child>
     <child>
       <object class="GtkAction" id="actionRefresh">

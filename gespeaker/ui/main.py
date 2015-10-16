@@ -288,6 +288,12 @@ class MainWindow(object):
     dialog.primary_text = _('Not implemented yet!')
     dialog.show_warning()
     
+  def on_actionPreferences_activate(self, action):
+    """Show the preferences dialog"""
+    dialog = MessagesDialog(self.ui.winMain)
+    dialog.primary_text = _('Not implemented yet!')
+    dialog.show_warning()
+
   def on_bufferText_changed(self, widget):
     """Enable or disable the New and Save actions on text change"""
     text = self.ui.bufferText.get_text(
