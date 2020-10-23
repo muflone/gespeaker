@@ -12,3 +12,6 @@
 # Geany files #
 ###############
 geany_run_script.bat
+# PyCharm files #
+#################
+/.idea/
