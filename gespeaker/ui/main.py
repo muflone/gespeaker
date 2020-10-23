@@ -235,7 +235,7 @@ class MainWindow(object):
         with open(filename, 'r') as f:
           self.backend.settings.debug_line('loading text from %s' % filename)
           self.ui.bufferText.set_text(f.read())
-      except Exception, error:
+      except Exception as error:
         # Handle any exception
         self.backend.settings.debug_line('Error loading %s (Error: %s)' % (
           filename, error))
@@ -260,7 +260,7 @@ class MainWindow(object):
             start=self.ui.bufferText.get_start_iter(),
             end=self.ui.bufferText.get_end_iter(),
             include_hidden_chars=False))
-      except Exception, error:
+      except Exception as error:
         # Handle any exception
         self.backend.settings.debug_line('Error saving to %s (Error: %s)' % (
           filename, error))

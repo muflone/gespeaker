@@ -117,7 +117,7 @@ class EngineMBROLA(EngineBase):
     self.settings.debug_line(espeak_arguments)
     self.__process_speaker = subprocess.Popen(espeak_arguments,
       stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    self.__process_speaker.stdin.write(text)
+    self.__process_speaker.stdin.write(text.encode('utf-8'))
     self.__process_speaker.stdin.flush()
     self.__process_speaker.stdin.close()
     player_arguments = ('paplay', )

@@ -36,7 +36,7 @@ class EngineBase(object):
   @classmethod
   def check_requirements(cls):
     """Check the module requirements to enable it"""
-    print 'Checking requirements for engine %s' % cls.name
+    print('Checking requirements for engine %s' % cls.name)
     # Check for required Python modules to import
     for module_name in cls.required_modules:
       try:
