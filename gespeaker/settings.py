@@ -22,7 +22,7 @@ import os
 import os.path
 import optparse
 import time
-import ConfigParser
+import configparser
 
 from gespeaker.constants import *
 
@@ -46,7 +46,7 @@ class Settings(object):
                       help='hide error and information messages')
     (self.options, self.arguments) = parser.parse_args()
     # Parse settings from the configuration file
-    self.config = ConfigParser.RawConfigParser()
+    self.config = configparser.RawConfigParser()
     # Allow saving in case sensitive (useful for machine names)
     self.config.optionxform = str
     # Determine which filename to use for settings
