@@ -108,38 +108,38 @@ class EngineEspeak(EngineBase):
         arguments = ['espeak', '-v']
         arguments.append(language)
         self.settings.debug_line(arguments)
-        self.__process_speaker = subprocess.Popen(args=arguments,
-                                                  stdin=subprocess.PIPE)
-        self.__process_speaker.stdin.write(text.encode('utf-8'))
-        self.__process_speaker.stdin.flush()
-        self.__process_speaker.stdin.close()
+        self.process_speaker = subprocess.Popen(args=arguments,
+                                                stdin=subprocess.PIPE)
+        self.process_speaker.stdin.write(text.encode('utf-8'))
+        self.process_speaker.stdin.flush()
+        self.process_speaker.stdin.close()
 
     def is_playing(self, on_play_completed):
         """Check if the engine is playing and call on_play_completed callback
         when the playing has been completed"""
-        if self.__process_speaker and self.__process_speaker.poll() is not None:
+        if self.process_speaker and self.process_speaker.poll() is not None:
             self.playing = False
-            self.__process_speaker = None
+            self.process_speaker = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
         """Stop any previous play"""
-        if self.__process_speaker:
+        if self.process_speaker:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.__process_speaker.pid))
-            self.__process_speaker.terminate()
+                self.name, self.process_speaker.pid))
+            self.process_speaker.terminate()
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
         """Pause a previous play or resume after pause"""
         super(self.__class__, self).pause(status_pause)
-        if self.__process_speaker:
+        if self.process_speaker:
             # Show pause message when debug is activated
             self.settings.debug_line('%s %s engine with pid %d' % (
                 'Pause' if status_pause else 'Resume',
-                self.name, self.__process_speaker.pid))
-            psprocess = psutil.Process(self.__process_speaker.pid)
+                self.name, self.process_speaker.pid))
+            psprocess = psutil.Process(self.process_speaker.pid)
             if status_pause:
                 psprocess.suspend()
             else:

@@ -58,8 +58,8 @@ class EngineBase(object):
         self.playing = False
         self.settings = settings
         self.enabled = True
-        self.__process_speaker = None
-        self.__process_player = None
+        self.process_speaker = None
+        self.process_player = None
         # Inject required modules into the module global namespace
         for module_name in self.required_modules:
             module_globals[module_name] = importlib.import_module(module_name)

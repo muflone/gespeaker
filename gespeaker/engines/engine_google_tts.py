@@ -74,30 +74,30 @@ class EngineGoogleTTS(EngineBase):
         super(self.__class__, self).play(text, language, on_play_completed)
         self._tmp_filename = \
             tempfile.mkstemp(prefix='gespeaker_', suffix='.mp3')[1]
-        self.__process_speaker = gtts.gTTS(text=text, lang=language)
-        self.__process_speaker.save(self._tmp_filename)
-        self.__process_speaker = None
+        self.process_speaker = gtts.gTTS(text=text, lang=language)
+        self.process_speaker.save(self._tmp_filename)
+        self.process_speaker = None
 
         arguments = ['mpg123', '-q']
         arguments.append(self._tmp_filename)
         self.settings.debug_line(arguments)
-        self.__process_player = subprocess.Popen(args=arguments)
+        self.process_player = subprocess.Popen(args=arguments)
 
     def is_playing(self, on_play_completed):
         """Check if the engine is playing and call on_play_completed callback
         when the playing has been completed"""
-        if self.__process_player and self.__process_player.poll() is not None:
+        if self.process_player and self.process_player.poll() is not None:
             self.playing = False
-            self.__process_player = None
+            self.process_player = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
         """Stop any previous play"""
-        if self.__process_player:
+        if self.process_player:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.__process_player.pid))
-            self.__process_player.terminate()
+                self.name, self.process_player.pid))
+            self.process_player.terminate()
         # Remove stale temporary file
         if os.path.isfile(self._tmp_filename):
             os.remove(self._tmp_filename)
@@ -106,7 +106,7 @@ class EngineGoogleTTS(EngineBase):
     def pause(self, status_pause):
         """Pause a previous play or resume after pause"""
         super(self.__class__, self).pause(status_pause)
-        for process in (self.__process_speaker, self.__process_player):
+        for process in (self.process_speaker, self.process_player):
             if process:
                 # Show pause message when debug is activated
                 self.settings.debug_line('%s %s engine with pid %d' % (

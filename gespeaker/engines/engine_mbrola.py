@@ -122,38 +122,38 @@ class EngineMBROLA(EngineBase):
         espeak_arguments = ['espeak', '--stdout', '-v']
         espeak_arguments.append(language)
         self.settings.debug_line(espeak_arguments)
-        self.__process_speaker = subprocess.Popen(args=espeak_arguments,
-                                                  stdin=subprocess.PIPE,
-                                                  stdout=subprocess.PIPE)
-        self.__process_speaker.stdin.write(text.encode('utf-8'))
-        self.__process_speaker.stdin.flush()
-        self.__process_speaker.stdin.close()
+        self.process_speaker = subprocess.Popen(args=espeak_arguments,
+                                                stdin=subprocess.PIPE,
+                                                stdout=subprocess.PIPE)
+        self.process_speaker.stdin.write(text.encode('utf-8'))
+        self.process_speaker.stdin.flush()
+        self.process_speaker.stdin.close()
         player_arguments = ('paplay',)
-        self.__process_player = subprocess.Popen(
+        self.process_player = subprocess.Popen(
             args=player_arguments,
-            stdin=self.__process_speaker.stdout)
+            stdin=self.process_speaker.stdout)
 
     def is_playing(self, on_play_completed):
         """Check if the engine is playing and call on_play_completed callback
         when the playing has been completed"""
-        if self.__process_player and self.__process_player.poll() is not None:
+        if self.process_player and self.process_player.poll() is not None:
             self.playing = False
-            self.__process_player = None
+            self.process_player = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
         """Stop any previous play"""
-        if self.__process_player:
+        if self.process_player:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.__process_player.pid))
-            self.__process_player.terminate()
+                self.name, self.process_player.pid))
+            self.process_player.terminate()
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
         """Pause a previous play or resume after pause"""
         super(self.__class__, self).pause(status_pause)
-        for process in (self.__process_speaker, self.__process_player):
+        for process in (self.process_speaker, self.process_player):
             if process:
                 # Show pause message when debug is activated
                 self.settings.debug_line('%s %s engine with pid %d' % (
