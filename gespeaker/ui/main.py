@@ -174,14 +174,13 @@ class MainWindow(object):
                 for language in obj_engine.get_languages():
                     self.modelLanguages.add(
                         engine=obj_engine.name,
-                        description='%s%s (%s)' % (
-                            language[KEY_LANGUAGE],
-                            ' (%s)' % language[KEY_NAME]
-                            if self.backend.settings.is_debug()
-                            else '',
-                            {'male': _('Male'), 'female': _('Female'),
-                             'other': _('Unknown')}.get(language[KEY_GENDER],
-                                                        'other')),
+                        description='{LANGUAGE} {GENDER}'.format(
+                            LANGUAGE=language[KEY_LANGUAGE],
+                            GENDER={'male': _('Male'),
+                                    'female': _('Female'),
+                                    'other': _('Unknown')}.get(
+                                        language[KEY_GENDER],
+                                        'other')),
                         name=language[KEY_NAME],
                         gender=language[KEY_GENDER]
                     )
@@ -283,13 +282,14 @@ class MainWindow(object):
                 # Open the selected text file
                 with open(filename, 'r') as f:
                     self.backend.settings.debug_line(
-                        'loading text from %s' % filename)
+                        'loading text from {FILE}'.format(FILE=filename))
                     self.ui.bufferText.set_text(f.read())
             except Exception as error:
                 # Handle any exception
                 self.backend.settings.debug_line(
-                    'Error loading %s (Error: %s)' % (
-                        filename, error))
+                    'Error loading {FILE} (Error: {ERROR})'.format(
+                        FILE=filename,
+                        ERROR=error))
                 dialog = MessagesDialog(self.ui.winMain)
                 dialog.primary_text = _('Error opening the file')
                 dialog.secondary_text = error
@@ -309,7 +309,7 @@ class MainWindow(object):
                 # Save to the selected text file
                 with open(filename, 'w') as f:
                     self.backend.settings.debug_line(
-                        'saving text in %s' % filename)
+                        'saving text in {FILE}'.format(FILE=filename))
                     f.write(self.ui.bufferText.get_text(
                         start=self.ui.bufferText.get_start_iter(),
                         end=self.ui.bufferText.get_end_iter(),
@@ -317,8 +317,9 @@ class MainWindow(object):
             except Exception as error:
                 # Handle any exception
                 self.backend.settings.debug_line(
-                    'Error saving to %s (Error: %s)' % (
-                        filename, error))
+                    'Error saving to {FILE} (Error: {ERROR})'.format(
+                        FILE=filename,
+                        ERROR=error))
                 dialog = MessagesDialog(self.ui.winMain)
                 dialog.primary_text = _('Error saving the file')
                 dialog.secondary_text = error

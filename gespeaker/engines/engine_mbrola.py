@@ -111,15 +111,18 @@ class EngineMBROLA(EngineBase):
                 else:
                     # MBROLA voice file not found
                     self.settings.debug_line(
-                        'MBROLA data file %s not found for voice %s' % (
-                            os.path.join(dir_mb_voice,
-                                         info[KEY_ESPEAK_MBROLA]),
-                            info[KEY_NAME]))
+                        'MBROLA data file {FILE} not found for '
+                        'voice {VOICE}'.format(
+                            FILE=os.path.join(dir_mb_voice,
+                                              info[KEY_ESPEAK_MBROLA]),
+                            VOICE=info[KEY_NAME]))
             else:
                 # MBROLA voice directory not found
                 self.settings.debug_line(
-                    'MBROLA data directory %s not found for voice %s' % (
-                        dir_mb_voice, info[KEY_NAME]))
+                    'MBROLA data directory {DIRECTORY} not found '
+                    'for voice {VOICE}'.format(
+                        DIRECTORY=dir_mb_voice,
+                        VOICE=info[KEY_NAME]))
             return None
 
     def play(self, text, language, on_play_completed):
@@ -157,8 +160,10 @@ class EngineMBROLA(EngineBase):
         """
         if self.process_player:
             # Show terminate message when debug is activated
-            self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.process_player.pid))
+            self.settings.debug_line(
+                'Terminate engine {ENGINE} with pid {PID}'.format(
+                    ENGINE=self.name,
+                    PID=self.process_player.pid))
             self.process_player.terminate()
         return super(self.__class__, self).stop()
 
@@ -170,9 +175,11 @@ class EngineMBROLA(EngineBase):
         for process in (self.process_speaker, self.process_player):
             if process:
                 # Show pause message when debug is activated
-                self.settings.debug_line('%s %s engine with pid %d' % (
-                    'Pause' if status_pause else 'Resume',
-                    self.name, process.pid))
+                self.settings.debug_line(
+                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
+                        STATUS='Pause' if status_pause else 'Resume',
+                        ENGINE=self.name,
+                        PID=process.pid))
                 psprocess = psutil.Process(process.pid)
                 if status_pause:
                     psprocess.suspend()

@@ -54,8 +54,9 @@ class Settings(object):
         # Determine which filename to use for settings
         self.filename = FILE_SETTINGS_NEW
         if self.filename:
-            self.logText('Loading settings from %s' % self.filename,
-                         VERBOSE_LEVEL_MAX)
+            self.logText('Loading settings from {FILE}'.format(
+                FILE=self.filename),
+                VERBOSE_LEVEL_MAX)
             self.config.read(self.filename)
 
     def load(self):
@@ -133,8 +134,9 @@ class Settings(object):
         """
         # Always save the settings in the new configuration file
         file_settings = open(FILE_SETTINGS_NEW, mode='w')
-        self.logText('Saving settings to %s' % FILE_SETTINGS_NEW,
-                     VERBOSE_LEVEL_MAX)
+        self.logText('Saving settings to {SETTINGS}'.format(
+            SETTINGS=FILE_SETTINGS_NEW),
+            VERBOSE_LEVEL_MAX)
         self.config.write(file_settings)
         file_settings.close()
 
@@ -143,7 +145,10 @@ class Settings(object):
         Print a text with current date and time based on verbose level
         """
         if verbose_level <= self.options.verbose_level:
-            print('[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text))
+            print('[{DATE} {TIME}] {TEXT}'.format(
+                DATE=time.strftime('%Y/%m/%d'),
+                TIME=time.strftime('%H:%M:%S'),
+                TEXT=text))
 
     def is_debug(self):
         """

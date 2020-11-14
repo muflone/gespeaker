@@ -52,7 +52,9 @@ def GTK30_(message, context=None):
     Get a translated message from GTK+ 3 domain
     """
     return gettext_with_domain('gtk30',
-                               ('%s\x04%s' % (context, message))
+                               '{CONTEXT}\x04{MESSAGE}'.format(
+                                   CONTEXT=context,
+                                   MESSAGE=message)
                                if context
                                else message)
 

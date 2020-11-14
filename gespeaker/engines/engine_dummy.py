@@ -85,8 +85,10 @@ class EngineDummy(EngineBase):
         """
         if self.process_speaker:
             # Show terminate message when debug is activated
-            self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.process_speaker.pid))
+            self.settings.debug_line(
+                'Terminate engine {ENGINE} with pid {PID}'.format(
+                    ENGINE=self.name,
+                    PID=self.process_speaker.pid))
             self.process_speaker.terminate()
         return super(self.__class__, self).stop()
 
@@ -97,9 +99,11 @@ class EngineDummy(EngineBase):
         super(self.__class__, self).pause(status_pause)
         if self.process_speaker:
             # Show pause message when debug is activated
-            self.settings.debug_line('%s %s engine with pid %d' % (
-                'Pause' if status_pause else 'Resume',
-                self.name, self.process_speaker.pid))
+            self.settings.debug_line(
+                '{STATUS} engine {ENGINE} with pid {PID}'.format(
+                    STATUS='Pause' if status_pause else 'Resume',
+                    ENGINE=self.name,
+                    PID=self.process_speaker.pid))
             psprocess = psutil.Process(self.process_speaker.pid)
             if status_pause:
                 psprocess.suspend()

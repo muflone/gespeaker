@@ -105,8 +105,10 @@ class EngineGoogleTTS(EngineBase):
         """
         if self.process_player:
             # Show terminate message when debug is activated
-            self.settings.debug_line('Terminate %s engine with pid %d' % (
-                self.name, self.process_player.pid))
+            self.settings.debug_line(
+                'Terminate engine {ENGINE} with pid {PID}'.format(
+                    ENGINE=self.name,
+                    PID=self.process_player.pid))
             self.process_player.terminate()
         # Remove stale temporary file
         if os.path.isfile(self._tmp_filename):
@@ -121,9 +123,11 @@ class EngineGoogleTTS(EngineBase):
         for process in (self.process_speaker, self.process_player):
             if process:
                 # Show pause message when debug is activated
-                self.settings.debug_line('%s %s engine with pid %d' % (
-                    'Pause' if status_pause else 'Resume',
-                    self.name, process.pid))
+                self.settings.debug_line(
+                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
+                        STATUS='Pause' if status_pause else 'Resume',
+                        ENGINE=self.name,
+                        PID=process.pid))
                 psprocess = psutil.Process(process.pid)
                 if status_pause:
                     psprocess.suspend()

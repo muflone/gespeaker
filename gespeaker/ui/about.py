@@ -50,12 +50,14 @@ class AboutWindow(object):
         self.ui = GtkBuilderLoader(FILE_UI_ABOUT)
         # Set various properties
         self.ui.dialogAbout.set_program_name(APP_NAME)
-        self.ui.dialogAbout.set_version('Version %s' % APP_VERSION)
+        self.ui.dialogAbout.set_version('Version {VERSION}'.format(
+            VERSION=APP_VERSION))
         self.ui.dialogAbout.set_comments(APP_DESCRIPTION)
         self.ui.dialogAbout.set_website(APP_URL)
         self.ui.dialogAbout.set_copyright(APP_COPYRIGHT)
         self.ui.dialogAbout.set_authors(
-            ['%s <%s>' % (APP_AUTHOR, APP_AUTHOR_EMAIL)])
+            ['{AUTHOR} <{EMAIL}>'.format(AUTHOR=APP_AUTHOR,
+                                         EMAIL=APP_AUTHOR_EMAIL)])
         # self.dialog.set_license_type(Gtk.License.GPL_2_0)
         self.ui.dialogAbout.set_license(
             '\n'.join(readlines(FILE_LICENSE, True)))
