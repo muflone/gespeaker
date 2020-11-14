@@ -81,7 +81,7 @@ class EngineGoogleTTS(EngineBase):
         arguments = ['mpg123', '-q']
         arguments.append(self._tmp_filename)
         self.settings.debug_line(arguments)
-        self.__process_player = subprocess.Popen(arguments)
+        self.__process_player = subprocess.Popen(args=arguments)
 
     def is_playing(self, on_play_completed):
         """Check if the engine is playing and call on_play_completed callback

@@ -108,7 +108,7 @@ class EngineEspeak(EngineBase):
         arguments = ['espeak', '-v']
         arguments.append(language)
         self.settings.debug_line(arguments)
-        self.__process_speaker = subprocess.Popen(arguments,
+        self.__process_speaker = subprocess.Popen(args=arguments,
                                                   stdin=subprocess.PIPE)
         self.__process_speaker.stdin.write(text.encode('utf-8'))
         self.__process_speaker.stdin.flush()

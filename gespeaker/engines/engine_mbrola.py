@@ -122,15 +122,16 @@ class EngineMBROLA(EngineBase):
         espeak_arguments = ['espeak', '--stdout', '-v']
         espeak_arguments.append(language)
         self.settings.debug_line(espeak_arguments)
-        self.__process_speaker = subprocess.Popen(espeak_arguments,
+        self.__process_speaker = subprocess.Popen(args=espeak_arguments,
                                                   stdin=subprocess.PIPE,
                                                   stdout=subprocess.PIPE)
         self.__process_speaker.stdin.write(text.encode('utf-8'))
         self.__process_speaker.stdin.flush()
         self.__process_speaker.stdin.close()
         player_arguments = ('paplay',)
-        self.__process_player = subprocess.Popen(player_arguments,
-                                                 stdin=self.__process_speaker.stdout)
+        self.__process_player = subprocess.Popen(
+            args=player_arguments,
+            stdin=self.__process_speaker.stdout)
 
     def is_playing(self, on_play_completed):
         """Check if the engine is playing and call on_play_completed callback
