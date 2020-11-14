@@ -41,13 +41,17 @@ class EngineMBROLA(EngineBase):
     required_executables = ('espeak', 'paplay')
 
     def __init__(self, settings):
-        """Initialize the engine"""
+        """
+        Initialize the engine
+        """
         super(self.__class__, self).__init__(settings, globals())
         self.dir_languages = '/usr/share/espeak-data/voices/mb'
         self.dir_mbrola_voices = '/usr/share/mbrola'
 
     def get_languages(self):
-        """Get the list of all the supported languages"""
+        """
+        Get the list of all the supported languages
+        """
         result = super(self.__class__, self).get_languages()
         for filename in os.listdir(self.dir_languages):
             filepath = os.path.join(self.dir_languages, filename)
@@ -59,7 +63,9 @@ class EngineMBROLA(EngineBase):
         return result
 
     def get_language_from_filename(self, filename):
-        """Get language information from the specified filename"""
+        """
+        Get language information from the specified filename
+        """
         info = None
         # Only process files whose size is less than max file size
         if os.path.getsize(filename) <= MAX_FILE_SIZE:
@@ -117,7 +123,9 @@ class EngineMBROLA(EngineBase):
             return None
 
     def play(self, text, language, on_play_completed):
-        """Play a text using the specified language"""
+        """
+        Play a text using the specified language
+        """
         super(self.__class__, self).play(text, language, on_play_completed)
         espeak_arguments = ['espeak', '--stdout', '-v']
         espeak_arguments.append(language)
@@ -134,15 +142,19 @@ class EngineMBROLA(EngineBase):
             stdin=self.process_speaker.stdout)
 
     def is_playing(self, on_play_completed):
-        """Check if the engine is playing and call on_play_completed callback
-        when the playing has been completed"""
+        """
+        Check if the engine is playing and call on_play_completed callback
+        when the playing has been completed
+        """
         if self.process_player and self.process_player.poll() is not None:
             self.playing = False
             self.process_player = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
-        """Stop any previous play"""
+        """
+        Stop any previous play
+        """
         if self.process_player:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
@@ -151,7 +163,9 @@ class EngineMBROLA(EngineBase):
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
-        """Pause a previous play or resume after pause"""
+        """
+        Pause a previous play or resume after pause
+        """
         super(self.__class__, self).pause(status_pause)
         for process in (self.process_speaker, self.process_player):
             if process:

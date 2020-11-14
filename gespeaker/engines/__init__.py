@@ -29,7 +29,9 @@ engine_modules = (
 
 
 def detect_engines():
-    """Dynamic import of engines modules"""
+    """
+    Dynamic import of engines modules
+    """
     engines = {}
     # Dynamic import of engines modules
     for module_name in engine_modules:

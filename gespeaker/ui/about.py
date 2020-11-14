@@ -73,10 +73,14 @@ class AboutWindow(object):
             self.show()
 
     def show(self):
-        "Show the About dialog"
+        """
+        Show the About dialog
+        """
         self.ui.dialogAbout.run()
         self.ui.dialogAbout.hide()
 
     def destroy(self):
-        "Destroy the About dialog"
+        """
+        Destroy the About dialog
+        """
         self.ui.dialogAbout.destroy()

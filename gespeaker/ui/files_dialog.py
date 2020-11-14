@@ -33,15 +33,21 @@ class FilesDialog(object):
         self.current_folder = os.path.expanduser('~')
 
     def show_open(self):
-        """Show the Open file dialog"""
+        """
+        Show the Open file dialog
+        """
         return self.__show_dialog(action=Gtk.FileChooserAction.OPEN)
 
     def show_save(self):
-        """Show the Save file dialog"""
+        """
+        Show the Save file dialog
+        """
         return self.__show_dialog(action=Gtk.FileChooserAction.SAVE)
 
     def __show_dialog(self, action):
-        """Create and show the dialog"""
+        """
+        Create and show the dialog
+        """
         dialog = Gtk.FileChooserDialog(
             parent=self.parent,
             action=action,
@@ -68,7 +74,9 @@ class FilesDialog(object):
         return result
 
     def add_filter(self, name, mime_types, patterns):
-        """Add a new filter for the dialog"""
+        """
+        Add a new filter for the dialog
+        """
         new_filter = Gtk.FileFilter()
         new_filter.set_name(name)
         # Add mime types
@@ -82,6 +90,8 @@ class FilesDialog(object):
         self.filters.append(new_filter)
 
     def clear_filters(self):
-        """Remove every filter"""
+        """
+        Remove every filter
+        """
         while len(self.filters) > 0:
             self.filters.pop()

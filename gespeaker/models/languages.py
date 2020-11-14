@@ -37,23 +37,33 @@ class ModelLanguages(ModelBase):
         }
 
     def add(self, engine, description, name, gender):
-        """Add a new row in the model"""
+        """
+        Add a new row in the model
+        """
         super(self.__class__, self).add(
             items=(engine, description, name, gender,
                    self._gender_map.get(gender, self._gender_map['unknown'])))
 
     def get_engine(self, treepath):
-        """Get the engine of a row"""
+        """
+        Get the engine of a row
+        """
         return self.get_model_data(treepath, self.COL_ENGINE)
 
     def get_description(self, treepath):
-        """Get the description of a row"""
+        """
+        Get the description of a row
+        """
         return self.get_model_data(treepath, self.COL_DESCRIPTION)
 
     def get_name(self, treepath):
-        """Get the name of a row"""
+        """
+        Get the name of a row
+        """
         return self.get_model_data(treepath, self.COL_NAME)
 
     def get_gender(self, treepath):
-        """Get the gender of a row"""
+        """
+        Get the gender of a row
+        """
         return self.get_model_data(treepath, self.COL_GENDER)

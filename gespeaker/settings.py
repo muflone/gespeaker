@@ -59,7 +59,9 @@ class Settings(object):
             self.config.read(self.filename)
 
     def load(self):
-        """Load window settings"""
+        """
+        Load window settings
+        """
         if self.config.has_section(SECTION_MAINWIN):
             self.logText('Retrieving window settings', VERBOSE_LEVEL_MAX)
             # Retrieve window position and size
@@ -80,7 +82,9 @@ class Settings(object):
         return self.settings.get(name, default)
 
     def set_sizes(self, winParent):
-        """Save configuration for main window"""
+        """
+        Save configuration for main window
+        """
         # Main window settings section
         self.logText('Saving window settings', VERBOSE_LEVEL_MAX)
         if not self.config.has_section(SECTION_MAINWIN):
@@ -95,28 +99,38 @@ class Settings(object):
         self.config.set(SECTION_MAINWIN, 'height', size[1])
 
     def get_boolean(self, section, name, default=None):
-        """Get a boolean option from a specific section"""
+        """
+        Get a boolean option from a specific section
+        """
         if self.config.has_option(section, name):
             return self.config.get(section, name) == '1'
         else:
             return default
 
     def set_boolean(self, section, name, value):
-        """Save a boolean option in a specific section"""
+        """
+        Save a boolean option in a specific section
+        """
         if not self.config.has_section(section):
             self.config.add_section(section)
         self.config.set(section, name, '1' if value else '0')
 
     def get_engine_status(self, engine):
-        """Get an engine status"""
+        """
+        Get an engine status
+        """
         return self.get_boolean(SECTION_ENGINES, engine, True)
 
     def set_engine_status(self, engine, status):
-        """Set an engine status"""
+        """
+        Set an engine status
+        """
         return self.set_boolean(SECTION_ENGINES, engine, status)
 
     def save(self):
-        """Save the whole configuration"""
+        """
+        Save the whole configuration
+        """
         # Always save the settings in the new configuration file
         file_settings = open(FILE_SETTINGS_NEW, mode='w')
         self.logText('Saving settings to %s' % FILE_SETTINGS_NEW,
@@ -125,15 +139,21 @@ class Settings(object):
         file_settings.close()
 
     def logText(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
-        """Print a text with current date and time based on verbose level"""
+        """
+        Print a text with current date and time based on verbose level
+        """
         if verbose_level <= self.options.verbose_level:
             print('[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text))
 
     def is_debug(self):
-        """Return True if the debug is currently active"""
+        """
+        Return True if the debug is currently active
+        """
         return self.get_boolean(SECTION_APPLICATION, 'debug', False)
 
     def debug_line(self, text):
-        """Print a text if the debug is enabled"""
+        """
+        Print a text if the debug is enabled
+        """
         if self.is_debug():
             print(text)

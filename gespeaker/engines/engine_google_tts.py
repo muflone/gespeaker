@@ -37,11 +37,15 @@ class EngineGoogleTTS(EngineBase):
     required_modules = ('gtts',)
 
     def __init__(self, settings):
-        """Initialize the engine"""
+        """
+        Initialize the engine
+        """
         super(self.__class__, self).__init__(settings, globals())
 
     def get_languages(self):
-        """Get the list of all the supported languages"""
+        """
+        Get the list of all the supported languages
+        """
         result = super(self.__class__, self).get_languages()
         # Languages map for gender
         languages_map = {
@@ -70,7 +74,9 @@ class EngineGoogleTTS(EngineBase):
         return result
 
     def play(self, text, language, on_play_completed):
-        """Play a text using the specified language"""
+        """
+        Play a text using the specified language
+        """
         super(self.__class__, self).play(text, language, on_play_completed)
         self._tmp_filename = \
             tempfile.mkstemp(prefix='gespeaker_', suffix='.mp3')[1]
@@ -84,15 +90,19 @@ class EngineGoogleTTS(EngineBase):
         self.process_player = subprocess.Popen(args=arguments)
 
     def is_playing(self, on_play_completed):
-        """Check if the engine is playing and call on_play_completed callback
-        when the playing has been completed"""
+        """
+        Check if the engine is playing and call on_play_completed callback
+        when the playing has been completed
+        """
         if self.process_player and self.process_player.poll() is not None:
             self.playing = False
             self.process_player = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
-        """Stop any previous play"""
+        """
+        Stop any previous play
+        """
         if self.process_player:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
@@ -104,7 +114,9 @@ class EngineGoogleTTS(EngineBase):
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
-        """Pause a previous play or resume after pause"""
+        """
+        Pause a previous play or resume after pause
+        """
         super(self.__class__, self).pause(status_pause)
         for process in (self.process_speaker, self.process_player):
             if process:

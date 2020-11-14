@@ -61,11 +61,15 @@ class MainWindow(object):
         self.about = AboutWindow(self.ui.winMain, False)
 
     def run(self):
-        """Show the UI"""
+        """
+        Show the UI
+        """
         self.ui.winMain.show_all()
 
     def loadUI(self):
-        """Load the interface UI"""
+        """
+        Load the interface UI
+        """
         # Load available engines
         self.modelEngines = ModelEngines(self.ui.modelEngines)
         for engine_name, obj_engine in self.backend.engines.items():
@@ -108,15 +112,21 @@ class MainWindow(object):
         self.ui.connect_signals(self)
 
     def on_winMain_delete_event(self, widget, event):
-        """Close the application"""
+        """
+        Close the application
+        """
         self.on_actionQuit_activate(widget)
 
     def on_actionAbout_activate(self, action):
-        """Show the about dialog"""
+        """
+        Show the about dialog
+        """
         self.about.show()
 
     def on_actionQuit_activate(self, action):
-        """Quit the application"""
+        """
+        Quit the application
+        """
         # Stop any previous play
         self.ui.actionPlayStop.set_active(False)
         # Save settings for window size
@@ -127,7 +137,9 @@ class MainWindow(object):
         self.application.quit()
 
     def _get_current_engine(self):
-        """Return the currently selected engine"""
+        """
+        Return the currently selected engine
+        """
         if self.ui.cboEngines.get_active_iter():
             return self.modelEngines.get_engine(
                 self.ui.cboEngines.get_active_iter())
@@ -135,19 +147,25 @@ class MainWindow(object):
             return None
 
     def _get_current_language_engine(self):
-        """Return the engine used for the currently selected language"""
+        """
+        Return the engine used for the currently selected language
+        """
         return self.modelLanguages.get_engine(
             self.ui.sortmodelLanguages.convert_iter_to_child_iter(
                 self.ui.cboLanguages.get_active_iter()))
 
     def _get_current_language_name(self):
-        """Return the name for the currently selected language"""
+        """
+        Return the name for the currently selected language
+        """
         return self.modelLanguages.get_name(
             self.ui.sortmodelLanguages.convert_iter_to_child_iter(
                 self.ui.cboLanguages.get_active_iter()))
 
     def on_cboEngines_changed(self, widget):
-        """Update languages list after engine change"""
+        """
+        Update languages list after engine change
+        """
         self.modelLanguages.clear()
         current_engine = self._get_current_engine()
         for obj_engine in self.backend.engines.values():
@@ -173,7 +191,9 @@ class MainWindow(object):
         self.ui.cboLanguages.set_active(0)
 
     def on_actionClipboard_activate(self, action):
-        """Cut and copy the selected text or paste it"""
+        """
+        Cut and copy the selected text or paste it
+        """
         bEditable = self.ui.txtText.get_editable()
         if action is self.ui.actionCut:
             self.ui.bufferText.cut_clipboard(self.clipboard, bEditable)
@@ -183,7 +203,9 @@ class MainWindow(object):
             self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
 
     def on_actionPlayStop_toggled(self, action):
-        """Play or stop play"""
+        """
+        Play or stop play
+        """
         if self.ui.actionPlayStop.get_active():
             self.ui.actionPlayStop.set_label(self.ui.actionStop.get_label())
             self.ui.btnPlay.set_image(self.ui.imageStop)
@@ -206,7 +228,9 @@ class MainWindow(object):
             self.backend.stop()
 
     def on_actionPause_toggled(self, action):
-        """Pause or resume"""
+        """
+        Pause or resume
+        """
         if self.ui.actionPlayStop.get_active():
             # Pause or resume
             self.backend.pause(self.ui.actionPause.get_active())
@@ -215,7 +239,9 @@ class MainWindow(object):
             self.ui.actionPause.set_active(False)
 
     def on_actionRefresh_activate(self, action):
-        """Reload the available voices list"""
+        """
+        Reload the available voices list
+        """
         self.modelEngines.clear()
         self.modelLanguages.clear()
         for obj_engine in self.backend.engines.values():
@@ -227,20 +253,26 @@ class MainWindow(object):
         self.ui.cboLanguages.set_active(0)
 
     def on_actionEnableEngine_toggled(self, action, engine):
-        """Enable or disable an engine"""
+        """
+        Enable or disable an engine
+        """
         engine.enabled = action.get_active()
         self.backend.settings.set_engine_status(engine.name, engine.enabled)
         self.on_actionRefresh_activate(action)
 
     def on_backend_play_complete(self):
-        """Whenever a playing is completed uncheck the Play button and
-        disable the Pause button"""
+        """
+        Whenever a playing is completed uncheck the Play button and
+        disable the Pause button
+        """
         self.ui.actionPlayStop.set_active(False)
         self.ui.actionPause.set_active(False)
         self.ui.actionPause.set_sensitive(False)
 
     def on_actionOpen_activate(self, action):
-        """Load an external text file"""
+        """
+        Load an external text file
+        """
         dialog = FilesDialog(self.ui.winMain)
         dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',), )
         dialog.add_filter(_('All files'), None, ('*',))
@@ -264,7 +296,9 @@ class MainWindow(object):
                 dialog.show_error()
 
     def on_actionSaveAs_activate(self, action):
-        """Save the text to an external text file"""
+        """
+        Save the text to an external text file
+        """
         dialog = FilesDialog(self.ui.winMain)
         dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',), )
         dialog.add_filter(_('All files'), None, ('*',))
@@ -291,7 +325,9 @@ class MainWindow(object):
                 dialog.show_error()
 
     def on_actionNew_activate(self, action):
-        """Clear the text buffer"""
+        """
+        Clear the text buffer
+        """
         if len(self.ui.bufferText.get_text(
                 start=self.ui.bufferText.get_start_iter(),
                 end=self.ui.bufferText.get_end_iter(),
@@ -304,20 +340,26 @@ class MainWindow(object):
                 self.ui.bufferText.set_text('')
 
     def on_actionRecord_activate(self, action):
-        """Record the text to play"""
+        """
+        Record the text to play
+        """
         dialog = MessagesDialog(self.ui.winMain)
         dialog.primary_text = _('Not implemented yet!')
         dialog.show_warning()
         self.ui.actionPlayStop.activate()
 
     def on_actionPreferences_activate(self, action):
-        """Show the preferences dialog"""
+        """
+        Show the preferences dialog
+        """
         dialog = MessagesDialog(self.ui.winMain)
         dialog.primary_text = _('Not implemented yet!')
         dialog.show_warning()
 
     def on_bufferText_changed(self, widget):
-        """Enable or disable the New and Save actions on text change"""
+        """
+        Enable or disable the New and Save actions on text change
+        """
         text = self.ui.bufferText.get_text(
             self.ui.bufferText.get_start_iter(),
             self.ui.bufferText.get_end_iter(),

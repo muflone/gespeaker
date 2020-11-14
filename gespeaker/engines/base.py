@@ -36,7 +36,9 @@ class EngineBase(object):
 
     @classmethod
     def check_requirements(cls):
-        """Check the module requirements to enable it"""
+        """
+        Check the module requirements to enable it
+        """
         print('Checking requirements for engine %s' % cls.name)
         # Check for required Python modules to import
         for module_name in cls.required_modules:
@@ -54,7 +56,9 @@ class EngineBase(object):
         return True
 
     def __init__(self, settings, module_globals):
-        """Initialize the engine"""
+        """
+        Initialize the engine
+        """
         self.playing = False
         self.settings = settings
         self.enabled = True
@@ -65,18 +69,24 @@ class EngineBase(object):
             module_globals[module_name] = importlib.import_module(module_name)
 
     def get_languages(self):
-        """Get the list of all the supported languages"""
+        """
+        Get the list of all the supported languages
+        """
         return []
 
     def play(self, text, language, on_play_completed):
-        """Play a text using the specified language"""
+        """
+        Play a text using the specified language
+        """
         self.playing = True
         # Add a timer to check when the playing has stopped
         GObject.timeout_add(500, self.is_playing, on_play_completed)
 
     def is_playing(self, on_play_completed):
-        """Check if the engine is playing and call on_play_completed callback
-        when the playing has been completed"""
+        """
+        Check if the engine is playing and call on_play_completed callback
+        when the playing has been completed
+        """
         if self.playing:
             return True
         else:
@@ -87,9 +97,13 @@ class EngineBase(object):
             return False
 
     def stop(self):
-        """Stop any previous play"""
+        """
+        Stop any previous play
+        """
         self.playing = False
 
     def pause(self, status):
-        """Pause a previous play or resume after pause"""
+        """
+        Pause a previous play or resume after pause
+        """
         return True

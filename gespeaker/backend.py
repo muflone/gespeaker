@@ -23,7 +23,9 @@ import gespeaker.engines
 
 class Backend(object):
     def __init__(self, settings):
-        """Initialize the backend"""
+        """
+        Initialize the backend
+        """
         self.engines = {}
         self.on_play_complete = None
         self.current_engine = None
@@ -35,26 +37,36 @@ class Backend(object):
             self.engines[engine_name] = obj_engine
 
     def get_languages(self):
-        """Get the list of the languages for all the engines"""
+        """
+        Get the list of the languages for all the engines
+        """
         result = []
         for engine in self.engines.values():
             result.extend(engine.get_languages())
         return result
 
     def set_current_engine(self, engine):
-        """Set the current engine"""
+        """
+        Set the current engine
+        """
         self.current_engine = engine
 
     def play(self, text, language):
-        """Play the text using the language"""
+        """
+        Play the text using the language
+        """
         return self.engines[self.current_engine].play(
             text, language, self.on_play_complete)
 
     def stop(self):
-        """Stop any previous play"""
+        """
+        Stop any previous play
+        """
         self.pause(False)
         return self.engines[self.current_engine].stop()
 
     def pause(self, status):
-        """Pause a previous play or resume after pause"""
+        """
+        Pause a previous play or resume after pause
+        """
         return self.engines[self.current_engine].pause(status)

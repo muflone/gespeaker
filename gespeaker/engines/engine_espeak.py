@@ -43,19 +43,25 @@ class EngineEspeak(EngineBase):
     required_executables = ('espeak',)
 
     def __init__(self, settings):
-        """Initialize the engine"""
+        """
+        Initialize the engine
+        """
         super(self.__class__, self).__init__(settings, globals())
         self.include_test_voices = False
         self.dir_languages = '/usr/share/espeak-data/voices'
 
     def get_languages(self):
-        """Get the list of all the supported languages"""
+        """
+        Get the list of all the supported languages
+        """
         result = super(self.__class__, self).get_languages()
         self.get_languages_from_path(self.dir_languages, result)
         return result
 
     def get_languages_from_path(self, path, languages):
-        """Get all the languages from the specified path"""
+        """
+        Get all the languages from the specified path
+        """
         for filename in os.listdir(path):
             # Skip variants and MBROLA voices
             # If requested, also skip test voices
@@ -77,7 +83,9 @@ class EngineEspeak(EngineBase):
                         languages.append(new_language)
 
     def get_language_from_filename(self, filename):
-        """Get language information from the specified filename"""
+        """
+        Get language information from the specified filename
+        """
         info = None
         # Only process files whose size is less than max file size
         if os.path.getsize(filename) <= MAX_FILE_SIZE:
@@ -103,7 +111,9 @@ class EngineEspeak(EngineBase):
         return info
 
     def play(self, text, language, on_play_completed):
-        """Play a text using the specified language"""
+        """
+        Play a text using the specified language
+        """
         super(self.__class__, self).play(text, language, on_play_completed)
         arguments = ['espeak', '-v']
         arguments.append(language)
@@ -115,15 +125,19 @@ class EngineEspeak(EngineBase):
         self.process_speaker.stdin.close()
 
     def is_playing(self, on_play_completed):
-        """Check if the engine is playing and call on_play_completed callback
-        when the playing has been completed"""
+        """
+        Check if the engine is playing and call on_play_completed callback
+        when the playing has been completed
+        """
         if self.process_speaker and self.process_speaker.poll() is not None:
             self.playing = False
             self.process_speaker = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
-        """Stop any previous play"""
+        """
+        Stop any previous play
+        """
         if self.process_speaker:
             # Show terminate message when debug is activated
             self.settings.debug_line('Terminate %s engine with pid %d' % (
@@ -132,7 +146,9 @@ class EngineEspeak(EngineBase):
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
-        """Pause a previous play or resume after pause"""
+        """
+        Pause a previous play or resume after pause
+        """
         super(self.__class__, self).pause(status_pause)
         if self.process_speaker:
             # Show pause message when debug is activated
