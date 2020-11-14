@@ -23,7 +23,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import Gio
 
-from gespeaker.constants import *
+from gespeaker.constants import APP_ID, FILE_UI_APPMENU
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 from gespeaker.backend import Backend
 

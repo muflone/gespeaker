@@ -23,7 +23,6 @@ import subprocess
 
 import psutil
 
-from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 

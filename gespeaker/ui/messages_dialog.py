@@ -18,7 +18,6 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-import os.path
 from gi.repository import Gtk
 
 from gespeaker.constants import APP_NAME

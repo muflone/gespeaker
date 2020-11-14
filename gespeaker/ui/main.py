@@ -26,7 +26,12 @@ from .about import AboutWindow
 from .files_dialog import FilesDialog
 from .messages_dialog import MessagesDialog
 
-from gespeaker.constants import *
+from gespeaker.constants import (APP_NAME,
+                                 FILE_GENDER_MALE,
+                                 FILE_GENDER_FEMALE,
+                                 FILE_GENDER_UNKNOWN,
+                                 FILE_ICON,
+                                 FILE_UI_MAIN)
 from gespeaker.functions import _
 from gespeaker.models.engines import ModelEngines
 from gespeaker.models.languages import ModelLanguages

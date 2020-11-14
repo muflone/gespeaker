@@ -18,15 +18,10 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-import struct
-import socket
-
 from gi.repository import Gtk
 
 from gettext import dgettext as gettext_with_domain
 from gettext import gettext as _
-
-from gespeaker.constants import *
 
 def readlines(filename, empty_lines = False):
   """Read all the text in the specified filename, allowing to skip empty lines"""

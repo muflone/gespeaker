@@ -36,5 +36,3 @@ def find_executable(executable, path=None):
                     return f
     else:
         return None
-
-# print find_executable('hg')

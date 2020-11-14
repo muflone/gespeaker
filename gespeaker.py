@@ -24,7 +24,7 @@ import locale
 
 from gespeaker.settings import Settings
 from gespeaker.app import Application
-from gespeaker.constants import *
+from gespeaker.constants import DOMAIN_NAME, DIR_LOCALE
 
 if __name__ == '__main__':
   # Load domain for translation

@@ -18,10 +18,20 @@
 #  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 ##
 
-from gi.repository import Gtk
 from gi.repository.GdkPixbuf import Pixbuf
 
-from gespeaker.constants import *
+from gespeaker.constants import (APP_NAME,
+                                 APP_VERSION,
+                                 APP_DESCRIPTION,
+                                 APP_AUTHOR,
+                                 APP_AUTHOR_EMAIL,
+                                 APP_COPYRIGHT,
+                                 APP_URL,
+                                 FILE_ICON,
+                                 FILE_LICENSE,
+                                 FILE_RESOURCES,
+                                 FILE_TRANSLATORS,
+                                 FILE_UI_ABOUT)
 from gespeaker.functions import readlines
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 

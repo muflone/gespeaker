@@ -30,7 +30,7 @@ class GtkBuilderLoader(object):
   
   def __getattr__(self, key):
     """Get a widget from GtkBuilder using class member name"""
-    if not key in self.__widgets:
+    if key not in self.__widgets:
       self.__widgets[key] = self.builder.get_object(key)
       assert(self.__widgets[key])
     return self.__widgets[key]
