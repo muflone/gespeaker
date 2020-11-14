@@ -23,7 +23,6 @@ import subprocess
 
 import psutil
 
-from gespeaker.constants import SIGCONT, SIGSTOP
 from gespeaker.engines.base import EngineBase
 from gespeaker.engines.base import KEY_ENGINE, KEY_NAME, KEY_LANGUAGE, KEY_GENDER
 
@@ -141,19 +140,20 @@ class EngineMBROLA(EngineBase):
       self.__process_player.terminate()
     return super(self.__class__, self).stop()
 
-  def pause(self, status):
+  def pause(self, status_pause):
     """Pause a previous play or resume after pause"""
-    super(self.__class__, self).pause(status)
-    if self.__process_player:
-      # Show pause message when debug is activated
-      self.settings.debug_line('%s %s engine with pid %d' % (
-        status and 'Pause' or 'Resume',
-        self.name, self.__process_player.pid))
-      psprocess = psutil.Process(self.__process_player.pid)
-      if status:
-        psprocess.suspend()
-      else:
-        psprocess.resume()
+    super(self.__class__, self).pause(status_pause)
+    for process in (self.__process_speaker, self.__process_player):
+      if process:
+        # Show pause message when debug is activated
+        self.settings.debug_line('%s %s engine with pid %d' % (
+          status_pause and 'Pause' or 'Resume',
+          self.name, process.pid))
+        psprocess = psutil.Process(process.pid)
+        if status_pause:
+          psprocess.suspend()
+        else:
+          psprocess.resume()
     return True
 
 engine_classes = (EngineMBROLA, )

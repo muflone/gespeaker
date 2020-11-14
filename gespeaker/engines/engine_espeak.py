@@ -126,16 +126,16 @@ class EngineEspeak(EngineBase):
       self.__process_speaker.terminate()
     return super(self.__class__, self).stop()
 
-  def pause(self, status):
+  def pause(self, status_pause):
     """Pause a previous play or resume after pause"""
-    super(self.__class__, self).pause(status)
+    super(self.__class__, self).pause(status_pause)
     if self.__process_speaker:
       # Show pause message when debug is activated
       self.settings.debug_line('%s %s engine with pid %d' % (
-        status and 'Pause' or 'Resume',
+        status_pause and 'Pause' or 'Resume',
         self.name, self.__process_speaker.pid))
       psprocess = psutil.Process(self.__process_speaker.pid)
-      if status:
+      if status_pause:
         psprocess.suspend()
       else:
         psprocess.resume()

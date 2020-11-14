@@ -69,7 +69,3 @@ FILE_GENDER_FEMALE = os.path.join(DIR_ICONS, 'gender-female.svg')
 FILE_GENDER_UNKNOWN = os.path.join(DIR_ICONS, 'gender-unknown.svg')
 # Set the paths for configuration files
 FILE_SETTINGS_NEW = os.path.join(DIR_SETTINGS, 'settings.conf')
-
-# Signals for pause and resume
-SIGCONT = 18
-SIGSTOP = 19
