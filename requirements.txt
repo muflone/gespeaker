@@ -1,4 +1,5 @@
 pyxdg==0.27
 configparser==4.0.2
+gtts==2.1.2
 psutil==5.7.3
 PyGObject==3.38.0

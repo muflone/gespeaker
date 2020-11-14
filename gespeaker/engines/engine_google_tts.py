@@ -22,6 +22,7 @@ import os
 import subprocess
 import tempfile
 
+import gtts
 import psutil
 
 from gespeaker.engines.base import EngineBase
