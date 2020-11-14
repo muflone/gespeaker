@@ -23,30 +23,43 @@ from gi.repository import Gtk
 from gettext import dgettext as gettext_with_domain
 from gettext import gettext as _
 
-def readlines(filename, empty_lines = False):
-  """Read all the text in the specified filename, allowing to skip empty lines"""
-  result = []
-  with open(filename) as f:
-    for line in f.readlines():
-      line = line.strip()
-      if line or empty_lines:
-        result.append(line)
-    f.close()
-  return result
+
+def readlines(filename, empty_lines=False):
+    """
+    Read all the text in the specified filename, allowing to skip
+    empty lines
+    """
+    result = []
+    with open(filename) as f:
+        for line in f.readlines():
+            line = line.strip()
+            if line or empty_lines:
+                result.append(line)
+        f.close()
+    return result
+
 
 def process_events():
-  """Process every pending GTK+ event"""
-  while Gtk.events_pending():
-    Gtk.main_iteration()
+    """
+    Process every pending GTK+ event
+    """
+    while Gtk.events_pending():
+        Gtk.main_iteration()
+
 
 def GTK30_(message, context=None):
-  """Get a translated message from GTK+ 3 domain"""
-  return gettext_with_domain('gtk30', 
-    context and '%s\x04%s' % (context, message) or message)
+    """
+    Get a translated message from GTK+ 3 domain
+    """
+    return gettext_with_domain('gtk30',
+                               ('%s\x04%s' % (context, message))
+                               if context
+                               else message)
+
 
 __all__ = [
-  'readlines',
-  'process_events',
-  '_',
-  'GTK30_',
+    'readlines',
+    'process_events',
+    '_',
+    'GTK30_',
 ]

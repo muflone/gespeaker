@@ -20,22 +20,24 @@
 
 from .base import ModelBase
 
+
 class ModelEngines(ModelBase):
-  COL_ENGINE = 0
-  COL_DESCRIPTION = 1
-  def __init__(self, model):
-    super(self.__class__, self).__init__(model)
-    self.model = model
+    COL_ENGINE = 0
+    COL_DESCRIPTION = 1
 
-  def add(self, engine, description):
-    """Add a new row in the model"""
-    super(self.__class__, self).add(
-      items=(engine, description))
+    def __init__(self, model):
+        super(self.__class__, self).__init__(model)
+        self.model = model
 
-  def get_engine(self, treepath):
-    """Get the engine of a row"""
-    return self.get_model_data(treepath, self.COL_ENGINE)
+    def add(self, engine, description):
+        """Add a new row in the model"""
+        super(self.__class__, self).add(
+            items=(engine, description))
 
-  def get_description(self, treepath):
-    """Get the description of a row"""
-    return self.get_model_data(treepath, self.COL_DESCRIPTION)
+    def get_engine(self, treepath):
+        """Get the engine of a row"""
+        return self.get_model_data(treepath, self.COL_ENGINE)
+
+    def get_description(self, treepath):
+        """Get the description of a row"""
+        return self.get_model_data(treepath, self.COL_DESCRIPTION)

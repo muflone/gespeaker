@@ -27,17 +27,17 @@ from gespeaker.app import Application
 from gespeaker.constants import DOMAIN_NAME, DIR_LOCALE
 
 if __name__ == '__main__':
-  # Load domain for translation
-  for module in (gettext, locale):
-    if hasattr(module, 'bindtextdomain'):
-      module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
-    if hasattr(module, 'textdomain'):
-      module.textdomain(DOMAIN_NAME)
+    # Load domain for translation
+    for module in (gettext, locale):
+        if hasattr(module, 'bindtextdomain'):
+            module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
+        if hasattr(module, 'textdomain'):
+            module.textdomain(DOMAIN_NAME)
 
-  # Load the settings from the configuration file
-  settings = Settings()
-  settings.load()
+    # Load the settings from the configuration file
+    settings = Settings()
+    settings.load()
 
-  # Start the application
-  app = Application(settings)
-  app.run(None)
+    # Start the application
+    app = Application(settings)
+    app.run(None)

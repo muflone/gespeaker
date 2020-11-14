@@ -41,13 +41,13 @@ VERBOSE_LEVEL_MAX = 2
 # If there's a file data/gespeaker.png then the shared data are searched
 # in relative paths, else the standard paths are used
 if os.path.isfile(os.path.join('data', 'gespeaker.png')):
-  DIR_PREFIX = '.'
-  DIR_LOCALE = os.path.join(DIR_PREFIX, 'locale')
-  DIR_DOCS = os.path.join(DIR_PREFIX, 'doc')
+    DIR_PREFIX = '.'
+    DIR_LOCALE = os.path.join(DIR_PREFIX, 'locale')
+    DIR_DOCS = os.path.join(DIR_PREFIX, 'doc')
 else:
-  DIR_PREFIX = os.path.join(sys.prefix, 'share', 'gespeaker')
-  DIR_LOCALE = os.path.join(sys.prefix, 'share', 'locale')
-  DIR_DOCS = os.path.join(sys.prefix, 'share', 'doc', 'gespeaker')
+    DIR_PREFIX = os.path.join(sys.prefix, 'share', 'gespeaker')
+    DIR_LOCALE = os.path.join(sys.prefix, 'share', 'locale')
+    DIR_DOCS = os.path.join(sys.prefix, 'share', 'doc', 'gespeaker')
 # Set the paths for the folders
 DIR_DATA = os.path.join(DIR_PREFIX, 'data')
 DIR_UI = os.path.join(DIR_PREFIX, 'ui')

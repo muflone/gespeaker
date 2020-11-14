@@ -3,7 +3,8 @@
 
 import os
 import sys
- 
+
+
 def find_executable(executable, path=None):
     """Try to find 'executable' in the directories listed in 'path' (a
     string listing directories separated by 'os.pathsep'; defaults to

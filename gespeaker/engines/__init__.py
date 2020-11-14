@@ -21,26 +21,29 @@
 import importlib
 
 engine_modules = (
-  'engine_dummy',
-  'engine_espeak',
-  'engine_mbrola',
-  'engine_google_tts',
+    'engine_dummy',
+    'engine_espeak',
+    'engine_mbrola',
+    'engine_google_tts',
 )
 
+
 def detect_engines():
-  """Dynamic import of engines modules"""
-  engines = {}
-  # Dynamic import of engines modules
-  for module_name in engine_modules:
-    try:
-      module = importlib.import_module('gespeaker.engines.%s' % module_name)
-      engine_classes = getattr(module, 'engine_classes')
-      # Cycle each engine class
-      for engine_class in engine_classes:
-        if engine_class.check_requirements():
-          engines[engine_class.name] = engine_class
-        else:
-          print ('  > Skipping engine %s for unmet requirements' % module_name)
-    except ImportError:
-      print ('  > Skipping engine %s' % module_name)
-  return engines
+    """Dynamic import of engines modules"""
+    engines = {}
+    # Dynamic import of engines modules
+    for module_name in engine_modules:
+        try:
+            module = importlib.import_module(
+                'gespeaker.engines.%s' % module_name)
+            engine_classes = getattr(module, 'engine_classes')
+            # Cycle each engine class
+            for engine_class in engine_classes:
+                if engine_class.check_requirements():
+                    engines[engine_class.name] = engine_class
+                else:
+                    print('  > Skipping engine %s for unmet requirements' %
+                          module_name)
+        except ImportError:
+            print('  > Skipping engine %s' % module_name)
+    return engines

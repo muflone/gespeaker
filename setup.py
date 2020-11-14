@@ -28,60 +28,64 @@ from glob import glob
 import os
 import sys
 
+
 class InstallData(install_data):
-  def run (self):
-    self.data_files.extend (self._compile_po_files ())
-    install_data.run (self)
+    def run(self):
+        self.data_files.extend(self._compile_po_files())
+        install_data.run(self)
 
-  def _compile_po_files (self):
-    data_files = []
+    def _compile_po_files(self):
+        data_files = []
 
-    # Don't install language files on win32
-    if sys.platform == 'win32':
-      return data_files
+        # Don't install language files on win32
+        if sys.platform == 'win32':
+            return data_files
 
-    PO_DIR = 'po'
-    for lang in open(os.path.join(PO_DIR, 'availables'), 'r').readlines():
-      lang = lang.strip()
-      if lang:
-        po = os.path.join(PO_DIR, '%s.po' % lang)
-        mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
+        PO_DIR = 'po'
+        for lang in open(os.path.join(PO_DIR, 'availables'), 'r').readlines():
+            lang = lang.strip()
+            if lang:
+                po = os.path.join(PO_DIR, '%s.po' % lang)
+                mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
 
-        directory = os.path.dirname(mo)
-        if not os.path.exists(directory):
-          info('creating %s' % directory)
-          os.makedirs(directory)
+                directory = os.path.dirname(mo)
+                if not os.path.exists(directory):
+                    info('creating %s' % directory)
+                    os.makedirs(directory)
 
-        if newer(po, mo):
-          # True if mo doesn't exist
-          cmd = 'msgfmt -o %s %s' % (mo, po)
-          info('compiling %s -> %s' % (po, mo))
-          if os.system(cmd) != 0:
-            raise SystemExit('Error while running msgfmt')
+                if newer(po, mo):
+                    # True if mo doesn't exist
+                    cmd = 'msgfmt -o %s %s' % (mo, po)
+                    info('compiling %s -> %s' % (po, mo))
+                    if os.system(cmd) != 0:
+                        raise SystemExit('Error while running msgfmt')
 
-        dest = os.path.dirname(os.path.join('share', 'locale', lang, 'LC_MESSAGES', 'gespeaker.mo'))
-        data_files.append((dest, [mo]))
+                dest = os.path.dirname(
+                    os.path.join('share', 'locale', lang, 'LC_MESSAGES',
+                                 'gespeaker.mo'))
+                data_files.append((dest, [mo]))
 
-    return data_files
+        return data_files
 
 
 setup(
-  name='Gespeaker',
-  version='0.8.5',
-  description='A GTK+ frontend for eSpeak and mbrola',
-  author='Fabio Castelli',
-  author_email='muflone@vbsimple.net',
-  url='http://www.muflone.com/gespeaker/',
-  license='GPL v2',
-  scripts=['gespeaker'],
-  data_files=[
-    ('share/applications', ['data/gespeaker.desktop']),
-    ('share/gespeaker/data', ['data/testing.wav']),
-    ('share/gespeaker/data/icons', glob('data/icons/*')),
-    ('share/gespeaker/data/ui', glob('data/ui/*.glade')),
-    ('share/doc/gespeaker', ['doc/README', 'doc/changelog', 'doc/translators']),
-    ('share/man/man1', ['man/gespeaker.1']),
-    ('share/gespeaker/src', glob('src/*.py'))
-  ],
-  cmdclass={'install_data': InstallData}
+    name='Gespeaker',
+    version='0.8.5',
+    description='A GTK+ frontend for eSpeak and mbrola',
+    author='Fabio Castelli',
+    author_email='muflone@vbsimple.net',
+    url='http://www.muflone.com/gespeaker/',
+    license='GPL v2',
+    scripts=['gespeaker'],
+    data_files=[
+        ('share/applications', ['data/gespeaker.desktop']),
+        ('share/gespeaker/data', ['data/testing.wav']),
+        ('share/gespeaker/data/icons', glob('data/icons/*')),
+        ('share/gespeaker/data/ui', glob('data/ui/*.glade')),
+        ('share/doc/gespeaker',
+         ['doc/README', 'doc/changelog', 'doc/translators']),
+        ('share/man/man1', ['man/gespeaker.1']),
+        ('share/gespeaker/src', glob('src/*.py'))
+    ],
+    cmdclass={'install_data': InstallData}
 )

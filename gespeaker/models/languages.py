@@ -20,38 +20,40 @@
 
 from .base import ModelBase
 
+
 class ModelLanguages(ModelBase):
-  COL_ENGINE = 0
-  COL_DESCRIPTION = 1
-  COL_NAME = 2
-  COL_GENDER = 3
-  def __init__(self, model, icon_male, icon_female, icon_unknown):
-    super(self.__class__, self).__init__(model)
-    self.model = model
-    self._gender_map = {
-      'male': icon_male,
-      'female': icon_female,
-      'unknown': icon_unknown
-    }
+    COL_ENGINE = 0
+    COL_DESCRIPTION = 1
+    COL_NAME = 2
+    COL_GENDER = 3
 
-  def add(self, engine, description, name, gender):
-    """Add a new row in the model"""
-    super(self.__class__, self).add(
-      items=(engine, description, name, gender,
-        self._gender_map.get(gender, self._gender_map['unknown'])))
+    def __init__(self, model, icon_male, icon_female, icon_unknown):
+        super(self.__class__, self).__init__(model)
+        self.model = model
+        self._gender_map = {
+            'male': icon_male,
+            'female': icon_female,
+            'unknown': icon_unknown
+        }
 
-  def get_engine(self, treepath):
-    """Get the engine of a row"""
-    return self.get_model_data(treepath, self.COL_ENGINE)
+    def add(self, engine, description, name, gender):
+        """Add a new row in the model"""
+        super(self.__class__, self).add(
+            items=(engine, description, name, gender,
+                   self._gender_map.get(gender, self._gender_map['unknown'])))
 
-  def get_description(self, treepath):
-    """Get the description of a row"""
-    return self.get_model_data(treepath, self.COL_DESCRIPTION)
+    def get_engine(self, treepath):
+        """Get the engine of a row"""
+        return self.get_model_data(treepath, self.COL_ENGINE)
 
-  def get_name(self, treepath):
-    """Get the name of a row"""
-    return self.get_model_data(treepath, self.COL_NAME)
+    def get_description(self, treepath):
+        """Get the description of a row"""
+        return self.get_model_data(treepath, self.COL_DESCRIPTION)
 
-  def get_gender(self, treepath):
-    """Get the gender of a row"""
-    return self.get_model_data(treepath, self.COL_GENDER)
+    def get_name(self, treepath):
+        """Get the name of a row"""
+        return self.get_model_data(treepath, self.COL_NAME)
+
+    def get_gender(self, treepath):
+        """Get the gender of a row"""
+        return self.get_model_data(treepath, self.COL_GENDER)
