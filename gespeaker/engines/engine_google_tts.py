@@ -42,6 +42,7 @@ class EngineGoogleTTS(EngineBase):
         Initialize the engine
         """
         super(self.__class__, self).__init__(settings, globals())
+        self._tmp_filename = None
 
     def get_languages(self):
         """
@@ -66,11 +67,10 @@ class EngineGoogleTTS(EngineBase):
         try:
             languages = gtts.lang.tts_langs()
             for name, description in languages.items():
-                new_language = {}
-                new_language[KEY_ENGINE] = self.name
-                new_language[KEY_NAME] = name
-                new_language[KEY_LANGUAGE] = description
-                new_language[KEY_GENDER] = 'unknown'
+                new_language = {KEY_ENGINE: self.name,
+                                KEY_NAME: name,
+                                KEY_LANGUAGE: description,
+                                KEY_GENDER: 'unknown'}
                 for gender in 'male', 'female':
                     if name in languages_map[gender]:
                         new_language[KEY_GENDER] = gender
@@ -94,8 +94,7 @@ class EngineGoogleTTS(EngineBase):
         self.process_speaker.save(self._tmp_filename)
         self.process_speaker = None
 
-        arguments = ['mpg123', '-q']
-        arguments.append(self._tmp_filename)
+        arguments = ['mpg123', '-q', self._tmp_filename]
         self.settings.debug_line(arguments)
         self.process_player = subprocess.Popen(args=arguments)
 

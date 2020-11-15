@@ -24,8 +24,8 @@ from gespeaker.constants import APP_NAME
 
 
 class MessagesDialog(object):
-    def __init__(self, winParent):
-        self.parent = winParent
+    def __init__(self, parent_window):
+        self.parent = parent_window
         self.title = APP_NAME
         self.primary_text = ''
         self.secondary_text = None

@@ -37,6 +37,7 @@ class Application(Gtk.Application):
         self.settings = settings
         self.connect("activate", self.activate)
         self.connect('startup', self.startup)
+        self.ui = None
 
     def startup(self, application):
         """

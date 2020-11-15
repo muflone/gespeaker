@@ -90,10 +90,9 @@ class EngineEspeak(EngineBase):
         # Only process files whose size is less than max file size
         if os.path.getsize(filename) <= MAX_FILE_SIZE:
             with open(filename, 'r') as f:
-                info = {}
-                info[KEY_ENGINE] = self.name
-                info[KEY_NAME] = os.path.basename(filename)
-                info[KEY_GENDER] = 'male'
+                info = {KEY_ENGINE: self.name,
+                        KEY_NAME: os.path.basename(filename),
+                        KEY_GENDER: 'male'}
                 # Extract information from the voice file
                 for line in f.readlines():
                     # Remove newline characters
@@ -115,8 +114,7 @@ class EngineEspeak(EngineBase):
         Play a text using the specified language
         """
         super(self.__class__, self).play(text, language, on_play_completed)
-        arguments = ['espeak', '-v']
-        arguments.append(language)
+        arguments = ['espeak', '-v', language]
         self.settings.debug_line(arguments)
         self.process_speaker = subprocess.Popen(args=arguments,
                                                 stdin=subprocess.PIPE)

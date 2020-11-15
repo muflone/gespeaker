@@ -41,11 +41,11 @@ class InstallData(install_data):
         if sys.platform == 'win32':
             return data_files
 
-        PO_DIR = 'po'
-        for lang in open(os.path.join(PO_DIR, 'availables'), 'r').readlines():
+        path_po = 'po'
+        for lang in open(os.path.join(path_po, 'availables'), 'r').readlines():
             lang = lang.strip()
             if lang:
-                po = os.path.join(PO_DIR, '%s.po' % lang)
+                po = os.path.join(path_po, '%s.po' % lang)
                 mo = os.path.join('build', 'mo', lang, 'gespeaker.mo')
 
                 directory = os.path.dirname(mo)

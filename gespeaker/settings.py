@@ -54,7 +54,7 @@ class Settings(object):
         # Determine which filename to use for settings
         self.filename = FILE_SETTINGS_NEW
         if self.filename:
-            self.logText('Loading settings from {FILE}'.format(
+            self.log_text('Loading settings from {FILE}'.format(
                 FILE=self.filename),
                 VERBOSE_LEVEL_MAX)
             self.config.read(self.filename)
@@ -64,7 +64,7 @@ class Settings(object):
         Load window settings
         """
         if self.config.has_section(SECTION_MAINWIN):
-            self.logText('Retrieving window settings', VERBOSE_LEVEL_MAX)
+            self.log_text('Retrieving window settings', VERBOSE_LEVEL_MAX)
             # Retrieve window position and size
             if self.config.has_option(SECTION_MAINWIN, 'left'):
                 self.settings['left'] = self.config.getint(SECTION_MAINWIN,
@@ -82,20 +82,20 @@ class Settings(object):
     def get_value(self, name, default=None):
         return self.settings.get(name, default)
 
-    def set_sizes(self, winParent):
+    def set_sizes(self, parent_window):
         """
         Save configuration for main window
         """
         # Main window settings section
-        self.logText('Saving window settings', VERBOSE_LEVEL_MAX)
+        self.log_text('Saving window settings', VERBOSE_LEVEL_MAX)
         if not self.config.has_section(SECTION_MAINWIN):
             self.config.add_section(SECTION_MAINWIN)
         # Window position
-        position = winParent.get_position()
+        position = parent_window.get_position()
         self.config.set(SECTION_MAINWIN, 'left', position[0])
         self.config.set(SECTION_MAINWIN, 'top', position[1])
         # Window size
-        size = winParent.get_size()
+        size = parent_window.get_size()
         self.config.set(SECTION_MAINWIN, 'width', size[0])
         self.config.set(SECTION_MAINWIN, 'height', size[1])
 
@@ -134,13 +134,13 @@ class Settings(object):
         """
         # Always save the settings in the new configuration file
         file_settings = open(FILE_SETTINGS_NEW, mode='w')
-        self.logText('Saving settings to {SETTINGS}'.format(
+        self.log_text('Saving settings to {SETTINGS}'.format(
             SETTINGS=FILE_SETTINGS_NEW),
             VERBOSE_LEVEL_MAX)
         self.config.write(file_settings)
         file_settings.close()
 
-    def logText(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
+    def log_text(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
         """
         Print a text with current date and time based on verbose level
         """

@@ -25,8 +25,8 @@ from gespeaker.constants import APP_NAME
 
 
 class FilesDialog(object):
-    def __init__(self, winParent):
-        self.parent = winParent
+    def __init__(self, parent_window):
+        self.parent = parent_window
         self.title = APP_NAME
         self.filters = []
         self.last_used_filter = None

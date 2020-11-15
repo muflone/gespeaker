@@ -45,7 +45,10 @@ class MainWindow(object):
         self.ui = GtkBuilderLoader(FILE_UI_MAIN)
         self.backend = backend
         self.backend.on_play_complete = self.on_backend_play_complete
-        self.loadUI()
+        self.modelEngines = None
+        self.modelLanguages = None
+        self.clipboard = None
+        self.load_user_interface()
         # Restore the saved size and position
         if self.backend.settings.get_value('width', 0) and \
                 self.backend.settings.get_value('height', 0):
@@ -66,7 +69,7 @@ class MainWindow(object):
         """
         self.ui.winMain.show_all()
 
-    def loadUI(self):
+    def load_user_interface(self):
         """
         Load the interface UI
         """
@@ -74,14 +77,14 @@ class MainWindow(object):
         self.modelEngines = ModelEngines(self.ui.modelEngines)
         for engine_name, obj_engine in self.backend.engines.items():
             # Add a new CheckMenuItem for each engine
-            menuengine = Gtk.CheckMenuItem(engine_name)
+            menu_engine = Gtk.CheckMenuItem(engine_name)
             # Load the engine status from the settings
             obj_engine.enabled = self.backend.settings.get_engine_status(
                 engine_name)
-            menuengine.set_active(obj_engine.enabled)
-            menuengine.connect('toggled', self.on_actionEnableEngine_toggled,
+            menu_engine.set_active(obj_engine.enabled)
+            menu_engine.connect('toggled', self.on_actionEnableEngine_toggled,
                                obj_engine)
-            self.ui.menuEngines.append(menuengine)
+            self.ui.menuEngines.append(menu_engine)
         # Load available languages
         self.modelLanguages = ModelLanguages(
             model=self.ui.modelLanguages,
@@ -194,13 +197,13 @@ class MainWindow(object):
         """
         Cut and copy the selected text or paste it
         """
-        bEditable = self.ui.txtText.get_editable()
+        editable = self.ui.txtText.get_editable()
         if action is self.ui.actionCut:
-            self.ui.bufferText.cut_clipboard(self.clipboard, bEditable)
+            self.ui.bufferText.cut_clipboard(self.clipboard, editable)
         elif action is self.ui.actionCopy:
             self.ui.bufferText.copy_clipboard(self.clipboard)
         elif action is self.ui.actionPaste:
-            self.ui.bufferText.paste_clipboard(self.clipboard, None, bEditable)
+            self.ui.bufferText.paste_clipboard(self.clipboard, None, editable)
 
     def on_actionPlayStop_toggled(self, action):
         """

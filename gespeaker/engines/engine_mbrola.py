@@ -70,11 +70,10 @@ class EngineMBROLA(EngineBase):
         # Only process files whose size is less than max file size
         if os.path.getsize(filename) <= MAX_FILE_SIZE:
             with open(filename, 'r') as f:
-                info = {}
-                info[KEY_ENGINE] = self.name
-                info[KEY_NAME] = os.path.basename(filename)
-                info[KEY_GENDER] = ''
-                info[KEY_ESPEAK_MBROLA] = ''
+                info = {KEY_ENGINE: self.name,
+                        KEY_NAME: os.path.basename(filename),
+                        KEY_GENDER: '',
+                        KEY_ESPEAK_MBROLA: ''}
                 # Extract information from the voice file
                 for line in f.readlines():
                     # Remove newline characters
@@ -130,8 +129,7 @@ class EngineMBROLA(EngineBase):
         Play a text using the specified language
         """
         super(self.__class__, self).play(text, language, on_play_completed)
-        espeak_arguments = ['espeak', '--stdout', '-v']
-        espeak_arguments.append(language)
+        espeak_arguments = ['espeak', '--stdout', '-v', language]
         self.settings.debug_line(espeak_arguments)
         self.process_speaker = subprocess.Popen(args=espeak_arguments,
                                                 stdin=subprocess.PIPE,

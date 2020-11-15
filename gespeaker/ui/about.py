@@ -37,7 +37,7 @@ from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 
 
 class AboutWindow(object):
-    def __init__(self, winParent, show=False):
+    def __init__(self, parent_window, show=False):
         # Retrieve the translators list
         translators = []
         for line in readlines(FILE_TRANSLATORS, False):
@@ -69,7 +69,7 @@ class AboutWindow(object):
                                                    (resource_url,))
         icon_logo = Pixbuf.new_from_file(FILE_ICON)
         self.ui.dialogAbout.set_logo(icon_logo)
-        self.ui.dialogAbout.set_transient_for(winParent)
+        self.ui.dialogAbout.set_transient_for(parent_window)
         # Optionally show the dialog
         if show:
             self.show()
