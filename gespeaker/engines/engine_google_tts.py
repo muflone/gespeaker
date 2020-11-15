@@ -51,27 +51,34 @@ class EngineGoogleTTS(EngineBase):
         # Languages map for gender
         languages_map = {
             'male': (
-                'af', 'sq', 'ar', 'hy', 'ca', 'hr', 'eo', 'is', 'lv', 'mk',
-                'ro',
-                'sr', 'sw', 'ta', 'vi', 'cy'),
-            'female': ('cs', 'da', 'de', 'el', 'en', 'en-au', 'en-uk', 'en-us',
-                       'es', 'es-es', 'es-us', 'fi', 'fr', 'ht', 'hi', 'hu',
-                       'id', 'it', 'ja',
-                       'ko', 'la', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ru', 'sk',
-                       'sv', 'th',
-                       'tr', 'zh', 'zh-cn', 'zh-tw', 'zh-yue')
+                'af', 'sq', 'hy', 'bn', 'bs', 'ca', 'hr', 'eo', 'et', 'is',
+                'it', 'ko', 'la', 'lv', 'mk', 'pl', 'sr', 'sw', 'cy'),
+            'female': ('ar', 'cs', 'da', 'nl', 'en', 'tl', 'fi', 'fr', 'de',
+                       'el', 'gu', 'hi', 'hu', 'id', 'ja', 'jw', 'kn', 'km',
+                       'ml', 'mr', 'ne', 'nl', 'no', 'pt', 'ro', 'ru', 'si',
+                       'sk', 'es', 'su', 'sv', 'ta', 'te', 'th', 'tr', 'uk',
+                       'ur', 'vi', 'zh', 'zh-cn', 'zh-tw', 'en-us', 'en-ca',
+                       'en-uk', 'en-gb', 'en-au', 'en-gh', 'en-in', 'en-ie',
+                       'en-nz', 'en-ng', 'en-ph', 'en-za', 'en-tz', 'fr-ca',
+                       'fr-fr', 'pt-br', 'pt-pt', 'es-es', 'es-us')
         }
-        for name, description in gtts.gTTS.LANGUAGES.items():
-            new_language = {}
-            new_language[KEY_ENGINE] = self.name
-            new_language[KEY_NAME] = name
-            new_language[KEY_LANGUAGE] = description
-            new_language[KEY_GENDER] = 'unknown'
-            for gender in 'male', 'female':
-                if name in languages_map[gender]:
-                    new_language[KEY_GENDER] = gender
-                    break
-            result.append(new_language)
+        # Get gTTS languages
+        try:
+            languages = gtts.lang.tts_langs()
+            for name, description in languages.items():
+                new_language = {}
+                new_language[KEY_ENGINE] = self.name
+                new_language[KEY_NAME] = name
+                new_language[KEY_LANGUAGE] = description
+                new_language[KEY_GENDER] = 'unknown'
+                for gender in 'male', 'female':
+                    if name in languages_map[gender]:
+                        new_language[KEY_GENDER] = gender
+                        break
+                result.append(new_language)
+        except RuntimeError:
+            # No languages returned
+            pass
         return result
 
     def play(self, text, language, on_play_completed):
