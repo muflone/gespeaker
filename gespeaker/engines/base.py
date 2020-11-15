@@ -81,6 +81,11 @@ class EngineBase(object):
         Play a text using the specified language
         """
         self.playing = True
+        # Add play debug line
+        self.settings.debug_line(
+            'Play with engine {ENGINE} and language {LANGUAGE}'.format(
+                ENGINE=self.name,
+                LANGUAGE=language))
         # Add a timer to check when the playing has stopped
         GObject.timeout_add(500, self.is_playing, on_play_completed)
 
@@ -103,9 +108,17 @@ class EngineBase(object):
         Stop any previous play
         """
         self.playing = False
+        # Add stop debug line
+        self.settings.debug_line(
+            'Stop with engine {ENGINE}'.format(ENGINE=self.name))
 
-    def pause(self, status):
+    def pause(self, status_pause):
         """
         Pause a previous play or resume after pause
         """
+        # Add pause/resume debug line
+        self.settings.debug_line(
+            '{STATUS} engine {ENGINE}'.format(
+                STATUS='Pause' if status_pause else 'Resume',
+                ENGINE=self.name))
         return True
