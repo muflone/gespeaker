@@ -80,7 +80,9 @@ class EngineGoogleTTS(EngineBase):
         super(self.__class__, self).play(text, language, on_play_completed)
         self._tmp_filename = \
             tempfile.mkstemp(prefix='gespeaker_', suffix='.mp3')[1]
-        self.process_speaker = gtts.gTTS(text=text, lang=language)
+        self.process_speaker = gtts.gTTS(text=text,
+                                         lang=language,
+                                         lang_check=False)
         self.process_speaker.save(self._tmp_filename)
         self.process_speaker = None
 
