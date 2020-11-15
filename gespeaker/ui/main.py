@@ -174,13 +174,14 @@ class MainWindow(object):
                 for language in obj_engine.get_languages():
                     self.modelLanguages.add(
                         engine=obj_engine.name,
-                        description='{LANGUAGE} {GENDER}'.format(
+                        description='{LANGUAGE} {GENDER} ({NAME})'.format(
                             LANGUAGE=language[KEY_LANGUAGE],
                             GENDER={'male': _('Male'),
                                     'female': _('Female'),
                                     'other': _('Unknown')}.get(
                                         language[KEY_GENDER],
-                                        'other')),
+                                        'other'),
+                            NAME=language[KEY_NAME]),
                         name=language[KEY_NAME],
                         gender=language[KEY_GENDER]
                     )
