@@ -40,7 +40,7 @@ DIR_TEST = 'test'
 
 class EngineEspeak(EngineBase):
     name = 'eSpeak'
-    required_executables = ('espeak',)
+    required_executables = ('espeak', 'paplay')
 
     def __init__(self, settings):
         """
@@ -114,22 +114,27 @@ class EngineEspeak(EngineBase):
         Play a text using the specified language
         """
         super(self.__class__, self).play(text, language, on_play_completed)
-        arguments = ['espeak', '-v', language]
+        arguments = ['espeak', '-v', language, '--stdout']
         self.settings.debug_line(arguments)
         self.process_speaker = subprocess.Popen(args=arguments,
-                                                stdin=subprocess.PIPE)
+                                                stdin=subprocess.PIPE,
+                                                stdout=subprocess.PIPE)
         self.process_speaker.stdin.write(text.encode('utf-8'))
         self.process_speaker.stdin.flush()
         self.process_speaker.stdin.close()
+        player_arguments = ('paplay',)
+        self.process_player = subprocess.Popen(
+            args=player_arguments,
+            stdin=self.process_speaker.stdout)
 
     def is_playing(self, on_play_completed):
         """
         Check if the engine is playing and call on_play_completed callback
         when the playing has been completed
         """
-        if self.process_speaker and self.process_speaker.poll() is not None:
+        if self.process_player and self.process_player.poll() is not None:
             self.playing = False
-            self.process_speaker = None
+            self.process_player = None
         return super(self.__class__, self).is_playing(on_play_completed)
 
     def stop(self):
@@ -141,8 +146,8 @@ class EngineEspeak(EngineBase):
             self.settings.debug_line(
                 'Terminate engine {ENGINE} with pid {PID}'.format(
                     ENGINE=self.name,
-                    PID=self.process_speaker.pid))
-            self.process_speaker.terminate()
+                    PID=self.process_player.pid))
+            self.process_player.terminate()
         return super(self.__class__, self).stop()
 
     def pause(self, status_pause):
@@ -150,18 +155,19 @@ class EngineEspeak(EngineBase):
         Pause a previous play or resume after pause
         """
         super(self.__class__, self).pause(status_pause)
-        if self.process_speaker:
-            # Show pause message when debug is activated
-            self.settings.debug_line(
-                '{STATUS} engine {ENGINE} with pid {PID}'.format(
-                    STATUS='Pause' if status_pause else 'Resume',
-                    ENGINE=self.name,
-                    PID=self.process_speaker.pid))
-            psprocess = psutil.Process(self.process_speaker.pid)
-            if status_pause:
-                psprocess.suspend()
-            else:
-                psprocess.resume()
+        for process in (self.process_speaker, self.process_player):
+            if process:
+                # Show pause message when debug is activated
+                self.settings.debug_line(
+                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
+                        STATUS='Pause' if status_pause else 'Resume',
+                        ENGINE=self.name,
+                        PID=process.pid))
+                psprocess = psutil.Process(process.pid)
+                if status_pause:
+                    psprocess.suspend()
+                else:
+                    psprocess.resume()
         return True
 
 
