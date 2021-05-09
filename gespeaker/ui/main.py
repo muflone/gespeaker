@@ -83,7 +83,7 @@ class MainWindow(object):
                 engine_name)
             menu_engine.set_active(obj_engine.enabled)
             menu_engine.connect('toggled', self.on_actionEnableEngine_toggled,
-                               obj_engine)
+                                obj_engine)
             self.ui.menuEngines.append(menu_engine)
         # Load available languages
         self.modelLanguages = ModelLanguages(
@@ -277,7 +277,7 @@ class MainWindow(object):
         Load an external text file
         """
         dialog = FilesDialog(self.ui.winMain)
-        dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',), )
+        dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',))
         dialog.add_filter(_('All files'), None, ('*',))
         dialog.title = _('Please select the text file to open')
         filename = dialog.show_open()
@@ -304,7 +304,7 @@ class MainWindow(object):
         Save the text to an external text file
         """
         dialog = FilesDialog(self.ui.winMain)
-        dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',), )
+        dialog.add_filter(_('Text files'), ('text/*',), ('*.txt',))
         dialog.add_filter(_('All files'), None, ('*',))
         dialog.title = _('Please select where to save the text file')
         filename = dialog.show_save()

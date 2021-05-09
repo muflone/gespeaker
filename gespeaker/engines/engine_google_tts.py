@@ -34,7 +34,7 @@ from gespeaker.engines.base import (KEY_ENGINE,
 
 class EngineGoogleTTS(EngineBase):
     name = 'Google TTS'
-    required_executables = ('mpg123', )
+    required_executables = ('mpg123',)
     required_modules = ('gtts',)
 
     def __init__(self, settings):

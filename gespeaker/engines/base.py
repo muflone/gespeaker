@@ -40,14 +40,14 @@ class EngineBase(object):
         Check the module requirements to enable it
         """
         print('Checking requirements for engine {ENGINE}'.format(
-            ENGINE=cls.name))
+              ENGINE=cls.name))
         # Check for required Python modules to import
         for module_name in cls.required_modules:
             try:
                 importlib.import_module(module_name)
             except ImportError:
                 print('  > Module {MODULE} not found'.format(
-                    MODULE=module_name))
+                      MODULE=module_name))
                 return False
         # Check for required executable files
         for executable_name in cls.required_executables:
