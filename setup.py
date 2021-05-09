@@ -3,7 +3,7 @@
 ##
 #     Project: Gespeaker
 # Description: A GTK frontend for espeak
-#      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
+#      Author: Fabio Castelli (Muflone) <muflone@muflone.com>
 #   Copyright: 2009-2021 Fabio Castelli
 #     License: GPL-2+
 #  This program is free software; you can redistribute it and/or modify it
@@ -73,7 +73,7 @@ setup(
     version='0.8.5',
     description='A GTK+ frontend for eSpeak and mbrola',
     author='Fabio Castelli',
-    author_email='muflone@vbsimple.net',
+    author_email='muflone@muflone.com',
     url='http://www.muflone.com/gespeaker/',
     license='GPL v2',
     scripts=['gespeaker'],

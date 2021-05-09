@@ -1,5 +1,5 @@
 Gespeaker is a GTK+ frontend for eSpeak and mbrola.
-Copyright 2009-2021 Fabio Castelli <muflone@vbsimple.net>
+Copyright 2009-2021 Fabio Castelli <muflone@muflone.com>
 License: GPL-2+ (please see the copyright file)
 
 Description:
@@ -26,7 +26,7 @@ Personal configuration
   User's configuration will be kept under ~/.gespeaker
 
 Please report any bugs in Gespeaker to the author:
-  Fabio Castelli <muflone@vbsimple.net>
+  Fabio Castelli <muflone@muflone.com>
 
 Homepage:
   Website: http://www.muflone.com/gespeaker/
