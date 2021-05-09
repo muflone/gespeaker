@@ -58,7 +58,6 @@ class AboutWindow(object):
         self.ui.dialogAbout.set_authors(
             ['{AUTHOR} <{EMAIL}>'.format(AUTHOR=APP_AUTHOR,
                                          EMAIL=APP_AUTHOR_EMAIL)])
-        # self.dialog.set_license_type(Gtk.License.GPL_2_0)
         self.ui.dialogAbout.set_license(
             '\n'.join(readlines(FILE_LICENSE, True)))
         self.ui.dialogAbout.set_translator_credits('\n'.join(translators))
