@@ -5,19 +5,19 @@
 # Description: A GTK frontend for espeak
 #      Author: Fabio Castelli (Muflone) <muflone@muflone.com>
 #   Copyright: 2009-2021 Fabio Castelli
-#     License: GPL-2+
-#  This program is free software; you can redistribute it and/or modify it
-#  under the terms of the GNU General Public License as published by the Free
-#  Software Foundation; either version 2 of the License, or (at your option)
-#  any later version.
+#     License: GPL-3+
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
 #
-#  This program is distributed in the hope that it will be useful, but WITHOUT
-#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-#  more details.
-#  You should have received a copy of the GNU General Public License along
-#  with this program; if not, write to the Free Software Foundation, Inc.,
-#  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
 from distutils.core import setup
@@ -75,7 +75,7 @@ setup(
     author='Fabio Castelli',
     author_email='muflone@muflone.com',
     url='http://www.muflone.com/gespeaker/',
-    license='GPL v2',
+    license='GPL v3',
     scripts=['gespeaker'],
     data_files=[
         ('share/applications', ['data/gespeaker.desktop']),
@@ -83,7 +83,7 @@ setup(
         ('share/gespeaker/data/icons', glob('data/icons/*')),
         ('share/gespeaker/data/ui', glob('data/ui/*.glade')),
         ('share/doc/gespeaker',
-         ['doc/README', 'doc/changelog', 'doc/translators']),
+         ['doc/README.md', 'doc/changelog', 'doc/translators']),
         ('share/man/man1', ['man/gespeaker.1']),
         ('share/gespeaker/src', glob('src/*.py'))
     ],
