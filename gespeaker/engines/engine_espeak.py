@@ -142,7 +142,7 @@ class EngineEspeak(EngineBase):
         """
         Stop any previous play
         """
-        if self.process_speaker:
+        if self.process_player:
             # Show terminate message when debug is activated
             self.settings.debug_line(
                 'Terminate engine {ENGINE} with pid {PID}'.format(
