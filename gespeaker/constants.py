@@ -30,7 +30,7 @@ APP_ID = 'gespeaker.muflone.com'
 APP_URL = 'http://www.muflone.com/gespeaker'
 APP_AUTHOR = 'Fabio Castelli (Muflone)'
 APP_AUTHOR_EMAIL = 'muflone@muflone.com'
-APP_COPYRIGHT = 'Copyright 2009-2020 {AUTHOR}'.format(AUTHOR=APP_AUTHOR)
+APP_COPYRIGHT = 'Copyright 2009-2021 {AUTHOR}'.format(AUTHOR=APP_AUTHOR)
 # Other constants
 DOMAIN_NAME = 'gespeaker'
 VERBOSE_LEVEL_QUIET = 0
