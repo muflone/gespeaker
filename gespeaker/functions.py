@@ -18,10 +18,18 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-from gi.repository import Gtk
-
+import os.path
 from gettext import dgettext as gettext_with_domain
 from gettext import gettext as _
+
+from gi.repository import Gtk
+
+from .constants import DIR_UI
+
+
+def get_ui_file(filename):
+    """Return the full path of a Glade/UI file"""
+    return os.path.join(DIR_UI, filename)
 
 
 def readlines(filename, empty_lines=False):

@@ -24,6 +24,7 @@ from gi.repository import GObject
 
 from gespeaker.find_executable import find_executable
 
+
 KEY_ENGINE = 'engine'
 KEY_NAME = 'name'
 KEY_LANGUAGE = 'language'

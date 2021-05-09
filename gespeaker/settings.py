@@ -18,14 +18,15 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import configparser
 import optparse
 import time
-import configparser
 
-from gespeaker.constants import (FILE_SETTINGS_NEW,
+from gespeaker.constants import (FILE_SETTINGS,
                                  VERBOSE_LEVEL_QUIET,
                                  VERBOSE_LEVEL_NORMAL,
                                  VERBOSE_LEVEL_MAX)
+
 
 SECTION_MAINWIN = 'main window'
 SECTION_APPLICATION = 'application'
@@ -52,7 +53,7 @@ class Settings(object):
         # Allow saving in case sensitive (useful for machine names)
         self.config.optionxform = str
         # Determine which filename to use for settings
-        self.filename = FILE_SETTINGS_NEW
+        self.filename = FILE_SETTINGS
         if self.filename:
             self.log_text('Loading settings from {FILE}'.format(
                 FILE=self.filename),
@@ -133,9 +134,9 @@ class Settings(object):
         Save the whole configuration
         """
         # Always save the settings in the new configuration file
-        file_settings = open(FILE_SETTINGS_NEW, mode='w')
+        file_settings = open(FILE_SETTINGS, mode='w')
         self.log_text('Saving settings to {SETTINGS}'.format(
-            SETTINGS=FILE_SETTINGS_NEW),
+            SETTINGS=FILE_SETTINGS),
             VERBOSE_LEVEL_MAX)
         self.config.write(file_settings)
         file_settings.close()

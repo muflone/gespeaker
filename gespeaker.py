@@ -22,17 +22,19 @@
 import gettext
 import locale
 
-from gespeaker.settings import Settings
-from gespeaker.app import Application
-from gespeaker.constants import DOMAIN_NAME, DIR_LOCALE
+import gi
+gi.require_version('Gtk', '3.0')
+
+from gespeaker.settings import Settings                            # noqa: E402
+from gespeaker.app import Application                              # noqa: E402
+from gespeaker.constants import DOMAIN_NAME, DIR_LOCALE            # noqa: E402
+
 
 if __name__ == '__main__':
     # Load domain for translation
     for module in (gettext, locale):
-        if hasattr(module, 'bindtextdomain'):
-            module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
-        if hasattr(module, 'textdomain'):
-            module.textdomain(DOMAIN_NAME)
+        module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
+        module.textdomain(DOMAIN_NAME)
 
     # Load the settings from the configuration file
     settings = Settings()

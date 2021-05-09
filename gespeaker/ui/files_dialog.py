@@ -19,6 +19,7 @@
 ##
 
 import os.path
+
 from gi.repository import Gtk
 
 from gespeaker.constants import APP_NAME

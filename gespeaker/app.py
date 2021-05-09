@@ -18,16 +18,14 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-import gi
+from gi.repository import Gtk
+from gi.repository import Gio
 
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk                                      # noqa: E402
-from gi.repository import Gio                                      # noqa: E402
-
-from gespeaker.constants import APP_ID, FILE_UI_APPMENU            # noqa: E402
-from gespeaker.gtkbuilder_loader import GtkBuilderLoader           # noqa: E402
-from gespeaker.backend import Backend                              # noqa: E402
-from gespeaker.ui.main import MainWindow                           # noqa: E402
+from gespeaker.constants import APP_ID
+from gespeaker.functions import get_ui_file
+from gespeaker.gtkbuilder_loader import GtkBuilderLoader
+from gespeaker.backend import Backend
+from gespeaker.ui.main import MainWindow
 
 
 class Application(Gtk.Application):
@@ -53,7 +51,7 @@ class Application(Gtk.Application):
         action.connect("activate", self.on_app_quit_activate)
         self.add_action(action)
         # Add the app menu
-        builder = GtkBuilderLoader(FILE_UI_APPMENU)
+        builder = GtkBuilderLoader(get_ui_file('appmenu.ui'))
         self.set_app_menu(builder.app_menu)
 
     def activate(self, application):
@@ -66,10 +64,10 @@ class Application(Gtk.Application):
         """
         Show the about dialog from the app menu
         """
-        self.ui.on_actionAbout_activate(action)
+        self.ui.on_action_about_activate(action)
 
     def on_app_quit_activate(self, action, data):
         """
         Quit the application from the app menu
         """
-        self.ui.on_actionQuit_activate(action)
+        self.ui.on_action_quit_activate(action)

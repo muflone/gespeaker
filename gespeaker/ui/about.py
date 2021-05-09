@@ -30,9 +30,8 @@ from gespeaker.constants import (APP_NAME,
                                  FILE_ICON,
                                  FILE_LICENSE,
                                  FILE_RESOURCES,
-                                 FILE_TRANSLATORS,
-                                 FILE_UI_ABOUT)
-from gespeaker.functions import readlines
+                                 FILE_TRANSLATORS)
+from gespeaker.functions import get_ui_file, readlines
 from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 
 
@@ -47,28 +46,28 @@ class AboutWindow(object):
             if line not in translators:
                 translators.append(line)
         # Load the user interface
-        self.ui = GtkBuilderLoader(FILE_UI_ABOUT)
+        self.ui = GtkBuilderLoader(get_ui_file('about.glade'))
         # Set various properties
-        self.ui.dialogAbout.set_program_name(APP_NAME)
-        self.ui.dialogAbout.set_version('Version {VERSION}'.format(
+        self.ui.dialog_about.set_program_name(APP_NAME)
+        self.ui.dialog_about.set_version('Version {VERSION}'.format(
             VERSION=APP_VERSION))
-        self.ui.dialogAbout.set_comments(APP_DESCRIPTION)
-        self.ui.dialogAbout.set_website(APP_URL)
-        self.ui.dialogAbout.set_copyright(APP_COPYRIGHT)
-        self.ui.dialogAbout.set_authors(
+        self.ui.dialog_about.set_comments(APP_DESCRIPTION)
+        self.ui.dialog_about.set_website(APP_URL)
+        self.ui.dialog_about.set_copyright(APP_COPYRIGHT)
+        self.ui.dialog_about.set_authors(
             ['{AUTHOR} <{EMAIL}>'.format(AUTHOR=APP_AUTHOR,
                                          EMAIL=APP_AUTHOR_EMAIL)])
-        self.ui.dialogAbout.set_license(
+        self.ui.dialog_about.set_license(
             '\n'.join(readlines(FILE_LICENSE, True)))
-        self.ui.dialogAbout.set_translator_credits('\n'.join(translators))
+        self.ui.dialog_about.set_translator_credits('\n'.join(translators))
         # Retrieve the external resources links
         for line in readlines(FILE_RESOURCES, False):
             resource_type, resource_url = line.split(':', 1)
-            self.ui.dialogAbout.add_credit_section(resource_type,
-                                                   (resource_url,))
+            self.ui.dialog_about.add_credit_section(resource_type,
+                                                    (resource_url,))
         icon_logo = Pixbuf.new_from_file(FILE_ICON)
-        self.ui.dialogAbout.set_logo(icon_logo)
-        self.ui.dialogAbout.set_transient_for(parent_window)
+        self.ui.dialog_about.set_logo(icon_logo)
+        self.ui.dialog_about.set_transient_for(parent_window)
         # Optionally show the dialog
         if show:
             self.show()
@@ -77,11 +76,11 @@ class AboutWindow(object):
         """
         Show the About dialog
         """
-        self.ui.dialogAbout.run()
-        self.ui.dialogAbout.hide()
+        self.ui.dialog_about.run()
+        self.ui.dialog_about.hide()
 
     def destroy(self):
         """
         Destroy the About dialog
         """
-        self.ui.dialogAbout.destroy()
+        self.ui.dialog_about.destroy()

@@ -20,19 +20,17 @@
 
 import importlib
 
-engine_modules = (
-    'engine_dummy',
-    'engine_espeak',
-    'engine_mbrola',
-    'engine_google_tts',
-)
-
 
 def detect_engines():
     """
     Dynamic import of engines modules
     """
     engines = {}
+    engine_modules = ('engine_dummy',
+                      'engine_espeak',
+                      'engine_mbrola',
+                      'engine_google_tts')
+
     # Dynamic import of engines modules
     for module_name in engine_modules:
         try:
