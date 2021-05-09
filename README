@@ -43,8 +43,8 @@ Optionall you can install the following to enhance the speech
 
 The installation is pretty simple, just to execute from the sources directory:
 
-python2 setup.py build
-sudo python2 setup.py install
+python3 setup.py build
+sudo python3 setup.py install
 
 This will install all the required files in their places.
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 ##
 #     Project: Gespeaker
 # Description: A GTK frontend for espeak
