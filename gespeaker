@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /usr/share/gespeaker/src
-env python gespeaker.py

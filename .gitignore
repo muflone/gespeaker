@@ -1,10 +1,17 @@
 # Compiled source #
 ###################
 *.pyc
-build/
 # Language translations #
 #########################
 *.mo
+/po/new/
 # Backup files #
 ################
 *.glade~
+\#*.glade#
+# Geany files #
+###############
+geany_run_script.bat
+# PyCharm files #
+#################
+/.idea/
