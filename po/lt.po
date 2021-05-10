@@ -1,0 +1,284 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2021 Fabio Castelli (Muflone) <muflone(at)muflone.com>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Lithuanian translation for Gespeaker.
+# 
+# Translators:
+# Moo, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2017-09-22 16:08+0000\n"
+"Last-Translator: Moo\n"
+"Language-Team: Lithuanian (http://www.transifex.com/muflone/gespeaker/language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Išplėstiniai nustatymai</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Pagrindiniai nustatymai</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Įterpkite tekstą, kurį groti</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "Del_sa:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "Moterišk_as"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "_Tonas:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "_Greitis:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Varia_ntas:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Balsas:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Taisa"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Failas"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Pagalba"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "Ka_lba:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Vyriškas"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "Ga_rsis:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Garso grotuvas</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola programa</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Prieinami mbrola balsai</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Kiti nustatymai</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Įrašymas</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Išsaugojimo nuostatos</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Pasisveikinimo pranešimas</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Ko_manda:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Pasirinktinis pr_anešimas:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Įjungti teksto skaidymą į eilutes"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Bendra"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Įkelti balso _variantus"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Pagrindinė programa mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola balsai"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Mbrola balsų kelias:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Nuostatos"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Išsaugoti pagrindinio lango d_ydį"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Vieno takelio į_rašymas"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Kalbėti _pasisveikinimo tekstą, paleidus programą"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "Automatiškai iš_saugoti balso nustatymus"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "Naudoti pasirinktinį pasisveikinimo pranešimą"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Garso bandymas"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Garso grotuvo išbandymo metu įvyko klaida.\n\nKlaida %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "lithuanian"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Ar norite ištrinti esamą tekstą?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Prašome pasirinkti kurį tekstinį failą atverti"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Tekstiniai failai (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Visi failai"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Klaida, atveriant failą"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Prašome pasirinkti, kur išsaugoti tekstinį failą"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Klaida, išsaugant failą"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Ar norite atstatyti numatytuosius nustatymus?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "GTK išorinė sąsaja, skirta espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Prašome pasirinkti kur išsaugoti įrašytą failą"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wave failai (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Garso takelis įrašomas į: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Išplėstinė Linux garso architektūra"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio garso serveris"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Pasirinktinė garso programa"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "Išbandyti"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Kalba"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Išteklius"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Būsena"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Įdiegtas"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Neįdiegtas"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d kalbų iš %d įdiegtų"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Paketas mbrola įdiegtas"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Paketas mbrola neįdiegtas"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Sveiki atvykę į Gespeaker"
