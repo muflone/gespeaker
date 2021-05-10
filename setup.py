@@ -145,7 +145,10 @@ setup(
     url=APP_URL,
     license='GPL v3',
     scripts=['gespeaker.py'],
-    packages=['gespeaker'],
+    packages=['gespeaker',
+              'gespeaker.engines',
+              'gespeaker.ui',
+              'gespeaker.ui.models'],
     data_files=[
         ('share/applications', ['data/gespeaker.desktop']),
         ('share/gespeaker/data', ['data/testing.wav']),
