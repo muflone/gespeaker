@@ -153,7 +153,7 @@ setup(
         ('share/applications', ['data/gespeaker.desktop']),
         ('share/gespeaker/data', ['data/testing.wav']),
         ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
-        ('share/gespeaker/data/ui', list(itertools.chain(
+        ('share/gespeaker/ui', list(itertools.chain(
             glob.glob('ui/*.glade'),
             glob.glob('ui/*.ui')))),
         ('share/doc/gespeaker', list(itertools.chain(glob.glob('doc/*'),
