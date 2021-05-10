@@ -145,15 +145,17 @@ setup(
     url=APP_URL,
     license='GPL v3',
     scripts=['gespeaker.py'],
+    packages=['gespeaker'],
     data_files=[
         ('share/applications', ['data/gespeaker.desktop']),
         ('share/gespeaker/data', ['data/testing.wav']),
         ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
-        ('share/gespeaker/data/ui', glob.glob('ui/*.glade')),
+        ('share/gespeaker/data/ui', list(itertools.chain(
+            glob.glob('ui/*.glade'),
+            glob.glob('ui/*.ui'))),
         ('share/doc/gespeaker', list(itertools.chain(glob.glob('doc/*'),
                                                      glob.glob('*.md')))),
         ('share/man/man1', ['man/gespeaker.1']),
-        ('share/gespeaker/src', glob.glob('src/*.py'))
     ],
     cmdclass={
         'install_scripts': InstallScripts,
