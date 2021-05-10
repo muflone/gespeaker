@@ -175,7 +175,7 @@ msgstr "Audio-Test"
 #: ../src/PreferencesWindow.py:200
 #, python-format
 msgid "There was an error during the test for the audio player.\n\nError %s: %s"
-msgstr "Feher beim Testen des Soundsystems.\n\nFehler %s: %s"
+msgstr "Fehler beim Testen des Soundsystems.\n\nFehler %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"

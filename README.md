@@ -18,7 +18,8 @@ Description
 Gespeaker allows you to play a text in many languages with settings for voice,
 pitch, volume and speed.
 
-The text readed can also be recorded to WAV file for future listening.
+The text that has been read can also be recorded to WAV file for future
+listening.
 
 Since version 0.6 it supports the speech synthesizer MBROLA for a better speech
 experience.
