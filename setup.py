@@ -151,7 +151,8 @@ setup(
               'gespeaker.ui.models'],
     data_files=[
         ('share/applications', ['data/gespeaker.desktop']),
-        ('share/gespeaker/data', ['data/testing.wav']),
+        ('share/gespeaker/data', ['data/testing.wav',
+                                  'data/gespeaker.png']),
         ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
         ('share/gespeaker/ui', list(itertools.chain(
             glob.glob('ui/*.glade'),
