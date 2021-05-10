@@ -152,7 +152,7 @@ setup(
         ('share/gespeaker/data/icons', glob.glob('data/icons/*')),
         ('share/gespeaker/data/ui', list(itertools.chain(
             glob.glob('ui/*.glade'),
-            glob.glob('ui/*.ui'))),
+            glob.glob('ui/*.ui')))),
         ('share/doc/gespeaker', list(itertools.chain(glob.glob('doc/*'),
                                                      glob.glob('*.md')))),
         ('share/man/man1', ['man/gespeaker.1']),
