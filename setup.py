@@ -39,13 +39,15 @@ from gespeaker.constants import (APP_NAME,
                                  DOMAIN_NAME)
 
 
-class Install_Scripts(install_scripts):
+class InstallScripts(install_scripts):
     def run(self):
         install_scripts.run(self)
         self.rename_python_scripts()
 
     def rename_python_scripts(self):
-        "Rename main executable python script without .py extension"
+        """
+        Rename main executable python script without .py extension
+        """
         for script in self.get_outputs():
             if script.endswith(".py"):
                 info('renaming the python script %s -> %s' % (script,
@@ -53,10 +55,10 @@ class Install_Scripts(install_scripts):
                 shutil.move(script, script[:-3])
 
 
-class Install_Data(install_data):
+class InstallData(install_data):
     def run(self):
         self.install_icons()
-        cmd_translations = Command_Translations(self.distribution)
+        cmd_translations = CommandTranslations(self.distribution)
         cmd_translations.initialize_options()
         cmd_translations.finalize_options()
         cmd_translations.data_files = self.data_files
@@ -65,15 +67,15 @@ class Install_Data(install_data):
 
     def install_icons(self):
         info('Installing icons...')
-        DIR_ICONS = 'icons'
-        for icon_format in os.listdir(DIR_ICONS):
-            icon_dir = os.path.join(DIR_ICONS, icon_format)
+        dir_icons = 'icons'
+        for icon_format in os.listdir(dir_icons):
+            icon_dir = os.path.join(dir_icons, icon_format)
             self.data_files.append((
                 os.path.join('share', 'icons', 'hicolor', icon_format, 'apps'),
                 glob.glob(os.path.join(icon_dir, '*'))))
 
 
-class Command_Translation(Command):
+class CommandTranslation(Command):
     description = "compile a translation"
     user_options = [
         ('input=', None, 'Define input file'),
@@ -86,8 +88,8 @@ class Command_Translation(Command):
         self.data_files = []
 
     def finalize_options(self):
-        assert (self.input), 'Missing input file'
-        assert (self.output), 'Missing output file'
+        assert self.input, 'Missing input file'
+        assert self.output, 'Missing output file'
 
     def run(self):
         """Compile a single translation using self.input and self.output"""
@@ -103,7 +105,7 @@ class Command_Translation(Command):
                                 [self.output]))
 
 
-class Command_Translations(Command):
+class CommandTranslations(Command):
     description = "build translations"
     user_options = []
 
@@ -122,7 +124,7 @@ class Command_Translations(Command):
                                    os.path.basename(file_po[:-3]),
                                    'LC_MESSAGES',
                                    '%s.mo' % DOMAIN_NAME)
-            cmd_translation = Command_Translation(self.distribution)
+            cmd_translation = CommandTranslation(self.distribution)
             cmd_translation.initialize_options()
             cmd_translation.input = file_po
             cmd_translation.output = file_mo
@@ -154,9 +156,9 @@ setup(
         ('share/gespeaker/src', glob.glob('src/*.py'))
     ],
     cmdclass={
-        'install_scripts': Install_Scripts,
-        'install_data': Install_Data,
-        'translation': Command_Translation,
-        'translations': Command_Translations
+        'install_scripts': InstallScripts,
+        'install_data': InstallData,
+        'translation': CommandTranslation,
+        'translations': CommandTranslations
     }
 )
