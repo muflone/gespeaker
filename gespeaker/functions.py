@@ -68,6 +68,7 @@ def GTK30_(message, context=None):
 
 
 __all__ = [
+    'get_ui_file',
     'readlines',
     'process_events',
     '_',
