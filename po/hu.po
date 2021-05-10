@@ -1,0 +1,284 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2021 Fabio Castelli (Muflone) <muflone(at)muflone.com>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Hungarian translation for Gespeaker.
+#
+# Translators:
+# Miklos Horvath <hmiki(at)blackpantheros.eu>
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2017-05-07 11:15+0200\n"
+"Last-Translator: Miklos Horvath <hmiki@blackpantheros.eu>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/gespeaker/language/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "Haladó beállítások"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Alapbeállítások</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Írd be a lejátszani kívánt szöveget:</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "Késleltetés:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "Nő"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "Hangmagasság:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "Sebesség:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Változat:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Hang:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "Szerkesztés"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "&Fájl"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "Segítség"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "Nyelv"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "Férfi"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "Hangerő"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Hang lejátszó</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola alkalmazás</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Mbrola hangok elérhetőek</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Egyéb beállítások</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Felvétel</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Beállítások mentése</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Üdvözlőszöveg</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Parancs:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Egyéni üzenet:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Szövegtördelés bekapcsolása:"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Általános"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Hang változatok betöltése"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Fő program mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola hangok"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Mbrola hang útvonalak:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Főablak méretének mentése"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Egy sávos felvétel"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Üdvözlőszöveg felolvasása programindításkor"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "Hangbeállítások automatikus mentése"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "Egyéni üdvözlőszöveg használata"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Hang tesztelés"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Egy hiba történt a hanglejátszó rendszer tesztelése során.\n\nHiba %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "hungarian"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Törölni akarod a jelenlegi szöveget?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Kérlek válaszd ki a szöveges állományt a megnyitáshoz"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Szöveges állományok (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Minden fájl"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Hiba a fájl megnyitása során"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Kérlek válaszd ki hová mentsem a szöveges fájlt"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Hiba a fájl mentése során"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Tényleg törölni akarod az alapértelmezett beállításokat?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Egy GTK frontend az espeakhez"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Kérlek válaszd ki hová mentsem a hangfelvételt"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wav fájlok (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Hangsáv felvétele ide: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio Hangszerver"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Egyéni hangalkalmazás"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "Teszt"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Nyelv"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Forrás"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Státusz"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Telepített"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Nem telepített"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d nyelv %d detektáltból"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Mbrola csomag telepítve"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Mbrola csomag nincs telepítve"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Üdvözlet a Gespeakerben"
