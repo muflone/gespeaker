@@ -1,0 +1,284 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2021 Fabio Castelli (Muflone) <muflone(at)muflone.com>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Swedish translation for Gespeaker.
+#
+# Translators:
+# Åke Engelbrektson <eson(at)svenskasprakfiler.se>
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2019-02-21 08:16+0100\n"
+"Last-Translator: Åke Engelbrektson <eson(at)svenskasprakfiler.se>\n"
+"Language-Team: Svenska (http://www.transifex.com/projects/p/gespeaker/language/sv/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Avancerade inställningar</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Basinställningar</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Infoga text att spela upp</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "_Fördröjning:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "_Kvinna"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "_Tonhöjd:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "Has_tighet:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Varia_nt:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Röst:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Redigera"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Arkiv"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Språk:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Man"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Volym:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Ljuduppspelare</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Mbrola-applikation</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Mbrola-röster tillgängliga</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "Andra inställningar"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Inspelning</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Sparade inställningar</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Välkomstmeddelande</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "Ko_mmando:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Anpassat me_ddelande:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Ak_tivera radbrytning"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Allmänt"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Läs in r_östvarianter"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Huvudprogram mbrola"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Mbrola-röster"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Mbrola röstsökväg:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Spara h_uvudfönstrets storlek"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "E_nkelspårig inspelning"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Spela upp _välkomstmeddelande vid programstart"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "S_para röstinställningar automatiskt"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "Anv_änd anpassat välkomstmeddelande"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Ljudtest"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Det uppstod ett fel i ljuduppspelaren under testet.\n\nFel %s: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "svenska"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Vill du ta bort aktuell text?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Välj textfil att öppna"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Textfiler (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Alla filer"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Kunde inte öppna filen"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Välj var textfilen skall sparas"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Kunde inte spara filen"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Vill du återställa standardinställningarna?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Ett GTK-gränssnitt för espeak"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Välj var den inspelade filen skall sparas"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Wave-filer (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Spelar in ett ljudspår till: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "PulseAudio ljudserver"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Anpassad ljudapplikation"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "T_est"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Språk"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Resurs"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Status"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Installerat"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Inte installerat"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "%d språk av %d identifierade"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Paketet mbrola installerat"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Paketet mbrola inte installerat"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Välkommen till Gespeaker"
