@@ -1,0 +1,284 @@
+# Gespeaker
+# A GTK frontend for eSpeak
+# Copyright (C) 2009-2021 Fabio Castelli (Muflone) <muflone(at)muflone.com>
+# Website: http://www.muflone.com/gespeaker/
+# This file is distributed under the same license of Gespeaker.
+# Serbian translation for Gespeaker.
+# 
+# Translators:
+# Мирослав Николић <miroslavnikolic(at)rocketmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: Gespeaker\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
+"POT-Creation-Date: 2010-06-12 14:02+0200\n"
+"PO-Revision-Date: 2021-05-12 04:14+0000\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic(at)rocketmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/muflone/gespeaker/language/sr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/ui/gespeaker.glade.h:1
+msgid "<b>Advanced settings</b>"
+msgstr "<b>Напредне поставке</b>"
+
+#: ../data/ui/gespeaker.glade.h:2
+msgid "<b>Base settings</b>"
+msgstr "<b>Основне поставке</b>"
+
+#: ../data/ui/gespeaker.glade.h:3
+msgid "<b>Insert text to play</b>"
+msgstr "<b>Убаците текст за пуштање</b>"
+
+#: ../data/ui/gespeaker.glade.h:4
+msgid "Dela_y:"
+msgstr "_Застој:"
+
+#: ../data/ui/gespeaker.glade.h:5
+msgid "Fem_ale"
+msgstr "_Женски"
+
+#: ../data/ui/gespeaker.glade.h:6
+msgid "P_itch:"
+msgstr "_Врхунац:"
+
+#: ../data/ui/gespeaker.glade.h:7
+msgid "Spee_d:"
+msgstr "_Брзина:"
+
+#: ../data/ui/gespeaker.glade.h:8
+msgid "Varia_nt:"
+msgstr "Варија_нта:"
+
+#: ../data/ui/gespeaker.glade.h:9
+msgid "Voice:"
+msgstr "Глас:"
+
+#: ../data/ui/gespeaker.glade.h:10
+msgid "_Edit"
+msgstr "_Уређивање"
+
+#: ../data/ui/gespeaker.glade.h:11
+msgid "_File"
+msgstr "_Датотека"
+
+#: ../data/ui/gespeaker.glade.h:12
+msgid "_Help"
+msgstr "По_моћ"
+
+#: ../data/ui/gespeaker.glade.h:13
+msgid "_Language:"
+msgstr "_Језик:"
+
+#: ../data/ui/gespeaker.glade.h:14
+msgid "_Male"
+msgstr "_Мушки"
+
+#: ../data/ui/gespeaker.glade.h:15
+msgid "_Volume:"
+msgstr "_Гласност:"
+
+#: ../data/ui/preferences.glade.h:1
+msgid "<b>Audio player</b>"
+msgstr "<b>Програм за пуштање звука</b>"
+
+#: ../data/ui/preferences.glade.h:2
+msgid "<b>Mbrola application</b>"
+msgstr "<b>Мброла програм</b>"
+
+#: ../data/ui/preferences.glade.h:3
+msgid "<b>Mbrola voices available</b>"
+msgstr "<b>Доступни Мброла гласови</b>"
+
+#: ../data/ui/preferences.glade.h:4
+msgid "<b>Other settings</b>"
+msgstr "<b>Остала поставке</b>"
+
+#: ../data/ui/preferences.glade.h:5
+msgid "<b>Recording</b>"
+msgstr "<b>Снимање</b>"
+
+#: ../data/ui/preferences.glade.h:6
+msgid "<b>Saving preferences</b>"
+msgstr "<b>Поставке чување</b>"
+
+#: ../data/ui/preferences.glade.h:7
+msgid "<b>Welcome message</b>"
+msgstr "<b>Поздравна порука</b>"
+
+#: ../data/ui/preferences.glade.h:8
+msgid "Co_mmand:"
+msgstr "_Наредба:"
+
+#: ../data/ui/preferences.glade.h:9
+msgid "Custom mess_age:"
+msgstr "Произвољна _порука:"
+
+#: ../data/ui/preferences.glade.h:10
+msgid "Enable te_xt wrapping"
+msgstr "Укључи _преламање текста"
+
+#: ../data/ui/preferences.glade.h:11
+msgid "General"
+msgstr "Опште"
+
+#: ../data/ui/preferences.glade.h:12
+msgid "Load voice _variants"
+msgstr "Учитај _варијанте гласа"
+
+#: ../data/ui/preferences.glade.h:13
+msgid "Main program mbrola"
+msgstr "Главни мброла програм"
+
+#: ../data/ui/preferences.glade.h:14
+msgid "Mbrola voices"
+msgstr "Мброла гласови"
+
+#: ../data/ui/preferences.glade.h:15
+msgid "Mbrola voices path:"
+msgstr "Путања Мброла гласова:"
+
+#: ../data/ui/preferences.glade.h:16
+msgid "Preferences"
+msgstr "Поставке"
+
+#: ../data/ui/preferences.glade.h:17
+msgid "Save main window s_ize"
+msgstr "Сачувај _величину главног прозора"
+
+#: ../data/ui/preferences.glade.h:18
+msgid "Single track _record"
+msgstr "Снимак једне _нумере"
+
+#: ../data/ui/preferences.glade.h:19
+msgid "Speak _welcome text on program start"
+msgstr "Изговори _поздравни текст при покретању програма"
+
+#: ../data/ui/preferences.glade.h:20
+msgid "_Save voice settings automatically"
+msgstr "_Сам сачувај поставке гласа"
+
+#: ../data/ui/preferences.glade.h:21
+msgid "_Use custom welcome message"
+msgstr "_Користи произвољну поздравну поруку"
+
+#: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
+#: ../src/PreferencesWindow.py:198
+msgid "Audio testing"
+msgstr "Испробавање звука"
+
+#: ../src/EspeakFrontend.py:89 ../src/EspeakFrontend.py:115
+#: ../src/PreferencesWindow.py:200
+#, python-format
+msgid "There was an error during the test for the audio player.\n\nError %s: %s"
+msgstr "Дошло је до грешке за време тестирања за програмом за звук.\n\nГрешка „%s“: %s"
+
+#: ../src/gespeakerUI.py:175 ../src/Settings.py:78
+msgid "default language"
+msgstr "serbian"
+
+#: ../src/gespeakerUI.py:272
+msgid "Do you want to delete the current text?"
+msgstr "Да ли желите да обришете текући текст?"
+
+#: ../src/gespeakerUI.py:287
+msgid "Please select the text file to open"
+msgstr "Изаберите датотеку текста за отварање"
+
+#: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
+msgid "Text files (*.txt)"
+msgstr "Текстуалне датотеке (*.txt)"
+
+#: ../src/gespeakerUI.py:291 ../src/gespeakerUI.py:330
+#: ../src/gespeakerUI.py:559
+msgid "All files"
+msgstr "Све датотеке"
+
+#: ../src/gespeakerUI.py:305 ../src/gespeakerUI.py:314
+msgid "Error opening the file"
+msgstr "Грешка приликом отварања датотеке"
+
+#: ../src/gespeakerUI.py:326
+msgid "Please select where to save the text file"
+msgstr "Изаберите где ћу сачувати текстуалну датотеку"
+
+#: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
+msgid "Error saving the file"
+msgstr "Грешка приликом чувања датотеке"
+
+#: ../src/gespeakerUI.py:368
+msgid "Do you want to reset the default settings?"
+msgstr "Да ли желите да вратите на основне поставке?"
+
+#: ../src/gespeakerUI.py:404
+msgid "A GTK frontend for espeak"
+msgstr "Гтк челник за еговорник"
+
+#: ../src/gespeakerUI.py:555
+msgid "Please select where to save the recorded file"
+msgstr "Изаберите где ћу сачувати снимљену датотеку"
+
+#: ../src/gespeakerUI.py:558
+msgid "Wave files (*.wav)"
+msgstr "Датотеке таласа (*.wav)"
+
+#: ../src/gespeakerUI.py:576
+#, python-format
+msgid "Recording audio track to: %s"
+msgstr "Записујем звучну нумеру у: %s"
+
+#: ../src/PreferencesWindow.py:107
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "АЛСА — Напредна архитектура звука на Линуксу"
+
+#: ../src/PreferencesWindow.py:110
+msgid "PulseAudio sound server"
+msgstr "Пулсе аудио звучни сервер"
+
+#: ../src/PreferencesWindow.py:112
+msgid "Custom sound application"
+msgstr "Произвољни програм звука"
+
+#: ../src/PreferencesWindow.py:114
+msgid "_Test"
+msgstr "_Испробај"
+
+#: ../src/PreferencesWindow.py:130
+msgid "Language"
+msgstr "Језик"
+
+#: ../src/PreferencesWindow.py:136
+msgid "Resource"
+msgstr "Извориште"
+
+#: ../src/PreferencesWindow.py:142
+msgid "Status"
+msgstr "Стање"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Installed"
+msgstr "Инсталиран"
+
+#: ../src/PreferencesWindow.py:225
+msgid "Not installed"
+msgstr "Није инсталиран"
+
+#: ../src/PreferencesWindow.py:227
+#, python-format
+msgid "%d languages of %d detected"
+msgstr "Откривених језика: %d од %d"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola installed"
+msgstr "Пакет мброла је инсталиран"
+
+#: ../src/PreferencesWindow.py:234
+msgid "Package mbrola not installed"
+msgstr "Пакет мброла није инсталиран"
+
+#: ../src/Settings.py:64
+msgid "Welcome in Gespeaker"
+msgstr "Добро дошли у Ге-говорника"
