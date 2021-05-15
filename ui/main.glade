@@ -7,7 +7,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_quit">
-        <property name="label" translatable="yes">_Quit</property>
+        <property name="label" context="gtk30.Stock label">_Quit</property>
         <property name="icon-name">application-exit</property>
         <signal name="activate" handler="on_action_quit_activate" swapped="no"/>
       </object>
@@ -15,7 +15,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_about">
-        <property name="label" translatable="yes">_About</property>
+        <property name="label" context="gtk30">About</property>
         <property name="icon-name">help-about</property>
         <signal name="activate" handler="on_action_about_activate" swapped="no"/>
       </object>
@@ -23,7 +23,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_preferences">
-        <property name="label" translatable="yes">_Preferences</property>
+        <property name="label" context="gtk30">Preferences</property>
         <property name="icon-name">preferences-desktop</property>
         <signal name="activate" handler="on_action_preferences_activate" swapped="no"/>
       </object>
@@ -51,7 +51,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_cut">
-        <property name="label" translatable="yes">Cu_t</property>
+        <property name="label" context="gtk30">Cu_t</property>
         <property name="icon-name">edit-cut</property>
         <signal name="activate" handler="on_action_clipboard_activate" swapped="no"/>
       </object>
@@ -59,7 +59,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_copy">
-        <property name="label" translatable="yes">_Copy</property>
+        <property name="label" context="gtk30">_Copy</property>
         <property name="icon-name">edit-copy</property>
         <signal name="activate" handler="on_action_clipboard_activate" swapped="no"/>
       </object>
@@ -67,7 +67,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_paste">
-        <property name="label" translatable="yes">_Paste</property>
+        <property name="label" context="gtk30">_Paste</property>
         <property name="icon-name">edit-paste</property>
         <signal name="activate" handler="on_action_clipboard_activate" swapped="no"/>
       </object>
@@ -78,7 +78,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_new">
-        <property name="label" translatable="yes">_New</property>
+        <property name="label" context="gtk30.Stock label">_New</property>
         <property name="icon-name">document-new</property>
         <property name="sensitive">False</property>
         <signal name="activate" handler="on_action_new_activate" swapped="no"/>
@@ -87,7 +87,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_open">
-        <property name="label" translatable="yes">_Open</property>
+        <property name="label" context="gtk30">_Open</property>
         <property name="icon-name">document-open</property>
         <signal name="activate" handler="on_action_open_activate" swapped="no"/>
       </object>
@@ -95,7 +95,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_save_as">
-        <property name="label" translatable="yes">_Save as...</property>
+        <property name="label" context="gtk30.Stock label">Save _As</property>
         <property name="icon-name">document-save-as</property>
         <property name="sensitive">False</property>
         <signal name="activate" handler="on_action_save_as_activate" swapped="no"/>
@@ -107,7 +107,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkToggleAction" id="action_pause">
-        <property name="label" translatable="yes">Pa_use</property>
+        <property name="label" context="gtk30.Stock label, media">P_ause</property>
         <property name="icon-name">media-playback-pause</property>
         <property name="is-important">True</property>
         <property name="sensitive">False</property>
@@ -118,7 +118,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_record">
-        <property name="label" translatable="yes">_Record</property>
+        <property name="label" context="gtk30.Stock label, media">_Record</property>
         <property name="icon-name">media-record</property>
         <property name="is-important">True</property>
         <property name="sensitive">False</property>
@@ -129,7 +129,7 @@
     </child>
     <child>
       <object class="GtkToggleAction" id="action_play_stop">
-        <property name="label" translatable="yes">_Play</property>
+        <property name="label" context="gtk30.Stock label, media">_Play</property>
         <property name="sensitive">False</property>
         <property name="always-show-image">True</property>
         <signal name="toggled" handler="on_action_play_stop_toggled" swapped="no"/>
@@ -138,12 +138,12 @@
     </child>
     <child>
       <object class="GtkAction" id="action_stop">
-        <property name="label" translatable="yes">_Stop</property>
+        <property name="label" context="Stock label, media">_Stop</property>
       </object>
     </child>
     <child>
       <object class="GtkAction" id="action_play">
-        <property name="label" translatable="yes">_Play</property>
+        <property name="label" context="gtk30.Stock label, media">_Play</property>
       </object>
     </child>
   </object>

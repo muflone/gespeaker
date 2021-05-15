@@ -18,6 +18,10 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import gettext
+import logging
+import xml.etree.ElementTree
+
 from gi.repository import Gtk
 
 
@@ -26,10 +30,12 @@ class GtkBuilderLoader(object):
         """
         Load one or more ui files for GtkBuilder
         """
+        self.__widgets = {}
         self.builder = Gtk.Builder()
         for ui_filename in ui_files:
             self.builder.add_from_file(ui_filename)
-        self.__widgets = {}
+            self._translate_widgets(
+                xml=xml.etree.ElementTree.parse(ui_filename).getroot())
 
     def __getattr__(self, key):
         """
@@ -46,8 +52,55 @@ class GtkBuilderLoader(object):
         """
         return self.__getattr__(key)
 
+    def get_objects(self):
+        """Get the widgets list from GtkBuilder"""
+        return self.builder.get_objects()
+
+    def get_objects_by_type(self, type):
+        """Get the widgets list with a specific type from GtkBuilder"""
+        return [w for w in self.get_objects() if isinstance(w, type)]
+
     def connect_signals(self, handlers):
         """
         Connect all the Gtk signals to a group of handlers
         """
         self.builder.connect_signals(handlers)
+
+    def _translate_widgets(self, xml):
+        """
+        Translate widgets by cycling objects from the XML document recursively
+        """
+        # Cycle over every object in the xml node
+        for item in xml.findall('object'):
+            widget = self.get_object(item.attrib['id'])
+            # Find all properties for the object
+            for prop in item.findall('property'):
+                # Translatable strings have context attribute
+                if 'context' in prop.attrib:
+                    if '.' in prop.attrib['context']:
+                        # Message with domain.context
+                        domain, context = prop.attrib['context'].split('.', 1)
+                        message = '{CONTEXT}\x04{MESSAGE}'.format(
+                            CONTEXT=context,
+                            MESSAGE=prop.text)
+                    else:
+                        # Message with no context (domain only)
+                        domain = prop.attrib['context']
+                        message = prop.text
+                    # Translate message
+                    translation = gettext.dgettext(domain=domain,
+                                                   message=message)
+                    # Set the widget properties
+                    if prop.attrib['name'] == 'label':
+                        # Translate label from widget
+                        widget.set_label(translation)
+                    else:
+                        # Unexpected property for widget
+                        logging.error(
+                            'Unexpected property "{PROPERTY}" '
+                            'to translate from widget "{WIDGET}"'
+                            ''.format(PROPERTY=prop.attrib['name'],
+                                      WIDGET=item.attrib['id']))
+            # Process every children in object
+            for child in item.findall('child'):
+                self._translate_widgets(child)
