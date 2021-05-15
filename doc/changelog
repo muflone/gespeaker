@@ -1,3 +1,17 @@
+gespeaker (2.0.1) all; urgency=low
+
+  * Translations fixes
+
+ -- Fabio Castelli <muflone@muflone.com>  Sat, 16 May 2021 00:18:00 +0200
+
+gespeaker (2.0.0) all; urgency=low
+
+  * New port to Python 3.x and GTK+ 3
+  * Major rewrite
+  * Updated translations
+
+ -- Fabio Castelli <muflone@muflone.com>  Sat, 15 May 2021 19:11:00 +0200
+
 gespeaker (0.8.6) all; urgency=low
 
   * New Greek translation by osar1
