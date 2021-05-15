@@ -35,9 +35,6 @@ APP_AUTHOR_EMAIL = 'muflone@muflone.com'
 APP_COPYRIGHT = 'Copyright 2009-2021 {AUTHOR}'.format(AUTHOR=APP_AUTHOR)
 # Other constants
 DOMAIN_NAME = 'gespeaker'
-VERBOSE_LEVEL_QUIET = 0
-VERBOSE_LEVEL_NORMAL = 1
-VERBOSE_LEVEL_MAX = 2
 
 # Paths constants
 # If there's a file data/gespeaker.png then the shared data are searched

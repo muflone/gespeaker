@@ -18,6 +18,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+
 from gi.repository import Gtk
 from gi.repository import Gio
 
@@ -31,6 +33,7 @@ from gespeaker.ui.main import MainWindow
 class Application(Gtk.Application):
     def __init__(self, settings):
         super(self.__class__, self).__init__(application_id=APP_ID)
+        logging.info('Application init')
         self.backend = Backend(settings)
         self.settings = settings
         self.connect("activate", self.activate)
@@ -41,6 +44,7 @@ class Application(Gtk.Application):
         """
         Configure the application during the startup
         """
+        logging.info('Application startup')
         self.ui = MainWindow(self, self.backend)
         # Add the actions related to the app menu
         action = Gio.SimpleAction(name="about")

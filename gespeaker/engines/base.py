@@ -19,6 +19,7 @@
 ##
 
 import importlib
+import logging
 
 from gi.repository import GObject
 
@@ -40,21 +41,21 @@ class EngineBase(object):
         """
         Check the module requirements to enable it
         """
-        print('Checking requirements for engine {ENGINE}'.format(
+        logging.info('Checking requirements for engine {ENGINE}'.format(
               ENGINE=cls.name))
         # Check for required Python modules to import
         for module_name in cls.required_modules:
             try:
                 importlib.import_module(module_name)
             except ImportError:
-                print('  > Module {MODULE} not found'.format(
-                      MODULE=module_name))
+                logging.info('Module {MODULE} not found'.format(
+                    MODULE=module_name))
                 return False
         # Check for required executable files
         for executable_name in cls.required_executables:
             if not find_executable(executable_name):
-                print('  > Executable {EXECUTABLE} not found '
-                      'in the path'.format(EXECUTABLE=executable_name))
+                logging.info('Executable {EXECUTABLE} not found '
+                             'in the path'.format(EXECUTABLE=executable_name))
                 return False
         return True
 
@@ -82,11 +83,9 @@ class EngineBase(object):
         Play a text using the specified language
         """
         self.playing = True
-        # Add play debug line
-        self.settings.debug_line(
-            'Play with engine {ENGINE} and language {LANGUAGE}'.format(
-                ENGINE=self.name,
-                LANGUAGE=language))
+        logging.info('Play with engine {ENGINE} and '
+                     'language {LANGUAGE}'.format(ENGINE=self.name,
+                                                  LANGUAGE=language))
         # Add a timer to check when the playing has stopped
         GObject.timeout_add(500, self.is_playing, on_play_completed)
 
@@ -109,17 +108,13 @@ class EngineBase(object):
         Stop any previous play
         """
         self.playing = False
-        # Add stop debug line
-        self.settings.debug_line(
-            'Stop with engine {ENGINE}'.format(ENGINE=self.name))
+        logging.info('Stop with engine {ENGINE}'.format(ENGINE=self.name))
 
     def pause(self, status_pause):
         """
         Pause a previous play or resume after pause
         """
-        # Add pause/resume debug line
-        self.settings.debug_line(
-            '{STATUS} engine {ENGINE}'.format(
-                STATUS='Pause' if status_pause else 'Resume',
-                ENGINE=self.name))
+        logging.info('{STATUS} engine {ENGINE}'.format(
+            STATUS='Pause' if status_pause else 'Resume',
+            ENGINE=self.name))
         return True

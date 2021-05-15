@@ -18,6 +18,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
 import os
 import subprocess
 
@@ -101,28 +102,25 @@ class EngineMBROLA(EngineBase):
                             # Save the MBROLA data file
                             info[KEY_ESPEAK_MBROLA] = values[1]
         # Check if the MBROLA data file exists
-        dir_mb_voice = os.path.join(self.dir_mbrola_voices,
-                                    info[KEY_ESPEAK_MBROLA])
+        dir_voice = os.path.join(self.dir_mbrola_voices,
+                                 info[KEY_ESPEAK_MBROLA])
         if info[KEY_ESPEAK_MBROLA]:
-            if os.path.isdir(dir_mb_voice):
-                if os.path.isfile(
-                        os.path.join(dir_mb_voice, info[KEY_ESPEAK_MBROLA])):
+            if os.path.isdir(dir_voice):
+                if os.path.isfile(os.path.join(dir_voice,
+                                               info[KEY_ESPEAK_MBROLA])):
                     return info
                 else:
                     # MBROLA voice file not found
-                    self.settings.debug_line(
-                        'MBROLA data file {FILE} not found for '
-                        'voice {VOICE}'.format(
-                            FILE=os.path.join(dir_mb_voice,
-                                              info[KEY_ESPEAK_MBROLA]),
-                            VOICE=info[KEY_NAME]))
+                    mbrola_filename = os.path.join(dir_voice,
+                                                   info[KEY_ESPEAK_MBROLA])
+                    logging.debug('MBROLA data file {FILE} not found for '
+                                  'voice {VOICE}'.format(FILE=mbrola_filename,
+                                                         VOICE=info[KEY_NAME]))
             else:
                 # MBROLA voice directory not found
-                self.settings.debug_line(
-                    'MBROLA data directory {DIRECTORY} not found '
-                    'for voice {VOICE}'.format(
-                        DIRECTORY=dir_mb_voice,
-                        VOICE=info[KEY_NAME]))
+                logging.debug('MBROLA data directory {DIRECTORY} not found '
+                              'for voice {VOICE}'.format(DIRECTORY=dir_voice,
+                                                         VOICE=info[KEY_NAME]))
             return None
 
     def play(self, text, language, on_play_completed):
@@ -131,7 +129,7 @@ class EngineMBROLA(EngineBase):
         """
         super(self.__class__, self).play(text, language, on_play_completed)
         espeak_arguments = ['espeak', '--stdout', '-v', language]
-        self.settings.debug_line(espeak_arguments)
+        logging.debug(espeak_arguments)
         self.process_speaker = subprocess.Popen(args=espeak_arguments,
                                                 stdin=subprocess.PIPE,
                                                 stdout=subprocess.PIPE)
@@ -158,11 +156,9 @@ class EngineMBROLA(EngineBase):
         Stop any previous play
         """
         if self.process_player:
-            # Show terminate message when debug is activated
-            self.settings.debug_line(
-                'Terminate engine {ENGINE} with pid {PID}'.format(
-                    ENGINE=self.name,
-                    PID=self.process_player.pid))
+            logging.info('Terminate engine {ENGINE} with pid {PID}'.format(
+                ENGINE=self.name,
+                PID=self.process_player.pid))
             self.process_player.terminate()
         return super(self.__class__, self).stop()
 
@@ -173,12 +169,10 @@ class EngineMBROLA(EngineBase):
         super(self.__class__, self).pause(status_pause)
         for process in (self.process_speaker, self.process_player):
             if process:
-                # Show pause message when debug is activated
-                self.settings.debug_line(
-                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
-                        STATUS='Pause' if status_pause else 'Resume',
-                        ENGINE=self.name,
-                        PID=process.pid))
+                logging.info('{STATUS} engine {ENGINE} with pid {PID}'.format(
+                    STATUS='Pause' if status_pause else 'Resume',
+                    ENGINE=self.name,
+                    PID=process.pid))
                 psprocess = psutil.Process(process.pid)
                 if status_pause:
                     psprocess.suspend()

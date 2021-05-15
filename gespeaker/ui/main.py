@@ -18,6 +18,9 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+import os
+
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
@@ -40,6 +43,7 @@ from gespeaker.ui.models.languages import ModelLanguages
 
 class MainWindow(object):
     def __init__(self, application, backend):
+        logging.debug('Loading main window')
         self.application = application
         self.ui = GtkBuilderLoader(get_ui_file('main.glade'))
         self.backend = backend
@@ -64,6 +68,7 @@ class MainWindow(object):
         """
         Show the UI
         """
+        logging.debug('Showing main window')
         self.ui.window_main.show_all()
 
     def load_user_interface(self):
@@ -71,6 +76,7 @@ class MainWindow(object):
         Load the interface UI
         """
         # Load available engines
+        logging.debug('Loading main UI')
         self.model_engines = ModelEngines(self.ui.model_engines)
         for engine_name, obj_engine in self.backend.engines.items():
             # Add a new CheckMenuItem for each engine
@@ -132,6 +138,7 @@ class MainWindow(object):
         """
         Quit the application
         """
+        logging.debug('Closing main window')
         # Stop any previous play
         self.ui.action_play_stop.set_active(False)
         # Save settings for window size
@@ -139,6 +146,7 @@ class MainWindow(object):
         self.backend.settings.save()
         self.ui.window_main.destroy()
         self.application.quit()
+        logging.info('Application quit')
 
     def _get_current_engine(self):
         """
@@ -200,10 +208,13 @@ class MainWindow(object):
         """
         editable = self.ui.text_text.get_editable()
         if action is self.ui.action_cut:
+            logging.debug('Cut text')
             self.ui.buffer_text.cut_clipboard(self.clipboard, editable)
         elif action is self.ui.action_copy:
+            logging.debug('Copy text')
             self.ui.buffer_text.copy_clipboard(self.clipboard)
         elif action is self.ui.action_paste:
+            logging.debug('Paste text')
             self.ui.buffer_text.paste_clipboard(self.clipboard, None, editable)
 
     def on_action_play_stop_toggled(self, action):
@@ -286,15 +297,16 @@ class MainWindow(object):
             try:
                 # Open the selected text file
                 with open(filename, 'r') as f:
-                    self.backend.settings.debug_line(
-                        'loading text from {FILE}'.format(FILE=filename))
+                    file_length = os.stat(filename).st_size
+                    logging.debug('Loading text from "{FILE}" '
+                                  '({BYTES} bytes)'.format(FILE=filename,
+                                                           BYTES=file_length))
                     self.ui.buffer_text.set_text(f.read())
             except Exception as error:
                 # Handle any exception
-                self.backend.settings.debug_line(
-                    'Error loading {FILE} (Error: {ERROR})'.format(
-                        FILE=filename,
-                        ERROR=error))
+                logging.error('Error loading "{FILE}" (Error: {ERROR})'.format(
+                    FILE=filename,
+                    ERROR=error))
                 dialog = MessagesDialog(self.ui.window_main)
                 dialog.primary_text = _('Error opening the file')
                 dialog.secondary_text = error
@@ -313,18 +325,19 @@ class MainWindow(object):
             try:
                 # Save to the selected text file
                 with open(filename, 'w') as f:
-                    self.backend.settings.debug_line(
-                        'saving text in {FILE}'.format(FILE=filename))
-                    f.write(self.ui.buffer_text.get_text(
+                    text = self.ui.buffer_text.get_text(
                         start=self.ui.buffer_text.get_start_iter(),
                         end=self.ui.buffer_text.get_end_iter(),
-                        include_hidden_chars=False))
+                        include_hidden_chars=False)
+                    logging.debug('Saving text in "{FILE}" '
+                                  '({BYTES} bytes)'.format(FILE=filename,
+                                                           BYTES=len(text)))
+                    f.write(text)
             except Exception as error:
                 # Handle any exception
-                self.backend.settings.debug_line(
-                    'Error saving to {FILE} (Error: {ERROR})'.format(
-                        FILE=filename,
-                        ERROR=error))
+                logging.error('Error saving to "{FILE}" '
+                              '(Error: {ERROR})'.format(FILE=filename,
+                                                        ERROR=error))
                 dialog = MessagesDialog(self.ui.window_main)
                 dialog.primary_text = _('Error saving the file')
                 dialog.secondary_text = error
@@ -342,7 +355,7 @@ class MainWindow(object):
             dialog.title = ''
             dialog.primary_text = _('Do you want to delete the current text?')
             if dialog.show_question() == Gtk.ResponseType.OK:
-                self.backend.settings.debug_line('text cleared')
+                logging.debug('Text cleared')
                 self.ui.buffer_text.set_text('')
 
     def on_action_record_activate(self, action):

@@ -18,6 +18,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
 import multiprocessing
 import time
 
@@ -66,7 +67,7 @@ class EngineDummy(EngineBase):
         Play the text
         """
         for letter in text:
-            print(letter)
+            logging.debug(letter)
             time.sleep(0.1)
 
     def is_playing(self, on_play_completed):
@@ -84,11 +85,9 @@ class EngineDummy(EngineBase):
         Stop any previous play
         """
         if self.process_speaker:
-            # Show terminate message when debug is activated
-            self.settings.debug_line(
-                'Terminate engine {ENGINE} with pid {PID}'.format(
-                    ENGINE=self.name,
-                    PID=self.process_speaker.pid))
+            logging.info('Terminate engine {ENGINE} with pid {PID}'.format(
+                ENGINE=self.name,
+                PID=self.process_speaker.pid))
             self.process_speaker.terminate()
         return super(self.__class__, self).stop()
 
@@ -98,12 +97,10 @@ class EngineDummy(EngineBase):
         """
         super(self.__class__, self).pause(status_pause)
         if self.process_speaker:
-            # Show pause message when debug is activated
-            self.settings.debug_line(
-                '{STATUS} engine {ENGINE} with pid {PID}'.format(
-                    STATUS='Pause' if status_pause else 'Resume',
-                    ENGINE=self.name,
-                    PID=self.process_speaker.pid))
+            logging.info('{STATUS} engine {ENGINE} with pid {PID}'.format(
+                STATUS='Pause' if status_pause else 'Resume',
+                ENGINE=self.name,
+                PID=self.process_speaker.pid))
             psprocess = psutil.Process(self.process_speaker.pid)
             if status_pause:
                 psprocess.suspend()

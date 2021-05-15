@@ -19,6 +19,7 @@
 ##
 
 import importlib
+import logging
 
 
 def detect_engines():
@@ -31,6 +32,7 @@ def detect_engines():
                       'engine_mbrola',
                       'engine_google_tts')
 
+    logging.debug('Detecting available engines')
     # Dynamic import of engines modules
     for module_name in engine_modules:
         try:
@@ -42,8 +44,8 @@ def detect_engines():
                 if engine_class.check_requirements():
                     engines[engine_class.name] = engine_class
                 else:
-                    print('  > Skipping engine {ENGINE} for unmet '
-                          'requirements'.format(ENGINE=module_name))
+                    logging.info('Skipping engine {ENGINE} for unmet '
+                                 'requirements'.format(ENGINE=module_name))
         except ImportError:
-            print('  > Skipping engine {ENGINE}'.format(ENGINE=module_name))
+            logging.info('Skipping engine {ENGINE}'.format(ENGINE=module_name))
     return engines

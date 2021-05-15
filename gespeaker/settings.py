@@ -19,13 +19,10 @@
 ##
 
 import configparser
+import logging
 import optparse
-import time
 
-from gespeaker.constants import (FILE_SETTINGS,
-                                 VERBOSE_LEVEL_QUIET,
-                                 VERBOSE_LEVEL_NORMAL,
-                                 VERBOSE_LEVEL_MAX)
+from gespeaker.constants import FILE_SETTINGS
 
 
 SECTION_MAINWIN = 'main window'
@@ -40,14 +37,27 @@ class Settings(object):
 
         # Command line options and arguments
         parser = optparse.OptionParser(usage='usage: %prog [options]')
-        parser.set_defaults(verbose_level=VERBOSE_LEVEL_NORMAL)
-        parser.add_option('-v', '--verbose', dest='verbose_level',
-                          action='store_const', const=VERBOSE_LEVEL_MAX,
+        parser.set_defaults(logging_level=logging.INFO)
+        parser.add_option('-v', '--verbose',
+                          dest='logging_level',
+                          action='store_const',
+                          const=logging.DEBUG,
                           help='show error and information messages')
-        parser.add_option('-q', '--quiet', dest='verbose_level',
-                          action='store_const', const=VERBOSE_LEVEL_QUIET,
+        parser.add_option('-q', '--quiet',
+                          dest='logging_level',
+                          action='store_const',
+                          const=logging.WARNING,
                           help='hide error and information messages')
         (self.options, self.arguments) = parser.parse_args()
+        # Setup logging
+        logging.basicConfig(level=self.options.logging_level,
+                            format='%(asctime)s '
+                                   '%(levelname)-8s '
+                                   '%(filename)-25s '
+                                   'line: %(lineno)-5d '
+                                   '%(funcName)-30s '
+                                   'pid: %(process)-9d '
+                                   '%(message)s')
         # Parse settings from the configuration file
         self.config = configparser.RawConfigParser()
         # Allow saving in case sensitive (useful for machine names)
@@ -55,9 +65,8 @@ class Settings(object):
         # Determine which filename to use for settings
         self.filename = FILE_SETTINGS
         if self.filename:
-            self.log_text('Loading settings from {FILE}'.format(
-                FILE=self.filename),
-                VERBOSE_LEVEL_MAX)
+            logging.debug('Loading settings from {FILE}'.format(
+                FILE=self.filename))
             self.config.read(self.filename)
 
     def load(self):
@@ -65,7 +74,7 @@ class Settings(object):
         Load window settings
         """
         if self.config.has_section(SECTION_MAINWIN):
-            self.log_text('Retrieving window settings', VERBOSE_LEVEL_MAX)
+            logging.debug('Retrieving window settings')
             # Retrieve window position and size
             if self.config.has_option(SECTION_MAINWIN, 'left'):
                 self.settings['left'] = self.config.getint(SECTION_MAINWIN,
@@ -88,7 +97,7 @@ class Settings(object):
         Save configuration for main window
         """
         # Main window settings section
-        self.log_text('Saving window settings', VERBOSE_LEVEL_MAX)
+        logging.debug('Saving window settings')
         if not self.config.has_section(SECTION_MAINWIN):
             self.config.add_section(SECTION_MAINWIN)
         # Window position
@@ -135,31 +144,6 @@ class Settings(object):
         """
         # Always save the settings in the new configuration file
         file_settings = open(FILE_SETTINGS, mode='w')
-        self.log_text('Saving settings to {SETTINGS}'.format(
-            SETTINGS=FILE_SETTINGS),
-            VERBOSE_LEVEL_MAX)
+        logging.debug('Saving settings to {FILE}'.format(FILE=FILE_SETTINGS))
         self.config.write(file_settings)
         file_settings.close()
-
-    def log_text(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
-        """
-        Print a text with current date and time based on verbose level
-        """
-        if verbose_level <= self.options.verbose_level:
-            print('[{DATE} {TIME}] {TEXT}'.format(
-                DATE=time.strftime('%Y/%m/%d'),
-                TIME=time.strftime('%H:%M:%S'),
-                TEXT=text))
-
-    def is_debug(self):
-        """
-        Return True if the debug is currently active
-        """
-        return self.get_boolean(SECTION_APPLICATION, 'debug', False)
-
-    def debug_line(self, text):
-        """
-        Print a text if the debug is enabled
-        """
-        if self.is_debug():
-            print(text)

@@ -18,6 +18,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+
 from gi.repository.GdkPixbuf import Pixbuf
 
 from gespeaker.constants import (APP_NAME,
@@ -37,6 +39,7 @@ from gespeaker.gtkbuilder_loader import GtkBuilderLoader
 
 class AboutWindow(object):
     def __init__(self, parent_window, show=False):
+        logging.debug('Loading about dialog')
         # Retrieve the translators list
         translators = []
         for line in readlines(FILE_TRANSLATORS, False):
@@ -76,6 +79,7 @@ class AboutWindow(object):
         """
         Show the About dialog
         """
+        logging.debug('Showing about dialog')
         self.ui.dialog_about.run()
         self.ui.dialog_about.hide()
 
@@ -83,4 +87,5 @@ class AboutWindow(object):
         """
         Destroy the About dialog
         """
+        logging.debug('Closing about dialog')
         self.ui.dialog_about.destroy()

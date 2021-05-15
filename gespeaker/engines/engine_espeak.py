@@ -18,6 +18,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
 import os
 import subprocess
 
@@ -116,7 +117,7 @@ class EngineEspeak(EngineBase):
         """
         super(self.__class__, self).play(text, language, on_play_completed)
         arguments = ['espeak', '-v', language, '--stdout']
-        self.settings.debug_line(arguments)
+        logging.debug(arguments)
         self.process_speaker = subprocess.Popen(args=arguments,
                                                 stdin=subprocess.PIPE,
                                                 stdout=subprocess.PIPE)
@@ -143,11 +144,9 @@ class EngineEspeak(EngineBase):
         Stop any previous play
         """
         if self.process_player:
-            # Show terminate message when debug is activated
-            self.settings.debug_line(
-                'Terminate engine {ENGINE} with pid {PID}'.format(
-                    ENGINE=self.name,
-                    PID=self.process_player.pid))
+            logging.info('Terminate engine {ENGINE} with pid {PID}'.format(
+                ENGINE=self.name,
+                PID=self.process_player.pid))
             self.process_player.terminate()
         return super(self.__class__, self).stop()
 
@@ -158,12 +157,10 @@ class EngineEspeak(EngineBase):
         super(self.__class__, self).pause(status_pause)
         for process in (self.process_speaker, self.process_player):
             if process:
-                # Show pause message when debug is activated
-                self.settings.debug_line(
-                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
-                        STATUS='Pause' if status_pause else 'Resume',
-                        ENGINE=self.name,
-                        PID=process.pid))
+                logging.info('{STATUS} engine {ENGINE} with pid {PID}'.format(
+                    STATUS='Pause' if status_pause else 'Resume',
+                    ENGINE=self.name,
+                    PID=process.pid))
                 psprocess = psutil.Process(process.pid)
                 if status_pause:
                     psprocess.suspend()

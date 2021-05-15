@@ -18,6 +18,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
 import os
 import subprocess
 import tempfile
@@ -95,7 +96,7 @@ class EngineGoogleTTS(EngineBase):
         self.process_speaker = None
 
         arguments = ['mpg123', '-q', self._tmp_filename]
-        self.settings.debug_line(arguments)
+        logging.debug(arguments)
         self.process_player = subprocess.Popen(args=arguments)
 
     def is_playing(self, on_play_completed):
@@ -113,11 +114,9 @@ class EngineGoogleTTS(EngineBase):
         Stop any previous play
         """
         if self.process_player:
-            # Show terminate message when debug is activated
-            self.settings.debug_line(
-                'Terminate engine {ENGINE} with pid {PID}'.format(
-                    ENGINE=self.name,
-                    PID=self.process_player.pid))
+            logging.info('Terminate engine {ENGINE} with pid {PID}'.format(
+                ENGINE=self.name,
+                PID=self.process_player.pid))
             self.process_player.terminate()
         # Remove stale temporary file
         if os.path.isfile(self._tmp_filename):
@@ -131,12 +130,10 @@ class EngineGoogleTTS(EngineBase):
         super(self.__class__, self).pause(status_pause)
         for process in (self.process_speaker, self.process_player):
             if process:
-                # Show pause message when debug is activated
-                self.settings.debug_line(
-                    '{STATUS} engine {ENGINE} with pid {PID}'.format(
-                        STATUS='Pause' if status_pause else 'Resume',
-                        ENGINE=self.name,
-                        PID=process.pid))
+                logging.info('{STATUS} engine {ENGINE} with pid {PID}'.format(
+                    STATUS='Pause' if status_pause else 'Resume',
+                    ENGINE=self.name,
+                    PID=process.pid))
                 psprocess = psutil.Process(process.pid)
                 if status_pause:
                     psprocess.suspend()
