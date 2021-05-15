@@ -30,8 +30,8 @@ msgid "<b>Base settings</b>"
 msgstr "<b>Paràmetres bàsics</b>"
 
 #: ../data/ui/gespeaker.glade.h:3
-msgid "<b>Insert text to play</b>"
-msgstr "<b>Inseriu el text a reproduir</b>"
+msgid "Insert text to play"
+msgstr "Inseriu el text a reproduir"
 
 #: ../data/ui/gespeaker.glade.h:4
 msgid "Dela_y:"

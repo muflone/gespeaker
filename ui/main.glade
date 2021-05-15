@@ -481,7 +481,7 @@
               <object class="GtkLabel" id="label_text">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Insert _text to play</property>
+                <property name="label" translatable="yes">Insert text to play</property>
                 <property name="use-underline">True</property>
                 <property name="mnemonic-widget">text_text</property>
                 <property name="ellipsize">start</property>

@@ -30,8 +30,8 @@ msgid "<b>Base settings</b>"
 msgstr "<b>Alapbeállítások</b>"
 
 #: ../data/ui/gespeaker.glade.h:3
-msgid "<b>Insert text to play</b>"
-msgstr "<b>Írd be a lejátszani kívánt szöveget:</b>"
+msgid "Insert text to play"
+msgstr "Írd be a lejátszani kívánt szöveget:"
 
 #: ../data/ui/gespeaker.glade.h:4
 msgid "Dela_y:"
