@@ -474,9 +474,11 @@
           <object class="GtkBox" id="box_main_controls">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="border-width">4</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <property name="margin-bottom">12</property>
             <property name="orientation">vertical</property>
-            <property name="spacing">5</property>
+            <property name="spacing">7</property>
             <child>
               <object class="GtkLabel" id="label_text">
                 <property name="visible">True</property>
@@ -543,11 +545,13 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="spacing">5</property>
+                    <property name="homogeneous">True</property>
                     <property name="layout-style">start</property>
                     <child>
                       <object class="GtkButton" id="button_record">
                         <property name="use-action-appearance">True</property>
                         <property name="related-action">action_record</property>
+                        <property name="width-request">120</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -563,6 +567,7 @@
                       <object class="GtkToggleButton" id="button_play">
                         <property name="use-action-appearance">True</property>
                         <property name="related-action">action_play_stop</property>
+                        <property name="width-request">120</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -579,6 +584,7 @@
                       <object class="GtkToggleButton" id="button_pause">
                         <property name="use-action-appearance">True</property>
                         <property name="related-action">action_pause</property>
+                        <property name="width-request">120</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
