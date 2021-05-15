@@ -26,7 +26,7 @@ from xdg import BaseDirectory
 
 # Application constants
 APP_NAME = 'Gespeaker'
-APP_VERSION = '2.0.0'
+APP_VERSION = '2.0.1'
 APP_DESCRIPTION = 'A GTK frontend for espeak'
 APP_ID = 'gespeaker.muflone.com'
 APP_URL = 'http://www.muflone.com/gespeaker'
