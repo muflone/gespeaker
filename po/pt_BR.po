@@ -7,13 +7,14 @@
 #
 # Translators:
 # Rui <xymarior(at)yandex.com>, 2019
+# Paguiar735 <github.translation(at)paguiar.dev>, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Gespeaker\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gespeaker/issues\n"
 "POT-Creation-Date: 2010-06-12 14:02+0200\n"
-"PO-Revision-Date: 2019-03-04 12:07+0000\n"
-"Last-Translator: Rui <xymarior(at)yandex.com>\n"
+"PO-Revision-Date: 2022-06-26 12:07+0000\n"
+"Last-Translator: Paguiar735 <github.translation(at)paguiar.dev>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/muflone/gespeaker/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "<b>Configurações avançadas</b>"
 
 #: ../data/ui/gespeaker.glade.h:2
 msgid "<b>Base settings</b>"
-msgstr "<b>Configurações de base</b>"
+msgstr "<b>Configurações básicas</b>"
 
 #: ../data/ui/gespeaker.glade.h:3
 msgid "Insert text to play"
@@ -35,23 +36,23 @@ msgstr "Inserir texto a reproduzir"
 
 #: ../data/ui/gespeaker.glade.h:4
 msgid "Dela_y:"
-msgstr "Atra_so:"
+msgstr "Dela_y:"
 
 #: ../data/ui/gespeaker.glade.h:5
 msgid "Fem_ale"
-msgstr "_Feminino"
+msgstr "Fem_ale"
 
 #: ../data/ui/gespeaker.glade.h:6
 msgid "P_itch:"
-msgstr "T_om:"
+msgstr "P_itch:"
 
 #: ../data/ui/gespeaker.glade.h:7
 msgid "Spee_d:"
-msgstr "Velocida_de:"
+msgstr "Spee_d:"
 
 #: ../data/ui/gespeaker.glade.h:8
 msgid "Varia_nt:"
-msgstr "Varia_nte:"
+msgstr "Varia_nt:"
 
 #: ../data/ui/gespeaker.glade.h:9
 msgid "Voice:"
@@ -59,23 +60,23 @@ msgstr "Voz:"
 
 #: ../data/ui/gespeaker.glade.h:10
 msgid "_Edit"
-msgstr "_Editar"
+msgstr "_Edit"
 
 #: ../data/ui/gespeaker.glade.h:11
 msgid "_File"
-msgstr "_Arquivo"
+msgstr "_File"
 
 #: ../data/ui/gespeaker.glade.h:12
 msgid "_Help"
-msgstr "A_juda"
+msgstr "_Help"
 
 #: ../data/ui/gespeaker.glade.h:13
 msgid "_Language:"
-msgstr "_Língua:"
+msgstr "_Language:"
 
 #: ../data/ui/gespeaker.glade.h:14
 msgid "_Male"
-msgstr "_Masculino"
+msgstr "_Male"
 
 #: ../data/ui/gespeaker.glade.h:15
 msgid "_Volume:"
@@ -111,15 +112,15 @@ msgstr "<b>Mensagem de boas-vindas</b>"
 
 #: ../data/ui/preferences.glade.h:8
 msgid "Co_mmand:"
-msgstr "Co_mando:"
+msgstr "Co_mmand:"
 
 #: ../data/ui/preferences.glade.h:9
 msgid "Custom mess_age:"
-msgstr "Mens_agem personalizada:"
+msgstr "Custom mess_age:"
 
 #: ../data/ui/preferences.glade.h:10
 msgid "Enable te_xt wrapping"
-msgstr "Ativar quebra de linhas no texto"
+msgstr "Enable te_xt wrapping"
 
 #: ../data/ui/preferences.glade.h:11
 msgid "General"
@@ -127,11 +128,11 @@ msgstr "Geral"
 
 #: ../data/ui/preferences.glade.h:12
 msgid "Load voice _variants"
-msgstr "Carregar _variantes de vozes"
+msgstr "Load voice _variants"
 
 #: ../data/ui/preferences.glade.h:13
 msgid "Main program mbrola"
-msgstr "Programa principal mbrola"
+msgstr "Programa principal Mbrola"
 
 #: ../data/ui/preferences.glade.h:14
 msgid "Mbrola voices"
@@ -147,23 +148,23 @@ msgstr "Preferências"
 
 #: ../data/ui/preferences.glade.h:17
 msgid "Save main window s_ize"
-msgstr "Salvar tamanho da janela principal"
+msgstr "Save main window s_ize"
 
 #: ../data/ui/preferences.glade.h:18
 msgid "Single track _record"
-msgstr "G_ravação numa só faixa"
+msgstr "Single track _record"
 
 #: ../data/ui/preferences.glade.h:19
 msgid "Speak _welcome text on program start"
-msgstr ""
+msgstr "Speak _welcome text on program start"
 
 #: ../data/ui/preferences.glade.h:20
 msgid "_Save voice settings automatically"
-msgstr ""
+msgstr "_Save voice settings automatically"
 
 #: ../data/ui/preferences.glade.h:21
 msgid "_Use custom welcome message"
-msgstr ""
+msgstr "_Use custom welcome message"
 
 #: ../src/EspeakFrontend.py:87 ../src/EspeakFrontend.py:113
 #: ../src/PreferencesWindow.py:198
@@ -174,19 +175,19 @@ msgstr "Teste de áudio"
 #: ../src/PreferencesWindow.py:200
 #, python-format
 msgid "There was an error during the test for the audio player.\n\nError %s: %s"
-msgstr ""
+msgstr "Ocorreu um erro durante o teste de áudio.\n\nErro %s: %s"
 
 #: ../src/gespeakerUI.py:175 ../src/Settings.py:78
 msgid "default language"
-msgstr "portoguese"
+msgstr "Idioma principal"
 
 #: ../src/gespeakerUI.py:272
 msgid "Do you want to delete the current text?"
-msgstr "Quer apagar o texto atual?"
+msgstr "Deseja apagar o texto atual?"
 
 #: ../src/gespeakerUI.py:287
 msgid "Please select the text file to open"
-msgstr ""
+msgstr "Por favor, selecione o arquivo de texto a ser importado"
 
 #: ../src/gespeakerUI.py:290 ../src/gespeakerUI.py:328
 msgid "Text files (*.txt)"
@@ -203,7 +204,7 @@ msgstr "Erro ao abrir o arquivo"
 
 #: ../src/gespeakerUI.py:326
 msgid "Please select where to save the text file"
-msgstr ""
+msgstr "Por favor, selecione onde salvar o arquivo de texto"
 
 #: ../src/gespeakerUI.py:347 ../src/gespeakerUI.py:356
 msgid "Error saving the file"
@@ -211,28 +212,28 @@ msgstr "Erro ao salvar o arquivo"
 
 #: ../src/gespeakerUI.py:368
 msgid "Do you want to reset the default settings?"
-msgstr ""
+msgstr "Deseja restaurar aos padrões de fábrica?"
 
 #: ../src/gespeakerUI.py:404
 msgid "A GTK frontend for espeak"
-msgstr "Uma frontend GTK para o espeak"
+msgstr "Uma interface GTK para o eSpeak"
 
 #: ../src/gespeakerUI.py:555
 msgid "Please select where to save the recorded file"
-msgstr ""
+msgstr "Por favor, selecione onde salvar a gravação"
 
 #: ../src/gespeakerUI.py:558
 msgid "Wave files (*.wav)"
-msgstr "Arquivos wave (*.wav)"
+msgstr "Arquivos wav (*.wav)"
 
 #: ../src/gespeakerUI.py:576
 #, python-format
 msgid "Recording audio track to: %s"
-msgstr ""
+msgstr "Recording audio track to: %s"
 
 #: ../src/PreferencesWindow.py:107
 msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Arquitetura de Som em Linux Avançada"
+msgstr "ALSA - Arquitetura Avançada de Som para Linux"
 
 #: ../src/PreferencesWindow.py:110
 msgid "PulseAudio sound server"
@@ -244,11 +245,11 @@ msgstr "Aplicativo de som personalizado"
 
 #: ../src/PreferencesWindow.py:114
 msgid "_Test"
-msgstr "_Testar"
+msgstr "_Test"
 
 #: ../src/PreferencesWindow.py:130
 msgid "Language"
-msgstr "Língua"
+msgstr "Idioma"
 
 #: ../src/PreferencesWindow.py:136
 msgid "Resource"
@@ -256,7 +257,7 @@ msgstr "Recurso"
 
 #: ../src/PreferencesWindow.py:142
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: ../src/PreferencesWindow.py:225
 msgid "Installed"
@@ -269,15 +270,15 @@ msgstr "Não instalado"
 #: ../src/PreferencesWindow.py:227
 #, python-format
 msgid "%d languages of %d detected"
-msgstr "%d línguas de %d detetadas"
+msgstr "%d idiomas de %d detectados"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola installed"
-msgstr "Pacote mbrola instalado"
+msgstr "Pacote Mbrola instalado"
 
 #: ../src/PreferencesWindow.py:234
 msgid "Package mbrola not installed"
-msgstr "Pacote mbrola não instalado"
+msgstr "Pacote Mbrola não instalado"
 
 #: ../src/Settings.py:64
 msgid "Welcome in Gespeaker"
